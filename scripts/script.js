@@ -1,6 +1,6 @@
 
 (function () {
-  const MIN_TIME = 9000; 
+  const MIN_TIME = 900; 
 
   const start = Date.now();
 
@@ -84,7 +84,7 @@ function updateManifesto(){
   const section=document.getElementById('manifesto');
   const r=section.getBoundingClientRect();
   const progress=1-r.bottom/window.innerHeight;
-  const visible=Math.floor(progress*words.length*1.4);
+  const visible=Math.floor(progress*words.length*4);
   words.forEach((w,i)=>w.classList.toggle('lit',i<visible));
 }
 window.addEventListener('scroll',updateManifesto,{passive:true});

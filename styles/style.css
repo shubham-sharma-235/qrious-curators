@@ -433,7 +433,7 @@ body.cur-hover #qc-cur-ring{width:48px;height:48px;border-color:#fb923c63}
   box-shadow:0 20px 60px rgba(0,0,0,.45);
   transition:border-color .35s,transform .35s;
 }
-.stack-card:nth-child(1){top:110px}
+.stack-card:nth-child(1){top:110px;}
 .stack-card:nth-child(2){top:132px}
 .stack-card:nth-child(3){top:154px}
 .stack-card:nth-child(4){top:176px}
