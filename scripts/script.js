@@ -1,6 +1,6 @@
 
 (function () {
-  const MIN_TIME = 9000; 
+  const MIN_TIME = 5000; 
 
   const start = Date.now();
 
