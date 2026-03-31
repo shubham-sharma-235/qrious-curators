@@ -1,0 +1,6 @@
+
+  --heading-font: "Raleway", sans-serif;
+  /* --heading-font: 'Syne',sans-serif */
+
+  --sub-heading-font: "Lato", sans-serif;
+  /* --sub-heading-font: "'Cormorant Garamond',serif */

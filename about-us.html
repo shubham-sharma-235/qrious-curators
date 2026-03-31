@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qrious Curators — Creative Studio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link
+      rel="shortcut icon"
+      href="./assets/logo/fav-icon-one.png"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- CURSOR -->
+    <div id="qc-cur"></div>
+    <div id="qc-cur-ring"></div>
+
+    <!-- GRAIN -->
+    <div id="grain" aria-hidden="true"></div>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+      <div class="preloader-content">
+        <img src="./assets/preloader-2.gif" alt="Loading..." />
+      </div>
+    </div>
+    <!-- <div id="preloader">
+      <div class="preloader-content">
+        <div class="pl-logo">
+          <span>Q</span>rious <span>C</span>urators
+        </div>
+        <div class="pl-tagline">Creative Design Studio</div>
+        <div class="pl-bar"><div class="pl-bar-fill"></div></div>
+      </div>
+    </div> -->
+
+    <!-- NAV -->
+    <header class="qc-header">
+      <nav class="qc-nav">
+        <a href="#" class="nav-logo">
+          <img src="./assets/logo/logo-one.png" alt="" />
+        </a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#showcase">Work</a></li>
+          <li><a href="#team">Blogs</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">
+          <span>Let's Talk</span>
+          <span>↗</span>
+        </a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+      <span class="mm-close" id="mmClose">✕</span>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#showcase">Work</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Get in touch</a>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section id="hero">
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+      >
+        <source
+          src="./assets/dummy-video.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div class="hero-overlay"></div>
+      <!-- <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-dot"></div>
+          <span>Qrious Curators</span>
+        </div>
+        <h1 class="hero-h1">
+          <span class="line"><span class="line-inner l1">We craft</span></span>
+          <span class="line"
+            ><span class="line-inner l2"><em>digital</em> worlds</span></span
+          >
+          <span class="line"
+            ><span class="line-inner l3 outline">that endure.</span></span
+          >
+        </h1>
+        <div class="hero-bottom">
+          <p class="hero-desc">
+            Qrious Curators is a full-spectrum creative agency building brand
+            systems, digital experiences, and stories that stand apart in a
+            crowded world.
+          </p>
+          <div class="hero-ctas">
+            <a href="#showcase" class="btn-accent"
+              ><span>View Work</span><span>↗</span></a
+            >
+            <a href="#about" class="btn-outline">Our Story</a>
+          </div>
+        </div>
+      </div> -->
+      <div class="hero-scroll">
+        <div class="hero-scroll-line"></div>
+        <span class="hero-scroll-label">Scroll</span>
+      </div>
+    </section>
+
+    <!-- ===== MARQUEE ===== -->
+    <div class="qc-marquee" aria-hidden="true">
+      <div class="qc-marquee-track">
+        <span class="qc-marquee-item">Brand Identity</span>
+        <span class="qc-marquee-item">Web Design</span>
+        <span class="qc-marquee-item">Digital Strategy</span>
+        <span class="qc-marquee-item">3D Design</span>
+        <span class="qc-marquee-item">UI / UX</span>
+        <span class="qc-marquee-item">Performance Marketing</span>
+        <span class="qc-marquee-item">Content Creation</span>
+        <span class="qc-marquee-item">Social Media</span>
+        <span class="qc-marquee-item">Brand Identity</span>
+        <span class="qc-marquee-item">Web Design</span>
+        <span class="qc-marquee-item">Digital Strategy</span>
+        <span class="qc-marquee-item">3D Design</span>
+        <span class="qc-marquee-item">UI / UX</span>
+        <span class="qc-marquee-item">Performance Marketing</span>
+        <span class="qc-marquee-item">Content Creation</span>
+        <span class="qc-marquee-item">Social Media</span>
+      </div>
+    </div>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about">
+      <div class="about-left rvl">
+        <div class="kicker">
+          <div class="kicker-line"></div>
+          Who We Are
+        </div>
+        <h2 class="about-h2">
+          We turn bold ideas into <em>remarkable</em> realities
+        </h2>
+        <p class="about-body">
+         From scroll-stopping content and high-performing ads to sleek websites and cohesive brand identities, we craft digital experiences that are visually compelling, strategically strong, and undeniably result-oriented.
+
+        </p>
+        <p class="about-body">
+         We partner with brands that think ahead. Brands that want more than visibility-they want impact, engagement, and scalable growth.
+        </p>
+        <p class="about-body">
+         With the right blend of creativity, clarity, and conversionfocused strategy, Qrious Curators turns ideas into campaigns that move people and move the needle
+        </p>
+        <a href="#contact" class="about-link">Start a project →</a>
+      </div>
+      <div class="about-right rvr d1">
+        <div class="about-img-wrap">
+          <img
+            src="https://framerusercontent.com/images/sXpGa5SBIHzL1ZlluLzui0nhLvU.webp?width=900"
+            alt="Studio work"
+            loading="lazy"
+          />
+        </div>
+        <div class="about-img-wrap">
+          <img
+            src="https://framerusercontent.com/images/9eD88IPKTw4s3e2ACxglJMr1zWs.webp?width=900"
+            alt="Design process"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== STATS ===== -->
+    <section id="stats">
+      <div class="stats-grid">
+        <div class="stat-cell rv d1">
+          <div class="stat-num">140<sup>+</sup></div>
+          <div class="stat-lbl">Projects Completed</div>
+        </div>
+        <div class="stat-cell rv d2">
+          <div class="stat-num">8<sup>yr</sup></div>
+          <div class="stat-lbl">Years of Craft</div>
+        </div>
+        <div class="stat-cell rv d3">
+          <div class="stat-num">92<sup>%</sup></div>
+          <div class="stat-lbl">Client Retention</div>
+        </div>
+        <div class="stat-cell rv d4">
+          <div class="stat-num">34<sup>+</sup></div>
+          <div class="stat-lbl">Global Clients</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MANIFESTO (animated word reveal) ===== -->
+    <section id="manifesto">
+      <div class="manifesto-text" id="manifestoText">
+        <span class="manifesto-word">Crafting</span>
+        <span class="manifesto-word">Powerful,</span>
+        <span class="manifesto-word"><em>Impactful</em></span>
+        <span class="manifesto-word">Brands</span>
+        <span class="manifesto-word">That</span>
+        <span class="manifesto-word">Engage</span>
+        <span class="manifesto-word">Audiences,</span>
+        <span class="manifesto-word">Drive</span>
+        <span class="manifesto-word"><em>Results,</em></span>
+        <span class="manifesto-word">and</span>
+        <span class="manifesto-word">Fuel</span>
+        <span class="manifesto-word">Scalable</span>
+        <span class="manifesto-word">Growth.</span>
+        <span class="manifesto-word">We</span>
+        <span class="manifesto-word">Don’t</span>
+        <span class="manifesto-word">Just</span>
+        <span class="manifesto-word">Build</span>
+        <span class="manifesto-word">Brands,</span>
+        <span class="manifesto-word">We</span>
+        <span class="manifesto-word">Create</span>
+        <span class="manifesto-word"><em>Experiences</em></span>
+        <span class="manifesto-word">That</span>
+        <span class="manifesto-word"><em>Matter.</em></span>
+      </div>
+    </section>
+
+    <!-- ===== STACK ===== -->
+    <section id="stack">
+      <div class="stack-grid">
+        <div class="stack-sticky">
+          <span class="stack-kicker">Key Work</span>
+          <h2 class="stack-title">
+            At Qrious Curators, we don’t just <em>“do marketing.”</em>
+            We build brands that people
+            <em>Remember</em>, <em>Relate to</em>, and <em>Talk about</em>
+          </h2>
+        </div>
+        <div class="stack-cards">
+          <div class="stack-card">
+            <img
+              src="https://framerusercontent.com/images/sXpGa5SBIHzL1ZlluLzui0nhLvU.webp?width=1800&height=2400"
+              alt="Work 1"
+              loading="lazy"
+            />
+          </div>
+          <div class="stack-card">
+            <img
+              src="https://framerusercontent.com/images/9eD88IPKTw4s3e2ACxglJMr1zWs.webp?width=1800&height=2400"
+              alt="Work 2"
+              loading="lazy"
+            />
+          </div>
+          <div class="stack-card">
+            <img
+              src="https://framerusercontent.com/images/ruM84yQKYiTGK0mIWGzyalj01WQ.webp?width=1920&height=2400"
+              alt="Work 3"
+              loading="lazy"
+            />
+          </div>
+          <div class="stack-card">
+            <img
+              src="https://framerusercontent.com/images/sXpGa5SBIHzL1ZlluLzui0nhLvU.webp?width=1800&height=2400"
+              alt="Work 4"
+              loading="lazy"
+            />
+          </div>
+          <div class="stack-card">
+            <img
+              src="https://framerusercontent.com/images/9eD88IPKTw4s3e2ACxglJMr1zWs.webp?width=1800&height=2400"
+              alt="Work 5"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- ═══════════════════════════════════════════
+     WORLDWIDE CLIENTS SECTION
+    ═══════════════════════════════════════════ -->
+    <section id="worldwide">
+      <div class="ww-bg-glow"></div>
+
+      <!-- HEADER -->
+      <div class="ww-header">
+        <div class="rvl">
+          <div class="ww-kicker"><span class="kl"></span>Our Global Reach</div>
+          <h2 class="ww-h2">
+            Clients across<br /><em>every continent,</em><br />one standard.
+          </h2>
+        </div>
+        <div class="rvr d2">
+          <p class="ww-desc">
+            From startups in <strong>Jaipur</strong> to enterprises in
+            <strong>New York</strong>, <strong>London</strong>, and
+            <strong>Tokyo</strong> — our work transcends borders. We partner
+            with brands that refuse to be ordinary, no matter where they are.
+          </p>
+          <div class="ww-stats">
+            <div class="ww-stat">
+              <div class="ws-n">18<sup>+</sup></div>
+              <div class="ws-l">Countries</div>
+            </div>
+            <div class="ws-div"></div>
+            <div class="ww-stat">
+              <div class="ws-n">34<sup>+</sup></div>
+              <div class="ws-l">Global Clients</div>
+            </div>
+            <div class="ws-div"></div>
+            <div class="ww-stat">
+              <div class="ws-n">6</div>
+              <div class="ws-l">Continents</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <!-- ===== TEAM ===== -->
+    <section id="team-container">
+      <div class="testi-header rv">
+        <div>
+          <div
+            class="kicker"
+            style="
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              margin-bottom: 0px;
+            "
+          >
+            <div class="kicker-line"></div>
+            Client Stories
+          </div>
+          <h2>Our team of <em>creative minds</h2>
+        </div>
+        <p>
+            With diverse skills and a passion for excellence, we work together to bring your vision to life.
+        </p>
+      </div>
+    </section>
+    <section id="team">
+      <div class="team-sticky">
+        <div class="team-heading">
+          <span class="team-kicker">Meet the Team Of</span>
+          <h2>Creative<br />Minds</h2>
+        </div>
+        <div class="team-cards" id="teamCards">
+          <div class="tm-card">
+            <img src="./assets/team/abhay.JPG" alt="Sarah Khan" />
+            <div class="tm-card-body">
+              <h4>Sarah Khan</h4>
+              <span>Creative Director</span>
+            </div>
+          </div>
+          <div class="tm-card">
+            <img src="./assets/team/bhavana.JPG" alt="Arjun Mehta" />
+            <div class="tm-card-body">
+              <h4>Arjun Mehta</h4>
+              <span>Brand Strategist</span>
+            </div>
+          </div>
+          <div class="tm-card">
+            <img src="./assets/team/preeti.JPG" alt="Emily Roy" />
+            <div class="tm-card-body">
+              <h4>Emily Roy</h4>
+              <span>UI / UX Designer</span>
+            </div>
+          </div>
+          <div class="tm-card">
+            <img src="./assets/team/prakriti.JPG" alt="Daniel Joseph" />
+            <div class="tm-card-body">
+              <h4>Daniel Joseph</h4>
+              <span>Performance Marketer</span>
+            </div>
+          </div>
+          <div class="tm-card">
+            <img src="./assets/team/jayant.JPG" alt="Riya Sharma" />
+            <div class="tm-card-body">
+              <h4>Riya Sharma</h4>
+              <span>Content Lead</span>
+            </div>
+          </div>
+          <div class="tm-card">
+            <img src="./assets/team/kumkum.JPG" alt="James Lee" />
+            <div class="tm-card-body">
+              <h4>James Lee</h4>
+              <span>Video Producer</span>
+            </div>
+          </div>
+          <div class="tm-card">
+            <img src="./assets/team/sandeep.JPG" alt="Aanya Kapoor" />
+            <div class="tm-card-body">
+              <h4>Aanya Kapoor</h4>
+              <span>Visual Designer</span>
+            </div>
+          </div>
+          <div class="tm-card">
+            <img src="./assets/team/vikram.JPG" alt="Kabir Sethi" />
+            <div class="tm-card-body">
+              <h4>Kabir Sethi</h4>
+              <span>Web Developer</span>
+            </div>
+          </div>
+          <div class="tm-card">
+            <img src="./assets/team/yashika.JPG" alt="Naina Verma" />
+            <div class="tm-card-body">
+              <h4>Naina Verma</h4>
+              <span>Social Media Lead</span>
+            </div>
+          </div>
+          <div class="tm-card">
+            <img src="./assets/team/abhay.JPG" alt="Rehan Ali" />
+            <div class="tm-card-body">
+              <h4>Rehan Ali</h4>
+              <span>Copywriter</span>
+            </div>
+          </div>
+          <div class="tm-card">
+            <img src="./assets/team/abhay.JPG" alt="Tanya Dsouza" />
+            <div class="tm-card-body">
+              <h4>Tanya Dsouza</h4>
+              <span>Account Manager</span>
+            </div>
+          </div>
+          <div class="tm-card">
+            <img src="./assets/team/abhay.JPG" alt="Vivaan Khurana" />
+            <div class="tm-card-body">
+              <h4>Vivaan Khurana</h4>
+              <span>Growth Specialist</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section id="contact">
+      <div class="cta-inner">
+        <div class="cta-eyebrow rv">
+          <div class="cta-eyebrow-line"></div>
+          Let's Build Together
+          <div class="cta-eyebrow-line"></div>
+        </div>
+        <h2 class="cta-h2 rv">Have a project<br /><em>in mind?</em></h2>
+        <p class="cta-sub rv d1">
+          Tell us about your vision. We respond within 24 hours with a tailored
+          proposal and a clear path forward.
+        </p>
+        <div class="cta-acts rv d2">
+          <a href="mailto:hello@qriouscurators.com" class="btn-accent"
+            ><span>Send a Brief</span><span>↗</span></a
+          >
+          <a href="#" class="btn-outline">Schedule a Call</a>
+        </div>
+        <p class="cta-email-line rv d3">
+          Or reach us at
+          <a href="mailto:hello@qriouscurators.com">hello@qriouscurators.com</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="qcFooter">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div>
+            <div class="footer-brand-name">
+              <div class="nav-logo-dot"></div>
+              Qrious Curators
+            </div>
+            <p class="footer-text">
+              We build brands, websites, and digital experiences that feel
+              refined, relevant, and made to grow.
+            </p>
+            <div class="footer-socials">
+              <!-- <a href="#" class="f-soc">𝕏</a> -->
+              <a href="#" class="f-soc">in</a>
+              <a href="#" class="f-soc">ig</a>
+              <a href="#" class="f-soc">fb</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-col-ttl">Services</div>
+            <ul class="footer-links">
+              <li><a href="#">Web Design</a></li>
+              <li><a href="#">Development</a></li>
+              <li><a href="#">Brand Identity</a></li>
+              <li><a href="#">Social Media</a></li>
+              <li><a href="#">Content Creation</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-ttl">Company</div>
+            <ul class="footer-links">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Our Work</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copy">
+            © 2026 Qrious Curators. All rights reserved.
+          </p>
+          <p class="footer-made">Designed &amp; built with <span>♥</span></p>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
