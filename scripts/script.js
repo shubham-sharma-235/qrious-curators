@@ -1,3 +1,18 @@
+const qnToggle = document.getElementById('qnToggle');
+const qnOverlay = document.getElementById('qnOverlay');
+function qnToggleMenu(force){
+  const isOpen = typeof force === 'boolean' ? force : !qnOverlay.classList.contains('open');
+  qnOverlay.classList.toggle('open', isOpen);
+  qnToggle.classList.toggle('active', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+qnToggle.addEventListener('click', () => qnToggleMenu());
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape') qnToggleMenu(false);
+});
+
+// ----------------------------------------------------------------------
+
 
 (function () {
   const MIN_TIME = 5000; 
@@ -314,3 +329,74 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth' }) }
   })
 })
+
+document.addEventListener("DOMContentLoaded", () => {
+    const video = document.querySelector('.nx-floating-video');
+    const targetCard = document.getElementById('nx-target-slot');
+    const contentArea = document.querySelector('.nx-content-area');
+    const dimOverlay = document.querySelector('.nx-dim-overlay');
+    const textLayer = document.querySelector('.nx-sticky-text-layer');
+    const words = document.querySelectorAll('.nx-word');
+    const updateAnimation = () => {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        
+        /* =========================================
+           1. VIDEO DOCKING LOGIC
+           ========================================= */
+        let dockProgress = scrollY / windowHeight;
+        dockProgress = Math.max(0, Math.min(1, dockProgress)); 
+        const rect = targetCard.getBoundingClientRect();
+        const currentWidth = window.innerWidth - ((window.innerWidth - rect.width) * dockProgress);
+        const currentHeight = windowHeight - ((windowHeight - rect.height) * dockProgress);
+        const currentX = rect.left * dockProgress;
+        const currentY = rect.top * dockProgress;
+        const currentRadius = 4 * dockProgress;
+        video.style.width = `${currentWidth}px`;
+        video.style.height = `${currentHeight}px`;
+        video.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        video.style.borderRadius = `${currentRadius}px`;
+        /* =========================================
+           2. TEXT & DIM OVERLAY REVEAL
+           ========================================= */
+        // Wait until the docking scroll is almost done to start fading in the background dim
+        const postDockScroll = Math.max(0, scrollY - (windowHeight * 0.8));
+        const textRevealProgress = Math.min(1, postDockScroll / 400); 
+        
+        dimOverlay.style.opacity = textRevealProgress;
+        // Animate words sliding up beautifully
+        words.forEach((word, index) => {
+            const delay = index * 0.15; 
+            let wordProgress = (textRevealProgress - delay) * 2; 
+            wordProgress = Math.max(0, Math.min(1, wordProgress));
+            
+            // Custom ease-out curve
+            const easeOut = 1 - Math.pow(1 - wordProgress, 4);
+            
+            // Slides from Y:120% and Rotate:4deg down to 0
+            const translateY = (1 - easeOut) * 120;
+            const rotateZ = (1 - easeOut) * 4;
+            
+            word.style.transform = `translateY(${translateY}%) rotateZ(${rotateZ}deg)`;
+        });
+        /* =========================================
+           3. SECTION EXIT LOGIC
+           Makes the fixed text and dim overlay scroll away naturally 
+           when you reach the bottom of the grid.
+           ========================================= */
+        const contentBottom = contentArea.offsetTop + contentArea.offsetHeight;
+        const scrollBottom = scrollY + windowHeight;
+        
+        let layerExitTranslate = 0;
+        if (scrollBottom > contentBottom) {
+            // Push the fixed layers UP by the exact amount scrolled past the section
+            layerExitTranslate = contentBottom - scrollBottom;
+        }
+        
+        textLayer.style.transform = `translateY(${layerExitTranslate}px)`;
+        dimOverlay.style.transform = `translateY(${layerExitTranslate}px)`;
+    };
+    window.addEventListener('scroll', updateAnimation);
+    window.addEventListener('resize', updateAnimation);
+    updateAnimation(); // Initial setup
+});

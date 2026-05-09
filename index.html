@@ -24,6 +24,45 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/locomotive-scroll/bundled/locomotive-scroll.css"
+    />
+
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js"></script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    .ball-animation {
+      height: 100vh;
+      position: absolute;
+    }
+    .ball {
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+    svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+    path {
+      stroke: transparent; /* hide path */
+    }
+  </style>
   </head>
   <body>
     <!-- CURSOR -->
@@ -39,40 +78,54 @@
         <img src="./assets/preloader-2.gif" alt="Loading..." />
       </div>
     </div>
-    <!-- <div id="preloader">
-      <div class="preloader-content">
-        <div class="pl-logo">
-          <span>Q</span>rious <span>C</span>urators
-        </div>
-        <div class="pl-tagline">Creative Design Studio</div>
-        <div class="pl-bar"><div class="pl-bar-fill"></div></div>
-      </div>
-    </div> -->
 
-    <!-- NAV -->
-    <header class="qc-header">
+     <header class="qc-header" style="display: none;">
       <nav class="qc-nav">
         <a href="#" class="nav-logo">
           <img src="./assets/logo/logo-one.png" alt="" />
         </a>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#showcase">Work</a></li>
-          <li><a href="#team">Blogs</a></li>
-        </ul>
-        <a href="#contact" class="nav-cta">
-          <span>Let's Talk</span>
-          <span>↗</span>
-        </a>
         <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-          <span></span><span></span>
         </button>
       </nav>
     </header>
 
+    <!-- NAV -->
+    <div class="qn-wrap">
+      <div class="qn-bar">
+        <a href="./index.html" class="nav-logo">
+          <img src="./assets/logo/logo-one.png" alt="" />
+        </a>
+        <ul class="nav-links"
+    
+        <button class="qn-toggle" id="qnToggle">
+          <div class="qn-icon">
+            <span></span><span></span><span></span>
+          </div>
+        </button>
+      </div>
+    </div>
+    
+    <!-- ===== OVERLAY ===== -->
+    <div class="qn-overlay" id="qnOverlay">
+      <div class="qn-inner">
+        <div class="qn-center">
+          <div class="qn-main">
+            <a href="#">About</a>
+            <a href="#">Work</a>
+            <a href="#">Services</a>
+          </div>
+    
+          <div class="qn-sub">
+            <a href="#">Contact</a>
+            <a href="#">Blogs</a>
+            <a href="#">Careers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu" id="mobileMenu" style="display: none;">
       <span class="mm-close" id="mmClose">✕</span>
       <a href="#about">About</a>
       <a href="#services">Services</a>
@@ -80,6 +133,18 @@
       <a href="#team">Team</a>
       <a href="#contact">Get in touch</a>
     </div>
+
+    <section class="ball-animation">
+      <div class="ball"></div>
+    
+      <svg viewBox="0 0 1920 1080" preserveAspectRatio="none">
+        <path id="motionPath"
+          d="M750,350 
+             C1500,300 300,400 960,700 
+             C1400,900 500,1000 960,1080" />
+      </svg>
+    
+    </section>
 
     <!-- ===== HERO ===== -->
     <section id="hero">
@@ -131,31 +196,63 @@
       </div>
     </section>
 
-    <!-- ===== MARQUEE ===== -->
-    <div class="qc-marquee" aria-hidden="true">
-      <div class="qc-marquee-track">
-        <span class="qc-marquee-item">Brand Identity</span>
-        <span class="qc-marquee-item">Web Design</span>
-        <span class="qc-marquee-item">Digital Strategy</span>
-        <span class="qc-marquee-item">3D Design</span>
-        <span class="qc-marquee-item">UI / UX</span>
-        <span class="qc-marquee-item">Performance Marketing</span>
-        <span class="qc-marquee-item">Content Creation</span>
-        <span class="qc-marquee-item">Social Media</span>
-        <span class="qc-marquee-item">Brand Identity</span>
-        <span class="qc-marquee-item">Web Design</span>
-        <span class="qc-marquee-item">Digital Strategy</span>
-        <span class="qc-marquee-item">3D Design</span>
-        <span class="qc-marquee-item">UI / UX</span>
-        <span class="qc-marquee-item">Performance Marketing</span>
-        <span class="qc-marquee-item">Content Creation</span>
-        <span class="qc-marquee-item">Social Media</span>
-      </div>
+    <div class="nx-main-container">
+
+        <!-- Fixed Elements -->
+        <video class="nx-floating-video" autoplay muted loop playsinline>
+            <source src="./assets/dummy-video.mp4" type="video/mp4">
+        </video>
+
+        <div class="nx-dim-overlay"></div>
+
+        <div class="nx-sticky-text-layer">
+            <h2 class="nx-docked-text">
+                <span class="nx-word-mask"><span class="nx-word">Designing</span></span>
+                <span class="nx-word-mask"><span class="nx-word">The</span></span>
+                <span class="nx-word-mask"><span class="nx-word">Unseen</span></span>
+                <span class="nx-word-mask"><span class="nx-word">Future</span></span>
+            </h2>
+        </div>
+
+        <!-- Scroll Content -->
+        <div class="nx-scroll-track"></div>
+
+        <div class="nx-content-area">
+            <div class="nx-card-grid">
+                
+                <div class="nx-grid-card">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200" alt="Architecture">
+                </div>
+                
+                <!-- Target Card (Slot 2) -->
+                <div class="nx-grid-card" id="nx-target-slot"></div>
+                
+                <div class="nx-grid-card">
+                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200" alt="Interior">
+                </div>
+
+                <div class="nx-grid-card">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200" alt="Building">
+                </div>
+
+                <div class="nx-grid-card">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200" alt="Office">
+                </div>
+
+                <div class="nx-grid-card">
+                    <img src="https://images.unsplash.com/photo-1506815415-32f913d81b15?auto=format&fit=crop&q=80&w=1200" alt="Abstract">
+                </div>
+
+            </div>
+        </div>
+        
     </div>
 
     <!-- ===== ABOUT ===== -->
     <section id="about">
-      <div class="about-left rvl">
+      <div class="about-left"
+          data-aos="fade-up"
+        >
         <div class="kicker">
           <div class="kicker-line"></div>
           Who We Are
@@ -165,17 +262,18 @@
         </h2>
         <p class="about-body">
          From scroll-stopping content and high-performing ads to sleek websites and cohesive brand identities, we craft digital experiences that are visually compelling, strategically strong, and undeniably result-oriented.
-
         </p>
-        <p class="about-body">
+        <!-- <p class="about-body">
          We partner with brands that think ahead. Brands that want more than visibility-they want impact, engagement, and scalable growth.
-        </p>
+        </p> -->
         <p class="about-body">
          With the right blend of creativity, clarity, and conversionfocused strategy, Qrious Curators turns ideas into campaigns that move people and move the needle
         </p>
         <a href="#contact" class="about-link">Start a project →</a>
       </div>
-      <div class="about-right rvr d1">
+      <div class="about-right d1"
+          data-aos="fade-up" 
+        >
         <div class="about-img-wrap">
           <img
             src="https://framerusercontent.com/images/sXpGa5SBIHzL1ZlluLzui0nhLvU.webp?width=900"
@@ -194,7 +292,7 @@
     </section>
 
     <!-- ===== STATS ===== -->
-    <section id="stats">
+    <!-- <section id="stats">
       <div class="stats-grid">
         <div class="stat-cell rv d1">
           <div class="stat-num">140<sup>+</sup></div>
@@ -213,10 +311,10 @@
           <div class="stat-lbl">Global Clients</div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- ===== MANIFESTO (animated word reveal) ===== -->
-    <section id="manifesto">
+    <!-- <section id="manifesto">
       <div class="manifesto-text" id="manifestoText">
         <span class="manifesto-word">Crafting</span>
         <span class="manifesto-word">Powerful,</span>
@@ -242,69 +340,14 @@
         <span class="manifesto-word">That</span>
         <span class="manifesto-word"><em>Matter.</em></span>
       </div>
-    </section>
-
-    <!-- ===== STACK ===== -->
-    <section id="stack">
-      <div class="stack-grid">
-        <div class="stack-sticky">
-          <span class="stack-kicker">Key Work</span>
-          <h2 class="stack-title">
-            At Qrious Curators, we don’t just <em>“do marketing.”</em>
-            We build brands that people
-            <em>Remember</em>, <em>Relate to</em>, and <em>Talk about</em>
-          </h2>
-        </div>
-        <div class="stack-cards">
-          <div class="stack-card">
-            <img
-              src="./assets/mockups/one.png"
-              alt="Work 1"
-              loading="lazy"
-            />
-          </div>
-          <div class="stack-card">
-            <img
-              src="./assets/mockups/two.png"
-              alt="Work 2"
-              loading="lazy"
-            />
-          </div>
-          <div class="stack-card">
-            <img
-              src="./assets/mockups/three.png"
-              alt="Work 3"
-              loading="lazy"
-            />
-          </div>
-          <div class="stack-card">
-            <img
-              src="./assets/mockups/one.png"
-              alt="Work 4"
-              loading="lazy"
-            />
-          </div>
-          <!-- <div class="stack-card">
-            <img
-              src="https://framerusercontent.com/images/9eD88IPKTw4s3e2ACxglJMr1zWs.webp?width=1800&height=2400"
-              alt="Work 5"
-              loading="lazy"
-            />
-          </div> -->
-        </div>
-      </div>
-    </section>
+    </section> -->
 
     <!-- ===== SERVICES (horizontal scroll) ===== -->
-    <section id="services">
+    <section id="services" data-aos="fade-up">
       <div class="services-sticky">
         <div class="services-track" id="svcTrack">
           <div class="svc-panel">
             <div class="svc-content">
-              <div class="svc-tag">
-                <div class="svc-tag-line"></div>
-                Service 01
-              </div>
               <h2 class="svc-h2">Creative<br /><em>Direction</em></h2>
               <p class="svc-p">
                 Our creative team brings fresh perspectives to make your brand
@@ -325,10 +368,6 @@
 
           <div class="svc-panel">
             <div class="svc-content">
-              <div class="svc-tag">
-                <div class="svc-tag-line"></div>
-                Service 02
-              </div>
               <h2 class="svc-h2">Brand<br /><em>Strategy</em></h2>
               <p class="svc-p">
                 We build brands that are timeless. Through extensive market
@@ -349,10 +388,6 @@
 
           <div class="svc-panel">
             <div class="svc-content">
-              <div class="svc-tag">
-                <div class="svc-tag-line"></div>
-                Service 03
-              </div>
               <h2 class="svc-h2">Digital<br /><em>Execution</em></h2>
               <p class="svc-p">
                 We take your ideas to the digital world. From website
@@ -373,10 +408,6 @@
 
           <div class="svc-panel">
             <div class="svc-content">
-              <div class="svc-tag">
-                <div class="svc-tag-line"></div>
-                Service 04
-              </div>
               <h2 class="svc-h2">Website<br /><em>Development</em></h2>
               <p class="svc-p">
                 We build dynamic, responsive websites that are visually stunning
@@ -397,10 +428,6 @@
 
           <div class="svc-panel">
             <div class="svc-content">
-              <div class="svc-tag">
-                <div class="svc-tag-line"></div>
-                Service 05
-              </div>
               <h2 class="svc-h2">Social<br /><em>Marketing</em></h2>
               <p class="svc-p">
                 Maximize your brand's reach with data-driven social media
@@ -421,10 +448,6 @@
 
           <div class="svc-panel">
             <div class="svc-content">
-              <div class="svc-tag">
-                <div class="svc-tag-line"></div>
-                Service 06
-              </div>
               <h2 class="svc-h2">Content<br /><em>Creation</em></h2>
               <p class="svc-p">
                 Content is king. Our team produces visually compelling content —
@@ -492,152 +515,6 @@
       </div>
     </section>
 
-    <!-- ===== SHOWCASE (portfolio grid) ===== -->
-    <section id="showcase">
-      <div class="showcase-header rv">
-        <div>
-          <div
-            class="kicker"
-            style="
-              display: flex;
-              align-items: center;
-              gap: 12px;
-              margin-bottom: 20px;
-            "
-          >
-            <div class="kicker-line"></div>
-            Selected Work
-          </div>
-          <h2>Projects we're<br /><em>proud of</em></h2>
-        </div>
-        <p>
-          We build products that earn attention, build trust, and drive growth.
-          Every pixel has a purpose. Every interaction, intention.
-        </p>
-      </div>
-      <div class="showcase-grid">
-        <div class="showcase-card rv d1">
-          <div class="sc-bg sc-bg-1"></div>
-          <div class="sc-mockup">
-            <div class="sc-ui">
-              <!-- <div class="sc-ui-bar"></div>
-              <div class="sc-ui-bar short"></div>
-              <div class="sc-ui-grid">
-                <div class="sc-ui-bl ac"></div>
-                <div class="sc-ui-bl"></div>
-                <div class="sc-ui-bl"></div>
-                <div class="sc-ui-bl ac" style="opacity: 0.6"></div>
-              </div> -->
-              <img src="./assets/illustrations/3d-interface-website-presentation-mockup-isolated_359791-202.avif" alt="">
-            </div>
-          </div>
-          <div class="sc-label">
-            <span class="sc-label-dot"></span>Dashboard App
-          </div>
-          <div class="sc-overlay">
-            <div class="sc-cat">Fintech · Web App</div>
-            <div class="sc-name">Meridian Analytics Platform</div>
-            <div class="sc-tags">
-              <span class="sc-tag">Next.js</span
-              ><span class="sc-tag">D3.js</span
-              ><span class="sc-tag">GraphQL</span>
-            </div>
-          </div>
-        </div>
-        <div class="showcase-card rv d2">
-          <div class="sc-bg sc-bg-2"></div>
-          <div class="sc-mockup">
-            <!-- <div class="sc-ui light">
-              <div class="sc-ui-bar"></div>
-              <div class="sc-ui-bar short"></div>
-              <div class="sc-ui-grid">
-                <div class="sc-ui-bl ac"></div>
-                <div class="sc-ui-bl"></div>
-              </div>
-            </div> -->
-            <img src="./assets/illustrations/3d-interface-website-presentation-mockup-isolated_359791-202.avif" alt="">
-          </div>
-          <div class="sc-label">
-            <span class="sc-label-dot"></span>E-Commerce
-          </div>
-          <div class="sc-overlay">
-            <div class="sc-cat">Fashion · Shopify</div>
-            <div class="sc-name">Ether Luxury Store</div>
-            <div class="sc-tags">
-              <span class="sc-tag">Shopify</span
-              ><span class="sc-tag">Headless</span>
-            </div>
-          </div>
-        </div>
-        <div class="showcase-card rv d2">
-          <div class="sc-bg sc-bg-3"></div>
-          <div class="sc-mockup">
-            <div class="sc-ui">
-              <div class="sc-ui-bar"></div>
-              <div class="sc-ui-bar short"></div>
-              <div class="sc-ui-grid">
-                <div class="sc-ui-bl"></div>
-                <div class="sc-ui-bl ac"></div>
-              </div>
-            </div>
-          </div>
-          <div class="sc-label">
-            <span class="sc-label-dot"></span>SaaS Product
-          </div>
-          <div class="sc-overlay">
-            <div class="sc-cat">Health Tech · SaaS</div>
-            <div class="sc-name">Vanta Health Portal</div>
-            <div class="sc-tags">
-              <span class="sc-tag">React</span
-              ><span class="sc-tag">Node.js</span>
-            </div>
-          </div>
-        </div>
-        <div class="showcase-card rv d3">
-          <div class="sc-bg sc-bg-4"></div>
-          <div class="sc-mockup">
-            <div class="sc-ui">
-              <div class="sc-ui-bar"></div>
-              <div class="sc-ui-bar short"></div>
-              <div class="sc-ui-grid">
-                <div class="sc-ui-bl ac"></div>
-                <div class="sc-ui-bl ac"></div>
-              </div>
-            </div>
-          </div>
-          <div class="sc-label">
-            <span class="sc-label-dot"></span>Brand Identity
-          </div>
-          <div class="sc-overlay">
-            <div class="sc-cat">SaaS · Branding</div>
-            <div class="sc-name">Prisma AI Identity</div>
-            <div class="sc-tags">
-              <span class="sc-tag">Brand</span
-              ><span class="sc-tag">Next.js</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== DARK MARQUEE ===== -->
-    <div class="qc-marquee-dark" aria-hidden="true">
-      <div class="qc-marquee-dark-track">
-        <span class="qc-marquee-dark-item">Awwwards Nominee</span>
-        <span class="qc-marquee-dark-item">Clutch Top Agency 2024</span>
-        <span class="qc-marquee-dark-item">Google Partner</span>
-        <span class="qc-marquee-dark-item">Meta Business Partner</span>
-        <span class="qc-marquee-dark-item">Webflow Expert</span>
-        <span class="qc-marquee-dark-item">Shopify Plus Partner</span>
-        <span class="qc-marquee-dark-item">Awwwards Nominee</span>
-        <span class="qc-marquee-dark-item">Clutch Top Agency 2024</span>
-        <span class="qc-marquee-dark-item">Google Partner</span>
-        <span class="qc-marquee-dark-item">Meta Business Partner</span>
-        <span class="qc-marquee-dark-item">Webflow Expert</span>
-        <span class="qc-marquee-dark-item">Shopify Plus Partner</span>
-      </div>
-    </div>
-
     <!-- ===== PHILOSOPHY (accordion list) ===== -->
     <!-- <section id="philosophy">
       <div class="philosophy-left rvl">
@@ -686,12 +563,11 @@
 
     <!-- ═══════════════════════════════════════════
      WORLDWIDE CLIENTS SECTION
-═══════════════════════════════════════════ -->
+    ═══════════════════════════════════════════ -->
     <section id="worldwide">
       <div class="ww-bg-glow"></div>
 
-      <!-- HEADER -->
-      <div class="ww-header">
+      <!-- <div class="ww-header">
         <div class="rvl">
           <div class="ww-kicker"><span class="kl"></span>Our Global Reach</div>
           <h2 class="ww-h2">
@@ -722,7 +598,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- MAP -->
       <div class="ww-map-wrap-main">
@@ -846,14 +722,13 @@
     </section>
 
     <!-- ===== IMPACT ===== -->
-    <section id="impact">
-      <div class="impact-head rv">
+    <!-- <section id="impact">
+      <div class="impact-head rv" data-scroll data-scroll-speed="0.08">
         <span class="kicker">Our Impact</span>
         <h2>Results that<br /><em>speak louder</em> than words</h2>
       </div>
       <div class="impact-cards">
         <div class="impact-card rv d1">
-          <!-- <div class="impact-card-icon">📈</div> -->
           <div class="impact-card-num">3.2<span class="suf">×</span></div>
           <div class="impact-card-lbl">Average Revenue Lift</div>
           <p class="impact-card-desc">
@@ -862,7 +737,6 @@
           </p>
         </div>
         <div class="impact-card rv d2">
-          <!-- <div class="impact-card-icon">⚡</div> -->
           <div class="impact-card-num">67<span class="suf">%</span></div>
           <div class="impact-card-lbl">Conversion Rate Uplift</div>
           <p class="impact-card-desc">
@@ -871,7 +745,6 @@
           </p>
         </div>
         <div class="impact-card rv d3">
-          <!-- <div class="impact-card-icon">🌍</div> -->
           <div class="impact-card-num">18<span class="suf">+</span></div>
           <div class="impact-card-lbl">Countries Served</div>
           <p class="impact-card-desc">
@@ -880,78 +753,61 @@
           </p>
         </div>
       </div>
+    </section> -->
+    
+    <!-- ===== STACK ===== -->
+    <section id="stack">
+      <div class="stack-grid">
+        <div class="stack-sticky">
+          <span class="stack-kicker">Our Clients</span>
+          <h2 class="stack-title">
+            At Qrious Curators, we don’t just <em>“do marketing.”</em>
+            We build brands that people
+            <em>Remember</em>, <em>Relate to</em>, and <em>Talk about</em>
+          </h2>
+        </div>
+        <div class="stack-cards">
+          <div class="stack-card">
+            <img
+              src="./assets/mockups/testimonial-mockup.jpg"
+              alt="Work 1"
+              loading="lazy"
+            />
+          </div>
+          <div class="stack-card">
+            <img
+              src="./assets/mockups/testimonial-mockup.jpg"
+              alt="Work 2"
+              loading="lazy"
+            />
+          </div>
+          <div class="stack-card">
+            <img
+              src="./assets/mockups/testimonial-mockup.jpg"
+              alt="Work 3"
+              loading="lazy"
+            />
+          </div> 
+          <div class="stack-card">
+            <img
+              src="./assets/mockups/testimonial-mockup.jpg"
+              alt="Work 4"
+              loading="lazy"
+            />
+          </div>
+          <!-- <div class="stack-card">
+            <img
+              src="https://framerusercontent.com/images/9eD88IPKTw4s3e2ACxglJMr1zWs.webp?width=1800&height=2400"
+              alt="Work 5"
+              loading="lazy"
+            />
+          </div> -->
+        </div>
+      </div>
     </section>
 
-    <!-- ===== TESTIMONIALS ===== -->
-    <section id="testimonials">
-      <div class="testi-header rv">
-        <div>
-          <div
-            class="kicker"
-            style="
-              display: flex;
-              align-items: center;
-              gap: 12px;
-              margin-bottom: 20px;
-            "
-          >
-            <div class="kicker-line"></div>
-            Client Stories
-          </div>
-          <h2>What our clients <em>say</em></h2>
-        </div>
-        <p>
-          We measure our success by the impact we create. Here's what our clients say about working with Qrious Curators.
-        </p>
-      </div>
-      <div class="testi-grid">
-        <!-- Tissli Testimonial -->
-        <div class="t-card rv d1">
-          <div class="t-stars">★★★★★</div>
-          <div class="t-qm">"</div>
-          <p class="t-text">
-            "Qrious Curators brought our vision to life with creativity and finesse. The social media campaigns they designed not only resonated with our audience but also elevated Tissli’s brand presence. We’ve seen a remarkable increase in engagement."
-          </p>
-          <div class="t-author">
-            <div>
-              <div class="t-name">Tissli Team</div>
-              <div class="t-role">Brand Manager, Tissli</div>
-            </div>
-          </div>
-        </div>
-        <!-- Out Nosh Testimonial -->
-        <div class="t-card rv d2">
-          <div class="t-stars">★★★★★</div>
-          <div class="t-qm">"</div>
-          <p class="t-text">
-            "Working with Qrious Curators has been a game-changer for Out Nosh. They helped craft our digital presence and messaging, which resulted in increased footfall and customer loyalty. The campaigns were spot on!"
-          </p>
-          <div class="t-author">
-            <div>
-              <div class="t-name">Out Nosh Team</div>
-              <div class="t-role">Marketing Director, Out Nosh</div>
-            </div>
-          </div>
-        </div>
-        <!-- Vashika Sethi Makeovers Testimonial -->
-        <div class="t-card rv d3">
-          <div class="t-stars">★★★★★</div>
-          <div class="t-qm">"</div>
-          <p class="t-text">
-            "Qrious Curators helped us elevate our academy’s presence. From the Instagram content to the overall branding strategy, they understood our goals perfectly. We’ve received a lot more inquiries for our academy services since the campaign launch."
-          </p>
-          <div class="t-author">
-            <div>
-              <div class="t-name">Vashika Sethi</div>
-              <div class="t-role">Founder, Vashika Sethi Makeovers</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
     <!-- ===== TEAM ===== -->
-    <section id="team-container">
+    <!--  <section id="team-container">
       <div class="testi-header rv">
         <div>
           <div
@@ -1066,6 +922,68 @@
           </div>
         </div>
       </div>
+    </section> -->
+
+    <section id="blog">
+      <!-- HEADER -->
+      <div class="bh">
+        <div class="bh-l ">
+          <div class="bh-eye"><span class="bh-eye-bar"></span>The Journal</div>
+          <h2 class="bh-h2">
+            Ideas worth<br>
+            <em>reading.</em>
+            <span class="ghost">Always.</span>
+          </h2>
+        </div>
+        <div class="bh-r rvr d2">
+          <p class="bh-desc">Perspectives on <strong>brand strategy, digital craft, and the business of creativity</strong> — by the people who actually build it.</p>
+          <a href="#" class="bh-link">View All Articles →</a>
+        </div>
+      </div>
+    
+      <!-- 3-COLUMN GRID -->
+      <div class="blog-grid">
+    
+        <!-- Card 1 -->
+        <a href="./blogs/should-you-hire-a-marketing-agency-for-your-startup-or-small-business.html">
+          <div class="bc">
+            <div class="bc-img">
+              <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy">
+              <div class="bc-time">8 min read</div>
+            </div>
+            <div class="bc-body">
+              <span class="bc-tag">Brand Strategy</span>
+              <h3 class="bc-title">Should You Hire a Marketing Agency for Your Startup or Small Business?</h3>
+              <p class="bc-excerpt">You had just launched a small clothing brand in Jaipur. Amazing designs, good pricing, and strong confidence... </p>
+            </div>
+          </div>
+        </a>
+    
+        <!-- <div class="bc">
+          <div class="bc-img">
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy">
+            <div class="bc-time">6 min read</div>
+          </div>
+          <div class="bc-body">
+            <span class="bc-tag">Digital</span>
+            <h3 class="bc-title">The real reason your website isn't converting — and it's not your CTA</h3>
+            <p class="bc-excerpt">Conversion problems are almost never where you think they are. We break down the audit process we use with every client.</p>
+          </div>
+        </div>
+    
+        <div class="bc">
+          <div class="bc-img">
+            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy">
+            <div class="bc-time">5 min read</div>
+          </div>
+          <div class="bc-body">
+            <span class="bc-tag">Social Media</span>
+            <h3 class="bc-title">How we grew a health brand from zero to 180K followers in 8 months</h3>
+            <p class="bc-excerpt">The platform-native content strategy that turned a niche healthcare brand into a community people genuinely care about.</p>
+          </div>
+        </div> -->
+    
+      </div>
     </section>
 
     <!-- ===== CTA ===== -->
@@ -1145,5 +1063,35 @@
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
     <script src="./scripts/script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll/bundled/locomotive-scroll.min.js"></script>
+    <script>
+      const locomotiveScroll = new LocomotiveScroll();
+    </script>
+    <script>
+      gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+      gsap.to(".ball", {
+        scrollTrigger: {
+          trigger: ".scroll-section",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1,
+          pin: true,
+          markers: false   // 👈 IMPORTANT: helps debug
+        },
+  
+        motionPath: {
+          path: "#motionPath",
+          align: "#motionPath",
+          alignOrigin: [0.5, 0.5]
+        },
+  
+        ease: "none"
+      });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>
