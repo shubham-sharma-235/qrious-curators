@@ -762,3 +762,103 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+About Section old
+
+
+<!-- ===== ABOUT ===== -->
+    <section id="about">
+      <div class="about-left"
+          data-aos="fade-up"
+        >
+        <div class="kicker">
+          <div class="kicker-line"></div>
+          Who We Are
+        </div>
+        <h2 class="about-h2">
+          We turn bold ideas into <em>remarkable</em> realities
+        </h2>
+        <p class="about-body">
+         From scroll-stopping content and high-performing ads to sleek websites and cohesive brand identities, we craft digital experiences that are visually compelling, strategically strong, and undeniably result-oriented.
+        </p>
+        <!-- <p class="about-body">
+         We partner with brands that think ahead. Brands that want more than visibility-they want impact, engagement, and scalable growth.
+        </p> -->
+        <p class="about-body">
+         With the right blend of creativity, clarity, and conversionfocused strategy, Qrious Curators turns ideas into campaigns that move people and move the needle
+        </p>
+        <a href="#contact" class="about-link">Start a project →</a>
+      </div>
+      <div class="about-right d1"
+          data-aos="fade-up" 
+        >
+        <div class="about-img-wrap">
+          <img
+            src="https://framerusercontent.com/images/sXpGa5SBIHzL1ZlluLzui0nhLvU.webp?width=900"
+            alt="Studio work"
+            loading="lazy"
+          />
+        </div>
+        <div class="about-img-wrap">
+          <img
+            src="https://framerusercontent.com/images/9eD88IPKTw4s3e2ACxglJMr1zWs.webp?width=900"
+            alt="Design process"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+
+    

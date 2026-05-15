@@ -400,3 +400,86 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('resize', updateAnimation);
     updateAnimation(); // Initial setup
 });
+
+
+const slides = document.querySelectorAll(".content-slide");
+
+const imageData = [
+
+[
+  "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
+],
+
+[
+  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1200&auto=format&fit=crop"
+],
+
+[
+  "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1200&auto=format&fit=crop"
+]
+
+];
+
+const cards = document.querySelectorAll(".visual-card");
+
+const progress = document.querySelector(".scroll-progress");
+
+let currentIndex = 0;
+
+window.addEventListener("scroll",()=>{
+
+    const section = document.querySelector(".premium-about");
+
+    const scrollTop = window.scrollY - section.offsetTop;
+
+    const maxScroll = section.offsetHeight - window.innerHeight;
+
+    const progressWidth = (scrollTop / maxScroll) * 100;
+
+    progress.style.width = `${progressWidth}%`;
+
+    let index = Math.floor(scrollTop / (window.innerHeight * 0.9));
+
+    index = Math.max(0, Math.min(index, 2));
+
+    if(index !== currentIndex){
+
+        currentIndex = index;
+
+        slides.forEach((slide,i)=>{
+
+            slide.classList.toggle("active", i === index);
+
+        });
+
+        cards.forEach((card)=>{
+
+            card.classList.remove("active");
+            card.classList.add("inactive");
+
+        });
+
+        setTimeout(()=>{
+
+            document.getElementById("img1").src = imageData[index][0];
+            document.getElementById("img2").src = imageData[index][1];
+            document.getElementById("img3").src = imageData[index][2];
+
+            cards.forEach((card)=>{
+
+                card.classList.remove("inactive");
+                card.classList.add("active");
+
+            });
+
+        },350);
+
+    }
+
+});

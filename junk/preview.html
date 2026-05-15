@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Premium About Section</title>
+
+<style>
+
+body{
+    margin:0;
+    background:#f4f1eb;
+    overflow-x:hidden;
+    font-family:Arial, sans-serif;
+}
+
+/* SECTION */
+
+.premium-about{
+    position:relative;
+    width:100%;
+    min-height:300vh;
+}
+
+/* STICKY IMAGE AREA */
+
+.premium-sticky{
+    position:sticky;
+    top:0;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+}
+
+.premium-image{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0;
+    transform:scale(1.08);
+    transition:
+    opacity 1s ease,
+    transform 1.4s ease;
+    filter:brightness(0.78);
+}
+
+.premium-image.active{
+    opacity:1;
+    transform:scale(1);
+}
+
+/* SOFT OVERLAY */
+
+.premium-overlay{
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(
+    to right,
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0.15)
+    );
+    z-index:1;
+}
+
+/* CONTENT WRAPPER */
+
+.premium-content{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:5;
+}
+
+/* SCROLL PANELS */
+
+.premium-panel{
+    width:100%;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    padding:0 7%;
+    box-sizing:border-box;
+}
+
+/* CARD */
+
+.premium-card{
+    width:620px;
+
+    padding:65px;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(14px);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    border-radius:34px;
+
+    color:#fff;
+
+    position:relative;
+
+    overflow:hidden;
+
+    opacity:0;
+
+    transform:
+    translateY(120px)
+    scale(0.96);
+
+    transition:
+    transform 1s cubic-bezier(.19,1,.22,1),
+    opacity 1s ease;
+}
+
+.premium-card.show{
+    opacity:1;
+
+    transform:
+    translateY(0)
+    scale(1);
+}
+
+/* MINIMAL LINE */
+
+.premium-line{
+    width:70px;
+    height:1px;
+    background:#d8c3a5;
+    margin-bottom:28px;
+}
+
+/* SMALL LABEL */
+
+.premium-label{
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#e8d8c0;
+    margin-bottom:25px;
+}
+
+/* HEADING */
+
+.premium-title{
+    font-size:76px;
+    line-height:0.95;
+    letter-spacing:-3px;
+    margin-bottom:32px;
+    font-weight:500;
+    font-family:Georgia, serif;
+}
+
+.premium-title span{
+    font-style:italic;
+    color:#e6d4bc;
+}
+
+/* TEXT */
+
+.premium-text{
+    font-size:18px;
+    line-height:1.9;
+    color:rgba(255,255,255,0.82);
+    margin-bottom:45px;
+}
+
+/* BUTTON */
+
+.premium-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+
+    text-decoration:none;
+
+    padding:18px 34px;
+
+    border-radius:60px;
+
+    background:#fff;
+
+    color:#111;
+
+    font-size:15px;
+
+    transition:0.4s ease;
+}
+
+.premium-btn:hover{
+    transform:translateY(-5px);
+    background:#ece4d8;
+}
+
+/* ALIGNMENTS */
+
+.left-align{
+    justify-content:flex-start;
+}
+
+.right-align{
+    justify-content:flex-end;
+}
+
+/* FLOATING NUMBER */
+
+.premium-number{
+    position:absolute;
+    top:35px;
+    right:40px;
+
+    font-size:90px;
+
+    color:rgba(255,255,255,0.05);
+
+    font-weight:700;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .premium-title{
+        font-size:50px;
+        letter-spacing:-1px;
+    }
+
+    .premium-card{
+        width:100%;
+        padding:40px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .premium-panel{
+        padding:0 5%;
+    }
+
+    .premium-title{
+        font-size:38px;
+    }
+
+    .premium-text{
+        font-size:16px;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<section class="premium-about">
+
+    <!-- STICKY IMAGES -->
+
+    <div class="premium-sticky">
+
+        <div class="premium-overlay"></div>
+
+        <img class="premium-image active"
+        src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1800&auto=format&fit=crop">
+
+        <img class="premium-image"
+        src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1800&auto=format&fit=crop">
+
+        <img class="premium-image"
+        src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1800&auto=format&fit=crop">
+
+    </div>
+
+    <!-- CONTENT -->
+
+    <div class="premium-content">
+
+        <!-- PANEL 1 -->
+
+        <div class="premium-panel left-align">
+
+            <div class="premium-card">
+
+                <div class="premium-number">
+                    01
+                </div>
+
+                <div class="premium-line"></div>
+
+                <div class="premium-label">
+                    ABOUT OUR STUDIO
+                </div>
+
+                <h2 class="premium-title">
+                    Spaces With <span>Meaning</span>
+                </h2>
+
+                <p class="premium-text">
+                    We design environments that combine timeless aesthetics
+                    with modern sophistication — crafted to feel immersive,
+                    refined, and emotionally connected.
+                </p>
+
+                <a href="#" class="premium-btn">
+                    Explore More →
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- PANEL 2 -->
+
+        <div class="premium-panel right-align">
+
+            <div class="premium-card">
+
+                <div class="premium-number">
+                    02
+                </div>
+
+                <div class="premium-line"></div>
+
+                <div class="premium-label">
+                    OUR APPROACH
+                </div>
+
+                <h2 class="premium-title">
+                    Designed To <span>Elevate</span>
+                </h2>
+
+                <p class="premium-text">
+                    Every project is carefully curated with attention
+                    to proportion, texture, light, and storytelling —
+                    creating a visual experience that feels effortless.
+                </p>
+
+                <a href="#" class="premium-btn">
+                    Discover More →
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- PANEL 3 -->
+
+        <div class="premium-panel left-align">
+
+            <div class="premium-card">
+
+                <div class="premium-number">
+                    03
+                </div>
+
+                <div class="premium-line"></div>
+
+                <div class="premium-label">
+                    OUR VISION
+                </div>
+
+                <h2 class="premium-title">
+                    Modern Yet <span>Timeless</span>
+                </h2>
+
+                <p class="premium-text">
+                    We create luxury experiences that feel contemporary,
+                    elegant, and built to leave a lasting visual impression
+                    across every interaction.
+                </p>
+
+                <a href="#" class="premium-btn">
+                    View Projects →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+
+const panels = document.querySelectorAll(".premium-panel");
+const cards = document.querySelectorAll(".premium-card");
+const images = document.querySelectorAll(".premium-image");
+
+window.addEventListener("scroll",()=>{
+
+    panels.forEach((panel,index)=>{
+
+        const rect = panel.getBoundingClientRect();
+
+        if(
+            rect.top < window.innerHeight * 0.65 &&
+            rect.bottom > window.innerHeight * 0.35
+        ){
+
+            cards[index].classList.add("show");
+
+            images.forEach((img)=>{
+                img.classList.remove("active");
+            });
+
+            images[index].classList.add("active");
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
