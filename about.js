@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
           current += 8;
           requestAnimationFrame(animateMillion);
         } else {
-          counter.innerText = '1M';
+          counter.innerText = '1 M';
         }
       })();
     }
@@ -194,51 +194,5 @@ document.addEventListener('DOMContentLoaded', () => {
     footerObs.observe(el);
   });
 
-  /* ---- TEAM PARALLAX (about page version) ---- */
-  const teamSection = document.getElementById('team');
-  const teamCards = document.getElementById('teamCards');
-
-  if (teamSection && teamCards) {
-    let ticking = false;
-
-    // Cache heights to avoid layout thrashing on scroll
-    let cachedTeamCardsHeight = Math.max(teamCards.offsetHeight, 0);
-    let cachedTeamSectionTravel = Math.max(teamSection.offsetHeight - window.innerHeight, 1);
-    let resizeTimeout = null;
-
-    function recalcHeights() {
-      cachedTeamCardsHeight = Math.max(teamCards.offsetHeight, 0);
-      cachedTeamSectionTravel = Math.max(teamSection.offsetHeight - window.innerHeight, 1);
-    }
-
-    function updateTeam() {
-      const r = teamSection.getBoundingClientRect();
-      const p = Math.max(0, Math.min(1, -r.top / cachedTeamSectionTravel));
-      const maxY = Math.max(cachedTeamCardsHeight - window.innerHeight + 80, 0);
-      teamCards.style.transform = `translateX(-50%) translateY(-${p * maxY}px)`;
-      ticking = false;
-    }
-
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(updateTeam);
-        ticking = true;
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', () => {
-      // debounce and recalc cached heights on resize
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        recalcHeights();
-        onScroll();
-      }, 120);
-    });
-
-    // initial cache
-    recalcHeights();
-    updateTeam();
-  }
 
 });

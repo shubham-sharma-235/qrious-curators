@@ -1,6 +1,6 @@
 :root {
-  --heading-font: "Raleway", sans-serif;
-  --sub-heading-font: "Lato", sans-serif;
+  --heading-font: "Lato", sans-serif;
+  --sub-heading-font: "DM Sans", sans-serif;
 
 
   --black: #060608;
@@ -162,7 +162,7 @@ body {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  border: 3px solid var(--black);
+  
 }
 
 .mission-img-top img,
@@ -186,9 +186,9 @@ body {
   margin-bottom: 24px;
 }
 
-.mission-title span {
-  color: var(--accent);
-}
+  .mission-title span {
+    color: var(--accent);
+  }
 
 .mission-desc {
   font-family: var(--sub-heading-font);
@@ -222,7 +222,7 @@ body {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: rgba(251, 146, 60, 0.1);
+  background: var(--black);
   border: 1.5px solid var(--accent);
   flex-shrink: 0;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23fb923c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
@@ -571,7 +571,7 @@ body {
 .culture-section {
   position: relative;
   width: 100%;
-  padding: 140px 0 0;
+  padding: 50px 0 0;
   overflow: hidden;
 
 }
@@ -581,7 +581,7 @@ body {
   position: absolute;
   width: 550px;
   height: 550px;
-  background: radial-gradient(circle, rgba(251, 146, 60, 0.07), transparent 70%);
+  /* background: radial-gradient(circle, rgba(251, 146, 60, 0.07), transparent 70%); */
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%) translateZ(0);
@@ -632,8 +632,9 @@ body {
 }
 
 .culture-title span {
-  color: var(--accent);
-  font-style: italic;
+  /* color: var(--accent); */
+  
+  
 }
 
 .culture-desc {
@@ -663,8 +664,8 @@ body {
 .filter-btn {
   padding: 12px 24px;
   border-radius: 4px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--off-black);
+  background: var(--black);
   color: var(--muted);
   font-size: 12px;
   font-weight: 700;
@@ -684,7 +685,7 @@ body {
 }
 
 .filter-btn.active {
-  background: var(--accent);
+  background: var(--white);
   color: var(--black);
 
 }
@@ -891,7 +892,7 @@ body {
   }
 }
 
-/* ===== TEAM ===== */
+
 #team-container {
   padding: 0 52px;
   background: var(--black);
@@ -899,7 +900,7 @@ body {
 
 #team {
   position: relative;
-  min-height: 180vh;
+  min-height: auto;
   padding-bottom: 0;
 }
 
@@ -907,36 +908,34 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
   font-family: var(--heading-font);
   font-size: 50px;
 }
 
-.ourTeam-Orange {
+/* .ourTeam-Orange {
   color: var(--accent);
-}
+} */
 
 .team-sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
+  position: relative;
+  top: auto;
+  height: auto;
+  overflow: visible;
   padding-bottom: 0;
   margin-bottom: 0;
-  will-change: transform;
-  contain: layout style paint;
-  transform: translateZ(0);
 }
 
 .team-heading {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  inset: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   pointer-events: none;
+  margin-bottom: 40px;
 }
 
 .team-kicker {
@@ -950,16 +949,16 @@ body {
 }
 
 .team-cards {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
   width: min(1400px, calc(100% - 80px));
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 52px;
   z-index: 2;
-  contain: layout;
 }
 
 .tm-card {
@@ -1018,6 +1017,51 @@ body {
   letter-spacing: 0.08em;
 }
 
+@media(max-width: 1100px){
+  #team-container {
+    padding: 0 24px;
+  }
+
+  #team {
+    padding: 60px 0 0;
+    margin-bottom: 0;
+  }
+
+  .teamHeading {
+    font-size: 36px;
+    padding-bottom: 40px;
+  }
+
+  .team-sticky {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .team-heading {
+    position: relative;
+    margin-bottom: 50px;
+  }
+
+  .team-cards {
+    position: relative;
+    left: auto;
+    padding: 0 20px;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    margin-bottom: 0;
+  }
+
+  .tm-card:nth-child(odd) {
+    margin-top: 0;
+  }
+}
 
 @media (max-width: 991px) {
   #team-container {
@@ -1049,11 +1093,13 @@ body {
 
   .team-cards {
     position: relative;
-    left: 50%;
-    padding: 0 20px 0 20px;
+    left: auto;
+    padding: 0 20px;
     transform: none;
     width: 100%;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 100%;
+    margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr);
     gap: 60px;
     margin-bottom: 0;
   }
