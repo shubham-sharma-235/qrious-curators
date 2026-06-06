@@ -110,7 +110,7 @@ body.cur-hover #qc-cur-ring {
   border-color: #fb923c63;
 }
 
-/* ===================== PRELOADER ===================== */
+/* ===================== PRELOADER =================== */
 /* #preloader{
   position:fixed;inset:0;background:var(--black);
   z-index:999999;display:flex;flex-direction:column;
