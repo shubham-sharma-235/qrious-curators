@@ -196,3 +196,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 });
+
+
+const container = document.querySelector(".container");
+const nextBtn = document.querySelector(".right");
+const prevBtn = document.querySelector(".left");
+
+nextBtn.addEventListener("click", () => {
+    container.scrollBy({
+        left: 424,
+        behavior: "smooth"
+    });
+});
+
+prevBtn.addEventListener("click", () => {
+    container.scrollBy({
+        left: -424,
+        behavior: "smooth"
+    });
+});
