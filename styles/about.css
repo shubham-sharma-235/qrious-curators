@@ -1034,7 +1034,7 @@ body {
 .container{
     display:flex;
     gap:24px;
-    padding:0 70px;
+    padding:0 10px;
     scroll-behavior:smooth;
     overflow-x:auto;
     scrollbar-width:none;
