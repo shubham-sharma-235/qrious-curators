@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qrious Curators – Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0d0d10;
+}
+
+html, body {
+  width: 100%;
+  background: var(--bg);
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 36px;
+  z-index: 1000;
+}
+
+.logo {
+  font-family: 'Sora', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.menu-btn {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+}
+
+/* ── HERO ── */
+#heroSection {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px;
+  transform-origin: center center;
+}
+
+.bg-video-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bg-video-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.15);
+}
+
+.bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.0));
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 5;
+}
+
+.services-heading {
+  font-size: clamp(90px, 14vw, 220px);
+  line-height: 0.9;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+}
+
+/* ── FIXED BACKGROUND (behind everything except nav) ── */
+#fixedBg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#fixedBgColor {
+  position: absolute;
+  inset: 0;
+  background: #0d0d10;
+  transition: background 0.7s ease;
+}
+
+#fixedBgMedia {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+#fixedBgMedia video,
+#fixedBgMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#fixedBgOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.18);
+}
+
+/* ── SERVICE SECTION ── */
+.service-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Full-section background — just a transparent placeholder so section has height */
+.section-bg {
+  display: none;
+}
+
+.section-bg-media {
+  display: none;
+}
+
+/* ── HEADING — left side, scrolls with page, vertically centered ── */
+.service-heading-wrap {
+  position: absolute;
+  top: 50%;
+  left: 7%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.service-number {
+  font-size: 13px;
+  color: #555;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  display: block;
+  margin-bottom: 18px;
+}
+
+
+.service-section.active .service-number {
+  color: #888;
+}
+
+/* 40% of original clamp(70px, 11vw, 160px) → clamp(28px, 4.4vw, 64px) */
+.service-heading {
+  font-size: clamp(48px, 6.4vw, 104px);
+  line-height: 0.9;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+
+/* ── SIDE-INFO — fixed to bottom-left, visible/hidden on active ── */
+.side-info {
+  position: fixed;
+  bottom: 60px;
+  left: 7%;
+  z-index: 500;
+  max-width: 320px;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  pointer-events: none;
+}
+
+.side-info.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.side-info .service-subtitle {
+  font-size: clamp(15px, 1.4vw, 20px);
+  line-height: 1.55;
+  color: #999;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.explore-btn {
+  background: white;
+  border: 1px solid white;
+  color: #000000;
+  padding: 13px 34px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 0.04em;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.explore-btn:hover {
+  background: none;
+  border-color: rgba(255,255,255,0.6);
+  color:white;
+}
+
+/* Divider line top of each section */
+/* .service-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 7%;
+  right: 7%;
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+  z-index: 10;
+} */
+
+.spacer {
+  height: 30vh;
+  background: #0d0d10;
+}
+
+@media (max-width: 768px) {
+  #heroSection { padding: 24px; }
+
+  .service-heading-wrap { left: 6%; }
+
+  .side-info {
+    left: 6%;
+    bottom: 36px;
+    max-width: calc(100vw - 12%);
+  }
+}
+.brands-section {
+  position: relative;
+  z-index: 10;
+  background: #0d0d10;
+}
+
+.brands-heading-wrap {
+  padding: 100px 5% 60px;
+}
+
+.brands-kicker {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brands-kicker::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: #555;
+}
+
+.brands-h2 {
+  font-size: clamp(48px, 8vw, 110px);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  color: #fff;
+}
+
+/* ── STICKY LAYOUT ── */
+.brands-sticky-wrap {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+/* LEFT — laptop video, sticky */
+.brands-laptop-sticky {
+  position: sticky;
+  top: 0;
+  width: 55%;
+  height: 100vh;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.brands-laptop-sticky video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 20% center;
+  display: block;
+}
+
+/* Right fade on laptop */
+.brands-laptop-sticky::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, #0d0d10);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* RIGHT — scrolling content */
+.brands-content-scroll {
+  flex: 1;
+  padding: 0 6% 0 2%;
+}
+
+/* Each brand card */
+.brand-card {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 80px 0;
+  opacity: 0.3;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.brand-card.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.brand-number {
+  font-size: 13px;
+  color: #555;
+  letter-spacing: 0.12em;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.brand-name {
+  font-size: clamp(36px, 4vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.brand-subtitle {
+  font-size: clamp(15px, 1.4vw, 20px);
+  line-height: 1.6;
+  color: #777;
+  font-weight: 300;
+  margin-bottom: 36px;
+  max-width: 340px;
+}
+
+.brand-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.brand-tag {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #555;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 6px 14px;
+  border-radius: 50px;
+}
+
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 4px;
+  transition: border-color 0.3s;
+}
+
+#service-4 video{
+  object-position: 100% center;
+}
+
+.brand-link:hover { border-color: #fff; }
+
+.brand-link svg {
+  width: 15px;
+  height: 15px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#footerSection {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px;
+  transform-origin: center center;
+}
+
+.bg-video-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bg-video-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.15);
+}
+
+.bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.footer-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.0));
+  z-index: 1;
+}
+
+.footer-content {
+  position: relative;
+  z-index: 5;
+}
+
+.services-footer {
+  margin-bottom: 60px;
+  font-size: clamp(50px, 14vw, 80px);
+  line-height: 0.9;
+  font-weight: 400;
+  letter-spacing: -0.06em;
+}
+ .Contact {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  margin-bottom: 45px;
+  padding: 15px 44px;
+  border-radius: 10px;
+  cursor: pointer;  
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 0.04em;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.Contact:hover {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.6);
+}
+
+@media(max-width: 768px) {
+  .brands-sticky-wrap { flex-direction: column; }
+  .brands-laptop-sticky {
+    position: relative;
+    width: 100%;
+    height: 56vw;
+  }
+  .brands-content-scroll { padding: 0 6%; }
+  .brand-card { min-height: auto; padding: 60px 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FIXED FULL-SCREEN BACKGROUND — sirf color/video change hoga, scroll nahi karega -->
+<div id="fixedBg">
+  <div id="fixedBgColor"></div>
+  <div id="fixedBgMedia">
+    <!-- Active section ka video yahan inject hoga via JS -->
+  </div>
+  <div id="fixedBgOverlay"></div>
+</div>
+<!-- <nav>
+  <div class="logo">QRIOUS CURATORS</div>
+  <button class="menu-btn">Menu</button>
+</nav> -->
+
+<!-- HERO -->
+<main id="heroSection">
+  <div class="bg-video-wrap">
+    <video class="bg-video" autoplay muted loop playsinline
+      src="https://stream.mux.com/wk00FbgM3luTCLeHP99aoB6bM56gQhJmy/high.mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="services-heading">Services</h1>
+  </div>
+</main>
+
+<section class="service-section" id="service-1">
+  <div class="section-bg"></div>
+  <div class="section-bg-media">
+    <!-- <video autoplay muted loop playsinline src="./images/socialMediaMarketing.mp4"></video> -->
+
+    
+  </div>
+
+  <div class="service-heading-wrap">
+    <span class="service-number">01 /</span>
+    <h2 class="service-heading">Social Media<br>Marketing</h2>
+  </div>
+</section>
+
+<section class="service-section" id="service-2">
+  <div class="section-bg"></div>
+  <div class="section-bg-media">
+    <video autoplay muted loop playsinline src="./images/seoo.mp4"></video>
+  </div>
+
+  <div class="service-heading-wrap">
+    <span class="service-number">02 /</span>
+    <h2 class="service-heading">Search Engine <br>Optimization</h2>
+  </div>
+</section>
+
+<!-- ── SECTION 01 ── -->
+<section class="service-section" id="service-3">
+  <div class="section-bg"></div>
+  <div class="section-bg-media">
+    <video autoplay muted loop playsinline src="./images/webdev.mp4"></video>
+  </div>
+
+  <!-- Heading: left side, scrolls with section -->
+  <div class="service-heading-wrap">
+    <span class="service-number">03 /</span>
+    <h2 class="service-heading">Web<br>Development</h2>
+  </div>
+ 
+</section>
+
+
+
+<!-- ── SECTION 02 ── -->
+<section class="service-section" id="service-4">
+  <div class="section-bg"></div>
+  <div class="section-bg-mediaa">
+    <!-- <video autoplay muted loop playsinline src="./images/graphicDesign.mp4"></video> -->
+  </div>
+
+  <div class="service-heading-wrap">
+    <span class="service-number">04 /</span>
+    <h2 class="service-heading">Graphic<br>Design</h2>
+  </div>
+</section>
+
+<!-- ── SECTION 03 ── -->
+<section class="service-section" id="service-5">
+  <div class="section-bg"></div>
+  <div class="section-bg-media">
+     <video autoplay muted loop playsinline src="./images/highh.mp4"></video>
+  </div>
+
+  <div class="service-heading-wrap">
+    <span class="service-number-3">05 /</span>
+    <h2 class="service-heading">Performance<br>Marketing</h2>
+  </div>
+</section>
+
+<section class="service-section" id="service-6">
+  <div class="section-bg"></div>
+  <div class="section-bg-media">
+     <video autoplay muted loop playsinline src="./images/email.mp4"></video>
+  </div>
+
+  <div class="service-heading-wrap">
+    <span class="service-number-3">06 /</span>
+    <h2 class="service-heading">Email<br>Marketing</h2>
+  </div>
+</section>
+
+
+
+
+
+<!-- ── SECTION 04 ── -->
+
+
+
+<div class="spacer"></div>
+
+<!-- SINGLE FIXED SIDE-INFO — bottom left, shared across all sections -->
+<div class="side-info" id="globalSideInfo">
+  <p class="service-subtitle" id="globalSubtitle">Create amazing web experiences that captivate and convert</p>
+  <button class="explore-btn" id="exploreBtn">Explore  →</button>
+</div>
+
+
+<footer id="footerSection">
+  <div class="bg-video-wrap">
+    <video class="bg-video" autoplay muted loop playsinline
+      src="https://stream.mux.com/wk00FbgM3luTCLeHP99aoB6bM56gQhJmy/high.mp4">
+    </video>
+  </div>
+  <div class="footer-overlay"></div>
+  <div class="footer-content">
+    <h1 class="services-footer">Let's <br> Connect</h1>
+      <button class="Contact" id="ContactBtn">Contact</button>
+  </div>
+</footer>
+
+
+<script>
+
+/* ── HERO PARALLAX ── */
+/* ── HERO PARALLAX ── */
+const hero = document.getElementById('heroSection');
+
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  hero.style.transform = `scale(${1 - s * 0.00015}) translateY(${s * -0.25}px)`;
+  hero.style.opacity = 1 - s * 0.0015;
+  hero.style.filter = `blur(${s * 0.03}px)`;
+});
+
+
+/* ── SECTION DATA ── */
+const sectionData = {
+  'service-1': {
+    subtitle: 'Create amazing web experiences that captivate and convert',
+    bg: 'rgba(8, 8, 22, 1)',
+    video: 'https://stream.mux.com/Hj7XzvT68mUk0000zhSyGa6rSTBKcvZkDi/high.mp4',
+    link: 'socialMedia.html'
+  },
+  'service-2': {
+    subtitle: 'Craft intuitive interfaces users love to interact with',
+    bg: 'rgba(8, 20, 12, 1)',
+    video: './images/seoo.mp4',
+    link: 'seo.html'
+  },
+  'service-3': {
+    subtitle: 'Build a brand that resonates, endures and stands out',
+    bg: 'rgba(22, 8, 8, 1)',
+    video: './images/webdev.mp4',
+    link: 'sample.html'
+  },
+  'service-4': {
+    subtitle: 'Grow your brand with data-driven strategies',
+    link: 'graphic.html',
+    video: './images/graphicDesign.mp4',
+  },
+  'service-5': {
+    subtitle: 'Grow your brand with data-driven strategies',
+    video: './images/highh.mp4',
+  },
+  'service-6': {
+    subtitle: 'Grow your brand with data-driven strategies',
+    video: './images/email.mp4',
+  },
+};
+
+
+/* ── ELEMENTS ── */
+const sections     = document.querySelectorAll('.service-section');
+const globalInfo   = document.getElementById('globalSideInfo');
+const globalSub    = document.getElementById('globalSubtitle');
+const fixedBgColor = document.getElementById('fixedBgColor');
+const fixedBgMedia = document.getElementById('fixedBgMedia');
+
+let currentActive = null;
+
+
+/* ── SCROLL HANDLER ── */
+function updateSections() {
+  const winMid    = window.innerHeight / 2;
+  const threshold = window.innerHeight * 0.36;
+
+  let anyActive = false;
+
+  sections.forEach(section => {
+    const rect   = section.getBoundingClientRect();
+    const secMid = rect.top + rect.height / 2;
+    const dist   = Math.abs(secMid - winMid);
+
+    const id   = section.id;
+    const data = sectionData[id];
+
+    if (dist < threshold) {
+      anyActive = true;
+      section.classList.add('active');
+
+      if (currentActive !== id) {
+        currentActive = id;
+
+        /* BACKGROUND COLOR */
+        if (data) fixedBgColor.style.background = data.bg;
+
+        /* VIDEO BACKGROUND */
+        if (data && data.video) {
+          let videoStyle = `width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1);`;
+
+          if (data.video.includes("seoo.mp4")) {
+            videoStyle = `width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1.45) translateX(12%);`;
+          }
+
+          fixedBgMedia.innerHTML = `
+            <video autoplay muted loop playsinline src="${data.video}" style="${videoStyle}"></video>
+          `;
+          fixedBgMedia.style.opacity = '1';
+        } else {
+          fixedBgMedia.innerHTML = '';
+          fixedBgMedia.style.opacity = '0';
+        }
+
+        /* SUBTITLE */
+        if (data) {
+          globalSub.textContent = data.subtitle;
+          const btn = document.getElementById('exploreBtn');
+          btn.onclick = () => { window.location.href = data.link; };
+        }
+      }
+
+    } else {
+      section.classList.remove('active');
+    }
+  });
+
+
+  /* ── OVERLAP CHECK: heading se 30px upar tak hi side-info dikhega ── */
+  if (anyActive && currentActive) {
+    const headingWrap = document.querySelector(`#${currentActive} .service-heading-wrap`);
+    const sideInfo    = document.getElementById('globalSideInfo');
+
+    if (headingWrap) {
+      const headingRect  = headingWrap.getBoundingClientRect();
+      const sideInfoRect = sideInfo.getBoundingClientRect();
+
+      /* Gap between bottom of heading and top of side-info */
+      const gap = sideInfoRect.top - headingRect.bottom;
+
+     if (gap < 30) {
+     sideInfo.classList.remove('active');
+     } else {
+    sideInfo.classList.add('active');
+}
+    } else {
+      globalInfo.classList.add('active');
+    }
+
+  } else {
+    globalInfo.classList.remove('active');
+    fixedBgColor.style.background = '#0d0d10';
+    fixedBgMedia.style.opacity    = '0.5';
+    currentActive = null;
+  }
+}
+
+
+/* ── EVENTS ── */
+window.addEventListener('scroll', updateSections, { passive: true });
+updateSections();
+</script>
+</body>
+</html>
