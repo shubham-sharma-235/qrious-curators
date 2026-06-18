@@ -1,0 +1,827 @@
+/* =========================================================
+   QC MOBILE-FIRST FINAL RESPONSIVE OVERRIDES
+   Paste this at the VERY END of your CSS file.
+   Purpose: stop section overlap on tablet/mobile by turning
+   pinned / absolute desktop animation sections into normal
+   stacked mobile sections.
+   ========================================================= */
+
+:root {
+  --qc-mobile-pad: clamp(18px, 5vw, 42px);
+  --qc-section-y: clamp(58px, 10vw, 96px);
+}
+
+html,
+body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+/* Tablet and below: remove hard desktop sizing/pinning */
+@media (max-width: 1024px) {
+  html,
+  body {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  body {
+    position: relative !important;
+  }
+
+  .trail-img,
+  .works-dots,
+  .works-hud,
+  .product-line,
+  .but-line,
+  .bg-orb {
+    display: none !important;
+  }
+
+  .journey-spacer {
+    min-height: 72svh !important;
+    height: auto !important;
+    padding: var(--qc-section-y) var(--qc-mobile-pad) !important;
+    text-align: center !important;
+  }
+
+  .about-horizontal,
+  .about-pin,
+  .horizontal-track,
+  .panel,
+  .panel-inner,
+  .product-section,
+  .but-not-section,
+  .panel-works-track,
+  .panel-works-track .track-wrapper,
+  .panel-works-track .track-frame {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    transform: none !important;
+    inset: auto !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+  }
+
+  .about-pin {
+    background: #050507 !important;
+  }
+
+  .horizontal-track {
+    display: block !important;
+    will-change: auto !important;
+  }
+
+  .panel {
+    display: block !important;
+    flex: none !important;
+    padding: var(--qc-section-y) var(--qc-mobile-pad) !important;
+  }
+
+  .panel-inner {
+    margin: 0 auto !important;
+    z-index: 2 !important;
+  }
+
+  .about-horizontal h2,
+  .product-heading,
+  .panel-works-track .intro-title,
+  .but-title h2,
+  .but-dark-content h2 {
+    font-size: clamp(38px, 8vw, 70px) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.045em !important;
+    max-width: 100% !important;
+  }
+
+  .about-horizontal p,
+  .but-dark-content p,
+  .ark-animate-content p,
+  .global-heading p,
+  .ark-info-cards p {
+    font-size: clamp(17px, 2.4vw, 21px) !important;
+    line-height: 1.5 !important;
+    max-width: 100% !important;
+  }
+
+  .year-copy {
+    max-width: 100% !important;
+  }
+
+  .seed-circle {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 112px !important;
+    height: 112px !important;
+    margin: 34px 0 0 !important;
+    font-size: 24px !important;
+  }
+
+  .circle-reveal {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: min(420px, 100%) !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    margin: 34px auto 0 !important;
+    border-radius: 50% !important;
+  }
+
+  /* Works / cards panel: desktop orbit becomes clean vertical cards */
+  .panel-works-track {
+    display: block !important;
+    min-height: 0 !important;
+    padding: var(--qc-section-y) 0 !important;
+  }
+
+  .panel-works-track .track-wrapper {
+    display: block !important;
+    perspective: none !important;
+    transform-style: flat !important;
+  }
+
+  .panel-works-track .track-frame {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding: 0 var(--qc-mobile-pad) !important;
+    transform-style: flat !important;
+  }
+
+  .panel-works-track .track-line {
+    display: none !important;
+  }
+
+  .panel-works-track .intro-container {
+    position: relative !important;
+    width: min(760px, calc(100% - (var(--qc-mobile-pad) * 2))) !important;
+    max-width: 100% !important;
+    margin: 0 auto 36px !important;
+    text-align: center !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .panel-works-track .intro-subtitle,
+  .panel-works-track .scroll-text {
+    letter-spacing: 0.16em !important;
+  }
+
+  .panel-works-track .card-container {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: min(720px, 100%) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 auto !important;
+    transform: none !important;
+    transform-style: flat !important;
+  }
+
+  .panel-works-track .card {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 320px !important;
+    display: grid !important;
+    grid-template-columns: 1.1fr 0.9fr !important;
+    gap: 24px !important;
+    padding: clamp(24px, 4vw, 34px) !important;
+    border-radius: 28px !important;
+    overflow: hidden !important;
+  }
+
+  .panel-works-track .card-info,
+  .panel-works-track .card-media {
+    min-width: 0 !important;
+  }
+
+  .panel-works-track .card-media {
+    height: auto !important;
+    min-height: 230px !important;
+  }
+
+  .panel-works-track .card-year {
+    font-size: clamp(2.3rem, 7vw, 3.5rem) !important;
+  }
+
+  .panel-works-track .card h3.card-title {
+    font-size: clamp(1.25rem, 3.2vw, 1.6rem) !important;
+    line-height: 1.25 !important;
+  }
+
+  .panel-works-track .card p.card-desc {
+    font-size: clamp(0.86rem, 2.2vw, 0.95rem) !important;
+  }
+
+  /* Product panel: no absolute overlap on smaller screens */
+  .panel-product {
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding: var(--qc-section-y) var(--qc-mobile-pad) !important;
+    min-height: 0 !important;
+  }
+
+  .product-section {
+    display: grid !important;
+    gap: 34px !important;
+    text-align: center !important;
+  }
+
+  .product-heading {
+    margin: 0 auto !important;
+  }
+
+  .product-features {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 24px !important;
+    margin: 12px auto 0 !important;
+    width: 100% !important;
+    max-width: 820px !important;
+    transform: none !important;
+  }
+
+  .product-feature {
+    width: auto !important;
+    max-width: 100% !important;
+  }
+
+  .product-badge {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 104px !important;
+    height: 104px !important;
+    margin: 0 auto !important;
+  }
+
+  .product-mockup {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: min(760px, 100%) !important;
+    height: 390px !important;
+    margin: 0 auto !important;
+    overflow: hidden !important;
+  }
+
+  .mockup-screen {
+    left: 50% !important;
+    top: 24px !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 48px) !important;
+    height: 300px !important;
+  }
+
+  .mock-tools {
+    display: none !important;
+  }
+
+  .mockup-canvas {
+    width: calc(100% - 48px) !important;
+  }
+
+  /* But-not panel: keep simple and readable on mobile/tablet */
+  .panel-but-not {
+    display: block !important;
+    background: #fbf4ee !important;
+    color: #000 !important;
+    padding: var(--qc-section-y) var(--qc-mobile-pad) !important;
+  }
+
+  .but-not-section {
+    display: grid !important;
+    gap: 26px !important;
+    background: transparent !important;
+    text-align: center !important;
+  }
+
+  .but-expand-bg {
+    display: none !important;
+  }
+
+  .but-icon,
+  .but-title,
+  .but-dark-content {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+
+  .but-icon {
+    width: 86px !important;
+    height: 86px !important;
+  }
+
+  .but-title {
+    color: #000 !important;
+    z-index: 2 !important;
+  }
+
+  .but-title h2 {
+    color: #000 !important;
+    font-weight: 700 !important;
+  }
+
+  .but-dark-content {
+    display: none !important;
+  }
+
+  /* Arkitek stats */
+  .ark-stats-section,
+  .ark-animate-section,
+  .ark-global-section {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    padding-left: var(--qc-mobile-pad) !important;
+    padding-right: var(--qc-mobile-pad) !important;
+  }
+
+  .ark-stats-section {
+    padding-top: var(--qc-section-y) !important;
+    padding-bottom: var(--qc-section-y) !important;
+  }
+
+  .ark-stats-title {
+    max-width: 900px !important;
+    margin: 0 auto !important;
+    font-size: clamp(28px, 4.5vw, 42px) !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.035em !important;
+  }
+
+  .ark-stats-wrapper {
+    grid-template-columns: 1fr !important;
+    gap: 42px !important;
+    margin-top: 48px !important;
+  }
+
+  .ark-stat-card {
+    max-width: 680px !important;
+    padding: 0 !important;
+  }
+
+  .ark-stat-card:hover {
+    transform: none !important;
+  }
+
+  .ark-stat-line {
+    margin-bottom: 28px !important;
+  }
+
+  .ark-stat-card h3 {
+    font-size: clamp(76px, 16vw, 132px) !important;
+    letter-spacing: -0.06em !important;
+  }
+
+  /* Arkitek animated visual */
+  .ark-animate-section {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 42px !important;
+    padding-top: var(--qc-section-y) !important;
+    padding-bottom: var(--qc-section-y) !important;
+  }
+
+  .ark-animate-content,
+  .ark-animate-visual {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .ark-animate-content h2,
+  .global-heading h2 {
+    font-size: clamp(40px, 7vw, 72px) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.05em !important;
+  }
+
+  .ark-animate-content p {
+    font-weight: 500 !important;
+  }
+
+  .ark-animate-visual {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .ark-screen-frame {
+    position: relative !important;
+    width: min(665px, 100%) !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 430px !important;
+    padding: 0 !important;
+    border-radius: clamp(20px, 4vw, 30px) !important;
+    overflow: hidden !important;
+    display: block !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .ark-screen-canvas {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    width: 665px !important;
+    height: 470px !important;
+    max-width: none !important;
+    transform: translate(-50%, -50%) scale(0.82) !important;
+    transform-origin: center center !important;
+    overflow: hidden !important;
+  }
+
+  /* Global/cards section */
+  .global-heading {
+    padding: 0 !important;
+  }
+
+  .global-heading p {
+    width: 100% !important;
+    padding-right: 0 !important;
+  }
+
+  .ark-cards-line-wrapper {
+    height: auto !important;
+    margin-top: 42px !important;
+  }
+
+  .ark-cards-line {
+    display: none !important;
+  }
+
+  .ark-info-cards {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding: 0 !important;
+  }
+
+  .ark-info-cards article {
+    max-width: 680px !important;
+    width: 100% !important;
+    padding: 34px 26px !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    border-radius: 26px !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+  }
+
+  .ark-info-cards article:hover {
+    transform: none !important;
+  }
+
+  .ark-info-cards h3 {
+    font-size: clamp(28px, 4.8vw, 38px) !important;
+  }
+
+  .ark-info-cards p {
+    min-height: 0 !important;
+  }
+}
+
+/* Mobile phones: single-column everything */
+@media (max-width: 767px) {
+  :root {
+    --qc-mobile-pad: 20px;
+    --qc-section-y: 62px;
+  }
+
+  .panel {
+    padding-top: 62px !important;
+    padding-bottom: 62px !important;
+  }
+
+  .about-horizontal h2,
+  .product-heading,
+  .panel-works-track .intro-title,
+  .but-title h2,
+  .ark-animate-content h2,
+  .global-heading h2 {
+    font-size: clamp(34px, 10.5vw, 52px) !important;
+    line-height: 1 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .about-horizontal p,
+  .ark-animate-content p,
+  .global-heading p,
+  .ark-info-cards p {
+    font-size: 17px !important;
+    line-height: 1.55 !important;
+  }
+
+  .eyebrow {
+    font-size: 12px !important;
+    gap: 8px !important;
+    margin-bottom: 18px !important;
+  }
+
+  .eyebrow::before {
+    width: 28px !important;
+  }
+
+  .seed-circle {
+    width: 92px !important;
+    height: 92px !important;
+    font-size: 21px !important;
+  }
+
+  .circle-reveal {
+    width: min(310px, 90vw) !important;
+  }
+
+  .panel-works-track .track-frame {
+    gap: 20px !important;
+  }
+
+  .panel-works-track .card {
+    grid-template-columns: 1fr !important;
+    min-height: 0 !important;
+    padding: 22px !important;
+    gap: 20px !important;
+    border-radius: 22px !important;
+  }
+
+  .panel-works-track .card-media {
+    min-height: 150px !important;
+    height: 150px !important;
+    order: -1 !important;
+  }
+
+  .panel-works-track .card-header,
+  .panel-works-track .card-footer {
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+
+  .panel-works-track .card-year {
+    font-size: 2.25rem !important;
+  }
+
+  .panel-works-track .card-tag {
+    font-size: 0.64rem !important;
+  }
+
+  .panel-works-track .card p.card-desc {
+    line-height: 1.55 !important;
+  }
+
+  .product-features {
+    grid-template-columns: 1fr !important;
+    gap: 26px !important;
+    margin-top: 0 !important;
+  }
+
+  .product-feature {
+    width: min(280px, 100%) !important;
+    margin: 0 auto !important;
+  }
+
+  .product-mockup {
+    height: 310px !important;
+    border-radius: 20px !important;
+  }
+
+  .mockup-screen {
+    width: calc(100% - 28px) !important;
+    height: 245px !important;
+    top: 18px !important;
+  }
+
+  .mockup-sidebar {
+    width: 34px !important;
+    gap: 12px !important;
+    padding-top: 22px !important;
+  }
+
+  .mockup-dot {
+    width: 9px !important;
+    height: 9px !important;
+  }
+
+  .mockup-canvas {
+    left: 34px !important;
+    width: calc(100% - 34px) !important;
+    padding: 44px 12px 14px !important;
+    gap: 10px !important;
+  }
+
+  .mock-card {
+    width: 78px !important;
+    height: 180px !important;
+  }
+
+  .mock-card h4 {
+    font-size: 15px !important;
+  }
+
+  .ark-stats-title {
+    font-size: clamp(25px, 7vw, 33px) !important;
+  }
+
+  .ark-stat-card p {
+    font-size: 16px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 18px !important;
+  }
+
+  .ark-stat-line {
+    margin-bottom: 24px !important;
+  }
+
+  .ark-stat-card h3 {
+    font-size: clamp(68px, 21vw, 96px) !important;
+    letter-spacing: -0.07em !important;
+  }
+
+  .ark-screen-frame {
+    width: 100% !important;
+    min-height: 360px !important;
+  }
+
+  .ark-screen-canvas {
+    transform: translate(-50%, -50%) scale(0.68) !important;
+  }
+
+  .ark-global-section {
+    padding-top: 62px !important;
+    padding-bottom: 62px !important;
+  }
+
+  .ark-info-cards article {
+    padding: 28px 20px !important;
+    border-radius: 22px !important;
+  }
+
+  .ark-info-cards button {
+    width: 100% !important;
+    max-width: 230px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  :root {
+    --qc-mobile-pad: 18px;
+  }
+
+  .journey-spacer {
+    min-height: 64svh !important;
+  }
+
+  .about-horizontal h2,
+  .product-heading,
+  .panel-works-track .intro-title,
+  .but-title h2,
+  .ark-animate-content h2,
+  .global-heading h2 {
+    font-size: clamp(32px, 11.2vw, 46px) !important;
+  }
+
+  .panel-works-track .intro-container {
+    margin-bottom: 28px !important;
+  }
+
+  .panel-works-track .intro-subtitle,
+  .panel-works-track .scroll-text {
+    letter-spacing: 0.12em !important;
+  }
+
+  .product-mockup {
+    height: 286px !important;
+  }
+
+  .mockup-screen {
+    height: 224px !important;
+  }
+
+  .mock-card {
+    width: 70px !important;
+    height: 166px !important;
+  }
+
+  .mock-card h4 {
+    font-size: 13px !important;
+    padding: 16px 9px 0 !important;
+  }
+
+  .mock-card span {
+    font-size: 9px !important;
+    padding-left: 9px !important;
+    padding-right: 9px !important;
+  }
+
+  .mock-phone-art {
+    width: 54px !important;
+    height: 98px !important;
+    border-width: 5px !important;
+  }
+
+  .ark-screen-frame {
+    min-height: 300px !important;
+  }
+
+  .ark-screen-canvas {
+    transform: translate(-50%, -50%) scale(0.55) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --qc-mobile-pad: 16px;
+    --qc-section-y: 56px;
+  }
+
+  .panel-works-track .card,
+  .ark-info-cards article {
+    padding: 20px 16px !important;
+  }
+
+  .product-mockup {
+    height: 258px !important;
+  }
+
+  .mockup-screen {
+    height: 202px !important;
+  }
+
+  .mock-card {
+    width: 64px !important;
+    height: 152px !important;
+  }
+
+  .ark-screen-frame {
+    min-height: 268px !important;
+  }
+
+  .ark-screen-canvas {
+    transform: translate(-50%, -50%) scale(0.47) !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .ark-screen-frame {
+    min-height: 238px !important;
+  }
+
+  .ark-screen-canvas {
+    transform: translate(-50%, -50%) scale(0.41) !important;
+  }
+
+  .panel-works-track .card-year {
+    font-size: 2rem !important;
+  }
+
+  .ark-stat-card h3 {
+    font-size: 64px !important;
+  }
+}
+
+/* Touch devices: reduce heavy animations to avoid layout jump */
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .ark-screen-frame,
+  .ark-play,
+  .ark-timeline-row::after,
+  .orb-2022,
+  .ring-2023,
+  .mesh-dot,
+  .wave-bar,
+  .square-2026,
+  .portal-future,
+  .portal-core {
+    animation: none !important;
+  }
+}
