@@ -1,0 +1,117 @@
+/* ============================================================
+   TEAM CAROUSEL — namespaced (tc- prefix) to avoid clashes
+   Paste this at the END of last.css
+   ============================================================ */
+.tc-carousel{
+  position:relative;
+  width:100%;
+  max-width:100%;
+  margin-left:auto;
+  margin-right:auto;
+  height:560px;            /* fixed stage height (self-contained) */
+  margin-top:1px;
+  margin-bottom:1px;
+  overflow:hidden;
+  display:block;
+  perspective:1400px;
+  perspective-origin:center center;
+  --tc-card-w:320px;
+  --tc-card-h:410px;
+  --tc-gap:9px;
+  --tc-radius:26px;
+}
+.tc-track{
+  position:absolute;left:0;top:50%;height:0;width:100%;
+  transform-style:preserve-3d;will-change:transform;
+}
+.tc-card{
+  position:absolute;top:50%;
+  width:var(--tc-card-w);height:var(--tc-card-h);
+  border-radius:var(--tc-radius);overflow:hidden;background:#1a1a1a;
+  box-shadow:0 24px 50px -18px rgba(0,0,0,.6),0 8px 18px -10px rgba(0,0,0,.5);
+  transform-origin:center center;will-change:transform,opacity;
+  backface-visibility:hidden;
+  /* reset anything inherited from the page's .card */
+  padding:0;border:0;
+}
+.tc-card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  pointer-events:none;user-select:none;
+}
+.tc-caption{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:40px 18px 18px;display:flex;flex-direction:column;gap:3px;
+  align-items:center;
+  background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.78) 100%);
+  color:#fff;text-align:center;pointer-events:none;
+}
+.tc-name{font-size:18px;font-weight:600;letter-spacing:-0.01em;line-height:1.2;}
+.tc-role{font-size:13px;font-weight:400;opacity:.82;line-height:1.2;}
+/* ─────────────────────────────────────────────
+   TC Carousel Controls  (ourteam-controls.css)
+   Existing CSS files mein koi change nahi.
+   Is file ko last.css ke BAAD link karo.
+───────────────────────────────────────────── */
+
+/* Prev / Next buttons */
+.tc-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  background: rgba(15, 15, 15, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.tc-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.tc-btn:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.tc-btn--prev { left:  18px; }
+.tc-btn--next { right: 18px; }
+
+/* Grab cursor on carousel */
+#tc-carousel { cursor: grab; }
+#tc-carousel:active { cursor: grabbing; }
+
+@media (max-width:1024px){
+  .tc-carousel{--tc-card-w:200px;--tc-card-h:300px;--tc-gap:8px;perspective:1100px;}
+}
+@media (max-width:680px){
+  .tc-carousel{--tc-card-w:150px;--tc-card-h:225px;--tc-gap:6px;perspective:850px;min-height:320px;}
+  .tc-name{font-size:14px;}
+  .tc-role{font-size:11px;}
+}
+
+/* ---- Our Team heading (namespaced) ---- */
+.tc-head{ text-align:center; padding-top:clamp(48px,9vh,120px); }
+.tc-title{
+  font-family:Georgia,'Times New Roman',serif;
+  font-weight:400; color:#fff;
+  font-size:clamp(32px,5vw,72px);
+  letter-spacing:-0.015em; line-height:1.05;
+}
+@media (max-width:680px){ .tc-title{font-size:clamp(26px,8vw,40px);} }
