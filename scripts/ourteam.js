@@ -2,9 +2,9 @@
   'use strict';
 
   const SOURCES = [
-    { src:'./team1/vikram1.webp',     name:'Vikram Singh',        role:'Designation 23' },
-    { src:'./team1/uday.webp',        name:'Name 24',             role:'Designation 24' },
-    { src:'./team1/ashu.webp',        name:'Name 25',             role:'Designation 25' },
+    { src:'./team1/vikram1.webp',     name:'Vikram Singh',        role:'Meta ads expert' },
+    { src:'./team1/uday.webp',        name:'Uday Punjabi',             role:'BD Executive' },
+    { src:'./team1/ashu.webp',        name:'Ashu Kashyap',             role:'Visual Story Teller' },
     { src:'./team1/bhavana1.webp',    name:'Bhavana Punjabi',     role:'Chief Curator Officer' },
     { src:'./team1/abhay1.webp',      name:'Abhay Tanwar',        role:'Chief Action Officer' },
     { src:'./team1/prakriti1.webp',   name:'Prakriti Verma',      role:'Sr. Graphic Designer' },
@@ -19,9 +19,9 @@
     { src:'./team1/srushti.webp',     name:'Srushti Soni',        role:'Social Media Strategist' },
     { src:'./team1/khushi.webp',      name:'Khushi Singh',        role:'Social Media Intern' },
     { src:'./team1/riddhi.webp',      name:'Riddhi Sharma',       role:'Social Media Intern' },
-    { src:'./team1/nehal.webp',       name:'Name 17',             role:'Social Media Intern' },
+    { src:'./team1/nehal.webp',       name:'Nehal ',             role:'Social Media Intern' },
     { src:'./team1/shubham.webp',     name:'Shubham Sharma',      role:'Web Developer' },
-    { src:'./team1/chitransh.webp',   name:'Chitransh Maharshi',  role:'Web Developer Intern' },
+    { src:'./images/Chitransh.jpg',   name:'Chitransh Maharshi',  role:'Web Developer Intern' },
     { src:'./team1/yashika1.webp',    name:'Yashika Singh',       role:'SEO Stategist' },
     { src:'./team1/vikas.webp',       name:'Vikas Tanwar',        role:'SEO Stategist' },
     { src:'./team1/khushisingh.webp', name:'Khushi Singh',        role:'SEO Executive' }
