@@ -16,7 +16,7 @@
   perspective:1400px;
   perspective-origin:center center;
   --tc-card-w:320px;
-  --tc-card-h:410px;
+  --tc-card-h:440px;
   --tc-gap:9px;
   --tc-radius:26px;
 }
@@ -96,17 +96,6 @@
 /* Grab cursor on carousel */
 #tc-carousel { cursor: grab; }
 #tc-carousel:active { cursor: grabbing; }
-
-@media (max-width:1024px){
-  .tc-carousel{--tc-card-w:200px;--tc-card-h:300px;--tc-gap:8px;perspective:1100px;}
-}
-@media (max-width:680px){
-  .tc-carousel{--tc-card-w:150px;--tc-card-h:225px;--tc-gap:6px;perspective:850px;min-height:320px;}
-  .tc-name{font-size:14px;}
-  .tc-role{font-size:11px;}
-}
-
-/* ---- Our Team heading (namespaced) ---- */
 .tc-head{ text-align:center; padding-top:clamp(48px,9vh,120px); }
 .tc-title{
   font-family:Georgia,'Times New Roman',serif;
@@ -114,4 +103,37 @@
   font-size:clamp(32px,5vw,72px);
   letter-spacing:-0.015em; line-height:1.05;
 }
-@media (max-width:680px){ .tc-title{font-size:clamp(26px,8vw,40px);} }
+/* Mobile breakpoints — replace existing ones */
+@media (max-width: 1024px) {
+  .tc-carousel {
+    --tc-card-w: 200px;
+    --tc-card-h: 300px;
+    --tc-gap: 8px;
+    perspective: 1100px;
+    height: 380px;
+  }
+}
+
+@media (max-width: 680px) {
+  .tc-carousel {
+    --tc-card-w: 160px;
+    --tc-card-h: 240px;
+    --tc-gap: 6px;
+    perspective: 850px;
+    height: 300px;        /* fixed height kam karo */
+  }
+  .tc-name { font-size: 13px; }
+  .tc-role { font-size: 11px; }
+}
+
+/* Heading gap fix */
+.tc-head {
+  padding-top: clamp(24px, 5vh, 80px);   /* pehle tha 48px–120px, bahut zyada tha */
+  padding-bottom: 0;
+}
+
+@media (max-width: 680px) {
+  .tc-head {
+    padding-top: clamp(16px, 4vh, 40px);
+  }
+}

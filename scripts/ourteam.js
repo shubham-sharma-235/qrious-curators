@@ -5,8 +5,13 @@
     { src:'./team1/vikram1.webp',     name:'Vikram Singh',        role:'Meta ads expert' },
     { src:'./team1/uday.webp',        name:'Uday Punjabi',             role:'BD Executive' },
     { src:'./team1/ashu.webp',        name:'Ashu Kashyap',             role:'Visual Story Teller' },
-    { src:'./team1/bhavana1.webp',    name:'Bhavana Punjabi',     role:'Chief Curator Officer' },
     { src:'./team1/abhay1.webp',      name:'Abhay Tanwar',        role:'Chief Action Officer' },
+    { src:'./team1/bhavana1.webp',    name:'Bhavana Punjabi',     role:'Chief Curator Officer' },
+     { src:'./team1/shubham.webp',     name:'Shubham Sharma',      role:'Web Developer' },
+    { src:'./images/Chitransh.jpg',   name:'Chitransh Maharshi',  role:'Web Developer Intern' },
+    { src:'./team1/yashika1.webp',    name:'Yashika Singh',       role:'SEO Stategist' },
+    { src:'./team1/vikas.webp',       name:'Vikas Tanwar',        role:'SEO Stategist' },
+    { src:'./team1/khushisingh.webp', name:'Khushi Singh',        role:'SEO Executive' },
     { src:'./team1/prakriti1.webp',   name:'Prakriti Verma',      role:'Sr. Graphic Designer' },
     { src:'./team1/kumkum1.webp',     name:'Name 7',              role:'Sr. Graphic Designer' },
     { src:'./team1/jayant1.webp',     name:'Jayant Rajvanshi',    role:'Graphic Designer' },
@@ -19,12 +24,8 @@
     { src:'./team1/srushti.webp',     name:'Srushti Soni',        role:'Social Media Strategist' },
     { src:'./team1/khushi.webp',      name:'Khushi Singh',        role:'Social Media Intern' },
     { src:'./team1/riddhi.webp',      name:'Riddhi Sharma',       role:'Social Media Intern' },
-    { src:'./team1/nehal.webp',       name:'Nehal ',             role:'Social Media Intern' },
-    { src:'./team1/shubham.webp',     name:'Shubham Sharma',      role:'Web Developer' },
-    { src:'./images/Chitransh.jpg',   name:'Chitransh Maharshi',  role:'Web Developer Intern' },
-    { src:'./team1/yashika1.webp',    name:'Yashika Singh',       role:'SEO Stategist' },
-    { src:'./team1/vikas.webp',       name:'Vikas Tanwar',        role:'SEO Stategist' },
-    { src:'./team1/khushisingh.webp', name:'Khushi Singh',        role:'SEO Executive' }
+    { src:'./team1/nehal.webp',       name:'Nehal ',             role:'Social Media Intern' }
+   
   ];
 
   const carousel = document.getElementById('tc-carousel');
@@ -33,16 +34,16 @@
 
   const STRETCH_Y  = 0.35;
   const SCALE_DROP = 0.22;
-  const TRANSLATE_Z= 240;
+  const TRANSLATE_Z= 140;
   const CENTER_PUSH= -120;
   const ROTATE_MAX = 85;
   const REACH      = 1.2;
-  const SPACING    = 0.82;
+  const SPACING    = 0.80;
 
   let cardW, gap, unit, setWidth, cards = [];
   let offset    = 0;
   let last      = 0;
-  let autoSpeed = 55;  // never changes
+  let autoSpeed = 42;  // never changes
   let momentum  = 0;  // decays to 0 — used for drag & button nudge
 
   // drag state
@@ -120,7 +121,7 @@
     last = now;
 
     if(!dragging){
-      momentum *= 0.88;
+      momentum *= 0.93;
       if(Math.abs(momentum) < 0.2) momentum = 0;
       offset += (autoSpeed + momentum) * dt;
     }
@@ -152,7 +153,7 @@
   function onDragEnd(){
     if(!dragging) return;
     dragging = false;
-    momentum = -dragVelX * 12;
+    momentum = -dragVelX * 7;
     carousel.style.cursor = 'grab';
   }
 
@@ -193,7 +194,7 @@
   outer.appendChild(carousel);
   outer.appendChild(btnWrap);
 
-  const NUDGE = 1800;
+  const NUDGE = 900;
   btnPrev.addEventListener('click', function(){ momentum = -NUDGE; });
   btnNext.addEventListener('click', function(){ momentum =  NUDGE; });
 

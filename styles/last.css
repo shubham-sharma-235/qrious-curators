@@ -66,9 +66,9 @@ h1,h2,h3{font-weight:400;letter-spacing:-0.02em;}
    ============================================================ */
 .shell{
   position:relative;
-  max-width:1450px;
+  max-width:1500px;
   height:calc(100vh - 48px);
-  margin:24px auto;
+  margin:15px auto;
   border:1px solid var(--panel-border);
   border-radius:18px;
   background:var(--panel);
@@ -312,7 +312,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-0.02em;}
   width:9px;height:9px;
   border:1px solid #777;
   border-radius:50%;
-  background:#111;
+  background:#000000;
   transform:translateY(-50%);
 }
 .culture-content .line::before{left:0;}

@@ -37,7 +37,7 @@ html {
 body {
   background: var(--black);
   color: var(--white);
-  font-family: "DM Sans", sans-serif;
+  font-family: "Raleway", sans-serif;
   overflow-x: hidden;
   cursor: none;
 }
@@ -190,15 +190,12 @@ body.cur-hover #qc-cur-ring {
   25% {
     transform: translate(-2%, -1%);
   }
-
   50% {
     transform: translate(1%, 2%);
   }
-
   75% {
     transform: translate(-1%, 1%);
   }
-
   100% {
     transform: translate(2%, -2%);
   }
@@ -3317,13 +3314,13 @@ body.hov #cr {
 }
 
 /* ===================== MARQUEE (dark) ===================== */
-.qc-marquee-dark {
+/* .qc-marquee-dark {
   overflow: hidden;
-  background: var(--surface);
+  background:black;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 20px 0;
-}
+  padding: 1px 0;
+} */
 
 .qc-marquee-dark-track {
   display: flex;
@@ -3334,7 +3331,7 @@ body.hov #cr {
 .qc-marquee-dark-item {
   font-family: var(--heading-font);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
@@ -3351,7 +3348,45 @@ body.hov #cr {
   font-size: 20px;
   line-height: 0;
 }
+.client-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
 
+.client-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 30px 16px;
+  width: 100%;
+}
+
+.client {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.client img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.client span {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 700px) {
+  .client-row { grid-template-columns: repeat(3, 1fr); }
+}
 /* ===================== TESTIMONIALS ===================== */
 #testimonials {
   padding: 160px 52px;

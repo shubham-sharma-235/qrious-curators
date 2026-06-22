@@ -247,7 +247,7 @@
     // 1.8 -> 13.8: Panel 2 works-track timeline (zoom in, rotation through 6 cards, zoom out)
     // 13.8 -> 14.8: Slide to Panel 3 (mockup)
     // 14.8 -> 16.5: Slide to Panel 4 (but-not-all)
-    // 16.5 -> 18.5: Panel 4 expanding black circle / eureka reveal
+    // 16.5 -> 18.5: Panel 4 expanding rectangle / Qrious Curators reveal
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -398,91 +398,72 @@
       ease: "power2.inOut"
     }, 14.8);
 
-    // --- PANEL 4 EXPANDING BLACK CIRCLE STUFF ---
+    // ================================================================
+    // --- PANEL 4: EXPANDING RECTANGLE + QRIOUS CURATORS REVEAL ---
+    // ================================================================
+
+    // Helper: move the logo to sit just left of the inline heading row
+    function getLogoTargetX() {
+      const content = document.querySelector(".but-dark-content");
+      if (!content) return -120;
+      const rect = content.getBoundingClientRect();
+      const cx = window.innerWidth / 2;
+      return rect.left + 26 - cx;
+    }
+
+    // Panel 4 initial states
+    tl.set(".brand-info", { x: 24 }, 16.4);
+    tl.set(".deco-left",  { opacity: 0, x: -30 }, 16.4);
+    tl.set(".deco-right", { opacity: 0, x: 30 }, 16.4);
+
+    // 1. Rectangle expand
     tl.to(".but-expand-bg", {
-      scale: 42,
-      duration: 1.2,
+      scale: 40,
+      duration: 2,
       ease: "power2.inOut"
     }, 16.5);
 
-    // tl.to(".but-icon", {
-    //   scale: 0.35,
-    //   opacity: 0,
-    //   duration: 2,
-    //   ease: "power2.out"
-    // }, 16.6);
+    // 2. Logo shifts left to make room for heading
+    tl.to(".but-icon", {
+      x: () => getLogoTargetX(),
+      duration: 1.5,
+      ease: "power3.out"
+    }, 17.0);
 
+    // 3. Inline dark content container becomes visible
+    tl.set(".but-dark-content", { opacity: 1 }, 17.4);
 
-//   tl.to(".but-icon",{
-//    x:-120,
-//    duration:1,
-//    ease:"power4.out"
-//    });
+    // 4. Heading slide in ("Qrious Curators")
+    tl.to(".brand-info", {
+      opacity: 1,
+      x: 0,
+      duration: 1,
+      ease: "power3.out"
+    }, 17.5);
 
-  
-// tl.to(".but-icon", {
-//   x: -120,
-//   duration: 1,
-//   ease: "power4.out"
-// });
+    // 5. Big sub text fade in
+    tl.to(".brand-sub", {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power2.out"
+    }, 18.0);
 
+    // 6. Deco lines slide in from both sides together
+    tl.to(".deco-left", {
+      opacity: 1,
+      x: 0,
+      duration: 1.0,
+      ease: "power2.out"
+    }, 17.8);
 
-// tl.fromTo(".brand-info",
-// {
-//   opacity: 0,
-//   x: 50
-// },
-// {
-//   opacity: 1,
-//   x: 0,
-//   duration: 1
-// },
-// "<0.2");
+    tl.to(".deco-right", {
+      opacity: 1,
+      x: 0,
+      duration: 1.0,
+      ease: "power2.out"
+    }, 17.8);
 
-// tl.to({},{
-//   duration:0.5
-// });
-
-// tl.to(".but-icon",{
-//    y:-20,
-//    scale:0.7,
-//    duration:1
-// });
-
-
-// tl.to(".but-icon", { left: "42%", top: "50%", duration: 0.8, ease: "power3.out" }, 17.0);
-
-tl.to(".but-icon", {
-  left: "46.8%",
-  top: "50%",
-  x: 0,
-  y: 0,
-  scale: 0.72,
-  duration: 0.8,
-  ease: "power3.out"
-}, 17.0);
-
-tl.set(".but-dark-content", { opacity: 1 }, 17.0);
-
-tl.fromTo(".brand-info",
-  {
-    opacity: 0,
-    x: 45
-  },
-  {
-    opacity: 1,
-    x: 0,
-    duration: 0.8,
-    ease: "power3.out"
-  },
-17.2);
-
-   
-    tl.set(".but-dark-content", { opacity: 1 }, 17.0);
-    tl.fromTo(".brand-info",
-      { opacity: 0, x: 40 },
-      { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" },
-    17.2);
     // --- Set Active States via Timeline Callbacks ---
     // Total duration is 18.5
     tl.call(() => setActiveCard(-1), null, 0.5);   // Intro of Panel 2

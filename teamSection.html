@@ -6,10 +6,51 @@
 <title>About - Qrious Curators</title>
 <link rel="stylesheet" href="./styles/last.css">
 <link rel="stylesheet" href="./styles/ourteam.css">
+<link rel="stylesheet" href="./styles/style.css">
 
 </head>
 <body>
+<!-- CUSTOM CURSOR -->
+<div id="qc-cur"></div>
+<div id="qc-cur-ring"></div>
 
+<!-- NAVBAR -->
+<div class="qn-wrap">
+  <div class="qn-bar">
+    <a href="./index.html" class="nav-logo">
+      <img src="./assets/logo/logo-one.png" alt="Logo">
+    </a>
+
+    <button class="qn-toggle" id="qnToggle">
+      <div class="qn-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+  </div>
+</div>
+
+<!-- OVERLAY MENU -->
+<div class="qn-overlay" id="qnOverlay">
+  <div class="qn-inner">
+    <div class="qn-center">
+
+      <div class="qn-main">
+        <a href="aboutqc.html">About</a>
+        <a href="#">Work</a>
+        <a href="services.html">Services</a>
+      </div>
+
+      <div class="qn-sub">
+        <a href="contactnew.html">Contact</a>
+        <a href="#">Blogs</a>
+        <a href="teamSection.html">Our Team</a>
+      </div>
+
+    </div>
+  </div>
+</div>
   <!-- ============================================================
        SECTION 1 — HERO + STAGGERED GALLERY
        ============================================================ -->
@@ -18,52 +59,50 @@
     <!-- LEFT -->
     <section class="intro">
       <p class="eyebrow">Our Team</p>
-      <h1>A hand-picked team<br>of passionate creatives</h1>
+      <h1>A hand-picked team <br> of digital growth experts</h1>
 
       <div class="rule"><span class="badge"></span></div>
 
       <p class="lead">
-        We're a meticulously assembled group of creatives <em>(and organisers)</em>,
-        carefully selected for our passion for great design. Our backgrounds are
-        varied but our vision remains the <span class="hi">same – create something
-        beautiful that really works.</span>
+        We’re a meticulously curated team of marketers, developers, designers, and strategists united by a passion for driving business growth. While our skills span every corner of the digital landscape, our mission remains the same to create powerful marketing strategies, meaningful brand experiences and<span class="hi"> measurable results that help businesses thrive online.</span>
       </p>
 
-      <a class="cta" href="#team">Meet the team <span class="arrow">→</span></a>
+      <a class="cta" href="#tc-carousel">Meet the team <span class="arrow">→</span></a>
     </section>
 
     <!-- RIGHT GALLERY -->
     <section class="gallery">
       <div class="card c-top">
         <div class="frame">
-          <img alt="Studio" src="https://images.unsplash.com/photo-1604754742629-3e5728249d73?auto=format&fit=crop&w=600&q=70">
-          <span class="tag bottom"><img class="ava" src="https://i.pravatar.cc/60?img=12" alt="">Josh</span>
+          <img alt="Studio" src="./assets/newmockups/artboard-13.jpeg">
+          <!-- <span class="tag bottom"><img class="ava" src="./assets/logo/logo-one.png" alt="">QC</span> -->
         </div>
       </div>
 
       <div class="card c-mid">
         <div class="frame">
-          <img alt="Sim racing" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=700&q=70">
-          <span class="tag bottom"><img class="ava" src="https://i.pravatar.cc/60?img=12" alt="">Josh</span>
+          <img alt="Sim racing" src="./assets/team1/teamcover3.jpg">
+          <!-- <span class="tag bottom"><img class="ava" src="./assets/logo/logo-one.png" alt="">QC</span> -->
         </div>
       </div>
 
       <div class="card c-botL">
         <div class="frame">
-          <img alt="Workspace" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=70">
+          <img alt="Workspace" src="./assets/newmockups/artboard-6.jpeg">
         </div>
       </div>
 
       <div class="card c-podium">
         <div class="frame">
-          <img alt="Podium" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=700&q=70">
-          <span class="tag bottom"><img class="ava" src="https://i.pravatar.cc/60?img=33" alt="">Carl</span>
+          <img alt="Podium" src="./assets/newmockups/artboard-7.jpeg">
+          <!-- <span class="tag bottom"><img class="ava" src="./assets/logo/logo-one.png" alt="">QC</span> -->
         </div>
       </div>
 
       <div class="card c-track">
         <div class="frame">
-          <img alt="Race track" src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=700&q=70">
+          <img alt="Race track" src="./assets/newmockups/artboard-4.jpeg">
+          <!-- <span class="tag bottom"><img class="ava" src="./assets/logo/logo-one.png" alt="">QC</span> -->
         </div>
       </div>
     </section>
@@ -159,11 +198,54 @@
 <section class="tc-carousel" id="tc-carousel" aria-label="Team members">
   <div class="tc-track" id="tc-track"></div>
 </section>
+<footer id="qcFooter">
+  <div class="footer-inner">
 
+    <div class="footer-top">
+
+      <div>
+        <div class="footer-brand-name">
+          Qrious Curators
+        </div>
+
+        <p class="footer-text">
+          We build brands, websites, and digital experiences that feel
+          refined, relevant, and made to grow.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-col-ttl">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Web Design</a></li>
+          <li><a href="#">Development</a></li>
+          <li><a href="#">Brand Identity</a></li>
+          <li><a href="#">Social Media</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-ttl">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Work</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Qrious Curators. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>
   <script src="./scripts/last.js"></script>
   <script src="./scripts/ourteam.js"></script>
+  <script src="./scripts/script.js"></script>
 
   
 
 </body>
-</html>
+</html>q
