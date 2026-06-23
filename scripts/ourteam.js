@@ -43,7 +43,7 @@
   let cardW, gap, unit, setWidth, cards = [];
   let offset    = 0;
   let last      = 0;
-  let autoSpeed = 42;  // never changes
+  let autoSpeed = 92;  // never changes
   let momentum  = 0;  // decays to 0 — used for drag & button nudge
 
   // drag state
