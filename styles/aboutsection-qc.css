@@ -152,6 +152,16 @@
       z-index: 8;
       will-change: transform, opacity;
     }
+    .seed-circle {
+  overflow: hidden;            /* logo circle ke andar hi rahe */
+}
+
+.seed-circle img {
+  width: 60%;                  /* circle ka 60% — adjust kar sakte ho */
+  height: 60%;
+  object-fit: contain;         /* logo poora dikhe, distort na ho */
+  display: block;
+}
 
     .circle-reveal {
       position: absolute;
@@ -640,6 +650,11 @@
       transform-style: preserve-3d;
       will-change: transform;
     }
+    .panel-works-track .card.active {
+  border-color: rgba(197, 168, 128, 0.35);
+  background: rgba(20, 20, 26, 0.85);
+  transform: scale(1.02);
+}
 
     /* The card design itself */
     .panel-works-track .card {

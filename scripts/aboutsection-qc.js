@@ -204,26 +204,8 @@
         dot.classList.toggle('active', idx === index);
       });
       
-      document.querySelectorAll('.panel-works-track .card').forEach((card, idx) => {
-        if (idx === index) {
-          card.classList.add('active');
-          gsap.to(card, {
-            scale: 1.02,
-            borderColor: 'rgba(197, 168, 128, 0.35)',
-            background: 'rgba(20, 20, 26, 0.85)',
-            duration: 0.6,
-            ease: "power2.out"
-          });
-        } else {
-          card.classList.remove('active');
-          gsap.to(card, {
-            scale: 1.0,
-            borderColor: 'rgba(255, 255, 255, 0.08)',
-            background: 'rgba(12, 12, 16, 0.65)',
-            duration: 0.6,
-            ease: "power2.out"
-          });
-        }
+   document.querySelectorAll('.panel-works-track .card').forEach((card, idx) => {
+        card.classList.toggle('active', idx === index);
       });
 
       const progressNum = document.querySelector('.works-hud .progress-num');
@@ -495,21 +477,25 @@
     });
 
     // --- 7. 3D VIEWPORT MOUSE PARALLAX TILT ---
-    const worksPanel = document.querySelector('.panel-works-track');
+   const worksPanel = document.querySelector('.panel-works-track');
+    let tiltRaf = null;
     worksPanel.addEventListener('mousemove', (e) => {
-      const rect = worksPanel.getBoundingClientRect();
-      const mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-      const mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-      
-      gsap.to(".panel-works-track .track-wrapper", {
-        rotationY: mouseX * 2.5,
-        rotationX: -mouseY * 2.5,
-        duration: 1.0,
-        ease: "power2.out",
-        overwrite: "auto"
+      if (tiltRaf) return;              // har frame me ek hi baar chale
+      tiltRaf = requestAnimationFrame(() => {
+        const rect = worksPanel.getBoundingClientRect();
+        const mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+        const mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+
+        gsap.to(".panel-works-track .track-wrapper", {
+          rotationY: mouseX * 1.2,       // 2.5 se kam -> kam conflict
+          rotationX: -mouseY * 1.2,
+          duration: 1.2,
+          ease: "power3.out",
+          overwrite: "auto"
+        });
+        tiltRaf = null;
       });
     });
-
     window.addEventListener("resize", () => {
       ScrollTrigger.refresh();
     });
