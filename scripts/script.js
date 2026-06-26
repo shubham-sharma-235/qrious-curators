@@ -15,7 +15,7 @@ document.addEventListener('keydown', (e)=>{
 
 
 (function () {
-  const MIN_TIME = 5000; 
+  const MIN_TIME = 5000;
 
   const start = Date.now();
 
@@ -27,7 +27,7 @@ document.addEventListener('keydown', (e)=>{
     const remaining = Math.max(0, MIN_TIME - elapsed);
 
     setTimeout(() => {
-      preloader.classList.add("hide"); 
+      preloader.classList.add("hide");
       setTimeout(() => {
         preloader.style.display = "none";
       }, 600);
@@ -124,7 +124,7 @@ document.querySelectorAll('footer').forEach(el=>{el.style.opacity='0';el.style.t
 /* ════════════════════════════════════════════
    D3 WORLD MAP
 ════════════════════════════════════════════ */
- 
+
 // Cities: [lon, lat] in geographic coords + display offset for badge
 const CITIES = {
   london:  { coord:[-0.12, 51.51],  label:'London',    bdx:-60, bdy:-54 },
@@ -137,28 +137,28 @@ const CITIES = {
   tokyo:   { coord:[139.69, 35.69], label:'Tokyo',      bdx:-70, bdy:-54 },
   sydney:  { coord:[151.21,-33.87], label:'Sydney',     bdx:-70, bdy: 16 },
 }
- 
+
 // Arc connections [cityA, cityB]
 const ARCS = [
   ['london','newyork'],['london','dubai'],['london','toronto'],
   ['london','berlin'],['dubai','mumbai'],['mumbai','tokyo'],
   ['newyork','sao'],['tokyo','sydney'],
 ]
- 
+
 // Countries to highlight (ISO Alpha-2 → used in topojson id)
 const HIGHLIGHT_ISO = new Set([
   'GBR','USA','ARE','JPN','AUS','IND','BRA','CAN','DEU',
   'FRA','NLD','SGP','CHN','ZAF','NGA','SAU','KEN','MEX'
 ])
- 
+
 async function drawMap() {
   const canvas = document.getElementById('map-canvas')
   const W = canvas.offsetWidth || 1000
   const H = Math.round(W * 0.52)
- 
+
   // Remove loading indicator
   document.getElementById('mapLoading').remove()
- 
+
   // Create SVG
   const svg = d3.select('#map-canvas')
     .append('svg')
@@ -166,34 +166,34 @@ async function drawMap() {
     .attr('viewBox',`0 0 ${W} ${H}`)
     .attr('width','100%')
     .attr('height',H)
- 
+
   // Natural Earth projection
   const projection = d3.geoNaturalEarth1()
     .scale(W / 6.5)
     .translate([W / 2, H / 2])
- 
+
   const path = d3.geoPath().projection(projection)
- 
+
   // ── Sphere (ocean) ──
   svg.append('path')
     .datum({type:'Sphere'})
     .attr('class','sphere')
     .attr('d', path)
- 
+
   // ── Graticule ──
   const graticule = d3.geoGraticule()
   svg.append('path')
     .datum(graticule())
     .attr('class','graticule')
     .attr('d', path)
- 
+
   // Major lines (equator + tropics)
   const majorLines = d3.geoGraticule().step([180,23.5])()
   svg.append('path')
     .datum(majorLines)
     .attr('class','graticule-major')
     .attr('d', path)
- 
+
   // ── Fetch TopoJSON world data ──
   let world
   try {
@@ -202,11 +202,11 @@ async function drawMap() {
     // Fallback URL
     world = await d3.json('https://unpkg.com/world-atlas@2.0.2/countries-110m.json')
   }
- 
+
   const { feature, mesh } = await import('https://cdn.jsdelivr.net/npm/topojson-client@3/+esm')
- 
+
   const countries = feature(world, world.objects.countries)
- 
+
   // Country id → ISO lookup (numeric codes)
   const ISO_NUMERIC = {
     '826':'GBR','840':'USA','784':'ARE','392':'JPN','036':'AUS',
@@ -218,7 +218,7 @@ async function drawMap() {
     '364':'IRN','050':'BGD','144':'LKA','586':'PAK','608':'PHL',
     '458':'MYS','360':'IDN','764':'THA','704':'VNM','410':'KOR',
   }
- 
+
   // Draw countries
   const countryPaths = svg.selectAll('.country')
     .data(countries.features)
@@ -228,7 +228,7 @@ async function drawMap() {
       return 'country' + (HIGHLIGHT_ISO.has(iso) ? ' highlighted' : '')
     })
     .attr('d', path)
- 
+
   // Country borders mesh
   svg.append('path')
     .datum(mesh(world, world.objects.countries, (a,b) => a !== b))
@@ -236,7 +236,7 @@ async function drawMap() {
     .attr('stroke','rgba(255,255,255,.14)')
     .attr('stroke-width','.35')
     .attr('d', path)
- 
+
   // ── Draw arcs ──
   const arcG = svg.append('g').attr('class','arcs-layer')
   ARCS.forEach(([a,b]) => {
@@ -253,26 +253,26 @@ async function drawMap() {
       .attr('class','arc-path')
       .attr('d', arcPath)
   })
- 
+
   // ── Draw city dots ──
   Object.entries(CITIES).forEach(([key, city]) => {
     const [x, y] = projection(city.coord) || [0,0]
     if (!x || !y) return
- 
+
     const g = svg.append('g').attr('class',`city-group cg-${key}`)
- 
+
     // Rings
     g.append('circle').attr('class','dot-ring1').attr('cx',x).attr('cy',y).attr('r',2.5)
     g.append('circle').attr('class','dot-ring2').attr('cx',x).attr('cy',y).attr('r',2.5)
     g.append('circle').attr('class','dot-core').attr('cx',x).attr('cy',y).attr('r',2.5)
- 
+
     // Small city label
     g.append('text')
       .attr('class','city-label')
       .attr('x', x + 6)
       .attr('y', y + 3)
       .text(city.label)
- 
+
     // Position corresponding badge relative to SVG container
     const badge = document.querySelector(`.badge[data-city="${key}"]`)
     if (badge) {
@@ -282,19 +282,19 @@ async function drawMap() {
       // Compute badge offset so it appears above/beside dot
       const bw = 170 // approx badge width px
       const bh = 44  // approx badge height px
- 
+
       // Use pixel offsets from dot
       badge.style.position = 'absolute'
       badge.style.left = `calc(${pctX}% + ${city.bdx}px)`
       badge.style.top  = `calc(${pctY}% + ${city.bdy}px)`
     }
   })
- 
+
   // Fade in SVG
   requestAnimationFrame(() => {
     document.getElementById('map-svg').classList.add('ready')
   })
- 
+
   // Trigger badge entrance after map loads
   setTimeout(() => {
     const badges = document.querySelectorAll('.badge')
@@ -306,7 +306,7 @@ async function drawMap() {
     })
   }, 800)
 }
- 
+
 // ── Observe section, draw when visible ──
 const mapObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -319,9 +319,9 @@ const mapObs = new IntersectionObserver(entries => {
     }
   })
 }, { threshold: 0.05 })
- 
+
 mapObs.observe(document.getElementById('worldwide'))
- 
+
 /* Smooth anchors */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
@@ -340,12 +340,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateAnimation = () => {
         const scrollY = window.scrollY;
         const windowHeight = window.innerHeight;
-        
+
         /* =========================================
            1. VIDEO DOCKING LOGIC
            ========================================= */
         let dockProgress = scrollY / windowHeight;
-        dockProgress = Math.max(0, Math.min(1, dockProgress)); 
+        dockProgress = Math.max(0, Math.min(1, dockProgress));
         const rect = targetCard.getBoundingClientRect();
         const currentWidth = window.innerWidth - ((window.innerWidth - rect.width) * dockProgress);
         const currentHeight = windowHeight - ((windowHeight - rect.height) * dockProgress);
@@ -361,38 +361,38 @@ document.addEventListener("DOMContentLoaded", () => {
            ========================================= */
         // Wait until the docking scroll is almost done to start fading in the background dim
         const postDockScroll = Math.max(0, scrollY - (windowHeight * 0.8));
-        const textRevealProgress = Math.min(1, postDockScroll / 400); 
-        
+        const textRevealProgress = Math.min(1, postDockScroll / 400);
+
         dimOverlay.style.opacity = textRevealProgress;
         // Animate words sliding up beautifully
         words.forEach((word, index) => {
-            const delay = index * 0.15; 
-            let wordProgress = (textRevealProgress - delay) * 2; 
+            const delay = index * 0.15;
+            let wordProgress = (textRevealProgress - delay) * 2;
             wordProgress = Math.max(0, Math.min(1, wordProgress));
-            
+
             // Custom ease-out curve
             const easeOut = 1 - Math.pow(1 - wordProgress, 4);
-            
+
             // Slides from Y:120% and Rotate:4deg down to 0
             const translateY = (1 - easeOut) * 120;
             const rotateZ = (1 - easeOut) * 4;
-            
+
             word.style.transform = `translateY(${translateY}%) rotateZ(${rotateZ}deg)`;
         });
         /* =========================================
            3. SECTION EXIT LOGIC
-           Makes the fixed text and dim overlay scroll away naturally 
+           Makes the fixed text and dim overlay scroll away naturally
            when you reach the bottom of the grid.
            ========================================= */
         const contentBottom = contentArea.offsetTop + contentArea.offsetHeight;
         const scrollBottom = scrollY + windowHeight;
-        
+
         let layerExitTranslate = 0;
         if (scrollBottom > contentBottom) {
             // Push the fixed layers UP by the exact amount scrolled past the section
             layerExitTranslate = contentBottom - scrollBottom;
         }
-        
+
         textLayer.style.transform = `translateY(${layerExitTranslate}px)`;
         dimOverlay.style.transform = `translateY(${layerExitTranslate}px)`;
     };
@@ -483,3 +483,45 @@ window.addEventListener("scroll",()=>{
     }
 
 });
+
+// ------------------------------------------------------------- Testimonials ---------------------------------------------------------------------------------
+
+const reviews = [
+  { q: "Working with Qrious Curators has been an outstanding experience. What truly sets them apart is their content quality — every post feels thoughtfully crafted, visually compelling, and perfectly aligned with our brand voice.", name: "Harsh Jain", role: "Verified Google Review", initials: "HJ" },
+  { q: "If you want jaw dropping graphics for your wedding, call Qrious Curators. Period.", name: "Kanika Agarwal", role: "Local Guide · Verified Review", initials: "KA", guide: true },
+  { q: "Qrious Curators were my complete wedding digital planner — trust me they killed it. What an e-invite they made and all my social media countdowns were on point.", name: "Akshat Goyal", role: "Local Guide · Verified Review", initials: "AG", guide: true },
+  { q: "We recently worked with Qrious for photo editing and retouching of around 150 images. Excellent communication throughout and great quality work.", name: "Angie Ng", role: "Verified Google Review", initials: "AN" },
+  { q: "I highly recommend Qrious Curators. The experience was smooth, clear and I am satisfied about the result. The team always goes an extra mile.", name: "Lina Stanule", role: "Local Guide · Verified Review", initials: "LS", guide: true },
+  { q: "We are a family business since 50+ years and always relied on word of mouth — but because of Qrious Curators we got a way to digital marketing. Their services are extremely personalised.", name: "MDI Nikita Punjabi", role: "Verified Google Review", initials: "NP" },
+  { q: "I have been working with Team QC for 9 months. Their work is actually good, the team is proactive, and they've helped my brand Jain Textile gain a strong online presence.", name: "Harshit Sethi", role: "Verified Google Review", initials: "HS" },
+  { q: "Have been their client since past 1 year and everything has been beyond perfect! The team is knowledgeable and very good at what they do.", name: "Prerna Daryanani", role: "Verified Google Review", initials: "PD" },
+  { q: "One of the best digital marketing and branding agencies in Jaipur. Their expertise in social media, content creation, website development, and brand strategy drives real growth.", name: "Suniti Verma", role: "Verified Google Review", initials: "SV" },
+  { q: "Qrious Curators have been fantastic for our brand! Their creative strategies boosted our engagement and reach quickly. They're responsive, transparent, and really understand our goals.", name: "Javed Ahmed Khan", role: "Local Guide · Verified Review", initials: "JK", guide: true },
+  { q: "I got my website work done from Qrious Curators. They completed the project on time and as per my expectations. Highly recommended!", name: "Heeralal Soni", role: "Verified Google Review", initials: "HS" },
+  { q: "Great work by Abhay and Team for their seamless efforts for my newly launched brand. I'd also like to highlight Social Media Manager Preeti for her outstanding work.", name: "Kanu Sharma", role: "Verified Google Review", initials: "KS" },
+  { q: "Excellent digital marketing services! Their strategies significantly improved our online visibility and drove real results. A professional and reliable team.", name: "Ishika Jhalani", role: "Verified Google Review", initials: "IJ" },
+  { q: "Outstanding social media marketing services! They crafted innovative campaigns that boosted our engagement and reach significantly.", name: "Kumkum Chauhan", role: "Verified Google Review", initials: "KC" },
+  { q: "Good service and nice experience. The team is helpful and professional. One of the best digital marketing agencies in Jaipur.", name: "Yashika Chouhan", role: "Verified Google Review", initials: "YC" },
+  { q: "Excellent services and very well trained staff. Behaviour is polite and they complete projects on due dates.", name: "Prapti Dave", role: "Verified Google Review", initials: "PD" },
+];
+
+function buildCard(d) {
+  return `<div class="t-card">
+    <div class="t-stars">${'★'.repeat(5).split('').map(s => `<span class="t-star">${s}</span>`).join('')}</div>
+    <p class="t-quote">${d.q}</p>
+    <div class="t-author">
+      <div class="t-avatar">${d.initials}</div>
+      <div>
+        <p class="t-name">${d.name}</p>
+        <p class="t-role">${d.role}</p>
+        ${d.guide ? `<div class="t-badge"><span class="t-g-dot"></span>Local Guide</div>` : ''}
+      </div>
+    </div>
+  </div>`;
+}
+
+const half = Math.ceil(reviews.length / 2);
+const h1 = reviews.slice(0, half).map(buildCard).join('');
+const h2 = reviews.slice(half).map(buildCard).join('');
+document.getElementById('r1').innerHTML = h1 + h1;
+document.getElementById('r2').innerHTML = h2 + h2;

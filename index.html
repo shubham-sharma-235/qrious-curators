@@ -42,6 +42,7 @@
     .ball-animation {
       height: 100vh;
       position: absolute;
+      display: none;
     }
     .ball {
       width: 20px;
@@ -76,7 +77,7 @@
       background-image: var(--panel-bg);
       background-size: cover;
       background-position: center;
-      opacity: 0.15;
+      opacity: 0.35;
       z-index: 0;
       pointer-events: none;
     }
@@ -108,7 +109,7 @@
       </div>
     </div>
 
-     <header class="qc-header" style="display: none;">
+    <header class="qc-header" style="display: none;">
       <nav class="qc-nav">
         <a href="#" class="nav-logo">
           <img src="./assets/logo/logo-one.png" alt="" />
@@ -280,188 +281,109 @@
         
     </div>
 
-    <section class="premium-about">
+    
+    <section class="about-story">
+    
+        <div class="about-story-sticky">
+    
+            <div class="about-story-overlay"></div>
+    
+            <img class="about-story-image active"
+                src="./assets/homeimages/creative-direction.png">
+    
+            <img class="about-story-image"
+                src="./assets/homeimages/digital-execution.png">
+    
+            <img class="about-story-image"
+                src="./assets/homeimages/social-marketing.png">
+    
+        </div>
+    
+        <div class="about-story-content">
+    
+            <div class="about-story-panel about-story-left">
+    
+                <div class="about-story-card">
 
-        <div class="premium-sticky">
+                    <div class="about-story-line"></div>
     
-            <div class="bg-glow"></div>
-    
-            <div class="bg-word">
-                Q R I O U S
-            </div>
-    
-            <!-- LEFT -->
-    
-            <div class="left-side">
-    
-                <div class="content-slider">
-    
-                    <!-- SLIDE 1 -->
-    
-                    <div class="content-slide active">
-    
-                        <h2>
-                            We Build Attention
-                        </h2>
-    
-                        <p>
-                            Through storytelling, strategy, and premium campaign execution,
-                            we help modern brands become impossible to ignore online.
-                        </p>
-    
-                        <div class="metrics">
-    
-                            <div class="metric-item">
-                                <h3>120+</h3>
-                                <span>Brands Worked With</span>
-                            </div>
-    
-                            <div class="metric-item">
-                                <h3>48M</h3>
-                                <span>Organic Reach</span>
-                            </div>
-    
-                        </div>
-    
-                        <a href="#" class="main-btn">
-                            Explore Qrious Curators →
-                        </a>
-    
+                    <div class="about-story-label">
+                        ABOUT QRIOUS CURATORS
                     </div>
     
-                    <!-- SLIDE 2 -->
+                    <h2 class="about-story-title">
+                        Ideas That <span>Inspire Growth</span>
+                    </h2>
     
-                    <div class="content-slide">
+                    <p class="about-story-text">
+                        We build impactful digital experiences through strategy, design, and technology—helping brands grow with confidence.
+                    </p>
     
-                        <h2>
-                            We Create Momentum
-                        </h2>
-    
-                        <p>
-                            Every campaign is crafted to generate engagement,
-                            conversations, and measurable digital growth.
-                        </p>
-    
-                        <div class="metrics">
-    
-                            <div class="metric-item">
-                                <h3>340%</h3>
-                                <span>Average Growth</span>
-                            </div>
-    
-                            <div class="metric-item">
-                                <h3>5.8X</h3>
-                                <span>ROAS Average</span>
-                            </div>
-    
-                        </div>
-    
-                        <a href="#" class="main-btn">
-                            View Process →
-                        </a>
-    
-                    </div>
-    
-                    <!-- SLIDE 3 -->
-    
-                    <div class="content-slide">
-    
-                        <h2>
-                            We Scale Brands
-                        </h2>
-    
-                        <p>
-                            We combine creativity and performance marketing
-                            into systems designed for long-term brand impact.
-                        </p>
-    
-                        <div class="metrics">
-    
-                            <div class="metric-item">
-                                <h3>12M</h3>
-                                <span>Monthly Impressions</span>
-                            </div>
-    
-                            <div class="metric-item">
-                                <h3>8+</h3>
-                                <span>Years Experience</span>
-                            </div>
-    
-                        </div>
-    
-                        <a href="#" class="main-btn">
-                            Start Project →
-                        </a>
-    
-                    </div>
+                    <a href="#" class="about-story-btn">
+                        Explore More →
+                    </a>
     
                 </div>
     
             </div>
     
-            <!-- RIGHT -->
+            <div class="about-story-panel about-story-right">
     
-            <div class="right-side">
+                <div class="about-story-card">
     
-                <div class="visual-stack">
+                    <div class="about-story-line"></div>
     
-                    <!-- CARD 1 -->
-    
-                    <div class="visual-card card1 active">
-    
-                        <img id="img1"
-                        src="./assets/homeimages/teamh1.JPG">
-    
+                    <div class="about-story-label">
+                        WHAT WE DO
                     </div>
     
-                    <!-- CARD 2 -->
+                    <h2 class="about-story-title">
+                        Creative Meets <span>Performance</span>
+                    </h2>
     
-                    <div class="visual-card card2 active">
+                    <p class="about-story-text">
+                        From websites and branding to SEO and marketing, we create solutions that drive real business results.
+                    </p>
     
-                        <img id="img2"
-                        src="./assets/homeimages/teamh2.JPG">
-    
-                    </div>
-    
-                    <!-- CARD 3 -->
-    
-                    <div class="visual-card card3 active">
-    
-                        <img id="img3"
-                        src="./assets/homeimages/teamh3.JPG">
-    
-                    </div>
-    
-                    <!-- BADGES -->
-    
-                    <div class="badge badge1">
-    
-                        <h3>+220%</h3>
-                        <span>Engagement Growth</span>
-    
-                    </div>
-    
-                    <div class="badge badge2">
-    
-                        <h3>12M</h3>
-                        <span>Monthly Impressions</span>
-    
-                    </div>
+                    <a href="#" class="about-story-btn">
+                        Discover More →
+                    </a>
     
                 </div>
     
             </div>
     
-            <!-- PROGRESS -->
+            <div class="about-story-panel about-story-left">
     
-            <div class="scroll-line" style="display: none;">
-                <div class="scroll-progress"></div>
+                <div class="about-story-card">
+
+                    <div class="about-story-line"></div>
+    
+                    <div class="about-story-label">
+                        OUR VISION
+                    </div>
+    
+                    <h2 class="about-story-title">
+                        Building Brands <span>That Last</span>
+                    </h2>
+    
+                    <p class="about-story-text">
+                        We create meaningful digital experiences that help ambitious brands stand out, connect, and grow.
+                    </p>
+    
+                    <a href="#" class="about-story-btn">
+                        View Projects →
+                    </a>
+    
+                </div>
+    
             </div>
     
         </div>
     
     </section>
 
+    
     <!-- ===== STATS ===== -->
     <!-- <section id="stats">
       <div class="stats-grid">
@@ -881,7 +803,20 @@
     </section> -->
     
     <!-- ===== STACK ===== -->
-    <section id="stack">
+    <section class="t-section">
+      <div class="t-header">
+        <div class="t-pill">What clients say</div>
+        <h2 class="t-heading">Real words from<br /><em>real clients</em></h2>
+        <p class="t-sub">Verified Google reviews — Qrious Curators, Jaipur</p>
+      </div>
+      <div class="t-wrap">
+        <div class="t-row r1" id="r1"></div>
+        <div class="t-row r2" id="r2"></div>
+      </div>
+    </section>
+
+
+    <!-- <section id="stack">
       <div class="stack-grid">
         <div class="stack-sticky">
           <span class="stack-kicker">Our Clients</span>
@@ -891,34 +826,33 @@
             Remember, Relate to, and Talk about
           </h2>
           <div class="stack-card client-card">
-  <div class="client-row">
-    <!-- <div class="client"><img src="./assets/brand-logo/AB.png" alt=""><span>AB Jewellers</span></div>
-    <div class="client"><img src="./assets/brand-logo/Ardhangini.png" alt=""><span>Ardhangini</span></div>
-    <div class="client"><img src="./assets/brand-logo/Jb-marble.png" alt=""><span>Client 3</span></div>
-    <div class="client"><img src="./assets/brand-logo/Indralok-sarees.png" alt=""><span>Client 4</span></div>
-    <div class="client"><img src="./assets/brand-logo/Jain.png" alt=""><span>Client 5</span></div>
-    <div class="client"><img src="./assets/brand-logo/Kapish.png" alt=""><span>Client 6</span></div>
-    <div class="client"><img src="./assets/brand-logo/Mahttab.png" alt=""><span>Client 7</span></div>
-
-    <div class="client"><img src="./assets/brand-logo/nandini.png" alt=""><span>Client 8</span></div>
-    <div class="client"><img src="./assets/brand-logo/Nirankar-stones.png" alt=""><span>Client 9</span></div>
-    <div class="client"><img src="./assets/brand-logo/OUT.png" alt=""><span>Client 10</span></div>
-    <div class="client"><img src="./assets/brand-logo/Rahaurvi.png" alt=""><span>Client 11</span></div>
-    <div class="client"><img src="./assets/brand-logo/Taluka.png" alt=""><span>Client 12</span></div>
-    <div class="client"><img src="./assets/brand-logo/Trendy-Aura.png" alt=""><span>Client 13</span></div>
-    <div class="client"><img src="./assets/clients/c14.png" alt=""><span>Client 14</span></div>
-
-    <div class="client"><img src="./assets/clients/c15.png" alt=""><span>Client 15</span></div>
-    <div class="client"><img src="./assets/clients/c16.png" alt=""><span>Client 16</span></div>
-    <div class="client"><img src="./assets/clients/c17.png" alt=""><span>Client 17</span></div>
-    <div class="client"><img src="./assets/clients/c18.png" alt=""><span>Client 18</span></div>
-    <div class="client"><img src="./assets/clients/c19.png" alt=""><span>Client 19</span></div>
-    <div class="client"><img src="./assets/clients/c20.png" alt=""><span>Client 20</span></div>
-    <div class="client"><img src="./assets/clients/c21.png" alt=""><span>Client 21</span></div>
- -->
-
-  </div>
-</div>
+            <div class="client-row">
+              <div class="client"><img src="./assets/brand-logo/AB.png" alt=""><span>AB Jewellers</span></div>
+              <div class="client"><img src="./assets/brand-logo/Ardhangini.png" alt=""><span>Ardhangini</span></div>
+              <div class="client"><img src="./assets/brand-logo/Jb-marble.png" alt=""><span>Client 3</span></div>
+              <div class="client"><img src="./assets/brand-logo/Indralok-sarees.png" alt=""><span>Client 4</span></div>
+              <div class="client"><img src="./assets/brand-logo/Jain.png" alt=""><span>Client 5</span></div>
+              <div class="client"><img src="./assets/brand-logo/Kapish.png" alt=""><span>Client 6</span></div>
+              <div class="client"><img src="./assets/brand-logo/Mahttab.png" alt=""><span>Client 7</span></div>
+          
+              <div class="client"><img src="./assets/brand-logo/nandini.png" alt=""><span>Client 8</span></div>
+              <div class="client"><img src="./assets/brand-logo/Nirankar-stones.png" alt=""><span>Client 9</span></div>
+              <div class="client"><img src="./assets/brand-logo/OUT.png" alt=""><span>Client 10</span></div>
+              <div class="client"><img src="./assets/brand-logo/Rahaurvi.png" alt=""><span>Client 11</span></div>
+              <div class="client"><img src="./assets/brand-logo/Taluka.png" alt=""><span>Client 12</span></div>
+              <div class="client"><img src="./assets/brand-logo/Trendy-Aura.png" alt=""><span>Client 13</span></div>
+              <div class="client"><img src="./assets/clients/c14.png" alt=""><span>Client 14</span></div>
+          
+              <div class="client"><img src="./assets/clients/c15.png" alt=""><span>Client 15</span></div>
+              <div class="client"><img src="./assets/clients/c16.png" alt=""><span>Client 16</span></div>
+              <div class="client"><img src="./assets/clients/c17.png" alt=""><span>Client 17</span></div>
+              <div class="client"><img src="./assets/clients/c18.png" alt=""><span>Client 18</span></div>
+              <div class="client"><img src="./assets/clients/c19.png" alt=""><span>Client 19</span></div>
+              <div class="client"><img src="./assets/clients/c20.png" alt=""><span>Client 20</span></div>
+              <div class="client"><img src="./assets/clients/c21.png" alt=""><span>Client 21</span></div>
+          
+            </div>
+          </div>
         </div>
         
         <div class="stack-cards">
@@ -950,16 +884,16 @@
               loading="lazy"
             />
           </div>
-          <!-- <div class="stack-card">
+          <div class="stack-card">
             <img
               src="https://framerusercontent.com/images/9eD88IPKTw4s3e2ACxglJMr1zWs.webp?width=1800&height=2400"
               alt="Work 5"
               loading="lazy"
             />
-          </div> -->
+          </div> 
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- ===== TEAM ===== -->
     <!--  <section id="team-container">
@@ -1242,6 +1176,35 @@
         },
   
         ease: "none"
+      });
+
+      const aboutPanels = document.querySelectorAll(".about-story-panel");
+      const aboutCards = document.querySelectorAll(".about-story-card");
+      const aboutImages = document.querySelectorAll(".about-story-image");
+      
+      window.addEventListener("scroll", () => {
+      
+          aboutPanels.forEach((panel, index) => {
+      
+              const rect = panel.getBoundingClientRect();
+      
+              if (
+                  rect.top < window.innerHeight * 0.65 &&
+                  rect.bottom > window.innerHeight * 0.35
+              ) {
+      
+                  aboutCards[index].classList.add("show");
+      
+                  aboutImages.forEach((img) => {
+                      img.classList.remove("active");
+                  });
+      
+                  aboutImages[index].classList.add("active");
+      
+              }
+      
+          });
+      
       });
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
