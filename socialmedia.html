@@ -5,7 +5,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <link rel="stylesheet" href="webser.css">
-<title>Web Development</title>
+<title>Social Media Marketing</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -23,14 +23,12 @@ body{
   overflow-x: hidden;
 }
 
-/* ── SERVICE SECTION ── */
 .service-section{
   position:relative;
   width:100%;
   height:100vh;
 }
 
-/* VIDEO — fixed in background (same as original) */
 .section-bg-media{
   position:fixed;
   inset:0;
@@ -44,7 +42,6 @@ body{
   transition: filter 0.08s linear;
 }
 
-/* HEADING */
 .service-heading-wrap{
   position:absolute;
   left:1%;
@@ -81,7 +78,6 @@ body{
   transform:translateY(0);
 }
 
-/* ── PARA SECTION — no bg, video bleeds through blurred ── */
 .webDevContent{
   position:relative;
   padding: 140px 5%;
@@ -99,7 +95,6 @@ body{
   letter-spacing: -0.3px;
 }
 
-/* ── GCV RECENT PROJECTS SECTION ── */
 .gcv-section {
   background: #000;
   color: #fff;
@@ -222,6 +217,21 @@ body{
 }
 .gcv-card.active .gcv-card-desc { max-height: 260px; opacity: 1; }
 
+/* STATS for inactive cards */
+.gcv-card-stats {
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+}
+.gcv-card-stats.visible {
+  display: flex;
+}
+.stat-row { display: flex; flex-direction: column; gap: 3px; }
+.stat-platform { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; }
+.stat-number { font-size: 22px; font-weight: 700; color: #fff; line-height: 1; }
+.stat-label { font-size: 11px; color: rgba(255,255,255,0.5); }
+.stat-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.08); }
+
 /* LOGO BAR */
 .gcv-logo-bar {
   margin-top: 24px;
@@ -246,6 +256,19 @@ body{
   padding: 0 12px;
 }
 
+/* logo text fallback */
+.gcv-logo-cell .logo-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  opacity: 0.35;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  font-family: 'Raleway', sans-serif;
+}
+.gcv-logo-cell.active .logo-label { opacity: 1; }
+.gcv-logo-cell:hover .logo-label { opacity: 0.7; }
+
 .gcv-logo-cell img {
   height: 34px;
   width: auto;
@@ -260,7 +283,7 @@ body{
 .gcv-logo-cell.active img { opacity: 1; }
 .gcv-logo-cell:hover img { opacity: 0.7; }
 
-/* ── FOOTER ── */
+/* FOOTER */
 #footerSection {
   position: relative;
   width: 100%;
@@ -350,28 +373,23 @@ body{
   <div class="scroll-progress-bar" style="width:100%;height:0%;background:#fff;transition:height .1s linear;"></div>
 </div>
 
-<!-- ── HERO SECTION ── -->
+<!-- HERO SECTION -->
 <section class="service-section" id="service-1">
-
-  <!-- VIDEO fixed in bg — same as original so blur-on-scroll works -->
   <div class="section-bg-media">
     <video autoplay muted loop playsinline id="bgVideo">
       <source src="https://stream.mux.com/Hj7XzvT68mUk0000zhSyGa6rSTBKcvZkDi/high.mp4" type="video/mp4">
     </video>
   </div>
-
   <div class="overlay"></div>
-
   <div class="service-heading-wrap fade-in">
     <span class="service-number">01 /</span>
     <h2 class="service-heading">
       Social Media <br>Management
     </h2>
   </div>
-
 </section>
 
-<!-- ── PARA SECTION — blurred video shows through ── -->
+<!-- PARA SECTION -->
 <section class="webDevContent">
   <div class="webContent">
     <p>We create immersive digital experiences that blend strategy, aesthetics, and performance.
@@ -380,7 +398,7 @@ body{
   </div>
 </section>
 
-<!-- ── RECENT PROJECTS — pure black, z-index:10 cuts video ── -->
+<!-- RECENT PROJECTS -->
 <section class="gcv-section">
 
   <div class="gcv-header">
@@ -403,12 +421,17 @@ body{
           </div>
           <div class="gcv-card-bottom">
             <p class="gcv-card-desc">A premium e-commerce store built to convert jewellery browsers into buyers. Combining elegant UI with performance-first development for seamless shopping experiences.</p>
+            <div class="gcv-card-stats">
+              <div class="stat-row"><span class="stat-platform">Instagram</span><span class="stat-number">63K</span><span class="stat-label">Followers</span></div>
+              <div class="stat-divider"></div>
+              <div class="stat-row"><span class="stat-platform">Sales via DMs</span><span class="stat-number">&#8377;6.8L</span><span class="stat-label">Monthly revenue</span></div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="gcv-card" data-idx="1">
-        <img class="gcv-card-img" src="./images/nirankar-service.png" alt="JB Marble Decor" onerror="this.style.opacity=0" />
+        <img class="gcv-card-img" src="./images/nirankar-service.png" alt="Nirankar Fashions" onerror="this.style.opacity=0" />
         <div class="gcv-card-overlay">
           <div class="gcv-card-top">
             <span class="gcv-card-name">Nirankar Fashions</span>
@@ -416,12 +439,19 @@ body{
           </div>
           <div class="gcv-card-bottom">
             <p class="gcv-card-desc">A product-heavy website with category filtering and lead generation, designed to showcase marble collections and drive qualified business inquiries.</p>
+            <div class="gcv-card-stats">
+              <div class="stat-row"><span class="stat-platform">Instagram</span><span class="stat-number">48K</span><span class="stat-label">Followers</span></div>
+              <div class="stat-divider"></div>
+              <div class="stat-row"><span class="stat-platform">Reach</span><span class="stat-number">2.1M</span><span class="stat-label">Monthly impressions</span></div>
+              <div class="stat-divider"></div>
+              <div class="stat-row"><span class="stat-platform">Engagement</span><span class="stat-number">6.4%</span><span class="stat-label">Avg. rate</span></div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="gcv-card" data-idx="2">
-        <img class="gcv-card-img" src="./images/ABService.png" alt="Genesis Garments" onerror="this.style.opacity=0" />
+        <img class="gcv-card-img" src="./images/ABService.png" alt="AB Jewels" onerror="this.style.opacity=0" />
         <div class="gcv-card-overlay">
           <div class="gcv-card-top">
             <span class="gcv-card-name">AB Jewels</span>
@@ -429,6 +459,13 @@ body{
           </div>
           <div class="gcv-card-bottom">
             <p class="gcv-card-desc">A lookbook-style fashion website with mobile-first design, built to showcase seasonal collections with editorial flair and seamless navigation.</p>
+            <div class="gcv-card-stats">
+              <div class="stat-row"><span class="stat-platform">Instagram</span><span class="stat-number">31K</span><span class="stat-label">Followers</span></div>
+              <div class="stat-divider"></div>
+              <div class="stat-row"><span class="stat-platform">Reach</span><span class="stat-number">980K</span><span class="stat-label">Monthly impressions</span></div>
+              <div class="stat-divider"></div>
+              <div class="stat-row"><span class="stat-platform">Engagement</span><span class="stat-number">5.1%</span><span class="stat-label">Avg. rate</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -442,6 +479,11 @@ body{
           </div>
           <div class="gcv-card-bottom">
             <p class="gcv-card-desc">Full e-commerce with Instagram-synced collections driving daily direct sales. A socially-integrated storefront built for modern fashion consumers.</p>
+            <div class="gcv-card-stats">
+              <div class="stat-row"><span class="stat-platform">Instagram</span><span class="stat-number">72K</span><span class="stat-label">Followers</span></div>
+              <div class="stat-divider"></div>
+              <div class="stat-row"><span class="stat-platform">Sales via Social</span><span class="stat-number">&#8377;4.2L</span><span class="stat-label">Monthly revenue</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -455,6 +497,11 @@ body{
           </div>
           <div class="gcv-card-bottom">
             <p class="gcv-card-desc">A brand website with a custom-built product catalog and store locator, helping customers discover Taluka's collections across multiple retail touchpoints.</p>
+            <div class="gcv-card-stats">
+              <div class="stat-row"><span class="stat-platform">Facebook</span><span class="stat-number">24K</span><span class="stat-label">Page likes</span></div>
+              <div class="stat-divider"></div>
+              <div class="stat-row"><span class="stat-platform">Store Visits via Social</span><span class="stat-number">+38%</span><span class="stat-label">YoY increase</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -468,6 +515,11 @@ body{
           </div>
           <div class="gcv-card-bottom">
             <p class="gcv-card-desc">A brand website with a custom-built product catalog and store locator, crafted to reflect Vedana's identity and drive both online and offline engagement.</p>
+            <div class="gcv-card-stats">
+              <div class="stat-row"><span class="stat-platform">Instagram</span><span class="stat-number">19K</span><span class="stat-label">Followers</span></div>
+              <div class="stat-divider"></div>
+              <div class="stat-row"><span class="stat-platform">Engagement</span><span class="stat-number">7.2%</span><span class="stat-label">Avg. rate</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -481,6 +533,11 @@ body{
           </div>
           <div class="gcv-card-bottom">
             <p class="gcv-card-desc">A brand website with a custom-built product catalog and store locator, creating an immersive experience for Out Bari's unique lifestyle offerings.</p>
+            <div class="gcv-card-stats">
+              <div class="stat-row"><span class="stat-platform">Instagram</span><span class="stat-number">55K</span><span class="stat-label">Followers</span></div>
+              <div class="stat-divider"></div>
+              <div class="stat-row"><span class="stat-platform">Reach</span><span class="stat-number">1.4M</span><span class="stat-label">Monthly impressions</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -494,6 +551,11 @@ body{
           </div>
           <div class="gcv-card-bottom">
             <p class="gcv-card-desc">A brand website with a custom-built product catalog and store locator, designed with lightness and elegance that mirrors the Hummingbird brand personality.</p>
+            <div class="gcv-card-stats">
+              <div class="stat-row"><span class="stat-platform">Instagram</span><span class="stat-number">27K</span><span class="stat-label">Followers</span></div>
+              <div class="stat-divider"></div>
+              <div class="stat-row"><span class="stat-platform">Engagement</span><span class="stat-number">4.8%</span><span class="stat-label">Avg. rate</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -507,6 +569,11 @@ body{
           </div>
           <div class="gcv-card-bottom">
             <p class="gcv-card-desc">A brand website with a custom-built product catalog and store locator, helping commercial buyers discover and source the right coffee machines with ease.</p>
+            <div class="gcv-card-stats">
+              <div class="stat-row"><span class="stat-platform">LinkedIn</span><span class="stat-number">8.2K</span><span class="stat-label">Followers</span></div>
+              <div class="stat-divider"></div>
+              <div class="stat-row"><span class="stat-platform">B2B Leads via Social</span><span class="stat-number">+61%</span><span class="stat-label">QoQ growth</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -514,24 +581,24 @@ body{
     </div>
   </div>
 
-  <!-- LOGO BAR -->
+  <!-- LOGO BAR — text only, no img rectangles -->
   <div class="gcv-logo-bar">
     <div class="gcv-logo-row" id="gcvLogoRow">
-      <div class="gcv-logo-cell active" data-target="0"><img src="./images/mehttab.png" alt="Mahttab" onerror="this.parentElement.innerHTML='<span style=\'font-size:13px;font-weight:600;opacity:0.5\'>Mahttab</span>'" /></div>
-      <div class="gcv-logo-cell" data-target="1"><img src="./images/jbmarble.png" alt="JB Marble" onerror="this.parentElement.innerHTML='<span style=\'color:#fff;font-size:13px;font-weight:600;opacity:0.5\'>JB Marble</span>'" /></div>
-      <div class="gcv-logo-cell" data-target="2"><img src="./images/tissli.png" alt="Genesis" onerror="this.parentElement.innerHTML='<span style=\'color:#fff;font-size:13px;font-weight:600;opacity:0.5\'>Genesis</span>'" /></div>
-      <div class="gcv-logo-cell" data-target="3"><img src="./images/trendyaura.png" alt="Trendy Aura" onerror="this.parentElement.innerHTML='<span style=\'color:#fff;font-size:13px;font-weight:600;opacity:0.5\'>Trendy Aura</span>'" /></div>
-      <div class="gcv-logo-cell" data-target="4"><img src="./images/taluka.png" alt="Taluka" onerror="this.parentElement.innerHTML='<span style=\'color:#fff;font-size:13px;font-weight:600;opacity:0.5\'>Taluka</span>'" /></div>
-      <div class="gcv-logo-cell" data-target="5"><img src="./images/vedana.png" alt="Vedana" onerror="this.parentElement.innerHTML='<span style=\'color:#fff;font-size:13px;font-weight:600;opacity:0.5\'>Vedana</span>'" /></div>
-      <div class="gcv-logo-cell" data-target="6"><img src="./images/out.png" alt="Out Bari" onerror="this.parentElement.innerHTML='<span style=\'color:#fff;font-size:13px;font-weight:600;opacity:0.5\'>Out Bari</span>'" /></div>
-      <div class="gcv-logo-cell" data-target="7"><img src="./images/hummingbird.png" alt="Hummingbird" onerror="this.parentElement.innerHTML='<span style=\'color:#fff;font-size:13px;font-weight:600;opacity:0.5\'>Hummingbird</span>'" /></div>
-      <div class="gcv-logo-cell" data-target="8"><img src="./images/idealcoffee.png" alt="Ideal Coffee" onerror="this.parentElement.innerHTML='<span style=\'color:#fff;font-size:13px;font-weight:600;opacity:0.5\'>Ideal Coffee</span>'" /></div>
+      <div class="gcv-logo-cell active" data-target="0"><span class="logo-label">Mahttab</span></div>
+      <div class="gcv-logo-cell" data-target="1"><span class="logo-label">Nirankar</span></div>
+      <div class="gcv-logo-cell" data-target="2"><span class="logo-label">AB Jewels</span></div>
+      <div class="gcv-logo-cell" data-target="3"><span class="logo-label">Trendy Aura</span></div>
+      <div class="gcv-logo-cell" data-target="4"><span class="logo-label">Taluka</span></div>
+      <div class="gcv-logo-cell" data-target="5"><span class="logo-label">Vedana</span></div>
+      <div class="gcv-logo-cell" data-target="6"><span class="logo-label">Out Bari</span></div>
+      <div class="gcv-logo-cell" data-target="7"><span class="logo-label">Hummingbird</span></div>
+      <div class="gcv-logo-cell" data-target="8"><span class="logo-label">Ideal Coffee</span></div>
     </div>
   </div>
 
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- FOOTER — untouched -->
 <footer id="footerSection">
   <div class="bg-video-wrap">
     <video class="bg-video" autoplay muted loop playsinline>
@@ -541,20 +608,20 @@ body{
   <div class="footer-overlay"></div>
   <div class="footer-content">
     <h1 class="services-footer">Let's <br> Connect</h1>
-    <button class="Contact" id="ContactBtn">Contact →</button>
+    <button class="Contact" id="ContactBtn">Contact &#8594;</button>
   </div>
 </footer>
 
 
 <script>
 
-// ── FADE IN HERO ──
+// FADE IN HERO
 window.addEventListener('load', () => {
   const content = document.querySelector('.fade-in');
   setTimeout(() => content.classList.add('show'), 300);
 });
 
-// ── BLUR VIDEO ON SCROLL — video is fixed, blurs as para comes in ──
+// BLUR VIDEO ON SCROLL
 const video = document.getElementById('bgVideo');
 const contentSection = document.querySelector('.webDevContent');
 
@@ -569,13 +636,13 @@ window.addEventListener('scroll', () => {
     video.style.filter = 'blur(0px)';
   } else if (scrollY > blurStart && scrollY < blurEnd) {
     const progress = (scrollY - blurStart) / (blurEnd - blurStart);
-    video.style.filter = `blur(${progress * 20}px)`;
+    video.style.filter = 'blur(' + (progress * 20) + 'px)';
   } else {
     video.style.filter = 'blur(20px)';
   }
 });
 
-// ── SCROLL PROGRESS BAR ──
+// SCROLL PROGRESS BAR
 const progressBar = document.querySelector('.scroll-progress-bar');
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY;
@@ -583,7 +650,7 @@ window.addEventListener('scroll', () => {
   progressBar.style.height = ((scrollTop / docHeight) * 100) + '%';
 });
 
-// ── GCV SLIDER ──
+// GCV SLIDER — INFINITE
 const TOTAL = 9;
 let active = 0;
 const gcvRow     = document.getElementById('gcvRow');
@@ -598,23 +665,36 @@ function gcvUpdate() {
   const inactiveW = (W - activeW - 12 * 2) / 2;
 
   gcvCards.forEach((c, i) => {
-    c.classList.toggle('active', i === active);
-    c.style.flex = i === active ? `0 0 ${activeW}px` : `0 0 ${inactiveW}px`;
+    const isActive = i === active;
+    c.classList.toggle('active', isActive);
+    c.style.flex = isActive ? '0 0 ' + activeW + 'px' : '0 0 ' + inactiveW + 'px';
+
+    // stats: show on inactive, hide on active
+    const stats = c.querySelector('.gcv-card-stats');
+    if (stats) stats.classList.toggle('visible', !isActive);
   });
 
   gcvLogos.forEach((l, i) => {
     l.classList.toggle('active', i === active);
-    l.style.flex = i === active ? `0 0 ${activeW}px` : `0 0 ${inactiveW}px`;
+    l.style.flex = i === active ? '0 0 ' + activeW + 'px' : '0 0 ' + inactiveW + 'px';
   });
 
   let offset = 0;
   for (let i = 0; i < active; i++) offset += inactiveW + 12;
-  gcvRow.style.transform     = `translateX(-${offset}px)`;
-  gcvLogoRow.style.transform = `translateX(-${offset}px)`;
+  gcvRow.style.transform     = 'translateX(-' + offset + 'px)';
+  gcvLogoRow.style.transform = 'translateX(-' + offset + 'px)';
 }
 
-document.getElementById('gcvNext').addEventListener('click', () => { active = (active + 1) % TOTAL; gcvUpdate(); });
-document.getElementById('gcvPrev').addEventListener('click', () => { active = (active - 1 + TOTAL) % TOTAL; gcvUpdate(); });
+// INFINITE: wraps around
+document.getElementById('gcvNext').addEventListener('click', () => {
+  active = (active + 1) % TOTAL;
+  gcvUpdate();
+});
+document.getElementById('gcvPrev').addEventListener('click', () => {
+  active = (active - 1 + TOTAL) % TOTAL;
+  gcvUpdate();
+});
+
 gcvCards.forEach((c, i) => c.addEventListener('click', () => { active = i; gcvUpdate(); }));
 gcvLogos.forEach(l => l.addEventListener('click', () => { active = parseInt(l.dataset.target); gcvUpdate(); }));
 window.addEventListener('resize', gcvUpdate);

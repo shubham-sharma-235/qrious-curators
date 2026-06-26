@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Our Work</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --black:#000;
+  --white:#fff;
+  --orange:#F5A623;
+  --orange-2:#E8521E;
+  --gray:rgba(255,255,255,0.55);
+  --faint:rgba(255,255,255,0.28);
+  --card-radius:22px;
+}
+
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:'Raleway',sans-serif;
+  overflow-x:hidden;
+}
+body.locked{overflow:hidden;}
+
+/* ── OUR WORK TITLE ── */
+.work-head{
+  padding:120px 40px 50px;
+  max-width:1700px;
+  margin:0 auto;
+}
+.work-head h1{
+  font-size:clamp(56px,11vw,160px);
+  font-weight:700;
+  letter-spacing:-3px;
+  line-height:0.9;
+  background:linear-gradient(120deg,#fff 40%,#ffd9b0 65%,#ffc98a 85%,#fff 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.work-head .work-sub{
+  display:block;
+  margin-top:24px;
+  font-size:15px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--gray);
+  font-weight:600;
+}
+
+/* ── PROJECT GRID ── */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+  padding:0 40px 100px;
+  max-width:1700px;
+  margin:0 auto;
+}
+
+.card{
+  position:relative;
+  border-radius:var(--card-radius);
+  overflow:hidden;
+  aspect-ratio:16/10;
+  cursor:pointer;
+  background:#111;
+}
+
+.card-media{
+  position:absolute;
+  top:-12%;left:0;
+  width:100%;height:124%;
+  will-change:transform;
+}
+.card-media img,.card-media video{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.card:hover .card-media img,
+.card:hover .card-media video{
+  transform:scale(1.05);
+}
+
+.card::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,rgba(0,0,0,0.1) 45%,transparent 70%);
+  z-index:1;
+  pointer-events:none;
+}
+
+/* tags row (top-left) like Lusion */
+.card-tags{
+  position:absolute;
+  top:22px;left:24px;
+  z-index:3;
+  font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.85);
+  font-weight:600;
+}
+.card-tags span{opacity:0.7;}
+
+/* project name bottom-left */
+.card-title{
+  position:absolute;
+  bottom:26px;left:30px;
+  z-index:3;
+  font-size:clamp(26px,2.6vw,40px);
+  font-weight:600;
+  letter-spacing:-0.5px;
+  color:var(--white);
+  max-width:80%;
+  line-height:1.05;
+}
+
+/* arrow on hover */
+.card-arrow{
+  position:absolute;
+  bottom:30px;right:30px;
+  z-index:3;
+  width:46px;height:46px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,0.3);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;
+  transform:translateX(-8px);
+  transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.card:hover .card-arrow{opacity:1;transform:translateX(0);}
+.card-arrow svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:1.5;}
+
+/* ── FULL-SCREEN PROJECT DETAIL (Lusion-style) ── */
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:var(--black);
+  overflow-y:auto;
+  overflow-x:hidden;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 0.45s ease, visibility 0.45s;
+}
+.overlay.open{ opacity:1; visibility:visible; }
+
+/* zoom-in feel: content scales up from slightly small */
+#overlayContent{
+  transform:scale(0.94);
+  opacity:0;
+  transition:transform 0.7s cubic-bezier(0.22,1,0.36,1), opacity 0.6s ease;
+}
+.overlay.open #overlayContent{
+  transform:scale(1);
+  opacity:1;
+}
+
+.overlay-close{
+  position:fixed;
+  top:30px;right:40px;
+  z-index:1010;
+  width:54px;height:54px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(10px);
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.3s;
+}
+.overlay-close:hover{background:var(--white);}
+.overlay-close:hover svg{stroke:var(--black);}
+.overlay-close svg{width:22px;height:22px;stroke:#fff;stroke-width:1.5;}
+
+/* TOP: split layout — left text, right big image */
+.ov-top{
+  display:grid;
+  grid-template-columns:1fr 1.15fr;
+  gap:60px;
+  align-items:center;
+  min-height:100vh;
+  padding:120px 60px 80px;
+  max-width:1700px;
+  margin:0 auto;
+}
+.ov-left{ max-width:560px; }
+.ov-title{
+  font-size:clamp(48px,6vw,92px);
+  font-weight:700;
+  letter-spacing:-2px;
+  line-height:0.95;
+  margin-bottom:36px;
+  color:var(--white);
+}
+.ov-desc{
+  font-size:clamp(15px,1.2vw,17px);
+  line-height:1.7;
+  color:var(--gray);
+  margin-bottom:20px;
+  max-width:460px;
+}
+.ov-desc:last-of-type{ margin-bottom:0; }
+
+.ov-cols{
+  display:flex;
+  gap:80px;
+  margin-top:48px;
+}
+.ov-col h4{
+  font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--orange);margin-bottom:16px;font-weight:600;
+}
+.ov-col ul{ list-style:none; }
+.ov-col li{
+  font-size:15px;color:var(--white);margin-bottom:8px;font-weight:400;
+}
+.ov-col li a{ color:var(--white); text-decoration:none; opacity:0.8; transition:opacity 0.2s; }
+.ov-col li a:hover{ opacity:1; }
+
+.ov-watch{
+  display:inline-flex;align-items:center;gap:14px;
+  margin-top:50px;
+  font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--black);
+  background:var(--white);
+  border-radius:100px;
+  padding:18px 32px;
+  text-decoration:none;
+  transition:transform 0.3s, background 0.3s, color 0.3s;
+}
+.ov-watch .dot{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--orange-2);
+}
+.ov-watch:hover{ transform:translateY(-2px); }
+
+.ov-right{
+  position:relative;
+}
+.ov-mainimg{
+  width:100%;
+  aspect-ratio:4/3.4;
+  object-fit:cover;
+  border-radius:22px;
+  display:block;
+}
+
+/* SCROLL GALLERY — images flow on the side as you scroll */
+.ov-gallery{
+  padding:40px 60px 120px;
+  max-width:1700px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:60px;
+}
+.ov-shot{
+  width:100%;
+  border-radius:22px;
+  overflow:hidden;
+  opacity:0;
+  transform:translateY(60px);
+  transition:opacity 1s cubic-bezier(0.22,1,0.36,1), transform 1s cubic-bezier(0.22,1,0.36,1);
+}
+.ov-shot.in{ opacity:1; transform:translateY(0); }
+.ov-shot img{
+  width:100%;
+  display:block;
+  object-fit:cover;
+}
+/* alternate widths for an editorial side-flow feel */
+.ov-shot.left{ align-self:flex-start; width:72%; }
+.ov-shot.right{ align-self:flex-end; width:72%; }
+.ov-shot.full{ width:100%; }
+
+/* stats row inside detail */
+.ov-stats{
+  display:flex;flex-wrap:wrap;gap:50px;
+  padding:0 60px 100px;
+  max-width:1700px;margin:0 auto;
+}
+.ov-stat .num{
+  font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-2px;line-height:1;
+  background:linear-gradient(100deg,var(--orange),var(--orange-2));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.ov-stat .cap{ margin-top:12px;font-size:13px;color:var(--gray); }
+
+/* ── PAGINATION ── */
+.pagination{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  padding:0 40px 80px;
+}
+.page-btn{
+  width:46px;height:46px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,0.2);
+  background:transparent;
+  color:var(--white);
+  font-family:'Raleway',sans-serif;
+  font-size:15px;font-weight:600;
+  cursor:pointer;
+  transition:all 0.3s;
+  display:flex;align-items:center;justify-content:center;
+}
+.page-btn:hover{border-color:var(--white);}
+.page-btn.active{
+  background:var(--white);
+  color:var(--black);
+  border-color:var(--white);
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr;}
+  .work-head{padding:80px 22px 36px;}
+  .grid{padding:0 22px 70px;}
+  .ov-top{
+    grid-template-columns:1fr;
+    gap:40px;
+    padding:90px 22px 50px;
+    min-height:auto;
+  }
+  .ov-cols{gap:50px;flex-wrap:wrap;}
+  .ov-gallery{padding:30px 22px 80px;gap:40px;}
+  .ov-shot.left,.ov-shot.right{width:100%;}
+  .ov-stats{padding:0 22px 70px;gap:30px;}
+  .overlay-close{top:20px;right:22px;width:46px;height:46px;}
+}
+
+/* Lusion-style reveal: rise + scale + fade, staggered */
+.reveal{
+  opacity:0;
+  transform:translateY(70px) scale(0.96);
+  transition:opacity 1s cubic-bezier(0.22,1,0.36,1),
+             transform 1s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+</style>
+</head>
+<body>
+
+<!-- OUR WORK TITLE -->
+<div class="work-head">
+  <h1>Our Work</h1>
+  <span class="work-sub">Selected projects — <span id="projCount">17</span></span>
+</div>
+
+<!-- GRID -->
+<div class="grid" id="grid">
+  <!-- cards injected by JS -->
+</div>
+
+<!-- PAGINATION -->
+<div class="pagination">
+  <button class="page-btn active">1</button>
+  <button class="page-btn">2</button>
+  <button class="page-btn">3</button>
+</div>
+
+<!-- FULL-SCREEN OVERLAY -->
+<div class="overlay" id="overlay">
+  <button class="overlay-close" id="overlayClose" aria-label="Close">
+    <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+  </button>
+  <div id="overlayContent"></div>
+</div>
+
+
+<script>
+// ============ PROJECT DATA ============
+
+const PROJECTS = [
+  {
+    id:"mahttab",
+    name:"Mahttab",
+    tags:["web","design","development"],
+    img:"assets/workimages/mahttab.webp",
+    intro:"A premium jewellery house, reborn online. We rebuilt the storefront around <em>slowness and light</em> — turning browsers into buyers.",
+    client:"Mahttab",
+    services:"Web Design, Development",
+    year:"2024",
+    overview:"We crafted a high-performing e-commerce store that combines elegant UI with performance-first development for a seamless shopping experience. Every detail — from product photography layout to checkout flow — was designed to convert.",
+    stats:[{num:"63K",cap:"Instagram followers"},{num:"₹6.8L",cap:"Monthly DM sales"},{num:"+41%",cap:"Conversion lift"}],
+    gallery:["assets/workimages/mahttab.jpg"],
+    url:"https://www.mahttab.com"
+  },
+  {
+    id:"out",
+    name:"OUT",
+    tags:["web","design","development"],
+    img:"assets/workimages/outwebsite.webp",
+    intro:"A taste of Kolkata, a home away from home. A food brand experience built around <em>warmth and craving</em>.",
+    client:"OUT — Once Upon A Table",
+    services:"Web Design, Development",
+    year:"2024",
+    overview:"A socially-integrated storefront with hot-seller showcases, fresh food hampers, and a seamless ordering experience built for modern food consumers.",
+    stats:[{num:"55K",cap:"Instagram followers"},{num:"1.4M",cap:"Monthly reach"}],
+    gallery:["images/out.jpg"],
+    url:"#"
+  },
+  {
+    id:"tissli",
+    name:"Tissli",
+    tags:["web","design","development"],
+    img:"assets/workimages/tissli.webp",
+    intro:"A fashion-forward label with an <em>editorial soul</em>. Built mobile-first to showcase seasonal collections.",
+    client:"Tissli",
+    services:"Web Design, Development",
+    year:"2024",
+    overview:"A lookbook-style fashion website with mobile-first design, built to showcase seasonal collections with editorial flair and seamless navigation.",
+    stats:[{num:"31K",cap:"Followers"},{num:"5.1%",cap:"Engagement rate"}],
+    gallery:["images/tissli.jpg"],
+    url:"https://www.tissli.com"
+  },
+  {
+    id:"trendyaura",
+    name:"Trendy Aura",
+    tags:["web","design","development","ecommerce"],
+    img:"assets/workimages/trendy.webp",
+    intro:"Fashion that sells <em>from the feed</em>. Instagram-synced collections driving daily direct sales.",
+    client:"Trendy Aura",
+    services:"E-Commerce, Web Design, Development",
+    year:"2024",
+    overview:"Full e-commerce with Instagram-synced collections driving daily direct sales. A socially-integrated storefront built for modern fashion consumers.",
+    stats:[{num:"72K",cap:"Followers"},{num:"₹4.2L",cap:"Monthly revenue"}],
+    gallery:["images/trendyaura.jpg"],
+    url:"https://www.trendyaura.in"
+  },
+  {
+    id:"jbmarble",
+    name:"JB Marble Decor",
+    tags:["web","design","development","seo"],
+    img:"assets/workimages/jbmarble.webp",
+    intro:"Marble collections, made discoverable. A product-rich site engineered for <em>qualified inquiries</em>.",
+    client:"JB Marble Decor",
+    services:"Web Design, Development, SEO",
+    year:"2024",
+    overview:"A product-heavy website with category filtering and lead generation, designed to showcase marble collections and drive qualified business inquiries.",
+    stats:[{num:"Top 3",cap:"Local SEO ranking"},{num:"+38%",cap:"Inquiry growth"}],
+    gallery:["images/jbmarble.jpg"],
+    url:"https://jbmarbledecor.in"
+  },
+  {
+    id:"nirankar",
+    name:"Nirankar Stones",
+    tags:["web","design","development"],
+    img:"assets/workimages/nirankar.webp",
+    intro:"Timeless stone art through <em>heritage, skill and precision</em>. A brand world carved in sandstone.",
+    client:"Nirankar Stones",
+    services:"Web Design, Development",
+    year:"2024",
+    overview:"A brand website with a custom-built product catalog and store locator, reflecting Nirankar's craftsmanship and driving both online and offline engagement.",
+    stats:[{num:"100+",cap:"Products showcased"}],
+    gallery:["images/nirankar.jpg"],
+    url:"#"
+  },
+  {
+    id:"vedana",
+    name:"Vedana Fashion",
+    tags:["web","design","development"],
+    img:"assets/workimages/vedana.webp",
+    intro:"A fashion identity that's <em>confidently its own</em>. Custom catalog meets store locator.",
+    client:"Vedana Fashion",
+    services:"Web Design, Development",
+    year:"2024",
+    overview:"A brand website with a custom-built product catalog and store locator, crafted to reflect Vedana's identity and drive both online and offline engagement.",
+    stats:[{num:"19K",cap:"Followers"},{num:"7.2%",cap:"Engagement rate"}],
+    gallery:["images/vedana.jpg"],
+    url:"#"
+  },
+   {
+    id:"ideal",
+    name:"Ideal Coffee",
+    tags:["web","design","development","seo","b2b"],
+    img:"assets/workimages/ideal.webp",
+    intro:"Industrial sourcing, minus the friction. A catalogue commercial buyers <em>trust on the first visit</em>.",
+    client:"Ideal Coffee Machine",
+    services:"Web Design, Development, SEO, B2B",
+    year:"2024",
+    overview:"A B2B sourcing platform helping commercial buyers discover and source the right coffee machines with ease, backed by technical SEO.",
+    stats:[{num:"+61%",cap:"Qualified leads QoQ"}],
+    gallery:["images/ideal.jpg"],
+    url:"#"
+  },
+  {
+    id:"putnams",
+    name:"Putnams",
+    tags:["web","design","development"],
+    img:"assets/workimages/mahttab.jpg",
+    intro:"Workwear &amp; activewear with a <em>clean, confident</em> digital presence.",
+    client:"Putnams",
+    services:"Web Design, Development",
+    year:"2024",
+    overview:"A brand website built with clarity and ease of navigation, helping customers explore the full Putnams range across categories.",
+    stats:[],
+    gallery:["images/putnams.jpg"],
+    url:"#"
+  },
+  {
+    id:"silktakuyo",
+    name:"Silk Takuyo",
+    tags:["web","design","development"],
+    img:"images/silktakuyo.jpg",
+    intro:"Affordable, exclusive, <em>made just for you</em>. Everyday wearable art, beautifully presented.",
+    client:"Silk Takuyo",
+    services:"Web Design, Development",
+    year:"2024",
+    overview:"A fashion brand website showcasing kimono robes and custom orders with an elegant, affordable-luxury feel.",
+    stats:[],
+    gallery:["images/silktakuyo.jpg"],
+    url:"#"
+  },
+  {
+    id:"jolly",
+    name:"Jolly Designs",
+    tags:["web","design","development"],
+    img:"images/jolly.jpg",
+    intro:"Where <em>screen-free play</em> turns into real learning. Interactive fabric books for little hands.",
+    client:"Jolly Designs",
+    services:"Web Design, Development",
+    year:"2024",
+    overview:"A thoughtfully designed website for quiet books that support fine motor skills, focus, and early language development — all through calm, playful moments.",
+    stats:[],
+    gallery:["images/jolly.jpg"],
+    url:"#"
+  },
+  {
+    id:"rosenthals",
+    name:"Rosenthals",
+    tags:["web","design","development"],
+    img:"images/rosenthals.jpg",
+    intro:"A fashion brand with a <em>refined editorial</em> presence and seamless browsing.",
+    client:"Rosenthals",
+    services:"Web Design, Development",
+    year:"2024",
+    overview:"A clean, elegant brand website built to let the collections take center stage.",
+    stats:[],
+    gallery:["images/rosenthals.jpg"],
+    url:"#"
+  },
+ 
+  {
+    id:"mangal",
+    name:"Mangal",
+    tags:["web","design","development"],
+    img:"images/mangal.jpg",
+    intro:"A brand presence built with <em>clarity and intent</em>.",
+    client:"Mangal",
+    services:"Web Design, Development",
+    year:"2024",
+    overview:"A clean brand website designed for easy navigation and a strong first impression.",
+    stats:[],
+    gallery:["images/mangal.jpg"],
+    url:"#"
+  },
+  {
+    id:"tatwansh",
+    name:"Tatwansh Digital",
+    tags:["web","design","development"],
+    img:"images/tatwansh.jpg",
+    intro:"A digital brand with a <em>modern, tech-forward</em> identity.",
+    client:"Tatwansh Digital",
+    services:"Web Design, Development",
+    year:"2024",
+    overview:"A sleek website built to communicate a digital-first brand with confidence.",
+    stats:[],
+    gallery:["images/tatwansh.jpg"],
+    url:"#"
+  },
+  {
+    id:"sevencolors",
+    name:"7 Colors",
+    tags:["web","design","development"],
+    img:"images/sevencolors.jpg",
+    intro:"A vibrant brand, brought to life with <em>colour and clarity</em>.",
+    client:"7 Colors",
+    services:"Web Design, Development",
+    year:"2024",
+    overview:"A brand website designed to be bold, colourful, and easy to navigate.",
+    stats:[],
+    gallery:["images/sevencolors.jpg"],
+    url:"#"
+  },
+  {
+    id:"pro1",
+    name:"Pro1 Network",
+    tags:["web","design","development"],
+    img:"images/pro1.jpg",
+    intro:"A tech &amp; network brand with a <em>clean, capable</em> web presence.",
+    client:"Pro1 Network",
+    services:"Web Design, Development",
+    year:"2024",
+    overview:"A professional website built to communicate technical capability and trust.",
+    stats:[],
+    gallery:["images/pro1.jpg"],
+    url:"#"
+  },
+  {
+    id:"bhandari",
+    name:"Bhandari Plastic",
+    tags:["web","design","development"],
+    img:"images/bhandari.jpg",
+    intro:"A manufacturer's catalogue, made <em>clear and credible</em>.",
+    client:"Bhandari Plastic",
+    services:"Web Design, Development",
+    year:"2024",
+    overview:"A manufacturer website with a clean product catalogue, built for clarity and trust with B2B buyers.",
+    stats:[],
+    gallery:["images/bhandari.jpg"],
+    url:"#"
+  }
+];
+
+// ============ BUILD GRID ============
+const grid = document.getElementById('grid');
+document.getElementById('projCount').textContent = PROJECTS.length;
+
+PROJECTS.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'card reveal';
+  card.dataset.id = p.id;
+  const tagsHTML = p.tags.map(t => t).join(' • ');
+  card.innerHTML = `
+    <div class="card-media"><img src="${p.img}" alt="${p.name}" onerror="this.style.opacity=0.15"/></div>
+    <div class="card-tags">${tagsHTML}</div>
+    <h3 class="card-title">${p.name}</h3>
+    <div class="card-arrow">
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+    </div>
+  `;
+  card.addEventListener('click', () => openProject(p));
+  grid.appendChild(card);
+});
+
+// ============ OVERLAY ============
+const overlay = document.getElementById('overlay');
+const overlayContent = document.getElementById('overlayContent');
+const overlayClose = document.getElementById('overlayClose');
+
+function openProject(p){
+  // services as a list
+  const svcList = (p.services || '').split(',').map(s => s.trim()).filter(Boolean);
+  const svcHTML = svcList.map(s => `<li>${s}</li>`).join('');
+
+  // links list (built from url if present)
+  const links = [];
+  if(p.url && p.url !== '#') links.push(`<li><a href="${p.url}" target="_blank">Visit website</a></li>`);
+  const linksHTML = links.length ? `
+    <div class="ov-col">
+      <h4>Links</h4>
+      <ul>${links.join('')}</ul>
+    </div>` : '';
+
+  // watch / visit button
+  const watchHTML = (p.url && p.url !== '#') ? `
+    <a href="${p.url}" target="_blank" class="ov-watch"><span class="dot"></span> Visit Website</a>` : `
+    <a href="#" class="ov-watch" onclick="return false"><span class="dot"></span> View Project</a>`;
+
+  // scroll gallery — use available images, alternate sides for editorial flow
+  const shots = (p.gallery && p.gallery.length) ? p.gallery : [p.img];
+  const sideClasses = ['full','left','right','full','left'];
+  const galleryHTML = shots.map((g, i) =>
+    `<div class="ov-shot ${sideClasses[i % sideClasses.length]}"><img src="${g}" alt="${p.name}" onerror="this.parentElement.style.display='none'"/></div>`
+  ).join('');
+
+  const statsHTML = (p.stats && p.stats.length) ? `
+    <div class="ov-stats">
+      ${p.stats.map(s => `<div class="ov-stat"><div class="num">${s.num}</div><div class="cap">${s.cap}</div></div>`).join('')}
+    </div>` : '';
+
+  overlayContent.innerHTML = `
+    <div class="ov-top">
+      <div class="ov-left">
+        <h1 class="ov-title">${p.name}</h1>
+        <p class="ov-desc">${p.intro.replace(/<\/?em>/g,'')}</p>
+        <p class="ov-desc">${p.overview}</p>
+        <div class="ov-cols">
+          <div class="ov-col">
+            <h4>Services</h4>
+            <ul>${svcHTML}</ul>
+          </div>
+          ${linksHTML}
+        </div>
+        ${watchHTML}
+      </div>
+      <div class="ov-right">
+        <img class="ov-mainimg" src="${p.img}" alt="${p.name}" onerror="this.style.opacity=0.2"/>
+      </div>
+    </div>
+    ${statsHTML}
+    <div class="ov-gallery">
+      ${galleryHTML}
+    </div>
+  `;
+
+  overlay.scrollTop = 0;
+  overlay.classList.add('open');
+  document.body.classList.add('locked');
+
+  // reveal gallery shots on scroll within overlay
+  const shotsEls = overlayContent.querySelectorAll('.ov-shot');
+  const shotObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); shotObs.unobserve(e.target); } });
+  }, { root: overlay, threshold: 0.15 });
+  shotsEls.forEach(s => shotObs.observe(s));
+}
+
+function closeProject(){
+  overlay.classList.remove('open');
+  document.body.classList.remove('locked');
+}
+
+overlayClose.addEventListener('click', closeProject);
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeProject(); });
+
+// ============ LUSION-STYLE SCROLL EFFECTS ============
+
+// 1) Staggered reveal as cards enter viewport
+const allCards = Array.from(document.querySelectorAll('.card'));
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      // stagger based on column position for a nicer wave
+      const idx = allCards.indexOf(e.target);
+      const delay = (idx % 2) * 90; // left/right slight offset
+      setTimeout(() => e.target.classList.add('show'), delay);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+allCards.forEach(c => obs.observe(c));
+
+// 2) Parallax: image drifts inside its card as you scroll (depth feel)
+let ticking = false;
+function parallaxScroll(){
+  const vh = window.innerHeight;
+  allCards.forEach(card => {
+    const rect = card.getBoundingClientRect();
+    // only animate cards in/near viewport
+    if(rect.bottom < -200 || rect.top > vh + 200) return;
+    const media = card.querySelector('.card-media');
+    if(!media) return;
+    // progress: -1 (card at bottom) -> 1 (card at top)
+    const center = rect.top + rect.height/2;
+    const progress = (center - vh/2) / (vh/2);  // ~ -1..1
+    const shift = progress * -6; // percent, gentle
+    media.style.transform = `translateY(${shift}%)`;
+  });
+  ticking = false;
+}
+window.addEventListener('scroll', () => {
+  if(!ticking){
+    requestAnimationFrame(parallaxScroll);
+    ticking = true;
+  }
+}, { passive:true });
+parallaxScroll();
+</script>
+</body>
+</html>

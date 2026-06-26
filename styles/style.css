@@ -1,6 +1,6 @@
 /* ===================== ROOT ===================== */
 :root {
-  --black: #060608;
+  --black: #000000;
   --off-black: #0c0c0f;
   --surface: #111115;
   --card: #18181e;
@@ -596,6 +596,9 @@ body.cur-hover #qc-cur-ring {
 }
 
 .qn-overlay.open .qn-sub a:nth-child(3) {
+  transition-delay: 0.55s;
+}
+.qn-overlay.open .qn-sub a:nth-child(4) {
   transition-delay: 0.55s;
 }
 
