@@ -344,3 +344,94 @@ html, body {
   .page-title { font-size: 2.2rem; }
   .hero-heading { font-size: 2rem; }
 }
+
+
+
+
+.popup-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    backdrop-filter:blur(6px);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.35s;
+    z-index:99999;
+}
+
+.popup-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.popup-card{
+
+    width:420px;
+    max-width:90%;
+
+    background:#fff;
+    border-radius:20px;
+
+    padding:45px 35px;
+    text-align:center;
+
+    transform:translateY(30px) scale(.9);
+    transition:.35s;
+}
+
+.popup-overlay.active .popup-card{
+    transform:none;
+}
+
+.popup-icon{
+
+    width:85px;
+    height:85px;
+
+    margin:auto;
+
+    border-radius:50%;
+    background:#16a34a;
+
+    color:#fff;
+
+    font-size:42px;
+    font-weight:bold;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-card h2{
+
+    margin-top:24px;
+    margin-bottom:10px;
+}
+
+.popup-card p{
+
+    color:#666;
+    line-height:1.7;
+}
+
+.popup-card button{
+
+    margin-top:28px;
+
+    padding:14px 40px;
+
+    border:none;
+    border-radius:50px;
+
+    background:#111;
+    color:#fff;
+
+    cursor:pointer;
+}
