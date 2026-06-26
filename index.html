@@ -63,6 +63,34 @@
     path {
       stroke: transparent; /* hide path */
     }
+    
+    .svc-panel {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .svc-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--panel-bg);
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .svc-content,
+    .svc-visual,
+    .svc-num {
+      position: relative;
+      z-index: 1;
+    }
+
+    .svc-panel {
+      margin-right: 8px;
+    }
   </style>
   </head>
   <body>
@@ -489,165 +517,80 @@
     <section id="services" data-aos="fade-up">
       <div class="services-sticky">
         <div class="services-track" id="svcTrack">
-          <div class="svc-panel">
-            <div class="svc-content">
-              <h2 class="svc-h2">Creative<br /><em>Direction</em></h2>
-              <p class="svc-p">
-                Our creative team brings fresh perspectives to make your brand
-                stand out. From visual concepts to innovative strategies we
-                bring your vision to life with precision.
-              </p>
-            </div>
-            <div class="svc-visual">
-              <div class="svc-box">
-                <img
-                  src="./assets/homeimages/creative-direction.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="svc-num">01</div>
-          </div>
 
-          <div class="svc-panel">
-            <div class="svc-content">
-              <h2 class="svc-h2">Brand<br /><em>Strategy</em></h2>
-              <p class="svc-p">
-                We build brands that are timeless. Through extensive market
-                research, we craft strategies that ensure your brand resonates
-                deeply with your audience.
-              </p>
-            </div>
-            <div class="svc-visual">
-              <div class="svc-box">
-                <img
-                  src="./assets/homeimages/brand-strategy.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="svc-num">02</div>
-          </div>
+  <div class="svc-panel" style="--panel-bg: url('./assets/homeimages/creative-direction.png')">
+    <div class="svc-content">
+      <h2 class="svc-h2">Creative<br /><em>Direction</em></h2>
+      <p class="svc-p">Our creative team brings fresh perspectives to make your brand stand out. From visual concepts to innovative strategies we bring your vision to life with precision.</p>
+    </div>
+    <div class="svc-visual"><div class="svc-box"><img src="./assets/homeimages/creative-direction.png" alt="" /></div></div>
+    <div class="svc-num">01</div>
+  </div>
 
-          <div class="svc-panel">
-            <div class="svc-content">
-              <h2 class="svc-h2">Digital<br /><em>Execution</em></h2>
-              <p class="svc-p">
-                We take your ideas to the digital world. From website
-                development to campaigns, we ensure your digital presence is
-                optimized, engaging, and impactful.
-              </p>
-            </div>
-            <div class="svc-visual">
-              <div class="svc-box">
-                <img
-                  src="./assets/homeimages/digital-execution.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="svc-num">03</div>
-          </div>
+  <div class="svc-panel" style="--panel-bg: url('./assets/homeimages/brand-strategy.png')">
+    <div class="svc-content">
+      <h2 class="svc-h2">Brand<br /><em>Strategy</em></h2>
+      <p class="svc-p">We build brands that are timeless. Through extensive market research, we craft strategies that ensure your brand resonates deeply with your audience.</p>
+    </div>
+    <div class="svc-visual"><div class="svc-box"><img src="./assets/homeimages/brand-strategy.png" alt="" /></div></div>
+    <div class="svc-num">02</div>
+  </div>
 
-          <div class="svc-panel">
-            <div class="svc-content">
-              <h2 class="svc-h2">Website<br /><em>Development</em></h2>
-              <p class="svc-p">
-                We build dynamic, responsive websites that are visually stunning
-                and user-friendly. From landing pages to complex e-commerce —
-                built for performance every time.
-              </p>
-            </div>
-            <div class="svc-visual">
-              <div class="svc-box">
-                <img
-                  src="./assets/homeimages/website-development.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="svc-num">04</div>
-          </div>
+  <div class="svc-panel" style="--panel-bg: url('./assets/homeimages/digital-execution.png')">
+    <div class="svc-content">
+      <h2 class="svc-h2">Digital<br /><em>Execution</em></h2>
+      <p class="svc-p">We take your ideas to the digital world. From website development to campaigns, we ensure your digital presence is optimized, engaging, and impactful.</p>
+    </div>
+    <div class="svc-visual"><div class="svc-box"><img src="./assets/homeimages/digital-execution.png" alt="" /></div></div>
+    <div class="svc-num">03</div>
+  </div>
 
-          <div class="svc-panel">
-            <div class="svc-content">
-              <h2 class="svc-h2">Social<br /><em>Marketing</em></h2>
-              <p class="svc-p">
-                Maximize your brand's reach with data-driven social media
-                strategies. From content creation to paid ads — we connect you
-                with your audience where they live.
-              </p>
-            </div>
-            <div class="svc-visual">
-              <div class="svc-box">
-                <img
-                  src="./assets/homeimages/social-marketing.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="svc-num">05</div>
-          </div>
+  <div class="svc-panel" style="--panel-bg: url('./assets/homeimages/website-development.png')">
+    <div class="svc-content">
+      <h2 class="svc-h2">Website<br /><em>Development</em></h2>
+      <p class="svc-p">We build dynamic, responsive websites that are visually stunning and user-friendly. From landing pages to complex e-commerce — built for performance every time.</p>
+    </div>
+    <div class="svc-visual"><div class="svc-box"><img src="./assets/homeimages/website-development.png" alt="" /></div></div>
+    <div class="svc-num">04</div>
+  </div>
 
-          <div class="svc-panel">
-            <div class="svc-content">
-              <h2 class="svc-h2">Content<br /><em>Creation</em></h2>
-              <p class="svc-p">
-                Content is king. Our team produces visually compelling content —
-                videos, blogs, graphics and more — all tailored perfectly to
-                your brand's voice and audience.
-              </p>
-            </div>
-            <div class="svc-visual">
-              <div class="svc-box">
-                <img
-                  src="./assets/homeimages/content-creation.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="svc-num">06</div>
-          </div>
-           <div class="svc-panel">
-            <div class="svc-content">
-              <h2 class="svc-h2">Performance  <br /><em>Marketing</em></h2>
-              <p class="svc-p">
-                Maximize your brand's reach with data-driven social media
-                strategies. From content creation to paid ads — we connect you
-                with your audience where they live.
-              </p>
-            </div>
-            <div class="svc-visual">
-              <div class="svc-box">
-                <img
-                  src="./images/Perfor. Markt.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="svc-num">05</div>
-          </div>
+  <div class="svc-panel" style="--panel-bg: url('./assets/homeimages/social-marketing.png')">
+    <div class="svc-content">
+      <h2 class="svc-h2">Social<br /><em>Marketing</em></h2>
+      <p class="svc-p">Maximize your brand's reach with data-driven social media strategies. From content creation to paid ads — we connect you with your audience where they live.</p>
+    </div>
+    <div class="svc-visual"><div class="svc-box"><img src="./assets/homeimages/social-marketing.png" alt="" /></div></div>
+    <div class="svc-num">05</div>
+  </div>
 
-           <div class="svc-panel">
-            <div class="svc-content">
-              <h2 class="svc-h2">Search Engine<br /><em>Optimization</em></h2>
-              <p class="svc-p">
-                Content is king. Our team produces visually compelling content —
-                videos, blogs, graphics and more — all tailored perfectly to
-                your brand's voice and audience.
-              </p>
-            </div>
-            <div class="svc-visual">
-              <div class="svc-box">
-                <img
-                  src="./images/Seo.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="svc-num">06</div>
-          </div>
-        </div>
+  <div class="svc-panel" style="--panel-bg: url('./assets/homeimages/content-creation.png')">
+    <div class="svc-content">
+      <h2 class="svc-h2">Content<br /><em>Creation</em></h2>
+      <p class="svc-p">Content is king. Our team produces visually compelling content — videos, blogs, graphics and more — all tailored perfectly to your brand's voice and audience.</p>
+    </div>
+    <div class="svc-visual"><div class="svc-box"><img src="./assets/homeimages/content-creation.png" alt="" /></div></div>
+    <div class="svc-num">06</div>
+  </div>
+
+  <div class="svc-panel" style="--panel-bg: url('./images/Perfor. Markt.png')">
+    <div class="svc-content">
+      <h2 class="svc-h2">Performance<br /><em>Marketing</em></h2>
+      <p class="svc-p">Maximize your brand's reach with data-driven social media strategies. From content creation to paid ads — we connect you with your audience where they live.</p>
+    </div>
+    <div class="svc-visual"><div class="svc-box"><img src="./images/Perfor. Markt.png" alt="" /></div></div>
+    <div class="svc-num">07</div>
+  </div>
+
+  <div class="svc-panel" style="--panel-bg: url('./images/Seo.png')">
+    <div class="svc-content">
+      <h2 class="svc-h2">Search Engine<br /><em>Optimization</em></h2>
+      <p class="svc-p">Content is king. Our team produces visually compelling content — videos, blogs, graphics and more — all tailored perfectly to your brand's voice and audience.</p>
+    </div>
+    <div class="svc-visual"><div class="svc-box"><img src="./images/Seo.png" alt="" /></div></div>
+    <div class="svc-num">08</div>
+  </div>
+
+</div>
       </div>
     </section>
 
