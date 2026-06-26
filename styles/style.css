@@ -2732,7 +2732,7 @@ body.hov #cr {
   align-items: center;
   padding: 80px 80px;
   gap: 80px;
-  background: var(--black);
+  background: var(--black); 
 }
 
 .svc-panel:nth-child(even) {
