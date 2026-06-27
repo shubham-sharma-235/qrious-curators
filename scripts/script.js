@@ -69,7 +69,6 @@ function updateSvc() {
 }
 
 window.addEventListener("scroll", updateSvc, { passive: true });
-
 /* ---- PROCESS CARDS ---- */
 const procSection=document.getElementById('process');
 const procCards=document.querySelectorAll('.p-card');

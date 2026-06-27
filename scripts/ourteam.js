@@ -3,17 +3,17 @@
 
   const SOURCES = [
     { src:'./team1/vikram1.webp',     name:'Vikram Singh',        role:'Meta ads expert' },
-    { src:'./team1/uday.webp',        name:'Uday Punjabi',             role:'BD Executive' },
-    { src:'./team1/ashu.webp',        name:'Ashu Kashyap',             role:'Visual Story Teller' },
+    { src:'./team1/uday.webp',        name:'Uday Punjabi',        role:'BD Executive' },
+    { src:'./team1/ashu.webp',        name:'Ashu Kashyap',        role:'Visual Story Teller' },
     { src:'./team1/abhay1.webp',      name:'Abhay Tanwar',        role:'Chief Action Officer' },
     { src:'./team1/bhavana1.webp',    name:'Bhavana Punjabi',     role:'Chief Curator Officer' },
-     { src:'./team1/shubham.webp',     name:'Shubham Sharma',      role:'Web Developer' },
+    { src:'./team1/shubham.webp',     name:'Shubham Sharma',      role:'Web Developer' },
     { src:'./images/Chitransh.jpg',   name:'Chitransh Maharshi',  role:'Web Developer Intern' },
     { src:'./team1/yashika1.webp',    name:'Yashika Singh',       role:'SEO Stategist' },
     { src:'./team1/vikas.webp',       name:'Vikas Tanwar',        role:'SEO Stategist' },
     { src:'./team1/khushisingh.webp', name:'Khushi Singh',        role:'SEO Executive' },
     { src:'./team1/prakriti1.webp',   name:'Prakriti Verma',      role:'Sr. Graphic Designer' },
-    { src:'./team1/kumkum1.webp',     name:'Name 7',              role:'Sr. Graphic Designer' },
+    { src:'./team1/kumkum1.webp',     name:'Kumkum Chauhan',      role:'Sr. Graphic Designer' },
     { src:'./team1/jayant1.webp',     name:'Jayant Rajvanshi',    role:'Graphic Designer' },
     { src:'./team1/khushisahoo.webp', name:'Khushi Sahu',         role:'Graphic Designer' },
     { src:'./team1/rohit.webp',       name:'Rohit Verma',         role:'Sr. Digital Video Artist' },
@@ -25,7 +25,6 @@
     { src:'./team1/khushi.webp',      name:'Khushi Singh',        role:'Social Media Intern' },
     { src:'./team1/riddhi.webp',      name:'Riddhi Sharma',       role:'Social Media Intern' },
     { src:'./team1/nehal.webp',       name:'Nehal ',             role:'Social Media Intern' }
-   
   ];
 
   const carousel = document.getElementById('tc-carousel');
