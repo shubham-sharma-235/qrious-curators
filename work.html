@@ -1,30 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Our Work</title>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="./styles/style.css">
-<link rel="stylesheet" href="./styles/work.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Our Work</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/logo/fav-icon-one.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/work.css" />
+  </head>
+  <body>
+    <!-- CURSOR -->
+    <div id="qc-cur"></div>
+    <div id="qc-cur-ring"></div>
 
-  
-  <!-- CURSOR -->
-  <div id="qc-cur"></div>
-  <div id="qc-cur-ring"></div>
+    <!-- GRAIN -->
+    <div id="grain" aria-hidden="true"></div>
 
-  <!-- GRAIN -->
-  <div id="grain" aria-hidden="true"></div>
-  
-<header class="qc-header" style="display: none;">
+    <header class="qc-header" style="display: none">
       <nav class="qc-nav">
         <a href="#" class="nav-logo">
           <img src="./assets/logo/logo-one.png" alt="" />
         </a>
-        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-        </button>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu"></button>
       </nav>
     </header>
 
@@ -35,15 +40,13 @@
           <img src="./assets/logo/logo-one.png" alt="" />
         </a>
         <!-- <ul class="nav-links"></ul> -->
-    
+
         <button class="qn-toggle" id="qnToggle">
-          <div class="qn-icon">
-            <span></span><span></span><span></span>
-          </div>
+          <div class="qn-icon"><span></span><span></span><span></span></div>
         </button>
       </div>
     </div>
-    
+
     <!-- ===== OVERLAY ===== -->
     <div class="qn-overlay" id="qnOverlay">
       <div class="qn-inner">
@@ -52,10 +55,8 @@
             <a href="aboutsection-qc.html">About</a>
             <a href="work.html">Work</a>
             <a href="services.html">Services</a>
-
-            
           </div>
-    
+
           <div class="qn-sub">
             <a href="./contact.html">Contact</a>
             <a href="#">Blogs</a>
@@ -67,7 +68,7 @@
     </div>
 
     <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobileMenu" style="display: none;">
+    <div class="mobile-menu" id="mobileMenu" style="display: none">
       <span class="mm-close" id="mmClose">✕</span>
       <a href="#about">About</a>
       <a href="#services">Services</a>
@@ -76,288 +77,344 @@
       <a href="./contact.html">Contact</a>
     </div>
 
+    <!-- OUR WORK TITLE -->
+    <div class="work-head">
+      <h1>Our Work</h1>
+      <span class="work-sub"
+        >Selected projects — <span id="projCount">17</span></span
+      >
+    </div>
 
-<!-- OUR WORK TITLE -->
-<div class="work-head">
-  <h1>Our Work</h1>
-  <span class="work-sub">Selected projects — <span id="projCount">17</span></span>
-</div>
+    <!-- GRID -->
+    <div class="grid" id="grid">
+      <!-- cards injected by JS -->
+    </div>
 
-<!-- GRID -->
-<div class="grid" id="grid">
-  <!-- cards injected by JS -->
-</div>
+    <!-- PAGINATION -->
+    <div class="pagination">
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+    </div>
 
-<!-- PAGINATION -->
-<div class="pagination">
-  <button class="page-btn active">1</button>
-  <button class="page-btn">2</button>
-  <button class="page-btn">3</button>
-</div>
+    <!-- FULL-SCREEN OVERLAY -->
+    <div class="overlay" id="overlay">
+      <button class="overlay-close" id="overlayClose" aria-label="Close">
+        <svg viewBox="0 0 24 24">
+          <line x1="6" y1="6" x2="18" y2="18" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+        </svg>
+      </button>
+      <div id="overlayContent"></div>
+    </div>
 
-<!-- FULL-SCREEN OVERLAY -->
-<div class="overlay" id="overlay">
-  <button class="overlay-close" id="overlayClose" aria-label="Close">
-    <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-  </button>
-  <div id="overlayContent"></div>
-</div>
+    <script>
+      // ============ PROJECT DATA ============
 
-<script>
-// ============ PROJECT DATA ============
+      const PROJECTS = [
+        {
+          id: "mahttab",
+          name: "Mahttab",
+          tags: ["web", "design", "development"],
+          img: "assets/workimages/mahttab.webp",
+          intro:
+            "A premium jewellery house, reborn online. We rebuilt the storefront around <em>slowness and light</em> — turning browsers into buyers.",
+          client: "Mahttab",
+          services: "Web Design, Development",
+          year: "2025",
+          overview:
+            "We crafted a high-performing e-commerce store that combines elegant UI with performance-first development for a seamless shopping experience. Every detail — from product photography layout to checkout flow — was designed to convert.",
+          stats: [
+            { num: "63K", cap: "Instagram followers" },
+            { num: "₹6.8L", cap: "Monthly DM sales" },
+            { num: "+41%", cap: "Conversion lift" },
+          ],
+          gallery: ["assets/workimages/mahttab.jpg"],
+          url: "https://www.mahttab.com",
+        },
+        {
+          id: "out",
+          name: "OUT",
+          tags: ["web", "design", "development"],
+          img: "assets/workimages/outwebsite.webp",
+          intro:
+            "A taste of Kolkata, a home away from home. A food brand experience built around <em>warmth and craving</em>.",
+          client: "OUT — Once Upon A Table",
+          services: "Web Design, Development",
+          year: "2025",
+          overview:
+            "A socially-integrated storefront with hot-seller showcases, fresh food hampers, and a seamless ordering experience built for modern food consumers.",
+          stats: [
+            { num: "55K", cap: "Instagram followers" },
+            { num: "1.4M", cap: "Monthly reach" },
+          ],
+          gallery: ["images/out.jpg"],
+          url: "https://onceuponatable.in/",
+        },
+        {
+          id: "tissli",
+          name: "Tissli",
+          tags: ["web", "design", "development"],
+          img: "assets/workimages/tissli.webp",
+          intro:
+            "A fashion-forward label with an <em>editorial soul</em>. Built mobile-first to showcase seasonal collections.",
+          client: "Tissli",
+          services: "Web Design, Development",
+          year: "2025",
+          overview:
+            "A lookbook-style fashion website with mobile-first design, built to showcase seasonal collections with editorial flair and seamless navigation.",
+          stats: [
+            { num: "31K", cap: "Followers" },
+            { num: "5.1%", cap: "Engagement rate" },
+          ],
+          gallery: ["images/tissli.jpg"],
+          url: "https://www.tissli.com",
+        },
+        {
+          id: "trendyaura",
+          name: "Trendy Aura",
+          tags: ["web", "design", "development", "ecommerce"],
+          img: "assets/workimages/trendy.webp",
+          intro:
+            "Fashion that sells <em>from the feed</em>. Instagram-synced collections driving daily direct sales.",
+          client: "Trendy Aura",
+          services: "E-Commerce, Web Design, Development",
+          year: "2025",
+          overview:
+            "Full e-commerce with Instagram-synced collections driving daily direct sales. A socially-integrated storefront built for modern fashion consumers.",
+          stats: [
+            { num: "72K", cap: "Followers" },
+            { num: "₹4.2L", cap: "Monthly revenue" },
+          ],
+          gallery: ["images/trendyaura.jpg"],
+          url: "https://www.trendyaura.in",
+        },
+        {
+          id: "jbmarble",
+          name: "JB Marble Decor",
+          tags: ["web", "design", "development", "seo"],
+          img: "assets/workimages/jbmarble.webp",
+          intro:
+            "Marble collections, made discoverable. A product-rich site engineered for <em>qualified inquiries</em>.",
+          client: "JB Marble Decor",
+          services: "Web Design, Development, SEO",
+          year: "2025",
+          overview:
+            "A product-heavy website with category filtering and lead generation, designed to showcase marble collections and drive qualified business inquiries.",
+          stats: [
+            { num: "Top 3", cap: "Local SEO ranking" },
+            { num: "+38%", cap: "Inquiry growth" },
+          ],
+          gallery: ["images/jbmarble.jpg"],
+          url: "https://jbmarbledecor.in",
+        },
+        {
+          id: "nirankar",
+          name: "Nirankar Stones",
+          tags: ["web", "design", "development"],
+          img: "assets/workimages/nirankar.webp",
+          intro:
+            "Timeless stone art through <em>heritage, skill and precision</em>. A brand world carved in sandstone.",
+          client: "Nirankar Stones",
+          services: "Web Design, Development",
+          year: "2026",
+          overview:
+            "A brand website with a custom-built product catalog and store locator, reflecting Nirankar's craftsmanship and driving both online and offline engagement.",
+          stats: [{ num: "100+", cap: "Products showcased" }],
+          gallery: ["images/nirankar.jpg"],
+          url: "https://nirankar-production.netlify.app/",
+        },
+        {
+          id: "vedana",
+          name: "Vedana Fashion",
+          tags: ["web", "design", "development"],
+          img: "assets/workimages/vedana.webp",
+          intro:
+            "A fashion identity that's <em>confidently its own</em>. Custom catalog meets store locator.",
+          client: "Vedana Fashion",
+          services: "Web Design, Development",
+          year: "2024",
+          overview:
+            "A brand website with a custom-built product catalog and store locator, crafted to reflect Vedana's identity and drive both online and offline engagement.",
+          stats: [
+            { num: "19K", cap: "Followers" },
+            { num: "7.2%", cap: "Engagement rate" },
+          ],
+          gallery: ["images/vedana.jpg"],
+          url: "https://vedanafashion.com/",
+        },
+        {
+          id: "ideal",
+          name: "Ideal Coffee",
+          tags: ["web", "design", "development", "seo", "b2b"],
+          img: "assets/workimages/ideal.webp",
+          intro:
+            "Industrial sourcing, minus the friction. A catalogue commercial buyers <em>trust on the first visit</em>.",
+          client: "Ideal Coffee Machine",
+          services: "Web Design, Development, SEO, B2B",
+          year: "2025",
+          overview:
+            "A B2B sourcing platform helping commercial buyers discover and source the right coffee machines with ease, backed by technical SEO.",
+          stats: [{ num: "+61%", cap: "Qualified leads QoQ" }],
+          gallery: ["images/ideal.jpg"],
+          url: "https://idealcoffeemachines.com/",
+        },
+        {
+          id: "putnams",
+          name: "Putnams",
+          tags: ["web", "design", "development"],
+          img: "assets/workimages/mahttab.jpg",
+          intro:
+            "Workwear &amp; activewear with a <em>clean, confident</em> digital presence.",
+          client: "Putnams",
+          services: "Web Design, Development",
+          year: "2024",
+          overview:
+            "A brand website built with clarity and ease of navigation, helping customers explore the full Putnams range across categories.",
+          stats: [],
+          gallery: ["images/putnams.jpg"],
+          url: "#",
+        },
+        {
+          id: "silktakuyo",
+          name: "Silk Takuyo",
+          tags: ["web", "design", "development"],
+          img: "images/silktakuyo.jpg",
+          intro:
+            "Affordable, exclusive, <em>made just for you</em>. Everyday wearable art, beautifully presented.",
+          client: "Silk Takuyo",
+          services: "Web Design, Development",
+          year: "2024",
+          overview:
+            "A fashion brand website showcasing kimono robes and custom orders with an elegant, affordable-luxury feel.",
+          stats: [],
+          gallery: ["images/silktakuyo.jpg"],
+          url: "#",
+        },
+        {
+          id: "jolly",
+          name: "Jolly Designs",
+          tags: ["web", "design", "development"],
+          img: "images/jolly.jpg",
+          intro:
+            "Where <em>screen-free play</em> turns into real learning. Interactive fabric books for little hands.",
+          client: "Jolly Designs",
+          services: "Web Design, Development",
+          year: "2024",
+          overview:
+            "A thoughtfully designed website for quiet books that support fine motor skills, focus, and early language development — all through calm, playful moments.",
+          stats: [],
+          gallery: ["images/jolly.jpg"],
+          url: "#",
+        },
+        {
+          id: "rosenthals",
+          name: "Rosenthals",
+          tags: ["web", "design", "development"],
+          img: "images/rosenthals.jpg",
+          intro:
+            "A fashion brand with a <em>refined editorial</em> presence and seamless browsing.",
+          client: "Rosenthals",
+          services: "Web Design, Development",
+          year: "2024",
+          overview:
+            "A clean, elegant brand website built to let the collections take center stage.",
+          stats: [],
+          gallery: ["images/rosenthals.jpg"],
+          url: "#",
+        },
 
-const PROJECTS = [
-  {
-    id:"mahttab",
-    name:"Mahttab",
-    tags:["web","design","development"],
-    img:"assets/workimages/mahttab.webp",
-    intro:"A premium jewellery house, reborn online. We rebuilt the storefront around <em>slowness and light</em> — turning browsers into buyers.",
-    client:"Mahttab",
-    services:"Web Design, Development",
-    year:"2024",
-    overview:"We crafted a high-performing e-commerce store that combines elegant UI with performance-first development for a seamless shopping experience. Every detail — from product photography layout to checkout flow — was designed to convert.",
-    stats:[{num:"63K",cap:"Instagram followers"},{num:"₹6.8L",cap:"Monthly DM sales"},{num:"+41%",cap:"Conversion lift"}],
-    gallery:["assets/workimages/mahttab.jpg"],
-    url:"https://www.mahttab.com"
-  },
-  {
-    id:"out",
-    name:"OUT",
-    tags:["web","design","development"],
-    img:"assets/workimages/outwebsite.webp",
-    intro:"A taste of Kolkata, a home away from home. A food brand experience built around <em>warmth and craving</em>.",
-    client:"OUT — Once Upon A Table",
-    services:"Web Design, Development",
-    year:"2024",
-    overview:"A socially-integrated storefront with hot-seller showcases, fresh food hampers, and a seamless ordering experience built for modern food consumers.",
-    stats:[{num:"55K",cap:"Instagram followers"},{num:"1.4M",cap:"Monthly reach"}],
-    gallery:["images/out.jpg"],
-    url:"#"
-  },
-  {
-    id:"tissli",
-    name:"Tissli",
-    tags:["web","design","development"],
-    img:"assets/workimages/tissli.webp",
-    intro:"A fashion-forward label with an <em>editorial soul</em>. Built mobile-first to showcase seasonal collections.",
-    client:"Tissli",
-    services:"Web Design, Development",
-    year:"2024",
-    overview:"A lookbook-style fashion website with mobile-first design, built to showcase seasonal collections with editorial flair and seamless navigation.",
-    stats:[{num:"31K",cap:"Followers"},{num:"5.1%",cap:"Engagement rate"}],
-    gallery:["images/tissli.jpg"],
-    url:"https://www.tissli.com"
-  },
-  {
-    id:"trendyaura",
-    name:"Trendy Aura",
-    tags:["web","design","development","ecommerce"],
-    img:"assets/workimages/trendy.webp",
-    intro:"Fashion that sells <em>from the feed</em>. Instagram-synced collections driving daily direct sales.",
-    client:"Trendy Aura",
-    services:"E-Commerce, Web Design, Development",
-    year:"2024",
-    overview:"Full e-commerce with Instagram-synced collections driving daily direct sales. A socially-integrated storefront built for modern fashion consumers.",
-    stats:[{num:"72K",cap:"Followers"},{num:"₹4.2L",cap:"Monthly revenue"}],
-    gallery:["images/trendyaura.jpg"],
-    url:"https://www.trendyaura.in"
-  },
-  {
-    id:"jbmarble",
-    name:"JB Marble Decor",
-    tags:["web","design","development","seo"],
-    img:"assets/workimages/jbmarble.webp",
-    intro:"Marble collections, made discoverable. A product-rich site engineered for <em>qualified inquiries</em>.",
-    client:"JB Marble Decor",
-    services:"Web Design, Development, SEO",
-    year:"2024",
-    overview:"A product-heavy website with category filtering and lead generation, designed to showcase marble collections and drive qualified business inquiries.",
-    stats:[{num:"Top 3",cap:"Local SEO ranking"},{num:"+38%",cap:"Inquiry growth"}],
-    gallery:["images/jbmarble.jpg"],
-    url:"https://jbmarbledecor.in"
-  },
-  {
-    id:"nirankar",
-    name:"Nirankar Stones",
-    tags:["web","design","development"],
-    img:"assets/workimages/nirankar.webp",
-    intro:"Timeless stone art through <em>heritage, skill and precision</em>. A brand world carved in sandstone.",
-    client:"Nirankar Stones",
-    services:"Web Design, Development",
-    year:"2024",
-    overview:"A brand website with a custom-built product catalog and store locator, reflecting Nirankar's craftsmanship and driving both online and offline engagement.",
-    stats:[{num:"100+",cap:"Products showcased"}],
-    gallery:["images/nirankar.jpg"],
-    url:"#"
-  },
-  {
-    id:"vedana",
-    name:"Vedana Fashion",
-    tags:["web","design","development"],
-    img:"assets/workimages/vedana.webp",
-    intro:"A fashion identity that's <em>confidently its own</em>. Custom catalog meets store locator.",
-    client:"Vedana Fashion",
-    services:"Web Design, Development",
-    year:"2024",
-    overview:"A brand website with a custom-built product catalog and store locator, crafted to reflect Vedana's identity and drive both online and offline engagement.",
-    stats:[{num:"19K",cap:"Followers"},{num:"7.2%",cap:"Engagement rate"}],
-    gallery:["images/vedana.jpg"],
-    url:"#"
-  },
-   {
-    id:"ideal",
-    name:"Ideal Coffee",
-    tags:["web","design","development","seo","b2b"],
-    img:"assets/workimages/ideal.webp",
-    intro:"Industrial sourcing, minus the friction. A catalogue commercial buyers <em>trust on the first visit</em>.",
-    client:"Ideal Coffee Machine",
-    services:"Web Design, Development, SEO, B2B",
-    year:"2024",
-    overview:"A B2B sourcing platform helping commercial buyers discover and source the right coffee machines with ease, backed by technical SEO.",
-    stats:[{num:"+61%",cap:"Qualified leads QoQ"}],
-    gallery:["images/ideal.jpg"],
-    url:"#"
-  },
-  {
-    id:"putnams",
-    name:"Putnams",
-    tags:["web","design","development"],
-    img:"assets/workimages/mahttab.jpg",
-    intro:"Workwear &amp; activewear with a <em>clean, confident</em> digital presence.",
-    client:"Putnams",
-    services:"Web Design, Development",
-    year:"2024",
-    overview:"A brand website built with clarity and ease of navigation, helping customers explore the full Putnams range across categories.",
-    stats:[],
-    gallery:["images/putnams.jpg"],
-    url:"#"
-  },
-  {
-    id:"silktakuyo",
-    name:"Silk Takuyo",
-    tags:["web","design","development"],
-    img:"images/silktakuyo.jpg",
-    intro:"Affordable, exclusive, <em>made just for you</em>. Everyday wearable art, beautifully presented.",
-    client:"Silk Takuyo",
-    services:"Web Design, Development",
-    year:"2024",
-    overview:"A fashion brand website showcasing kimono robes and custom orders with an elegant, affordable-luxury feel.",
-    stats:[],
-    gallery:["images/silktakuyo.jpg"],
-    url:"#"
-  },
-  {
-    id:"jolly",
-    name:"Jolly Designs",
-    tags:["web","design","development"],
-    img:"images/jolly.jpg",
-    intro:"Where <em>screen-free play</em> turns into real learning. Interactive fabric books for little hands.",
-    client:"Jolly Designs",
-    services:"Web Design, Development",
-    year:"2024",
-    overview:"A thoughtfully designed website for quiet books that support fine motor skills, focus, and early language development — all through calm, playful moments.",
-    stats:[],
-    gallery:["images/jolly.jpg"],
-    url:"#"
-  },
-  {
-    id:"rosenthals",
-    name:"Rosenthals",
-    tags:["web","design","development"],
-    img:"images/rosenthals.jpg",
-    intro:"A fashion brand with a <em>refined editorial</em> presence and seamless browsing.",
-    client:"Rosenthals",
-    services:"Web Design, Development",
-    year:"2024",
-    overview:"A clean, elegant brand website built to let the collections take center stage.",
-    stats:[],
-    gallery:["images/rosenthals.jpg"],
-    url:"#"
-  },
- 
-  {
-    id:"mangal",
-    name:"Mangal",
-    tags:["web","design","development"],
-    img:"images/mangal.jpg",
-    intro:"A brand presence built with <em>clarity and intent</em>.",
-    client:"Mangal",
-    services:"Web Design, Development",
-    year:"2024",
-    overview:"A clean brand website designed for easy navigation and a strong first impression.",
-    stats:[],
-    gallery:["images/mangal.jpg"],
-    url:"#"
-  },
-  {
-    id:"tatwansh",
-    name:"Tatwansh Digital",
-    tags:["web","design","development"],
-    img:"images/tatwansh.jpg",
-    intro:"A digital brand with a <em>modern, tech-forward</em> identity.",
-    client:"Tatwansh Digital",
-    services:"Web Design, Development",
-    year:"2024",
-    overview:"A sleek website built to communicate a digital-first brand with confidence.",
-    stats:[],
-    gallery:["images/tatwansh.jpg"],
-    url:"#"
-  },
-  {
-    id:"sevencolors",
-    name:"7 Colors",
-    tags:["web","design","development"],
-    img:"images/sevencolors.jpg",
-    intro:"A vibrant brand, brought to life with <em>colour and clarity</em>.",
-    client:"7 Colors",
-    services:"Web Design, Development",
-    year:"2024",
-    overview:"A brand website designed to be bold, colourful, and easy to navigate.",
-    stats:[],
-    gallery:["images/sevencolors.jpg"],
-    url:"#"
-  },
-  {
-    id:"pro1",
-    name:"Pro1 Network",
-    tags:["web","design","development"],
-    img:"images/pro1.jpg",
-    intro:"A tech &amp; network brand with a <em>clean, capable</em> web presence.",
-    client:"Pro1 Network",
-    services:"Web Design, Development",
-    year:"2024",
-    overview:"A professional website built to communicate technical capability and trust.",
-    stats:[],
-    gallery:["images/pro1.jpg"],
-    url:"#"
-  },
-  {
-    id:"bhandari",
-    name:"Bhandari Plastic",
-    tags:["web","design","development"],
-    img:"images/bhandari.jpg",
-    intro:"A manufacturer's catalogue, made <em>clear and credible</em>.",
-    client:"Bhandari Plastic",
-    services:"Web Design, Development",
-    year:"2024",
-    overview:"A manufacturer website with a clean product catalogue, built for clarity and trust with B2B buyers.",
-    stats:[],
-    gallery:["images/bhandari.jpg"],
-    url:"#"
-  }
-];
+        {
+          id: "mangal",
+          name: "Mangal",
+          tags: ["web", "design", "development"],
+          img: "images/mangal.jpg",
+          intro: "A brand presence built with <em>clarity and intent</em>.",
+          client: "Mangal",
+          services: "Web Design, Development",
+          year: "2024",
+          overview:
+            "A clean brand website designed for easy navigation and a strong first impression.",
+          stats: [],
+          gallery: ["images/mangal.jpg"],
+          url: "#",
+        },
+        {
+          id: "tatwansh",
+          name: "Tatwansh Digital",
+          tags: ["web", "design", "development"],
+          img: "images/tatwansh.jpg",
+          intro:
+            "A digital brand with a <em>modern, tech-forward</em> identity.",
+          client: "Tatwansh Digital",
+          services: "Web Design, Development",
+          year: "2024",
+          overview:
+            "A sleek website built to communicate a digital-first brand with confidence.",
+          stats: [],
+          gallery: ["images/tatwansh.jpg"],
+          url: "#",
+        },
+        {
+          id: "sevencolors",
+          name: "7 Colors",
+          tags: ["web", "design", "development"],
+          img: "images/sevencolors.jpg",
+          intro:
+            "A vibrant brand, brought to life with <em>colour and clarity</em>.",
+          client: "7 Colors",
+          services: "Web Design, Development",
+          year: "2024",
+          overview:
+            "A brand website designed to be bold, colourful, and easy to navigate.",
+          stats: [],
+          gallery: ["images/sevencolors.jpg"],
+          url: "#",
+        },
+        {
+          id: "pro1",
+          name: "Pro1 Network",
+          tags: ["web", "design", "development"],
+          img: "images/pro1.jpg",
+          intro:
+            "A tech &amp; network brand with a <em>clean, capable</em> web presence.",
+          client: "Pro1 Network",
+          services: "Web Design, Development",
+          year: "2024",
+          overview:
+            "A professional website built to communicate technical capability and trust.",
+          stats: [],
+          gallery: ["images/pro1.jpg"],
+          url: "#",
+        },
+        {
+          id: "bhandari",
+          name: "Bhandari Plastic",
+          tags: ["web", "design", "development"],
+          img: "images/bhandari.jpg",
+          intro:
+            "A manufacturer's catalogue, made <em>clear and credible</em>.",
+          client: "Bhandari Plastic",
+          services: "Web Design, Development",
+          year: "2024",
+          overview:
+            "A manufacturer website with a clean product catalogue, built for clarity and trust with B2B buyers.",
+          stats: [],
+          gallery: ["images/bhandari.jpg"],
+          url: "#",
+        },
+      ];
 
-// ============ BUILD GRID ============
-const grid = document.getElementById('grid');
-document.getElementById('projCount').textContent = PROJECTS.length;
+      // ============ BUILD GRID ============
+      const grid = document.getElementById("grid");
+      document.getElementById("projCount").textContent = PROJECTS.length;
 
-PROJECTS.forEach((p, i) => {
-  const card = document.createElement('div');
-  card.className = 'card reveal';
-  card.dataset.id = p.id;
-  const tagsHTML = p.tags.map(t => t).join(' • ');
-  card.innerHTML = `
+      PROJECTS.forEach((p, i) => {
+        const card = document.createElement("div");
+        card.className = "card reveal";
+        card.dataset.id = p.id;
+        const tagsHTML = p.tags.map((t) => t).join(" • ");
+        card.innerHTML = `
     <div class="card-media"><img src="${p.img}" alt="${p.name}" onerror="this.style.opacity=0.15"/></div>
     <div class="card-tags">${tagsHTML}</div>
     <h3 class="card-title">${p.name}</h3>
@@ -365,51 +422,68 @@ PROJECTS.forEach((p, i) => {
       <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
     </div>
   `;
-  card.addEventListener('click', () => openProject(p));
-  grid.appendChild(card);
-});
+        card.addEventListener("click", () => openProject(p));
+        grid.appendChild(card);
+      });
 
-// ============ OVERLAY ============
-const overlay = document.getElementById('overlay');
-const overlayContent = document.getElementById('overlayContent');
-const overlayClose = document.getElementById('overlayClose');
+      // ============ OVERLAY ============
+      const overlay = document.getElementById("overlay");
+      const overlayContent = document.getElementById("overlayContent");
+      const overlayClose = document.getElementById("overlayClose");
 
-function openProject(p){
-  // services as a list
-  const svcList = (p.services || '').split(',').map(s => s.trim()).filter(Boolean);
-  const svcHTML = svcList.map(s => `<li>${s}</li>`).join('');
+      function openProject(p) {
+        // services as a list
+        const svcList = (p.services || "")
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean);
+        const svcHTML = svcList.map((s) => `<li>${s}</li>`).join("");
 
-  // links list (built from url if present)
-  const links = [];
-  if(p.url && p.url !== '#') links.push(`<li><a href="${p.url}" target="_blank">Visit website</a></li>`);
-  const linksHTML = links.length ? `
+        // links list (built from url if present)
+        const links = [];
+        if (p.url && p.url !== "#")
+          links.push(
+            `<li><a href="${p.url}" target="_blank">Visit website</a></li>`,
+          );
+        const linksHTML = links.length
+          ? `
     <div class="ov-col">
       <h4>Links</h4>
-      <ul>${links.join('')}</ul>
-    </div>` : '';
+      <ul>${links.join("")}</ul>
+    </div>`
+          : "";
 
-  // watch / visit button
-  const watchHTML = (p.url && p.url !== '#') ? `
-    <a href="${p.url}" target="_blank" class="ov-watch"><span class="dot"></span> Visit Website</a>` : `
+        // watch / visit button
+        const watchHTML =
+          p.url && p.url !== "#"
+            ? `
+    <a href="${p.url}" target="_blank" class="ov-watch"><span class="dot"></span> Visit Website</a>`
+            : `
     <a href="#" class="ov-watch" onclick="return false"><span class="dot"></span> View Project</a>`;
 
-  // scroll gallery — use available images, alternate sides for editorial flow
-  const shots = (p.gallery && p.gallery.length) ? p.gallery : [p.img];
-  const sideClasses = ['full','left','right','full','left'];
-  const galleryHTML = shots.map((g, i) =>
-    `<div class="ov-shot ${sideClasses[i % sideClasses.length]}"><img src="${g}" alt="${p.name}" onerror="this.parentElement.style.display='none'"/></div>`
-  ).join('');
+        // scroll gallery — use available images, alternate sides for editorial flow
+        const shots = p.gallery && p.gallery.length ? p.gallery : [p.img];
+        const sideClasses = ["full", "left", "right", "full", "left"];
+        const galleryHTML = shots
+          .map(
+            (g, i) =>
+              `<div class="ov-shot ${sideClasses[i % sideClasses.length]}"><img src="${g}" alt="${p.name}" onerror="this.parentElement.style.display='none'"/></div>`,
+          )
+          .join("");
 
-  const statsHTML = (p.stats && p.stats.length) ? `
+        const statsHTML =
+          p.stats && p.stats.length
+            ? `
     <div class="ov-stats">
-      ${p.stats.map(s => `<div class="ov-stat"><div class="num">${s.num}</div><div class="cap">${s.cap}</div></div>`).join('')}
-    </div>` : '';
+      ${p.stats.map((s) => `<div class="ov-stat"><div class="num">${s.num}</div><div class="cap">${s.cap}</div></div>`).join("")}
+    </div>`
+            : "";
 
-  overlayContent.innerHTML = `
+        overlayContent.innerHTML = `
     <div class="ov-top">
       <div class="ov-left">
         <h1 class="ov-title">${p.name}</h1>
-        <p class="ov-desc">${p.intro.replace(/<\/?em>/g,'')}</p>
+        <p class="ov-desc">${p.intro.replace(/<\/?em>/g, "")}</p>
         <p class="ov-desc">${p.overview}</p>
         <div class="ov-cols">
           <div class="ov-col">
@@ -430,68 +504,87 @@ function openProject(p){
     </div>
   `;
 
-  overlay.scrollTop = 0;
-  overlay.classList.add('open');
-  document.body.classList.add('locked');
+        overlay.scrollTop = 0;
+        overlay.classList.add("open");
+        document.body.classList.add("locked");
 
-  // reveal gallery shots on scroll within overlay
-  const shotsEls = overlayContent.querySelectorAll('.ov-shot');
-  const shotObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); shotObs.unobserve(e.target); } });
-  }, { root: overlay, threshold: 0.15 });
-  shotsEls.forEach(s => shotObs.observe(s));
-}
+        // reveal gallery shots on scroll within overlay
+        const shotsEls = overlayContent.querySelectorAll(".ov-shot");
+        const shotObs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                shotObs.unobserve(e.target);
+              }
+            });
+          },
+          { root: overlay, threshold: 0.15 },
+        );
+        shotsEls.forEach((s) => shotObs.observe(s));
+      }
 
-function closeProject(){
-  overlay.classList.remove('open');
-  document.body.classList.remove('locked');
-}
+      function closeProject() {
+        overlay.classList.remove("open");
+        document.body.classList.remove("locked");
+      }
 
-overlayClose.addEventListener('click', closeProject);
-document.addEventListener('keydown', e => { if(e.key === 'Escape') closeProject(); });
+      overlayClose.addEventListener("click", closeProject);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeProject();
+      });
 
-// ============ LUSION-STYLE SCROLL EFFECTS ============
+      // ============ LUSION-STYLE SCROLL EFFECTS ============
 
-// 1) Staggered reveal as cards enter viewport
-const allCards = Array.from(document.querySelectorAll('.card'));
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      // stagger based on column position for a nicer wave
-      const idx = allCards.indexOf(e.target);
-      const delay = (idx % 2) * 90; // left/right slight offset
-      setTimeout(() => e.target.classList.add('show'), delay);
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
-allCards.forEach(c => obs.observe(c));
+      // 1) Staggered reveal as cards enter viewport
+      const allCards = Array.from(document.querySelectorAll(".card"));
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              // stagger based on column position for a nicer wave
+              const idx = allCards.indexOf(e.target);
+              const delay = (idx % 2) * 90; // left/right slight offset
+              setTimeout(() => e.target.classList.add("show"), delay);
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.18, rootMargin: "0px 0px -8% 0px" },
+      );
+      allCards.forEach((c) => obs.observe(c));
 
-// 2) Parallax: image drifts inside its card as you scroll (depth feel)
-let ticking = false;
-function parallaxScroll(){
-  const vh = window.innerHeight;
-  allCards.forEach(card => {
-    const rect = card.getBoundingClientRect();
-    // only animate cards in/near viewport
-    if(rect.bottom < -200 || rect.top > vh + 200) return;
-    const media = card.querySelector('.card-media');
-    if(!media) return;
-    // progress: -1 (card at bottom) -> 1 (card at top)
-    const center = rect.top + rect.height/2;
-    const progress = (center - vh/2) / (vh/2);  // ~ -1..1
-    const shift = progress * -6; // percent, gentle
-    media.style.transform = `translateY(${shift}%)`;
-  });
-  ticking = false;
-}
-window.addEventListener('scroll', () => {
-  if(!ticking){
-    requestAnimationFrame(parallaxScroll);
-    ticking = true;
-  }
-}, { passive:true });
-parallaxScroll();
-</script>
-</body>
+      // 2) Parallax: image drifts inside its card as you scroll (depth feel)
+      let ticking = false;
+      function parallaxScroll() {
+        const vh = window.innerHeight;
+        allCards.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          // only animate cards in/near viewport
+          if (rect.bottom < -200 || rect.top > vh + 200) return;
+          const media = card.querySelector(".card-media");
+          if (!media) return;
+          // progress: -1 (card at bottom) -> 1 (card at top)
+          const center = rect.top + rect.height / 2;
+          const progress = (center - vh / 2) / (vh / 2); // ~ -1..1
+          const shift = progress * -6; // percent, gentle
+          media.style.transform = `translateY(${shift}%)`;
+        });
+        ticking = false;
+      }
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (!ticking) {
+            requestAnimationFrame(parallaxScroll);
+            ticking = true;
+          }
+        },
+        { passive: true },
+      );
+      parallaxScroll();
+    </script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/script.js"></script>
+  </body>
 </html>

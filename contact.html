@@ -10,9 +10,22 @@
   <!-- <link rel="stylesheet" href="./styles/style.css" /> -->
   <link rel="stylesheet" href="./styles/about.css" />
 
+  <link
+    rel="shortcut icon"
+    href="./assets/logo/fav-icon-one.png"
+    type="image/x-icon"
+  />
+
   <!-- Favicon -->
   <link rel="shortcut icon" href="./assets/logo/fav-icon-one.png" type="image/x-icon" />
   <link rel="stylesheet" href="./styles/contact.css">
+  <style>
+    @media(max-width:600px){
+      .bottombar{
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -79,7 +92,7 @@
     
           <div class="qn-sub">
             <a href="./contact.html">Contact</a>
-            <a href="#">Blogs</a>
+            <a href="./index.html#blogs">Blogs</a>
             <a href="teamSection.html">Our Team</a>
             <a href="career.html">Career</a>
           </div>
@@ -104,7 +117,8 @@
       
       <div class="left-col">
         <div class="card-box">
-          <h2>Let's talk about your project.</h2>
+          <h2>Tell us what you’re building.
+</h2>
       
           <form class="contact-form" onsubmit="handleSubmit(event)">
       
@@ -152,13 +166,13 @@
                 id="message"
                 name="message"
                 rows="6"
-                placeholder="Tell me about your project..."
+                placeholder="Your brand name and about your project..."
                 required
               ></textarea>
             </div>
       
             <button type="submit" class="submit-btn">
-              Submit
+              HIT US UP!
             </button>
       
             <a
@@ -178,7 +192,7 @@
       <!-- RIGHT -->
       <div class="right-col">
         <p class="section-eyebrow">Contact</p>
-        <h2 class="hero-heading">Let's build together.</h2>
+        <h2 class="hero-heading">Let's build</h2>
         <p class="hero-sub">Ready to take your business to the next level?</p>
         <p class="hero-desc">Contact us for expert digital marketing, website design, and development services tailored to your goals. Let's discuss your vision and create solutions that drive real growth.</p>
 
