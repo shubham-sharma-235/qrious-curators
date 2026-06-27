@@ -2598,7 +2598,20 @@ body.hov #cr {
   .premium-sticky {
     flex-direction: column;
     justify-content: center;
-    gap: 80px;
+    /* gap: 80px; */
+  }
+
+  .content-slider {
+    height: 400px;
+  }
+
+  .main-btn {
+    gap: 12px;
+    margin-top: 15px;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 60px;
+    font-size: 14px;
   }
 
   .left-side,
@@ -3308,15 +3321,16 @@ body.hov #cr {
 @media (max-width: 900px) {
   .svc-panel {
     grid-template-columns: 1fr;
-    padding: 60px 28px;
-  }
-
-  .svc-visual {
-    display: none;
+    padding: 30px 28px;
   }
 
   .svc-num {
     display: none;
+  }
+
+  .svc-panel {
+    padding: 40px 30px;
+    gap: 0px;
   }
 }
 
@@ -3503,6 +3517,10 @@ body.hov #cr {
 @media (max-width: 600px) {
   .p-card {
     width: 100%;
+  }
+  .process-inner {
+    width: 100%;
+    padding: 0 38px;
   }
 }
 
