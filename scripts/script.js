@@ -525,3 +525,9 @@ const h1 = reviews.slice(0, half).map(buildCard).join('');
 const h2 = reviews.slice(half).map(buildCard).join('');
 document.getElementById('r1').innerHTML = h1 + h1;
 document.getElementById('r2').innerHTML = h2 + h2;
+
+// ------------------ Testimonials ------------------
+
+
+
+
