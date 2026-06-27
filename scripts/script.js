@@ -38,31 +38,37 @@ document.addEventListener('keydown', (e)=>{
 // ----------------------------------------------------------------------
 
 /* ---- CURSOR ---- */
-const cur=document.getElementById('qc-cur'),ring=document.getElementById('qc-cur-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function raf(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(raf);})();
-document.querySelectorAll('a,button,.stack-card,.p-card,.t-card,.tm-card,.showcase-card,.award-cell,.stat-cell,.impact-card,.pill-item').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('cur-hover'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('cur-hover'));
+/* ---- HAMBURGER ---- */
+document.getElementById("hamburger").addEventListener("click", () => {
+  document.getElementById("mobileMenu").classList.add("open");
 });
 
-/* ---- HAMBURGER ---- */
-document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
-document.getElementById('mmClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
-document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
+document.getElementById("mmClose").addEventListener("click", () => {
+  document.getElementById("mobileMenu").classList.remove("open");
+});
+
+document.querySelectorAll(".mobile-menu a").forEach((a) => {
+  a.addEventListener("click", () => {
+    document.getElementById("mobileMenu").classList.remove("open");
+  });
+});
 
 /* ---- HORIZONTAL SCROLL ---- */
-const svcSection=document.getElementById('services');
-const svcTrack=document.getElementById('svcTrack');
-function updateSvc(){
-  const r=svcSection.getBoundingClientRect();
-  const totalH=svcSection.offsetHeight-window.innerHeight;
-  const p=Math.max(0,Math.min(1,-r.top/totalH));
-  const maxShift=svcTrack.scrollWidth-window.innerWidth;
-  svcTrack.style.transform=`translateX(-${p*maxShift}px)`;
+const svcSection = document.getElementById("services");
+const svcTrack = document.getElementById("svcTrack");
+
+function updateSvc() {
+  if (!svcSection || !svcTrack) return;
+
+  const r = svcSection.getBoundingClientRect();
+  const totalH = svcSection.offsetHeight - window.innerHeight;
+  const p = Math.max(0, Math.min(1, -r.top / totalH));
+  const maxShift = svcTrack.scrollWidth - window.innerWidth;
+
+  svcTrack.style.transform = `translateX(-${p * maxShift}px)`;
 }
-window.addEventListener('scroll',updateSvc,{passive:true});
+
+window.addEventListener("scroll", updateSvc, { passive: true });
 
 /* ---- PROCESS CARDS ---- */
 const procSection=document.getElementById('process');

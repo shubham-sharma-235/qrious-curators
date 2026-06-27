@@ -65,15 +65,22 @@ a {
 }
 
 /* ===================== CURSOR ===================== */
-#qc-cur {
+/* ===================== CURSOR ===================== */
+#qc-cur,
+#qc-cur-ring {
   position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 2147483647;
+}
+
+#qc-cur {
   width: 8px;
   height: 8px;
   background: var(--accent);
   border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999999;
-  transform: translate(-50%, -50%);
   transition:
     width 0.2s,
     height 0.2s,
@@ -83,14 +90,10 @@ a {
 }
 
 #qc-cur-ring {
-  position: fixed;
   width: 32px;
   height: 32px;
   border: 1px solid #fb923c70;
   border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%, -50%);
   transition:
     width 0.25s,
     height 0.25s,
