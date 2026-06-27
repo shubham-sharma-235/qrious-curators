@@ -156,9 +156,9 @@ body.locked{overflow:hidden;}
 
 .overlay-close{
   position:fixed;
-  top:30px;right:40px;
-  z-index:1010;
-  width:54px;height:54px;
+  top:70px;right:40px;
+  z-index:999;
+  width:46px;height:46px;
   border-radius:50%;
   border:1px solid rgba(255,255,255,0.25);
   background:rgba(0,0,0,0.5);
