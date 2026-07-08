@@ -268,6 +268,7 @@
     .contact-hero-image {
       position: relative;
       width: 100%;
+      
       height: 520px;
       border-radius: 30px;
       overflow: hidden;
@@ -399,13 +400,13 @@
       z-index: 1;
       width: min(1665px, calc(100% - 28px));
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 48.5% 51.5%;
-      min-height: 100vh;
+      display:grid;
+      grid-template-columns:48.5% 51.5%;
+      align-items:stretch;
     }
 
     .contact-left {
-      padding: 34px 74px 70px 94px;
+      padding: 34px 74px 10px 94px;
     }
 
     .small-label {
@@ -432,13 +433,13 @@
       line-height: 1.82;
       font-weight: 500;
       color: #081120;
-      margin-bottom: 74px;
+      margin-bottom: 19px;
     }
 
     .contact-info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      column-gap: 70px;
+      column-gap: 30px;
       row-gap: 68px;
       max-width: 650px;
     }
@@ -448,8 +449,9 @@
       line-height: 1;
       font-weight: 700;
       color: #03060a;
-      margin-bottom: 28px;
+      margin-bottom: 8px;
       letter-spacing: -0.02em;
+      
     }
 
     .info-block p,
@@ -460,6 +462,7 @@
       font-weight: 500;
       color: #07111f;
       text-decoration: none;
+      font-family: "lato", sans-serif;
     }
 
     .social-icons {
@@ -481,19 +484,24 @@
     }
 
     .contact-right {
-      padding: 43px 88px 70px 42px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-    }
+    padding:34px 55px 20px 25px;
+    display:flex;
+    align-items: flex-start;
+    justify-content: center;
+}
 
-    .form-card {
-      width: 100%;
-      max-width: 812px;
-      background: #000000;
-      border-radius: 30px;
-      padding: 76px 77px 42px 77px;
-    }
+.form-card{
+    width:100%;
+    max-width:600px;
+    background:#000;
+    border-radius:30px;
+    padding:50px 55px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    height:97%;
+}
 
     .form-card h2 {
       font-size: 36px;
@@ -578,6 +586,201 @@
     .submit-btn:hover {
       background: #f5493f;
       transform: translateY(-2px);
+    }
+ .audio-toggle{
+    position:absolute;
+    right:35px;
+    bottom:30px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    color:#fff;
+    font-size:18px;
+    transition:.3s;
+}
+
+.audio-toggle:hover{
+    transform:scale(1.08);
+    background:rgba(255,255,255,.2);
+}
+
+    /* ===============================
+       MAP SECTION
+    ================================ */
+
+    .map-section {
+      width: 100%;
+      background: #ffffff;
+      padding: 20px 48px 110px;
+    }
+
+    .map-eyebrow {
+      width: min(1665px, calc(100% - 28px));
+      margin: 0 auto 22px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .map-eyebrow h2 {
+      font-size: clamp(26px, 2.2vw, 34px);
+      font-weight: 500;
+      letter-spacing: -0.045em;
+      color: #111216;
+    }
+
+    .map-eyebrow p {
+      font-size: 15px;
+      font-weight: 500;
+      color: #6b7078;
+      max-width: 420px;
+      text-align: right;
+    }
+
+    .map-shell {
+      position: relative;
+      width: min(1665px, calc(100% - 28px));
+      margin: 0 auto;
+      height: 460px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: #0a0a0a;
+      border: 1px solid #1c1c1c;
+    }
+
+    .map-shell::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+      background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 82%, rgba(0,0,0,0.35) 100%);
+      z-index: 2;
+    }
+
+    .map-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: grayscale(1) invert(92%) contrast(83%);
+    }
+
+    .map-pin-card {
+      position: absolute;
+      left: 34px;
+      bottom: 34px;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 26px 18px 20px;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      max-width: 82%;
+    }
+
+    .map-pin-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f5493f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 16px;
+    }
+
+    .map-pin-text h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+      margin-bottom: 3px;
+    }
+
+    .map-pin-text p {
+      font-size: 13px;
+      font-weight: 500;
+      color: #b7bbc2;
+      line-height: 1.5;
+    }
+
+    .map-directions-btn {
+      position: absolute;
+      right: 34px;
+      bottom: 34px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 26px;
+      height: 52px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #0b0d12;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      transition: 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .map-directions-btn:hover {
+      background: #f5493f;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .map-section {
+        padding: 10px 22px 70px;
+      }
+
+      .map-eyebrow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .map-eyebrow p {
+        text-align: left;
+      }
+
+      .map-shell {
+        height: 340px;
+        border-radius: 22px;
+      }
+
+      .map-pin-card {
+        left: 18px;
+        bottom: 18px;
+        padding: 14px 18px 14px 14px;
+        max-width: calc(100% - 36px);
+      }
+
+      .map-directions-btn {
+        right: 18px;
+        bottom: 84px;
+        height: 44px;
+        padding: 0 20px;
+        font-size: 13px;
+      }
     }
 
     /* ===============================
@@ -674,7 +877,7 @@
       .main-heading {
         font-size: 42px;
         line-height: 1.09;
-        margin-bottom: 26px;
+        margin-bottom: 6px;
       }
 
       .intro-text {
@@ -784,10 +987,10 @@
         </div>
 
         <div class="qn-sub">
-          <a href="contactnew.html">Contact</a>
-          <a href="#">Blogs</a>
+          <a href="contactqc.html">Contact</a>
+          <a href="blogqc.html">Blogs</a>
           <a href="teamSection.html">Our Team</a>
-          <a href="career.html">Career</a>
+          <a href="careers.html">Career</a>
         </div>
 
       </div>
@@ -806,8 +1009,13 @@
           </span>
         </h1>
       </div>
+  <div class="audio-toggle" id="audioToggle">
+    <i class="fa-solid fa-volume-high"></i>
+</div>
 
-    </div>
+<audio id="bgMusic" loop>
+    <source src="assets/audio/call-hold.mp3" type="audio/mpeg">
+</audio>
   </section>
 
   <!-- CONTACT SECTION -->
@@ -819,29 +1027,30 @@
 
       <!-- LEFT CONTENT -->
       <section class="contact-left">
-        <p class="small-label">/ get in touch /</p>
+        
 
         <h1 class="main-heading">
-          We are always ready to help you and answer your questions
+         Ready to take your brand from just existing to actually unforgettable?
         </h1>
 
         <p class="intro-text">
-          Tell us what you are building, where your brand currently stands, and what you want to achieve.
-          We will help you find the right digital direction.
+          Got a brand to launch, a website to rebuild, a campaign to crack, or content that needs more than just “posting”?
         </p>
+
+        <p class="small-label">You’re in the right room.</p>
 
         <div class="contact-info-grid">
 
           <div class="info-block">
-            <h3>Call Center</h3>
+            <h3>Contact Us</h3>
             <p>+91 98765 43210</p>
             <p>+91 90000 00000</p>
           </div>
 
           <div class="info-block">
             <h3>Our Location</h3>
-            <p>138 Vidhyut Nagar, Chitrakoot Marg,</p>
-            <p>Vaishali Nagar, Jaipur, Rajasthan 302021</p>
+            <p>138 Vidhyut Nagar, Chitrakoot Marg,
+            Vaishali Nagar, Jaipur, Rajasthan 302021</p>
           </div>
 
           <div class="info-block">
@@ -857,9 +1066,9 @@
                 <i class="fa-brands fa-facebook-f"></i>
               </a>
 
-              <a href="#" aria-label="X">
-                <i class="fa-brands fa-x-twitter"></i>
-              </a>
+              <a href="#" aria-label="Instagram">
+  <i class="fa-brands fa-instagram"></i>
+</a>
 
               <a href="#" aria-label="LinkedIn">
                 <i class="fa-brands fa-linkedin-in"></i>
@@ -910,6 +1119,39 @@
 
     </div>
   </main>
+
+  <!-- MAP SECTION -->
+  <section class="map-section">
+    <div class="map-eyebrow">
+      <h2>Find us on the map</h2>
+      <!-- <p>Vaishali Nagar, Jaipur — drop by or drop a pin, either works.</p> -->
+    </div>
+
+    <div class="map-shell">
+      <iframe
+        class="map-frame"
+        src="https://www.google.com/maps?q=Vaishali%20Nagar,%20Jaipur,%20Rajasthan%20302021&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Studio location map">
+      </iframe>
+
+      <div class="map-pin-card">
+        <div class="map-pin-icon">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
+        <div class="map-pin-text">
+          <h4>Qrious Curators</h4>
+          <p>138 Vidhyut Nagar, Chitrakoot Marg, Vaishali Nagar, Jaipur 302021</p>
+        </div>
+      </div>
+
+      <a class="map-directions-btn" href="https://www.google.com/maps?q=Vaishali%20Nagar,%20Jaipur,%20Rajasthan%20302021" target="_blank" rel="noopener">
+        Get Directions
+        <span>→</span>
+      </a>
+    </div>
+  </section>
 
   <script>
     const qnToggle = document.getElementById("qnToggle");
@@ -993,6 +1235,25 @@
         }, 1500);
       }, 900);
     }
+
+    const music = document.getElementById("bgMusic");
+    const toggle = document.getElementById("audioToggle");
+    const icon = toggle.querySelector("i");
+
+    music.volume = 0.15;
+
+    toggle.addEventListener("click", async () => {
+
+        if (music.paused) {
+            await music.play();
+            icon.className = "fa-solid fa-volume-high";
+        } else {
+            music.pause();
+            icon.className = "fa-solid fa-volume-xmark";
+        }
+
+        console.log("Paused:", music.paused);
+    });
   </script>
 
 </body>

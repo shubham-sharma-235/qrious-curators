@@ -1,590 +1,989 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Our Work</title>
-    <link
-      rel="shortcut icon"
-      href="./assets/logo/fav-icon-one.png"
-      type="image/x-icon"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/work.css" />
-  </head>
-  <body>
-    <!-- CURSOR -->
-    <div id="qc-cur"></div>
-    <div id="qc-cur-ring"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Studies</title>
+  <meta name="description" content="A responsive case-studies portfolio page with animated project rows." />
 
-    <!-- GRAIN -->
-    <div id="grain" aria-hidden="true"></div>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap');
 
-    <header class="qc-header" style="display: none">
-      <nav class="qc-nav">
-        <a href="#" class="nav-logo">
-          <img src="./assets/logo/logo-one.png" alt="" />
-        </a>
-        <button class="nav-hamburger" id="hamburger" aria-label="Menu"></button>
-      </nav>
-    </header>
+    :root {
+      --bg: #000000;
+      --bg-2: #050505;
+      --green: #0a0a0a;
+      --green-soft: #151515;
+      --gold: #ffffff;
+      --gold-2: #ffffff;
+      --cream: #ffffff;
+      --muted: rgba(255, 255, 255, 0.72);
+      --muted-2: rgba(255, 255, 255, 0.46);
+      --line: rgba(255, 255, 255, 0.14);
+      --shadow: 0 30px 90px rgba(0,0,0,0.45);
+      --radius-xl: 38px;
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --max: 1340px;
+    }
 
-    <!-- NAV -->
-    <div class="qn-wrap">
-      <div class="qn-bar">
-        <a href="./index.html" class="nav-logo">
-          <img src="./assets/logo/logo-one.png" alt="" />
-        </a>
-        <!-- <ul class="nav-links"></ul> -->
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        <button class="qn-toggle" id="qnToggle">
-          <div class="qn-icon"><span></span><span></span><span></span></div>
-        </button>
-      </div>
-    </div>
+    html {
+      scroll-behavior: smooth;
+    }
 
-    <!-- ===== OVERLAY ===== -->
-    <div class="qn-overlay" id="qnOverlay">
-      <div class="qn-inner">
-        <div class="qn-center">
-          <div class="qn-main">
-            <a href="aboutsection-qc.html">About</a>
-            <a href="work.html">Work</a>
-            <a href="services.html">Services</a>
+    body {
+      font-family: 'Raleway', Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 99;
+      opacity: .13;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 260 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='.34'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+
+    .page-shell {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* Header hidden */
+    .site-header {
+      display: none !important;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      padding: 54px 0 90px;
+      position: relative;
+      display: grid;
+      align-items: center;
+      background: #000;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
+      gap: 70px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .kicker {
+      color: #fff;
+      font-size: 15px;
+      letter-spacing: .2px;
+      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 400;
+      font-family: 'Lato', Arial, sans-serif;
+    }
+
+    .kicker::before {
+      content: '';
+      width: 44px;
+      height: 1px;
+      background: #fff;
+      opacity: .8;
+    }
+
+    .hero-title {
+      font-family: 'Raleway', Arial, sans-serif;
+      font-size: clamp(44px, 8.8vw, 148px);
+      line-height: .86;
+      letter-spacing: -5px;
+      max-width: 770px;
+      font-weight: 500;
+      word-break: break-word;
+      color: #fff;
+    }
+
+    .hero-title span {
+      display: block;
+      color: #fff;
+    }
+
+    .hero-copy {
+      margin-top: 28px;
+      max-width: 520px;
+      color: rgba(255,255,255,.72);
+      font-size: clamp(16px, 1.3vw, 20px);
+      line-height: 1.65;
+      font-weight: 300;
+      font-family: 'Lato', Arial, sans-serif;
+    }
+
+    .hero-collage {
+      position: relative;
+      min-height: 660px;
+      isolation: isolate;
+    }
+
+    .collage-main {
+      position: absolute;
+      right: 0;
+      top: 62px;
+      width: min(590px, 100%);
+      height: 595px;
+      border-radius: 46px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.12);
+      background: #000;
+    }
+
+    .collage-main img,
+    .floating-shot img,
+    .case-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .collage-main::after,
+    .floating-shot::after,
+    .case-card-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.32));
+      pointer-events: none;
+    }
+
+    .floating-shot {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 8px solid #000;
+      box-shadow: 0 24px 64px rgba(0,0,0,.42);
+      background: #102017;
+      z-index: 3;
+    }
+
+    .shot-a {
+      width: 250px;
+      height: 310px;
+      left: 0;
+      top: 0;
+    }
+
+    .shot-b {
+      width: 290px;
+      height: 220px;
+      left: 36px;
+      bottom: 18px;
+    }
+
+    .shot-c {
+      width: 240px;
+      height: 165px;
+      right: 32px;
+      bottom: -10px;
+    }
+
+    .orbit-line {
+      position: absolute;
+      inset: 42px 52px 80px 80px;
+      border: 1px solid rgba(255,255,255,.19);
+      border-radius: 50%;
+      transform: rotate(-12deg);
+      z-index: -1;
+    }
+
+    .scroll-note {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,.46);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-family: 'Lato', Arial, sans-serif;
+    }
+
+    .mouse-dot {
+      width: 9px;
+      height: 9px;
+      background: #fff;
+      border-radius: 50%;
+      animation: bounceDot 1.4s infinite ease-in-out;
+    }
+
+    @keyframes bounceDot {
+      0%,100% {
+        transform: translateY(0);
+        opacity: .5;
+      }
+
+      50% {
+        transform: translateY(7px);
+        opacity: 1;
+      }
+    }
+
+    /* Case studies */
+    .case-section {
+      padding: 80px 0 80px;
+      background: #000;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 34px;
+    }
+
+    .section-title {
+      font-family: 'Raleway', Arial, sans-serif;
+      font-size: clamp(30px, 5vw, 84px);
+      line-height: .98;
+      letter-spacing: -1px;
+      max-width: 760px;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    .section-text {
+      max-width: 350px;
+      color: rgba(255,255,255,.72);
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: right;
+      font-family: 'Lato', Arial, sans-serif;
+    }
+
+    /* Motion rows */
+    .motion-row-section {
+      position: relative;
+      height: 180vh;
+      margin-bottom: 28px;
+    }
+
+    .motion-row-stage {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+
+    .motion-row {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      width: 100%;
+      align-items: start;
+    }
+
+    .motion-card {
+      position: relative;
+      min-height: 520px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.045);
+      box-shadow: 0 18px 70px rgba(0,0,0,.22);
+      will-change: transform, opacity;
+      isolation: isolate;
+    }
+
+    .motion-card[data-slot="center"] {
+      margin-top: 70px;
+    }
+
+    .motion-card[data-slot="right"] {
+      margin-top: 28px;
+    }
+
+    .motion-card:hover {
+      border-color: rgba(255,255,255,.45);
+      box-shadow: 0 28px 88px rgba(0,0,0,.42);
+    }
+
+    .case-card-media {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.18), transparent 35%), linear-gradient(135deg, #111, #000);
+    }
+
+    .case-card-body {
+      position: absolute;
+      inset: auto 0 0;
+      z-index: 3;
+      padding: 30px;
+      min-height: 48%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.18) 8%, rgba(0,0,0,.74) 48%, rgba(0,0,0,.93));
+    }
+
+    .case-card-body h3 {
+      font-family: 'Raleway', Arial, sans-serif;
+      font-size: clamp(24px, 2.2vw, 30px);
+      line-height: .92;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      max-width: 420px;
+      color: #fff;
+    }
+
+    .case-link {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: max-content;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+      transition: gap .25s ease;
+      font-family: 'Lato', Arial, sans-serif;
+    }
+
+    .motion-card:hover .case-link {
+      gap: 16px;
+    }
+
+    /* CTA */
+    .cta-band {
+      padding: 120px 0;
+      background: #000;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-title {
+      font-family: 'Raleway', Arial, sans-serif;
+      font-size: clamp(32px, 6vw, 100px);
+      line-height: .95;
+      letter-spacing: -1px;
+      max-width: 780px;
+      color: #fff;
+    }
+
+    .cta-text {
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.72);
+      margin-bottom: 28px;
+      font-family: 'Lato', Arial, sans-serif;
+    }
+
+    .dark-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      border-radius: 999px;
+      padding: 16px 24px;
+      background: #fff;
+      color: #000;
+      font-weight: 900;
+      transition: transform .25s ease, box-shadow .25s ease;
+      font-family: 'Lato', Arial, sans-serif;
+    }
+
+    .dark-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(255,255,255,.12);
+    }
+
+    .toast {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 110;
+      background: #000;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.32);
+      border-radius: 18px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity .25s ease, transform .25s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1120px) {
+      .hero-grid,
+      .cta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-collage {
+        min-height: 560px;
+      }
+
+      .collage-main {
+        height: 490px;
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+
+      .section-text {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        min-height: auto;
+        padding-bottom: 64px;
+      }
+
+      .cta-grid {
+        gap: 34px;
+      }
+
+      .motion-row-section {
+        height: auto;
+        margin-bottom: 28px;
+      }
+
+      .motion-row-stage {
+        position: relative;
+        top: auto;
+        height: auto;
+      }
+
+      .motion-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .motion-card,
+      .motion-card[data-slot="center"],
+      .motion-card[data-slot="right"] {
+        min-height: 420px;
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page-shell {
+        width: min(100% - 28px, var(--max));
+      }
+
+      .hero {
+        padding: 124px 0 64px;
+      }
+
+      .hero-title {
+        letter-spacing: -2px;
+      }
+
+      .hero-grid {
+        gap: 42px;
+      }
+
+      .hero-collage {
+        min-height: 460px;
+      }
+
+      .collage-main {
+        width: 100%;
+        height: 360px;
+        top: 66px;
+        border-radius: 30px;
+      }
+
+      .shot-a {
+        width: 140px;
+        height: 185px;
+        top: 0;
+        border-width: 4px;
+        border-radius: 20px;
+      }
+
+      .shot-b {
+        width: 190px;
+        height: 135px;
+        left: 10px;
+        bottom: 14px;
+        border-width: 4px;
+      }
+
+      .shot-c {
+        width: 155px;
+        height: 108px;
+        right: 0;
+        bottom: -8px;
+        border-width: 4px;
+      }
+
+      .scroll-note {
+        position: relative;
+        bottom: auto;
+        margin-top: 24px;
+      }
+
+      .cta-band {
+        padding: 64px 0;
+      }
+
+      .cta-grid {
+        text-align: left;
+      }
+
+      .dark-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 108px 0 48px;
+      }
+
+      .hero-title {
+        font-size: clamp(38px, 13vw, 60px);
+        letter-spacing: -1.2px;
+        line-height: .92;
+      }
+
+      .hero-copy {
+        font-size: 15px;
+      }
+
+      .hero-collage {
+        min-height: 340px;
+      }
+
+      .collage-main {
+        height: 250px;
+        top: 50px;
+        border-radius: 22px;
+      }
+
+      .shot-a {
+        width: 100px;
+        height: 130px;
+        border-width: 3px;
+        border-radius: 14px;
+      }
+
+      .shot-b {
+        width: 135px;
+        height: 96px;
+        left: 4px;
+        bottom: 8px;
+        border-width: 3px;
+      }
+
+      .shot-c {
+        width: 108px;
+        height: 78px;
+        right: -4px;
+        bottom: -6px;
+        border-width: 3px;
+      }
+
+      .section-title {
+        font-size: clamp(26px, 8vw, 40px);
+        letter-spacing: -.5px;
+      }
+
+      .section-text {
+        font-size: 14px;
+      }
+
+      .motion-card,
+      .motion-card[data-slot="center"],
+      .motion-card[data-slot="right"] {
+        min-height: 340px;
+      }
+
+      .case-card-body {
+        padding: 18px;
+      }
+
+      .case-card-body h3 {
+        font-size: 20px;
+      }
+
+      .cta-title {
+        font-size: clamp(26px, 9vw, 40px);
+      }
+
+      .cta-text {
+        font-size: 15px;
+      }
+
+      .toast {
+        left: 16px;
+        right: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain"></div>
+
+  <main id="top">
+    <section class="hero page-shell" aria-labelledby="heroTitle">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">Our latest</div>
+          <h1 class="hero-title" id="heroTitle">Case <span>Studies</span></h1>
+          <p class="hero-copy">
+            A premium portfolio page for selected digital projects, crafted with strong visuals and bold project cards.
+          </p>
+        </div>
+
+        <div class="hero-collage" aria-hidden="true">
+          <div class="orbit-line"></div>
+
+          <div class="collage-main">
+            <img src="./assets/workimages/Banner.png" alt="Case studies collage" loading="eager">
           </div>
 
-          <div class="qn-sub">
-            <a href="./contact.html">Contact</a>
-            <a href="#">Blogs</a>
-            <a href="teamSection.html">Our Team</a>
-            <a href="career.html">Career</a>
+          <div class="floating-shot shot-a">
+            <img src="https://midable.it/wp-content/uploads/2023/06/Copertina-slider-progetto-mate-cashmere.png" alt="Fashion project preview" loading="eager">
+          </div>
+
+          <div class="floating-shot shot-b">
+            <img src="https://midable.it/wp-content/uploads/2023/06/Copertina-slider-progetto-fun-in-tuscany.png" alt="Travel project preview" loading="eager">
+          </div>
+
+          <div class="floating-shot shot-c">
+            <img src="https://midable.it/wp-content/uploads/2023/06/Copertina-slider-progetto-hunnypets.png" alt="Pet project preview" loading="eager">
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobileMenu" style="display: none">
-      <span class="mm-close" id="mmClose">✕</span>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#showcase">Work</a>
-      <a href="#team">Team</a>
-      <a href="./contact.html">Contact</a>
-    </div>
+      <a class="scroll-note" href="#case-studies">
+        <span class="mouse-dot"></span>
+        Explore projects
+      </a>
+    </section>
 
-    <!-- OUR WORK TITLE -->
-    <div class="work-head">
-      <h1>Our Work</h1>
-      <span class="work-sub"
-        >Selected projects — <span id="projCount">17</span></span
-      >
-    </div>
+    <section class="case-section" id="case-studies">
+      <div class="page-shell">
+        <div class="section-head">
+          <h2 class="section-title">
+            A curated selection of work built for clarity, impact and growth.
+          </h2>
 
-    <!-- GRID -->
-    <div class="grid" id="grid">
-      <!-- cards injected by JS -->
-    </div>
+          <p class="section-text">
+            Explore selected work through bold visual cards and a smooth responsive layout.
+          </p>
+        </div>
 
-    <!-- PAGINATION -->
-    <div class="pagination">
-      <button class="page-btn active">1</button>
-      <button class="page-btn">2</button>
-      <button class="page-btn">3</button>
-    </div>
+        <div id="motionRows"></div>
+      </div>
+    </section>
 
-    <!-- FULL-SCREEN OVERLAY -->
-    <div class="overlay" id="overlay">
-      <button class="overlay-close" id="overlayClose" aria-label="Close">
-        <svg viewBox="0 0 24 24">
-          <line x1="6" y1="6" x2="18" y2="18" />
-          <line x1="18" y1="6" x2="6" y2="18" />
-        </svg>
-      </button>
-      <div id="overlayContent"></div>
-    </div>
+    <section class="cta-band" id="contact">
+      <div class="page-shell cta-grid">
+        <h2 class="cta-title">Need a digital team for your next project?</h2>
 
-    <script>
-      // ============ PROJECT DATA ============
+        <div>
+          <p class="cta-text">
+            Use this block for conversion: ask visitors to start a conversation, request a quote, book a discovery call or share their project brief.
+          </p>
 
-      const PROJECTS = [
-        {
-          id: "mahttab",
-          name: "Mahttab",
-          tags: ["web", "design", "development"],
-          img: "assets/workimages/mahttab.webp",
-          intro:
-            "A premium jewellery house, reborn online. We rebuilt the storefront around <em>slowness and light</em> — turning browsers into buyers.",
-          client: "Mahttab",
-          services: "Web Design, Development",
-          year: "2025",
-          overview:
-            "We crafted a high-performing e-commerce store that combines elegant UI with performance-first development for a seamless shopping experience. Every detail — from product photography layout to checkout flow — was designed to convert.",
-          stats: [
-            { num: "63K", cap: "Instagram followers" },
-            { num: "₹6.8L", cap: "Monthly DM sales" },
-            { num: "+41%", cap: "Conversion lift" },
-          ],
-          gallery: ["assets/workimages/mahttab.jpg"],
-          url: "https://www.mahttab.com",
-        },
-        {
-          id: "out",
-          name: "OUT",
-          tags: ["web", "design", "development"],
-          img: "assets/workimages/outwebsite.webp",
-          intro:
-            "A taste of Kolkata, a home away from home. A food brand experience built around <em>warmth and craving</em>.",
-          client: "OUT — Once Upon A Table",
-          services: "Web Design, Development",
-          year: "2025",
-          overview:
-            "A socially-integrated storefront with hot-seller showcases, fresh food hampers, and a seamless ordering experience built for modern food consumers.",
-          stats: [
-            { num: "55K", cap: "Instagram followers" },
-            { num: "1.4M", cap: "Monthly reach" },
-          ],
-          gallery: ["images/out.jpg"],
-          url: "https://onceuponatable.in/",
-        },
-        {
-          id: "tissli",
-          name: "Tissli",
-          tags: ["web", "design", "development"],
-          img: "assets/workimages/tissli.webp",
-          intro:
-            "A fashion-forward label with an <em>editorial soul</em>. Built mobile-first to showcase seasonal collections.",
-          client: "Tissli",
-          services: "Web Design, Development",
-          year: "2025",
-          overview:
-            "A lookbook-style fashion website with mobile-first design, built to showcase seasonal collections with editorial flair and seamless navigation.",
-          stats: [
-            { num: "31K", cap: "Followers" },
-            { num: "5.1%", cap: "Engagement rate" },
-          ],
-          gallery: ["images/tissli.jpg"],
-          url: "https://www.tissli.com",
-        },
-        {
-          id: "trendyaura",
-          name: "Trendy Aura",
-          tags: ["web", "design", "development", "ecommerce"],
-          img: "assets/workimages/trendy.webp",
-          intro:
-            "Fashion that sells <em>from the feed</em>. Instagram-synced collections driving daily direct sales.",
-          client: "Trendy Aura",
-          services: "E-Commerce, Web Design, Development",
-          year: "2025",
-          overview:
-            "Full e-commerce with Instagram-synced collections driving daily direct sales. A socially-integrated storefront built for modern fashion consumers.",
-          stats: [
-            { num: "72K", cap: "Followers" },
-            { num: "₹4.2L", cap: "Monthly revenue" },
-          ],
-          gallery: ["images/trendyaura.jpg"],
-          url: "https://www.trendyaura.in",
-        },
-        {
-          id: "jbmarble",
-          name: "JB Marble Decor",
-          tags: ["web", "design", "development", "seo"],
-          img: "assets/workimages/jbmarble.webp",
-          intro:
-            "Marble collections, made discoverable. A product-rich site engineered for <em>qualified inquiries</em>.",
-          client: "JB Marble Decor",
-          services: "Web Design, Development, SEO",
-          year: "2025",
-          overview:
-            "A product-heavy website with category filtering and lead generation, designed to showcase marble collections and drive qualified business inquiries.",
-          stats: [
-            { num: "Top 3", cap: "Local SEO ranking" },
-            { num: "+38%", cap: "Inquiry growth" },
-          ],
-          gallery: ["images/jbmarble.jpg"],
-          url: "https://jbmarbledecor.in",
-        },
-        {
-          id: "nirankar",
-          name: "Nirankar Stones",
-          tags: ["web", "design", "development"],
-          img: "assets/workimages/nirankar.webp",
-          intro:
-            "Timeless stone art through <em>heritage, skill and precision</em>. A brand world carved in sandstone.",
-          client: "Nirankar Stones",
-          services: "Web Design, Development",
-          year: "2026",
-          overview:
-            "A brand website with a custom-built product catalog and store locator, reflecting Nirankar's craftsmanship and driving both online and offline engagement.",
-          stats: [{ num: "100+", cap: "Products showcased" }],
-          gallery: ["images/nirankar.jpg"],
-          url: "https://nirankar-production.netlify.app/",
-        },
-        {
-          id: "vedana",
-          name: "Vedana Fashion",
-          tags: ["web", "design", "development"],
-          img: "assets/workimages/vedana.webp",
-          intro:
-            "A fashion identity that's <em>confidently its own</em>. Custom catalog meets store locator.",
-          client: "Vedana Fashion",
-          services: "Web Design, Development",
-          year: "2024",
-          overview:
-            "A brand website with a custom-built product catalog and store locator, crafted to reflect Vedana's identity and drive both online and offline engagement.",
-          stats: [
-            { num: "19K", cap: "Followers" },
-            { num: "7.2%", cap: "Engagement rate" },
-          ],
-          gallery: ["images/vedana.jpg"],
-          url: "https://vedanafashion.com/",
-        },
-        {
-          id: "ideal",
-          name: "Ideal Coffee",
-          tags: ["web", "design", "development", "seo", "b2b"],
-          img: "assets/workimages/ideal.webp",
-          intro:
-            "Industrial sourcing, minus the friction. A catalogue commercial buyers <em>trust on the first visit</em>.",
-          client: "Ideal Coffee Machine",
-          services: "Web Design, Development, SEO, B2B",
-          year: "2025",
-          overview:
-            "A B2B sourcing platform helping commercial buyers discover and source the right coffee machines with ease, backed by technical SEO.",
-          stats: [{ num: "+61%", cap: "Qualified leads QoQ" }],
-          gallery: ["images/ideal.jpg"],
-          url: "https://idealcoffeemachines.com/",
-        },
-        {
-          id: "putnams",
-          name: "Putnams",
-          tags: ["web", "design", "development"],
-          img: "assets/workimages/mahttab.jpg",
-          intro:
-            "Workwear &amp; activewear with a <em>clean, confident</em> digital presence.",
-          client: "Putnams",
-          services: "Web Design, Development",
-          year: "2024",
-          overview:
-            "A brand website built with clarity and ease of navigation, helping customers explore the full Putnams range across categories.",
-          stats: [],
-          gallery: ["images/putnams.jpg"],
-          url: "#",
-        },
-        {
-          id: "silktakuyo",
-          name: "Silk Takuyo",
-          tags: ["web", "design", "development"],
-          img: "images/silktakuyo.jpg",
-          intro:
-            "Affordable, exclusive, <em>made just for you</em>. Everyday wearable art, beautifully presented.",
-          client: "Silk Takuyo",
-          services: "Web Design, Development",
-          year: "2024",
-          overview:
-            "A fashion brand website showcasing kimono robes and custom orders with an elegant, affordable-luxury feel.",
-          stats: [],
-          gallery: ["images/silktakuyo.jpg"],
-          url: "#",
-        },
-        {
-          id: "jolly",
-          name: "Jolly Designs",
-          tags: ["web", "design", "development"],
-          img: "images/jolly.jpg",
-          intro:
-            "Where <em>screen-free play</em> turns into real learning. Interactive fabric books for little hands.",
-          client: "Jolly Designs",
-          services: "Web Design, Development",
-          year: "2024",
-          overview:
-            "A thoughtfully designed website for quiet books that support fine motor skills, focus, and early language development — all through calm, playful moments.",
-          stats: [],
-          gallery: ["images/jolly.jpg"],
-          url: "#",
-        },
-        {
-          id: "rosenthals",
-          name: "Rosenthals",
-          tags: ["web", "design", "development"],
-          img: "images/rosenthals.jpg",
-          intro:
-            "A fashion brand with a <em>refined editorial</em> presence and seamless browsing.",
-          client: "Rosenthals",
-          services: "Web Design, Development",
-          year: "2024",
-          overview:
-            "A clean, elegant brand website built to let the collections take center stage.",
-          stats: [],
-          gallery: ["images/rosenthals.jpg"],
-          url: "#",
-        },
+          <a class="dark-btn" href="mailto:hello@example.com">
+            Start a project <span>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        {
-          id: "mangal",
-          name: "Mangal",
-          tags: ["web", "design", "development"],
-          img: "images/mangal.jpg",
-          intro: "A brand presence built with <em>clarity and intent</em>.",
-          client: "Mangal",
-          services: "Web Design, Development",
-          year: "2024",
-          overview:
-            "A clean brand website designed for easy navigation and a strong first impression.",
-          stats: [],
-          gallery: ["images/mangal.jpg"],
-          url: "#",
-        },
-        {
-          id: "tatwansh",
-          name: "Tatwansh Digital",
-          tags: ["web", "design", "development"],
-          img: "images/tatwansh.jpg",
-          intro:
-            "A digital brand with a <em>modern, tech-forward</em> identity.",
-          client: "Tatwansh Digital",
-          services: "Web Design, Development",
-          year: "2024",
-          overview:
-            "A sleek website built to communicate a digital-first brand with confidence.",
-          stats: [],
-          gallery: ["images/tatwansh.jpg"],
-          url: "#",
-        },
-        {
-          id: "sevencolors",
-          name: "7 Colors",
-          tags: ["web", "design", "development"],
-          img: "images/sevencolors.jpg",
-          intro:
-            "A vibrant brand, brought to life with <em>colour and clarity</em>.",
-          client: "7 Colors",
-          services: "Web Design, Development",
-          year: "2024",
-          overview:
-            "A brand website designed to be bold, colourful, and easy to navigate.",
-          stats: [],
-          gallery: ["images/sevencolors.jpg"],
-          url: "#",
-        },
-        {
-          id: "pro1",
-          name: "Pro1 Network",
-          tags: ["web", "design", "development"],
-          img: "images/pro1.jpg",
-          intro:
-            "A tech &amp; network brand with a <em>clean, capable</em> web presence.",
-          client: "Pro1 Network",
-          services: "Web Design, Development",
-          year: "2024",
-          overview:
-            "A professional website built to communicate technical capability and trust.",
-          stats: [],
-          gallery: ["images/pro1.jpg"],
-          url: "#",
-        },
-        {
-          id: "bhandari",
-          name: "Bhandari Plastic",
-          tags: ["web", "design", "development"],
-          img: "images/bhandari.jpg",
-          intro:
-            "A manufacturer's catalogue, made <em>clear and credible</em>.",
-          client: "Bhandari Plastic",
-          services: "Web Design, Development",
-          year: "2024",
-          overview:
-            "A manufacturer website with a clean product catalogue, built for clarity and trust with B2B buyers.",
-          stats: [],
-          gallery: ["images/bhandari.jpg"],
-          url: "#",
-        },
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const cases = [
+      {
+        title: 'Il Cochino Ristorante',
+        category: ['Social Media', 'Advertising'],
+        img: 'https://midable.it/wp-content/uploads/2023/06/Copertina-slider-progetto-mate-cashmere.png'
+      },
+      {
+        title: 'Fun in Tuscany',
+        category: ['Websites', 'UI/UX Design'],
+        img: 'https://midable.it/wp-content/uploads/2023/06/Copertina-slider-case-study-progetto-Cantine-Wine.jpg'
+      },
+      {
+        title: 'Autocarrozzeria La Rondine',
+        category: ['Websites', 'Branding'],
+        img: 'https://midable.it/wp-content/uploads/2023/06/Copertina-slider-progetto-hunnypets.png'
+      },
+      {
+        title: 'Mate Cashmere',
+        category: ['Branding', 'E-commerce'],
+        img: 'https://midable.it/wp-content/uploads/2026/05/Il-Cochino-Ristorante-Porfolio-Midable-Digital-Agency-cover.jpg'
+      },
+      {
+        title: 'Cantine Wine',
+        category: ['Branding', 'UI/UX Design'],
+        img: 'https://midable.it/wp-content/uploads/2023/06/Copertina-slider-progetto-fun-in-tuscany.png'
+      },
+      {
+        title: 'Hunny Pets',
+        category: ['Advertising', 'Social Media'],
+        img: 'https://midable.it/wp-content/uploads/2023/06/Copertina-slider-case-study-progetto-Autocarrozzeria-La-Rondine.png'
+      },
+      {
+        title: 'Studio Launch',
+        category: ['Branding', 'Websites'],
+        img: ''
+      },
+      {
+        title: 'Retail Growth',
+        category: ['E-commerce', 'Advertising'],
+        img: ''
+      },
+      {
+        title: 'Social Proof Engine',
+        category: ['Social Media', 'UI/UX Design'],
+        img: ''
+      },
+      {
+        title: 'Creative Campaign',
+        category: ['Advertising', 'Branding'],
+        img: ''
+      },
+      {
+        title: 'Luxury Website',
+        category: ['Websites', 'UI/UX Design'],
+        img: ''
+      },
+      {
+        title: 'Digital Growth',
+        category: ['Performance', 'Marketing'],
+        img: ''
+      }
+    ];
+
+    function fallbackCard(index) {
+      const gradients = [
+        'radial-gradient(circle at 20% 20%, rgba(255,255,255,.28), transparent 34%), linear-gradient(135deg, #171717, #000000)',
+        'radial-gradient(circle at 80% 10%, rgba(255,255,255,.22), transparent 38%), linear-gradient(135deg, #101010, #1d1d1d)',
+        'radial-gradient(circle at 30% 70%, rgba(255,255,255,.18), transparent 38%), linear-gradient(135deg, #111111, #050505)'
       ];
 
-      // ============ BUILD GRID ============
-      const grid = document.getElementById("grid");
-      document.getElementById("projCount").textContent = PROJECTS.length;
+      return gradients[index % gradients.length];
+    }
 
-      PROJECTS.forEach((p, i) => {
-        const card = document.createElement("div");
-        card.className = "card reveal";
-        card.dataset.id = p.id;
-        const tagsHTML = p.tags.map((t) => t).join(" • ");
-        card.innerHTML = `
-    <div class="card-media"><img src="${p.img}" alt="${p.name}" onerror="this.style.opacity=0.15"/></div>
-    <div class="card-tags">${tagsHTML}</div>
-    <h3 class="card-title">${p.name}</h3>
-    <div class="card-arrow">
-      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
-    </div>
-  `;
-        card.addEventListener("click", () => openProject(p));
-        grid.appendChild(card);
-      });
+    function slugify(text) {
+      return String(text)
+        .toLowerCase()
+        .trim()
+        .replace(/&/g, 'and')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    }
 
-      // ============ OVERLAY ============
-      const overlay = document.getElementById("overlay");
-      const overlayContent = document.getElementById("overlayContent");
-      const overlayClose = document.getElementById("overlayClose");
+    function projectUrl(item) {
+      return `project-detail.html?project=${slugify(item.title)}`;
+    }
 
-      function openProject(p) {
-        // services as a list
-        const svcList = (p.services || "")
-          .split(",")
-          .map((s) => s.trim())
-          .filter(Boolean);
-        const svcHTML = svcList.map((s) => `<li>${s}</li>`).join("");
+    function chunkArray(array, size) {
+      const chunks = [];
 
-        // links list (built from url if present)
-        const links = [];
-        if (p.url && p.url !== "#")
-          links.push(
-            `<li><a href="${p.url}" target="_blank">Visit website</a></li>`,
-          );
-        const linksHTML = links.length
-          ? `
-    <div class="ov-col">
-      <h4>Links</h4>
-      <ul>${links.join("")}</ul>
-    </div>`
-          : "";
-
-        // watch / visit button
-        const watchHTML =
-          p.url && p.url !== "#"
-            ? `
-    <a href="${p.url}" target="_blank" class="ov-watch"><span class="dot"></span> Visit Website</a>`
-            : `
-    <a href="#" class="ov-watch" onclick="return false"><span class="dot"></span> View Project</a>`;
-
-        // scroll gallery — use available images, alternate sides for editorial flow
-        const shots = p.gallery && p.gallery.length ? p.gallery : [p.img];
-        const sideClasses = ["full", "left", "right", "full", "left"];
-        const galleryHTML = shots
-          .map(
-            (g, i) =>
-              `<div class="ov-shot ${sideClasses[i % sideClasses.length]}"><img src="${g}" alt="${p.name}" onerror="this.parentElement.style.display='none'"/></div>`,
-          )
-          .join("");
-
-        const statsHTML =
-          p.stats && p.stats.length
-            ? `
-    <div class="ov-stats">
-      ${p.stats.map((s) => `<div class="ov-stat"><div class="num">${s.num}</div><div class="cap">${s.cap}</div></div>`).join("")}
-    </div>`
-            : "";
-
-        overlayContent.innerHTML = `
-    <div class="ov-top">
-      <div class="ov-left">
-        <h1 class="ov-title">${p.name}</h1>
-        <p class="ov-desc">${p.intro.replace(/<\/?em>/g, "")}</p>
-        <p class="ov-desc">${p.overview}</p>
-        <div class="ov-cols">
-          <div class="ov-col">
-            <h4>Services</h4>
-            <ul>${svcHTML}</ul>
-          </div>
-          ${linksHTML}
-        </div>
-        ${watchHTML}
-      </div>
-      <div class="ov-right">
-        <img class="ov-mainimg" src="${p.img}" alt="${p.name}" onerror="this.style.opacity=0.2"/>
-      </div>
-    </div>
-    ${statsHTML}
-    <div class="ov-gallery">
-      ${galleryHTML}
-    </div>
-  `;
-
-        overlay.scrollTop = 0;
-        overlay.classList.add("open");
-        document.body.classList.add("locked");
-
-        // reveal gallery shots on scroll within overlay
-        const shotsEls = overlayContent.querySelectorAll(".ov-shot");
-        const shotObs = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((e) => {
-              if (e.isIntersecting) {
-                e.target.classList.add("in");
-                shotObs.unobserve(e.target);
-              }
-            });
-          },
-          { root: overlay, threshold: 0.15 },
-        );
-        shotsEls.forEach((s) => shotObs.observe(s));
+      for (let i = 0; i < array.length; i += size) {
+        chunks.push(array.slice(i, i + size));
       }
 
-      function closeProject() {
-        overlay.classList.remove("open");
-        document.body.classList.remove("locked");
+      return chunks;
+    }
+
+    function buildMotionRows() {
+      const wrapper = document.getElementById('motionRows');
+
+      if (!wrapper) return;
+
+      const rows = chunkArray(cases, 3);
+
+      wrapper.innerHTML = rows.map((rowItems, rowIndex) => {
+        return `
+          <section class="motion-row-section" data-motion-section>
+            <div class="motion-row-stage">
+              <div class="motion-row" data-motion-row>
+                ${rowItems.map((item, localIndex) => {
+                  const realIndex = rowIndex * 3 + localIndex;
+                  const slot = localIndex === 0 ? 'left' : localIndex === 1 ? 'center' : 'right';
+                  const isMain = localIndex === 1;
+
+                  const media = item.img
+                    ? `<img src="${item.img}" alt="${item.title}" loading="lazy" onerror="this.style.display='none'; this.parentElement.style.background='${fallbackCard(realIndex)}';">`
+                    : '';
+
+                  return `
+                    <article class="motion-card${isMain ? ' main' : ''}" data-slot="${slot}">
+                      <div class="case-card-media" style="background:${fallbackCard(realIndex)};">
+                        ${media}
+                      </div>
+
+                      <div class="case-card-body">
+                        <h3>${item.title}</h3>
+
+                        <a href="${projectUrl(item)}" class="case-link">
+                          View project <span>→</span>
+                        </a>
+                      </div>
+                    </article>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          </section>
+        `;
+      }).join('');
+    }
+
+    function initMotionRowsScroll() {
+      const sections = Array.from(document.querySelectorAll('[data-motion-section]'));
+
+      if (!sections.length) return;
+
+      function lerp(a, b, t) {
+        return a + (b - a) * t;
       }
 
-      overlayClose.addEventListener("click", closeProject);
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeProject();
-      });
-
-      // ============ LUSION-STYLE SCROLL EFFECTS ============
-
-      // 1) Staggered reveal as cards enter viewport
-      const allCards = Array.from(document.querySelectorAll(".card"));
-      const obs = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              // stagger based on column position for a nicer wave
-              const idx = allCards.indexOf(e.target);
-              const delay = (idx % 2) * 90; // left/right slight offset
-              setTimeout(() => e.target.classList.add("show"), delay);
-              obs.unobserve(e.target);
-            }
-          });
-        },
-        { threshold: 0.18, rootMargin: "0px 0px -8% 0px" },
-      );
-      allCards.forEach((c) => obs.observe(c));
-
-      // 2) Parallax: image drifts inside its card as you scroll (depth feel)
-      let ticking = false;
-      function parallaxScroll() {
-        const vh = window.innerHeight;
-        allCards.forEach((card) => {
-          const rect = card.getBoundingClientRect();
-          // only animate cards in/near viewport
-          if (rect.bottom < -200 || rect.top > vh + 200) return;
-          const media = card.querySelector(".card-media");
-          if (!media) return;
-          // progress: -1 (card at bottom) -> 1 (card at top)
-          const center = rect.top + rect.height / 2;
-          const progress = (center - vh / 2) / (vh / 2); // ~ -1..1
-          const shift = progress * -6; // percent, gentle
-          media.style.transform = `translateY(${shift}%)`;
-        });
-        ticking = false;
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
       }
-      window.addEventListener(
-        "scroll",
-        () => {
-          if (!ticking) {
-            requestAnimationFrame(parallaxScroll);
-            ticking = true;
+
+      function clamp(v, min, max) {
+        return Math.max(min, Math.min(max, v));
+      }
+
+      function updateSection(section) {
+        const row = section.querySelector('[data-motion-row]');
+        const cardsEls = Array.from(section.querySelectorAll('.motion-card'));
+
+        if (!row || !cardsEls.length) return;
+
+        const isStacked = window.innerWidth <= 900;
+        const rect = section.getBoundingClientRect();
+        const total = rect.height - window.innerHeight;
+        const scrolled = clamp(-rect.top, 0, total);
+        const rawProgress = clamp(total > 0 ? scrolled / total : 0, 0, 1);
+        const eased = easeOutCubic(rawProgress);
+
+        const centerCard = row.querySelector('.motion-card.main');
+        const rowGap = parseFloat(getComputedStyle(row).gap) || 28;
+        const distance = centerCard ? centerCard.offsetWidth + rowGap : 0;
+
+        cardsEls.forEach(card => {
+          const slot = card.dataset.slot;
+
+          if (isStacked) {
+            const opacity = clamp(eased * 1.6, 0, 1);
+            const y = lerp(24, 0, eased);
+
+            card.style.transform = `translateY(${y}px)`;
+            card.style.opacity = slot === 'center' ? 1 : opacity;
+            card.style.zIndex = 1;
+
+            return;
           }
-        },
-        { passive: true },
-      );
-      parallaxScroll();
-    </script>
-    <script src="./scripts/script.js"></script>
-    <script src="./scripts/script.js"></script>
-  </body>
+
+          if (slot === 'center') {
+            card.style.transform = 'translateX(0) scale(1) rotate(0deg)';
+            card.style.opacity = 1;
+            card.style.zIndex = 10;
+          }
+
+          if (slot === 'left') {
+            const startX = distance;
+            const x = lerp(startX, 0, eased);
+            const scale = lerp(0.86, 1, eased);
+            const rotate = lerp(-6, 0, eased);
+            const opacity = clamp(eased * 1.6, 0, 1);
+
+            card.style.transform = `translateX(${x}px) scale(${scale}) rotate(${rotate}deg)`;
+            card.style.opacity = opacity;
+            card.style.zIndex = 3;
+          }
+
+          if (slot === 'right') {
+            const startX = -distance;
+            const x = lerp(startX, 0, eased);
+            const scale = lerp(0.86, 1, eased);
+            const rotate = lerp(6, 0, eased);
+            const opacity = clamp(eased * 1.6, 0, 1);
+
+            card.style.transform = `translateX(${x}px) scale(${scale}) rotate(${rotate}deg)`;
+            card.style.opacity = opacity;
+            card.style.zIndex = 2;
+          }
+        });
+      }
+
+      function update() {
+        sections.forEach(updateSection);
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+
+      update();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      buildMotionRows();
+      initMotionRowsScroll();
+    });
+  </script>
+</body>
 </html>

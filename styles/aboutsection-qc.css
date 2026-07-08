@@ -122,7 +122,7 @@
       max-width: 760px;
     }
 .about-horizontal p {
-      font-size: clamp(18px, 2vw, 25px);
+      font-size: clamp(15px, 1.5vw, 19px);
       line-height: 1.42;
       color: #484848;
       max-width: 560px;
@@ -553,8 +553,9 @@
     .brand-info h1 {
       color: #fff;
       font-size: clamp(16px, 2.5vw, 42px);
-      font-weight: 800;
+      font-weight: 600;
       letter-spacing: -0.05em;
+      font-family: 'Raleway', Arial, sans-serif;
       margin: 0;
       line-height: 1;
       white-space: nowrap;
@@ -573,10 +574,10 @@
     .brand-sub p {
       color: #ffffff;
       font-size: clamp(28px, 4vw, 58px);
-      font-weight: 800;
+      font-weight: 400;
       letter-spacing: -0.05em;
       line-height: 1.05;
-      max-width: 820px;
+      max-width: 1020px;
       padding: 0 24px;
     }
 
@@ -1219,11 +1220,11 @@
 
 .ark-stats-title {
   max-width: 980px;
-  margin: 36px auto 0;
+  margin: 10px auto 0;
   text-align: center;
   font-size: clamp(28px, 2.4vw, 33px);
   line-height: 1.14;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.8px;
   color: #ffffff;
 }
@@ -1293,7 +1294,7 @@
 .ark-animate-content h2 {
   font-size: clamp(52px, 4.7vw, 78px);
   line-height: 0.92;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -3.5px;
   color: #ffffff;
 }
@@ -1303,7 +1304,7 @@
   margin-top: 24px;
   font-size: clamp(19px, 1.55vw, 22px);
   line-height: 1.48;
-  font-weight: 700;
+  /* font-weight: 00; */
   letter-spacing: -0.55px;
   color: rgba(255, 255, 255, 0.86);
 }
@@ -2229,4 +2230,664 @@ body {
   content: none !important;
   display: none !important;
   background: none !important;
+}
+/* ==========================================================
+   QC RESPONSIVE FINAL OVERRIDE
+   Add this at the very END of aboutsection-qc.css / style.css.
+   It keeps desktop animation intact and makes tablet/mobile stack cleanly.
+========================================================== */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+}
+
+/* Safer responsive navbar/overlay handling */
+.qn-wrap,
+.qn-bar {
+  max-width: 100%;
+}
+
+.nav-logo img {
+  max-width: clamp(110px, 16vw, 170px);
+  height: auto;
+  display: block;
+}
+
+.qn-toggle {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.qn-main a,
+.qn-sub a {
+  overflow-wrap: anywhere;
+}
+
+/* Image tags created through JS inside journey cards */
+.panel-works-track .card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  display: block;
+}
+
+/* Tablet adjustments while keeping desktop horizontal experience */
+@media (min-width: 901px) and (max-width: 1180px) {
+  .about-horizontal h2 {
+    font-size: clamp(46px, 7vw, 72px) !important;
+  }
+
+  .year-copy {
+    max-width: 52vw;
+  }
+
+  .circle-reveal {
+    right: 4vw;
+    width: min(480px, 42vw);
+    height: min(480px, 42vw);
+  }
+
+  .seed-circle {
+    right: 15vw;
+    width: 118px;
+    height: 118px;
+  }
+
+  .panel-works-track .card-container {
+    width: min(620px, 76vw);
+    height: 380px;
+  }
+}
+
+/* Main mobile/tablet mode: vertical page, no pinned horizontal overlap */
+@media (max-width: 900px) {
+  body.qc-mobile-mode {
+    overflow-x: hidden !important;
+  }
+
+  body.qc-mobile-mode .about-horizontal {
+    position: relative !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    background: #050507 !important;
+  }
+
+  body.qc-mobile-mode .about-pin {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    background: #050507 !important;
+  }
+
+  body.qc-mobile-mode .horizontal-track {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  body.qc-mobile-mode .panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    flex: none !important;
+    display: block !important;
+    padding: 82px 20px 72px !important;
+    overflow: hidden !important;
+  }
+
+  /* First screen: text + circle image stack cleanly */
+  body.qc-mobile-mode .panel-year {
+    min-height: 100svh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 26px !important;
+    padding-top: 105px !important;
+  }
+
+  body.qc-mobile-mode .panel-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  body.qc-mobile-mode .year-copy {
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative !important;
+    z-index: 5 !important;
+  }
+
+  body.qc-mobile-mode .eyebrow {
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 16px !important;
+  }
+
+  body.qc-mobile-mode .eyebrow::before {
+    width: 28px !important;
+  }
+
+  body.qc-mobile-mode .about-horizontal h2 {
+    font-size: clamp(42px, 13vw, 66px) !important;
+    line-height: 0.95 !important;
+    letter-spacing: -0.06em !important;
+    max-width: 100% !important;
+  }
+
+  body.qc-mobile-mode .about-horizontal p {
+    max-width: 100% !important;
+    margin-top: 20px !important;
+    font-size: clamp(15px, 4.2vw, 18px) !important;
+    line-height: 1.55 !important;
+    color: rgba(255, 255, 255, 0.72) !important;
+  }
+
+  body.qc-mobile-mode .seed-circle {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    width: clamp(78px, 22vw, 112px) !important;
+    height: clamp(78px, 22vw, 112px) !important;
+    transform: none !important;
+    opacity: 1 !important;
+    margin: 4px auto -18px !important;
+    z-index: 7 !important;
+  }
+
+  body.qc-mobile-mode .circle-reveal {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    width: min(76vw, 430px) !important;
+    height: min(76vw, 430px) !important;
+    transform: none !important;
+    opacity: 1 !important;
+    margin: 0 auto !important;
+    border-radius: 50% !important;
+    z-index: 4 !important;
+  }
+
+  body.qc-mobile-mode .bg-orb {
+    width: 80vw !important;
+    height: 80vw !important;
+    right: -36vw !important;
+    top: 12vh !important;
+    opacity: 0.4 !important;
+  }
+
+  /* Journey section becomes vertical cards */
+  body.qc-mobile-mode .works-dots,
+  body.qc-mobile-mode .works-hud {
+    display: none !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track {
+    min-height: auto !important;
+    display: block !important;
+    padding: 82px 20px 76px !important;
+    overflow: visible !important;
+    perspective: none !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .intro-container {
+    position: relative !important;
+    inset: auto !important;
+    opacity: 1 !important;
+    transform: none !important;
+    max-width: 100% !important;
+    margin: 0 auto 34px !important;
+    text-align: center !important;
+    pointer-events: auto !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .intro-title {
+    font-size: clamp(44px, 13vw, 72px) !important;
+    line-height: 1 !important;
+    margin-bottom: 14px !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .intro-subtitle {
+    font-size: 11px !important;
+    letter-spacing: 0.22em !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .scroll-text {
+    display: none !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .track-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    transform: none !important;
+    transform-style: flat !important;
+    perspective: none !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .track-frame {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 680px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    transform: none !important;
+    transform-style: flat !important;
+    will-change: auto !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .track-line {
+    display: none !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .card-container {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .card {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    padding: 22px !important;
+    border-radius: 24px !important;
+    transform: none !important;
+    cursor: default !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .card.active {
+    transform: none !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .card-header {
+    gap: 12px !important;
+    align-items: flex-start !important;
+    flex-wrap: wrap !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .card-year {
+    font-size: clamp(36px, 12vw, 54px) !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .card-tag {
+    font-size: 10px !important;
+    line-height: 1.1 !important;
+    padding: 6px 10px !important;
+    margin-top: 4px !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .card h3.card-title {
+    font-size: clamp(20px, 6vw, 27px) !important;
+    line-height: 1.2 !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .card p.card-desc {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: rgba(255, 255, 255, 0.66) !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .card-footer {
+    display: block !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .card-meta {
+    font-size: 10px !important;
+    line-height: 1.45 !important;
+    flex-wrap: wrap !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .card-media {
+    width: 100% !important;
+    height: clamp(180px, 54vw, 260px) !important;
+    flex: none !important;
+    border-radius: 18px !important;
+  }
+
+  /* Expanding black panel becomes a clean static section on mobile */
+  body.qc-mobile-mode .panel-but-not {
+    min-height: 100svh !important;
+    padding: 0 !important;
+    background: #000000 !important;
+  }
+
+  body.qc-mobile-mode .but-not-section {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 70svh !important;
+    padding: 96px 20px !important;
+    background: #000000 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    
+  }
+
+  body.qc-mobile-mode .but-expand-bg {
+    display: none !important;
+  }
+
+  body.qc-mobile-mode .but-icon {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 54px !important;
+    height: 54px !important;
+    transform: none !important;
+    margin: 0 auto 16px !important;
+    opacity: 1 !important;
+  }
+
+  body.qc-mobile-mode .but-icon img {
+    width: 54px !important;
+    height: 54px !important;
+  }
+
+  body.qc-mobile-mode .but-dark-content {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    display: block !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+
+  body.qc-mobile-mode .brand-logo-space {
+    display: none !important;
+  }
+
+  body.qc-mobile-mode .brand-info {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  body.qc-mobile-mode .brand-info h1 {
+    font-size: clamp(24px, 7vw, 42px) !important;
+    line-height: 1.05 !important;
+    white-space: normal !important;
+  }
+
+  body.qc-mobile-mode .brand-sub {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    margin: 30px auto 0 !important;
+  }
+
+  body.qc-mobile-mode .brand-sub p {
+    max-width: 720px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    font-size: clamp(34px, 11vw, 62px) !important;
+    line-height: 1.04 !important;
+    letter-spacing: -0.055em !important;
+    color: #ffffff !important;
+  }
+
+  body.qc-mobile-mode .deco-left,
+  body.qc-mobile-mode .deco-right {
+    width: 34vw !important;
+    opacity: 0.26 !important;
+    transform: none !important;
+  }
+
+  body.qc-mobile-mode .panel-spacer-keep {
+    display: none !important;
+  }
+
+  /* Appended visual section */
+  .ark-animate-section {
+    min-height: auto !important;
+    padding: 72px 20px !important;
+    grid-template-columns: 1fr !important;
+    align-items: start !important;
+    gap: 34px !important;
+    overflow: hidden !important;
+  }
+
+  .ark-animate-content h2 {
+    font-size: clamp(38px, 12vw, 64px) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.055em !important;
+  }
+
+  .ark-animate-content p {
+    max-width: 100% !important;
+    font-size: clamp(16px, 4.5vw, 20px) !important;
+    line-height: 1.55 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .ark-animate-visual {
+    width: 100% !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+
+  .ark-screen-frame {
+    width: 100% !important;
+    max-width: 665px !important;
+    height: 390px !important;
+    padding: 16px !important;
+    border-radius: 22px !important;
+    overflow: hidden !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+
+  .ark-screen-canvas {
+    width: 665px !important;
+    min-width: 665px !important;
+    height: 470px !important;
+    min-height: 470px !important;
+    transform: scale(0.72) !important;
+    transform-origin: top left !important;
+  }
+
+  /* Stats */
+  .ark-stats-section {
+    min-height: auto !important;
+    padding: 72px 20px 78px !important;
+    overflow: hidden !important;
+  }
+
+  .ark-stats-title {
+    max-width: 760px !important;
+    margin: 0 auto !important;
+    font-size: clamp(26px, 8vw, 44px) !important;
+    line-height: 1.14 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .ark-stats-title br {
+    display: none !important;
+  }
+
+  .ark-stats-wrapper {
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 52px auto 0 !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 42px !important;
+  }
+
+  .ark-stat-card {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .ark-stat-card p {
+    font-size: 17px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 18px !important;
+  }
+
+  .ark-stat-line {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 28px !important;
+  }
+
+  .ark-stat-card h3 {
+    font-size: clamp(72px, 23vw, 118px) !important;
+    line-height: 0.86 !important;
+    letter-spacing: -0.065em !important;
+  }
+
+  /* Footer safety */
+  #qcFooter {
+    overflow: hidden !important;
+  }
+
+  #qcFooter .footer-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  #qcFooter .footer-top {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .qn-main a {
+    font-size: clamp(38px, 13vw, 68px) !important;
+    line-height: 0.95 !important;
+  }
+
+  .qn-sub {
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+  }
+
+  body.qc-mobile-mode .panel {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  body.qc-mobile-mode .circle-reveal {
+    width: min(82vw, 360px) !important;
+    height: min(82vw, 360px) !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .card {
+    padding: 18px !important;
+    border-radius: 20px !important;
+  }
+
+  body.qc-mobile-mode .panel-works-track .card-media {
+    height: clamp(170px, 58vw, 230px) !important;
+  }
+
+  .ark-screen-frame {
+    height: 296px !important;
+    padding: 12px !important;
+  }
+
+  .ark-screen-canvas {
+    transform: scale(0.55) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  body.qc-mobile-mode .panel {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  body.qc-mobile-mode .about-horizontal h2 {
+    font-size: clamp(39px, 13vw, 54px) !important;
+  }
+
+  body.qc-mobile-mode .brand-sub p {
+    font-size: clamp(32px, 10.5vw, 46px) !important;
+  }
+
+  .ark-screen-frame {
+    height: 260px !important;
+    padding: 10px !important;
+  }
+
+  .ark-screen-canvas {
+    transform: scale(0.48) !important;
+  }
+
+  .ark-stat-card h3 {
+    font-size: clamp(66px, 22vw, 94px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+@media (max-width: 900px) {
+  body.qc-mobile-mode .seed-circle {
+    display: none !important;
+  }
+
+  body.qc-mobile-mode .circle-reveal {
+    width: min(82vw, 430px) !important;
+    height: min(82vw, 430px) !important;
+    border-radius: 20px !important;
+    margin: 20px auto 0 !important;
+  }
+
+  body.qc-mobile-mode .circle-reveal img {
+    border-radius: 20px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body.qc-mobile-mode .circle-reveal {
+    width: min(88vw, 360px) !important;
+    height: min(88vw, 360px) !important;
+    border-radius: 20px !important;
+  }
 }
