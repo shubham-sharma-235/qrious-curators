@@ -752,64 +752,66 @@
   <script>
     const cases = [
       {
-        title: 'Il Cochino Ristorante',
+        title: 'Hummingbird',
         category: ['Social Media', 'Advertising'],
-        img: 'https://midable.it/wp-content/uploads/2023/06/Copertina-slider-progetto-mate-cashmere.png'
+        img: './assets/workimages/work1.webp',
+        link: "./ourworkinnerpages/hummingbird.html"
       },
       {
-        title: 'Fun in Tuscany',
+        title: 'Mahttab',
         category: ['Websites', 'UI/UX Design'],
-        img: 'https://midable.it/wp-content/uploads/2023/06/Copertina-slider-case-study-progetto-Cantine-Wine.jpg'
+        img: './assets/workimages/work2.webp',
+        link: "./ourworkinnerpages/mahttab.html"
       },
       {
-        title: 'Autocarrozzeria La Rondine',
+        title: 'JB Marble Decor',
         category: ['Websites', 'Branding'],
-        img: 'https://midable.it/wp-content/uploads/2023/06/Copertina-slider-progetto-hunnypets.png'
+        img: './assets/workimages/work3.webp'
       },
       {
-        title: 'Mate Cashmere',
+        title: 'Kapish',
         category: ['Branding', 'E-commerce'],
-        img: 'https://midable.it/wp-content/uploads/2026/05/Il-Cochino-Ristorante-Porfolio-Midable-Digital-Agency-cover.jpg'
+        img: './assets/workimages/work4.webp'
       },
       {
-        title: 'Cantine Wine',
+        title: "J'adore",
         category: ['Branding', 'UI/UX Design'],
-        img: 'https://midable.it/wp-content/uploads/2023/06/Copertina-slider-progetto-fun-in-tuscany.png'
+        img: './assets/workimages/work5.webp'
       },
       {
-        title: 'Hunny Pets',
+        title: 'Out Bari',
         category: ['Advertising', 'Social Media'],
-        img: 'https://midable.it/wp-content/uploads/2023/06/Copertina-slider-case-study-progetto-Autocarrozzeria-La-Rondine.png'
+        img: './assets/workimages/work6.webp'
       },
       {
-        title: 'Studio Launch',
+        title: 'Nirankar Stones',
         category: ['Branding', 'Websites'],
-        img: ''
+        img: './assets/workimages/work7.webp'
       },
       {
-        title: 'Retail Growth',
+        title: 'Vedana',
         category: ['E-commerce', 'Advertising'],
-        img: ''
+        img: './assets/workimages/work8.webp'
       },
       {
-        title: 'Social Proof Engine',
+        title: 'Ideal Coffee Machine',
         category: ['Social Media', 'UI/UX Design'],
-        img: ''
+        img: './assets/workimages/work9.webp'
       },
       {
-        title: 'Creative Campaign',
+        title: 'Trendy Aura',
         category: ['Advertising', 'Branding'],
-        img: ''
+        img: './assets/workimages/work10.webp'
       },
       {
-        title: 'Luxury Website',
+        title: 'Stencil',
         category: ['Websites', 'UI/UX Design'],
-        img: ''
+        img: './assets/workimages/work11.webp'
       },
       {
-        title: 'Digital Growth',
+        title: 'Ardhangini',
         category: ['Performance', 'Marketing'],
-        img: ''
+        img: './assets/workimages/work12.webp'
       }
     ];
 
@@ -832,10 +834,9 @@
         .replace(/^-+|-+$/g, '');
     }
 
-    function projectUrl(item) {
-      return `project-detail.html?project=${slugify(item.title)}`;
-    }
-
+function projectUrl(item) {
+  return item.link;
+}
     function chunkArray(array, size) {
       const chunks = [];
 
