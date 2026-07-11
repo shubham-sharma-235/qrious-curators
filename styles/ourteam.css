@@ -2,6 +2,7 @@
    TEAM CAROUSEL — namespaced (tc- prefix) to avoid clashes
    Paste this at the END of last.css
    ============================================================ */
+   
 .tc-carousel{
   position:relative;
   width:100%;
@@ -9,7 +10,7 @@
   margin-left:auto;
   margin-right:auto;
   height:560px;            /* fixed stage height (self-contained) */
-  margin-top:1px;
+  /* margin-top:10px; */
   margin-bottom:1px;
   overflow:hidden;
   display:block;
@@ -40,7 +41,7 @@
 }
 .tc-caption{
   position:absolute;left:0;right:0;bottom:0;
-  padding:40px 18px 18px;display:flex;flex-direction:column;gap:3px;
+  padding:10px 18px 18px;display:flex;flex-direction:column;gap:3px;
   align-items:center;
   background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.78) 100%);
   color:#fff;text-align:center;pointer-events:none;
@@ -96,44 +97,52 @@
 /* Grab cursor on carousel */
 #tc-carousel { cursor: grab; }
 #tc-carousel:active { cursor: grabbing; }
-.tc-head{ text-align:center; padding-top:clamp(48px,9vh,120px); }
+/* ==========================
+   OUR TEAM HEADING
+   ========================== */
+
+.tc-head{
+    width: 100%;
+    text-align: center;
+    margin-top: 60px;      /* Moves heading down */
+   /* Space between heading and carousel */
+    padding: 0;
+}
+.tc-head p {
+  font-size: 20px;
+  padding-top: 10px;
+}
 .tc-title{
-  font-family:Georgia,'Times New Roman',serif;
-  font-weight:400; color:#fff;
-  font-size:clamp(32px,5vw,72px);
-  letter-spacing:-0.015em; line-height:1.05;
-}
-/* Mobile breakpoints — replace existing ones */
-@media (max-width: 1024px) {
-  .tc-carousel {
-    --tc-card-w: 200px;
-    --tc-card-h: 300px;
-    --tc-gap: 8px;
-    perspective: 1100px;
-    height: 380px;
-  }
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(38px, 5vw, 72px);
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
 }
 
-@media (max-width: 680px) {
-  .tc-carousel {
-    --tc-card-w: 160px;
-    --tc-card-h: 240px;
-    --tc-gap: 6px;
-    perspective: 850px;
-    height: 300px;        /* fixed height kam karo */
-  }
-  .tc-name { font-size: 13px; }
-  .tc-role { font-size: 11px; }
+/* Tablet */
+@media (max-width: 1024px){
+    .tc-head{
+        margin-top: 70px;
+        margin-bottom: 30px;
+    }
+
+    .tc-title{
+        font-size: clamp(34px, 5vw, 56px);
+    }
 }
 
-/* Heading gap fix */
-.tc-head {
-  padding-top: clamp(24px, 5vh, 80px);   /* pehle tha 48px–120px, bahut zyada tha */
-  padding-bottom: 0;
-}
+/* Mobile */
+@media (max-width: 680px){
+    .tc-head{
+        margin-top: 50px;
+        margin-bottom: 24px;
+    }
 
-@media (max-width: 680px) {
-  .tc-head {
-    padding-top: clamp(16px, 4vh, 40px);
-  }
+    .tc-title{
+        font-size: 30px;
+        line-height: 1.2;
+    }
 }

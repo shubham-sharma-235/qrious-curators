@@ -1,6 +1,8 @@
 :root {
-  --heading-font: "Raleway", sans-serif;
-  --sub-heading-font: "Lato", sans-serif;
+  --heading-font: "Lato", sans-serif;
+  --sub-heading-font: "DM Sans", sans-serif;
+
+
   --black: #060608;
   --off-black: #0c0c0f;
   --surface: #111115;
