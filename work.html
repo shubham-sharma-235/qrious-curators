@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Case Studies</title>
   <meta name="description" content="A responsive case-studies portfolio page with animated project rows." />
-
+  <link rel="stylesheet" href="./styles/style.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap');
 
@@ -382,63 +382,75 @@
       gap: 16px;
     }
 
-    /* CTA */
-    .cta-band {
-      padding: 120px 0;
+    /* Ready text animation */
+    .ready-scroll {
+      position: relative;
+      height: 230vh;
       background: #000;
       color: #fff;
-      position: relative;
+      overflow: clip;
+    }
+
+    .ready-stage {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
       overflow: hidden;
+      background: #000;
     }
 
-    .cta-grid {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 60px;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .cta-title {
-      font-family: 'Raleway', Arial, sans-serif;
-      font-size: clamp(32px, 6vw, 100px);
-      line-height: .95;
-      letter-spacing: -1px;
-      max-width: 780px;
+    .ready-phrase {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      display: flex;
+      align-items: baseline;
+      white-space: nowrap;
+      margin: 0;
+      /* padding-left: max(18px, 4vw); */
       color: #fff;
+      font-family: 'Raleway', Arial, sans-serif;
+      font-size: clamp(74px, 16.6vw, 230px);
+      font-weight: 400;
+      line-height: .82;
+      letter-spacing: -.092em;
+      opacity: 0;
+      will-change: transform;
+      transform: translateY(-50%);
     }
 
-    .cta-text {
-      font-size: 17px;
-      line-height: 1.7;
-      color: rgba(255,255,255,.72);
-      margin-bottom: 28px;
-      font-family: 'Lato', Arial, sans-serif;
+    .ready-phrase.ready-built {
+      opacity: 1;
     }
 
-    .dark-btn {
+    .ready-word {
       display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      border-radius: 999px;
-      padding: 16px 24px;
-      background: #fff;
-      color: #000;
-      font-weight: 900;
-      transition: transform .25s ease, box-shadow .25s ease;
-      font-family: 'Lato', Arial, sans-serif;
+      align-items: baseline;
+      margin-right: .17em;
     }
 
-    .dark-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 40px rgba(255,255,255,.12);
+    .ready-letter {
+      display: inline-block;
+      color: #fff;
+      transform-origin: 50% 70%;
+      will-change: transform, opacity, filter;
+      text-shadow: none;
+      -webkit-text-stroke: 0;
+    }
+
+    .ready-space {
+      display: inline-block;
+      width: .18em;
     }
 
     .toast {
       position: fixed;
       right: 22px;
-      bottom: 22px;
+      bottom:32px;
       z-index: 110;
       background: #000;
       color: #fff;
@@ -458,8 +470,7 @@
     }
 
     @media (max-width: 1120px) {
-      .hero-grid,
-      .cta-grid {
+      .hero-grid {
         grid-template-columns: 1fr;
       }
 
@@ -484,10 +495,6 @@
       .hero {
         min-height: auto;
         padding-bottom: 64px;
-      }
-
-      .cta-grid {
-        gap: 34px;
       }
 
       .motion-row-section {
@@ -572,17 +579,13 @@
         margin-top: 24px;
       }
 
-      .cta-band {
-        padding: 64px 0;
+      .ready-scroll {
+        height: 210vh;
       }
 
-      .cta-grid {
-        text-align: left;
-      }
-
-      .dark-btn {
-        width: 100%;
-        justify-content: center;
+      .ready-phrase {
+        font-size: clamp(72px, 25vw, 150px);
+        letter-spacing: -.09em;
       }
     }
 
@@ -657,12 +660,13 @@
         font-size: 20px;
       }
 
-      .cta-title {
-        font-size: clamp(26px, 9vw, 40px);
+      .ready-scroll {
+        height: 190vh;
       }
 
-      .cta-text {
-        font-size: 15px;
+      .ready-phrase {
+        font-size: clamp(58px, 25vw, 108px);
+        letter-spacing: -.08em;
       }
 
       .toast {
@@ -674,6 +678,44 @@
 </head>
 
 <body>
+   <div class="qn-wrap">
+    <div class="qn-bar">
+      <a href="./index.html" class="nav-logo">
+        <img src="./assets/logo/logo-one.png" alt="Logo">
+      </a>
+
+      <button class="qn-toggle" id="qnToggle" aria-label="Menu">
+        <div class="qn-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- OVERLAY MENU -->
+  <div class="qn-overlay" id="qnOverlay">
+    <div class="qn-inner">
+      <div class="qn-center">
+
+        <div class="qn-main">
+          <a href="aboutsection-qc.html">About</a>
+          <a href="work.html">Work</a>
+          <a href="services.html">Services</a>
+        </div>
+
+        <div class="qn-sub">
+          <a href="contactqc.html">Contact</a>
+          <a href="blogqc.html">Blogs</a>
+          <a href="teamSection.html">Our Team</a>
+          <a href="careers.html">Career</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <div class="grain"></div>
 
   <main id="top">
@@ -695,15 +737,15 @@
           </div>
 
           <div class="floating-shot shot-a">
-            <img src="https://midable.it/wp-content/uploads/2023/06/Copertina-slider-progetto-mate-cashmere.png" alt="Fashion project preview" loading="eager">
+            <img src="./assets/workimages/top.webp" alt="Fashion project preview" loading="eager">
           </div>
 
           <div class="floating-shot shot-b">
-            <img src="https://midable.it/wp-content/uploads/2023/06/Copertina-slider-progetto-fun-in-tuscany.png" alt="Travel project preview" loading="eager">
+            <img src="./assets/workimages/leftbottom.webp" alt="Travel project preview" loading="eager">
           </div>
 
           <div class="floating-shot shot-c">
-            <img src="https://midable.it/wp-content/uploads/2023/06/Copertina-slider-progetto-hunnypets.png" alt="Pet project preview" loading="eager">
+            <img src="./assets/workimages/rightbo.webp" alt="Pet project preview" loading="eager">
           </div>
         </div>
       </div>
@@ -730,24 +772,19 @@
       </div>
     </section>
 
-    <section class="cta-band" id="contact">
-      <div class="page-shell cta-grid">
-        <h2 class="cta-title">Need a digital team for your next project?</h2>
-
-        <div>
-          <p class="cta-text">
-            Use this block for conversion: ask visitors to start a conversation, request a quote, book a discovery call or share their project brief.
-          </p>
-
-          <a class="dark-btn" href="mailto:hello@example.com">
-            Start a project <span>→</span>
-          </a>
-        </div>
+    <section class="ready-scroll" id="contact" aria-label="So ready to start text animation">
+      <div class="ready-stage">
+        <h2 class="ready-phrase" data-ready-phrase data-phrase="So, ready to start?" aria-label="So, ready to start?"></h2>
       </div>
     </section>
   </main>
 
   <div class="toast" id="toast"></div>
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <script>
     const cases = [
@@ -981,10 +1018,113 @@ function projectUrl(item) {
       update();
     }
 
+    function initReadyAnimation() {
+      const phraseEl = document.querySelector('[data-ready-phrase]');
+
+      if (!phraseEl) return;
+
+      const phrase = phraseEl.dataset.phrase || 'So, ready to start?';
+      phraseEl.innerHTML = '';
+
+      const words = phrase.split(' ');
+
+      words.forEach((word, wordIndex) => {
+        const wordWrap = document.createElement('span');
+        wordWrap.className = 'ready-word';
+
+        [...word].forEach((char, charIndex) => {
+          const letter = document.createElement('span');
+          letter.className = 'ready-letter';
+          letter.textContent = char;
+          letter.dataset.dir = charIndex % 2 === 0 ? '-1' : '1';
+
+          wordWrap.appendChild(letter);
+        });
+
+        phraseEl.appendChild(wordWrap);
+
+        if (wordIndex !== words.length - 1) {
+          const space = document.createElement('span');
+          space.className = 'ready-space';
+          phraseEl.appendChild(space);
+        }
+      });
+
+      phraseEl.classList.add('ready-built');
+
+      if (!window.gsap || !window.ScrollTrigger) return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const letters = gsap.utils.toArray('.ready-letter');
+
+      letters.forEach((letter) => {
+        const direction = Number(letter.dataset.dir);
+
+        gsap.set(letter, {
+          yPercent: direction === -1 ? -170 : 170,
+          xPercent: direction === -1 ? -8 : 8,
+          rotateZ: direction === -1 ? -5 : 5,
+          skewY: direction === -1 ? -3 : 3,
+          opacity: 0,
+          filter: 'blur(4px)',
+          transformOrigin: '50% 70%'
+        });
+      });
+
+      gsap.set(phraseEl, {
+        x: () => window.innerWidth * 0.86,
+        yPercent: -50
+      });
+
+      const readyTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.ready-scroll',
+          start: 'top top',
+          end: '+=1750',
+          scrub: 0.72,
+          pin: '.ready-stage',
+          anticipatePin: 1,
+          invalidateOnRefresh: true
+        }
+      });
+
+      readyTimeline
+        .to(letters, {
+          yPercent: 0,
+          xPercent: 0,
+          rotateZ: 0,
+          skewY: 0,
+          opacity: 1,
+          filter: 'blur(0px)',
+          duration: 0.36,
+          stagger: 0.018,
+          ease: 'power4.out'
+        }, 0)
+        .to(phraseEl, {
+          x: () => window.innerWidth * 0.055,
+          duration: 0.55,
+          ease: 'power2.out'
+        }, 0.02)
+        .to(phraseEl, {
+          x: () => -phraseEl.scrollWidth + window.innerWidth * 0.1,
+          duration: 1.04,
+          ease: 'none'
+        }, 0.62)
+        .to(letters, {
+          yPercent: (index) => index % 2 === 0 ? 7 : -7,
+          duration: 0.28,
+          stagger: 0.006,
+          ease: 'none'
+        }, 1.06);
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       buildMotionRows();
       initMotionRowsScroll();
+      initReadyAnimation();
     });
   </script>
+  <script src="./scripts/script.js"></script>
 </body>
 </html>
