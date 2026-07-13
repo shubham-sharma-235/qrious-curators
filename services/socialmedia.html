@@ -1,806 +1,242 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="webser.css" rel="stylesheet"/>
-<title>Social Media Marketing</title>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<style>
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body{
-  font-family:'Raleway',sans-serif;
-  background:#1E1E1E;
-  overflow-x: hidden;
-}
-
-.service-section{
-  position:relative;
-  width:100%;
-  height:100vh;
-}
-
-.section-bg-media{
-  position:fixed;
-  inset:0;
-  z-index:0;
-}
-
-.section-bg-media video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition: filter 0.08s linear;
-}
-
-.service-heading-wrap{
-  position:absolute;
-  left:1%;
-  top:45%;
-  transform:translateY(-50%);
-  z-index:5;
-}
-
-.service-number{
-  display:block;
-  font-size:14px;
-  color:#bdbdbd;
-  margin-bottom:20px;
-  letter-spacing:2px;
-  padding-left:40px;
-}
-
-.service-heading{
-  font-size:clamp(40px,11vw,100px);
-  line-height:0.9;
-  font-weight:400;
-  color:#fff;
-  letter-spacing:-4px;
-  padding-left: 50px;
-}
-
-.fade-in{
-  opacity:0;
-  transform:translateY(40px);
-  transition:1.2s ease;
-}
-.fade-in.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.webDevContent{
-  position:relative;
-  padding: 140px 5%;
-}
-
-.webContent{
-  max-width: 720px;
-}
-
-.webContent p{
-  font-size: clamp(18px, 2.2vw, 26px);
-  line-height: 1.6;
-  color: #fff;
-  font-weight: 400;
-  letter-spacing: -0.3px;
-}
-
-.gcv-section {
-  background: #000;
-  color: #fff;
-  font-family: 'Raleway', sans-serif;
-  padding: 80px 40px 48px;
-  position: relative;
-  z-index: 10;
-}
-
-.gcv-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 28px;
-}
-
-.gcv-title {
-  font-size: 28px;
-  font-weight: 500;
-  color: #fff;
-  letter-spacing: -0.3px;
-}
-
-.gcv-nav { display: flex; gap: 8px; }
-
-.gcv-btn {
-  width: 40px; height: 40px;
-  border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 6px;
-  background: transparent;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-  user-select: none;
-}
-.gcv-btn:hover { background: rgba(255,255,255,0.08); }
-
-.gcv-slider-wrap { overflow: hidden; }
-
-.gcv-cards-row {
-  display: flex;
-  gap: 12px;
-  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
-}
-
-.gcv-card {
-  flex: 0 0 200px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: #000;
-  overflow: hidden;
-  position: relative;
-  min-height: 480px;
-  cursor: pointer;
-  transition: flex 0.45s cubic-bezier(0.4,0,0.2,1);
-}
-
-.gcv-card-img {
-  position: absolute;
-  inset: 0; width: 100%; height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.gcv-card.active .gcv-card-img { opacity: 0.65; }
-
-.gcv-card-overlay {
-  position: relative;
-  z-index: 2;
-  padding: 22px;
-  height: 100%;
-  min-height: 480px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.gcv-card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
-}
-
-.gcv-card-name {
-  font-size: 20px;
-  font-weight: 500;
-  color: #fff;
-}
-
-.gcv-card-tag {
-  background: rgba(0,0,0,0.5);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 100px;
-  padding: 4px 12px;
-  font-size: 11px;
-  color: #fff;
-  white-space: nowrap;
-  flex-shrink: 0;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.gcv-card.active .gcv-card-tag { opacity: 1; }
-
-.gcv-card-bottom { display: flex; flex-direction: column; gap: 12px; }
-
-.gcv-card-desc {
-  font-size: 13px;
-  line-height: 1.65;
-  color: rgba(255,255,255,0.85);
-  font-weight: 500;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.4s ease, opacity 0.35s ease;
-}
-.gcv-card.active .gcv-card-desc { max-height: 260px; opacity: 1; }
-
-
-/* LOGO BAR */
-.gcv-logo-bar {
-  margin-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 26px;
-  overflow: hidden;
-}
-
-.gcv-logo-row {
-  display: flex;
-  gap: 0;
-  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
-}
-
-.gcv-logo-cell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: flex 0.45s cubic-bezier(0.4,0,0.2,1);
-  padding: 0 12px;
-}
-
-/* logo text fallback */
-.gcv-logo-cell .logo-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #fff;
-  opacity: 0.35;
-  transition: opacity 0.3s;
-  white-space: nowrap;
-  font-family: 'Raleway', sans-serif;
-}
-.gcv-logo-cell.active .logo-label { opacity: 1; }
-.gcv-logo-cell:hover .logo-label { opacity: 0.7; }
-
-.gcv-logo-cell img {
-  height: 34px;
-  width: auto;
-  max-width: 130px;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.35;
-  transition: opacity 0.3s;
-  pointer-events: none;
-  display: block;
-}
-.gcv-logo-cell.active img { opacity: 1; }
-.gcv-logo-cell:hover img { opacity: 0.7; }
-
-/* FOOTER */
-#footerSection {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  padding: 40px;
-  z-index: 10;
-}
-
-.bg-video-wrap {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.bg-video-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.15);
-}
-
-.bg-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.footer-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.0));
-  z-index: 1;
-}
-
-.footer-content {
-  position: relative;
-  z-index: 5;
-  color: #fff;
-}
-
-.services-footer {
-  margin-bottom: 60px;
-  font-size: 100px;
-  line-height: 0.9;
-  font-weight: 400;
-  letter-spacing: -0.06em;
-}
-
-.Contact {
-  background: white;
-  border: 1px solid rgba(255,255,255,0.25);
-  color: #000000;
-  margin-bottom: 45px;
-  padding: 14px 44px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 500;
-  font-family: 'Raleway', sans-serif;
-  letter-spacing: 0.04em;
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-
-.Contact:hover {
-  background: none;
-  color: #fff;
-  border-color: rgba(255,255,255,0.6);
-}
-
-@media(max-width: 768px) {
-  .gcv-section { padding: 60px 20px 32px; }
-  .gcv-card { min-height: 360px; }
-  .gcv-card-overlay { min-height: 360px; }
-}
-
-
-
-/* ===============================
-   UPDATED PROJECTS SECTION
-   Stats removed + premium header/cards
-================================ */
-.gcv-section {
-  padding: 96px 40px 58px;
-  overflow: hidden;
-}
-
-.gcv-section::before {
-  content: "";
-  position: absolute;
-  top: -180px;
-  right: -180px;
-  width: 420px;
-  height: 420px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 65%);
-  pointer-events: none;
-}
-
-.gcv-header {
-  align-items: flex-end;
-  gap: 40px;
-  margin-bottom: 42px;
-  position: relative;
-  z-index: 2;
-}
-
-.gcv-title-wrap {
-  max-width: 860px;
-}
-
-.gcv-kicker {
-  display: inline-block;
-  margin-bottom: 16px;
-  font-size: 12px;
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: 2.6px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.46);
-}
-
-.gcv-title {
-  max-width: 800px;
-  font-size: clamp(34px, 4.4vw, 66px);
-  line-height: 0.98;
-  font-weight: 500;
-  color: #fff;
-  letter-spacing: -3px;
-}
-
-.gcv-subtitle {
-  max-width: 700px;
-  margin-top: 22px;
-  font-size: 16px;
-  line-height: 1.75;
-  font-weight: 400;
-  color: rgba(255,255,255,0.62);
-}
-
-.gcv-btn {
-  width: 46px;
-  height: 46px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.04);
-  transition: 0.25s ease;
-}
-
-.gcv-btn:hover {
-  background: #fff;
-  color: #000;
-  transform: translateY(-2px);
-}
-
-.gcv-card {
-  border-radius: 18px;
-  background: #080808;
-  min-height: 500px;
-  transition:
-    flex 0.45s cubic-bezier(0.4,0,0.2,1),
-    border-color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.gcv-card:hover {
-  border-color: rgba(255,255,255,0.32);
-}
-
-.gcv-card.active {
-  border-color: rgba(255,255,255,0.38);
-}
-
-.gcv-card-img {
-  opacity: 0.22;
-  transform: scale(1.04);
-  transition: opacity 0.4s ease, transform 0.7s ease;
-}
-
-.gcv-card.active .gcv-card-img {
-  opacity: 0.72;
-  transform: scale(1);
-}
-
-.gcv-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to top, rgba(0,0,0,0.88), rgba(0,0,0,0.12) 58%, rgba(0,0,0,0.3)),
-    linear-gradient(to right, rgba(0,0,0,0.42), transparent);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.gcv-card-overlay {
-  padding: 24px;
-  min-height: 500px;
-}
-
-.gcv-card-name {
-  font-size: 22px;
-  line-height: 1.05;
-  font-weight: 600;
-  letter-spacing: -0.6px;
-}
-
-.gcv-card-tag {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.22);
-  backdrop-filter: blur(12px);
-  padding: 6px 13px;
-}
-
-.gcv-card-desc {
-  font-size: 15px;
-  line-height: 1.72;
-  max-width: 560px;
-}
-
-
-@media(max-width: 768px) {
-  .gcv-section {
-    padding: 70px 20px 38px;
-  }
-
-  .gcv-header {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 24px;
-    margin-bottom: 32px;
-  }
-
-  .gcv-title {
-    font-size: 36px;
-    line-height: 1;
-    letter-spacing: -1.6px;
-  }
-
-  .gcv-subtitle {
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-  .gcv-card {
-    min-height: 380px;
-  }
-
-  .gcv-card-overlay {
-    min-height: 380px;
-    padding: 20px;
-  }
-
-  .gcv-card-name {
-    font-size: 18px;
-  }
-
-  .gcv-card-desc {
-    font-size: 13px;
-  }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Marketing | Qrious Curators</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../styles/smm.css">
+    <!-- Lenis CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.2/dist/lenis.css">
 </head>
-<body>
-<!-- SCROLL PROGRESS BAR -->
-<div class="scroll-progress" style="position:fixed;right:0;top:0;width:3px;height:100%;background:rgba(255,255,255,.08);z-index:999;">
-<div class="scroll-progress-bar" style="width:100%;height:0%;background:#fff;transition:height .1s linear;"></div>
-</div>
-<!-- HERO SECTION -->
-<section class="service-section" id="service-1">
-<div class="section-bg-media">
-<video autoplay="" id="bgVideo" loop="" muted="" playsinline="">
-<source src="https://stream.mux.com/Hj7XzvT68mUk0000zhSyGa6rSTBKcvZkDi/high.mp4" type="video/mp4"/>
-</video>
-</div>
-<div class="overlay"></div>
-<div class="service-heading-wrap fade-in">
-<span class="service-number">01 /</span>
-<h2 class="service-heading">
-      Social Media <br/>Management
-    </h2>
-</div>
-</section>
-<!-- PARA SECTION -->
-<section class="webDevContent">
-<div class="webContent">
-<p>We create immersive digital experiences that blend strategy, aesthetics, and performance.
-    From modern business websites to high-converting web platforms, we design and develop experiences
-    that feel premium, fast, and unforgettable.</p>
-</div>
-</section>
-<!-- RECENT PROJECTS -->
-<section class="gcv-section">
-<div class="gcv-header"><div class="gcv-title-wrap"><span class="gcv-kicker">Selected Work</span>
-<h2 class="gcv-title">Projects shaped with strategy, design and growth in mind.</h2>
-<p class="gcv-subtitle">A closer look at brands we helped with sharper digital presence, cleaner storytelling, and experiences built to convert attention into action.</p></div>
-<div class="gcv-nav"><button class="gcv-btn" id="gcvPrev">‹</button>
-<button class="gcv-btn" id="gcvNext">›</button></div></div>
-<div class="gcv-slider-wrap" id="gcvWrapper">
-<div class="gcv-cards-row" id="gcvRow">
-<div class="gcv-card active" data-idx="0">
-<img alt="Mahttab" class="gcv-card-img" onerror="this.style.opacity=0" src="./images/mahttab-service.webp"/>
-<div class="gcv-card-overlay">
-<div class="gcv-card-top">
-<span class="gcv-card-name">Mahttab</span>
-<span class="gcv-card-tag">E-Commerce · Jewellery</span>
-</div>
-<div class="gcv-card-bottom">
-<p class="gcv-card-desc">A refined digital storefront created for a jewellery brand that needed elegance, clarity, and a smoother path from product discovery to purchase.</p>
+<body class="dark-theme">
 
-</div>
-</div>
-</div>
-<div class="gcv-card" data-idx="1">
-<img alt="Nirankar Fashions" class="gcv-card-img" onerror="this.style.opacity=0" src="./images/nirankar-service.webp"/>
-<div class="gcv-card-overlay">
-<div class="gcv-card-top">
-<span class="gcv-card-name">Nirankar Fashions</span>
-<span class="gcv-card-tag">Product · Lead Gen</span>
-</div>
-<div class="gcv-card-bottom">
-<p class="gcv-card-desc">A visual-first brand experience built to present product depth with clarity, helping the audience explore collections without friction.</p>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
-</div>
-</div>
-</div>
-<div class="gcv-card" data-idx="2">
-<img alt="AB Jewels" class="gcv-card-img" onerror="this.style.opacity=0" src="./images/ABService.webp"/>
-<div class="gcv-card-overlay">
-<div class="gcv-card-top">
-<span class="gcv-card-name">AB Jewels</span>
-<span class="gcv-card-tag">Fashion · Lookbook</span>
-</div>
-<div class="gcv-card-bottom">
-<p class="gcv-card-desc">A clean, editorial-style experience designed to make the brand feel premium, structured, and easier to browse across devices.</p>
+    <!-- Navigation / Header -->
 
-</div>
-</div>
-</div>
-<div class="gcv-card" data-idx="3">
-<img alt="Trendy Aura" class="gcv-card-img" onerror="this.style.opacity=0" src="./images/trendyaura.png"/>
-<div class="gcv-card-overlay">
-<div class="gcv-card-top">
-<span class="gcv-card-name">Trendy Aura</span>
-<span class="gcv-card-tag">E-Commerce · Fashion</span>
-</div>
-<div class="gcv-card-bottom">
-<p class="gcv-card-desc">A conversion-focused fashion storefront shaped around fresh arrivals, easy discovery, and a shopping flow made for modern buyers.</p>
 
-</div>
-</div>
-</div>
-<div class="gcv-card" data-idx="4">
-<img alt="Taluka Fashions" class="gcv-card-img" onerror="this.style.opacity=0" src="images/taluka.png"/>
-<div class="gcv-card-overlay">
-<div class="gcv-card-top">
-<span class="gcv-card-name">Taluka Fashions</span>
-<span class="gcv-card-tag">Brand · Catalog</span>
-</div>
-<div class="gcv-card-bottom">
-<p class="gcv-card-desc">A catalogue-led brand experience designed to highlight collections, guide customers, and strengthen the brand’s retail presence.</p>
+    <div class="main-wrapper" id="smooth-wrapper">
+        <div id="smooth-content">
+            
+            <!-- Hero Section -->
+            <section class="hero section" data-color="dark">
+                <div class="hero-container">
+                    <div class="hero-top">
+                        <p class="fade-up">SOCIAL MEDIA MARKETING</p>
+                    </div>
+                    <div class="hero-title-container">
+                        <h1 class="hero-title split-text">Not just a feed.</h1>
+                        <div class="hero-title-row">
+                            <div class="hero-media parallax-media" data-cursor="-play">
+                                <video autoplay loop muted playsinline>
+                                    <source src="https://cdn.cuberto.com/cb/hello/intro/1.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <h1 class="hero-title split-text">A reason for</h1>
+                        </div>
+                        <h1 class="hero-title split-text">people to remember</h1>
+                        <h1 class="hero-title split-text">your brand.</h1>
+                    </div>
+                    
+                    <div class="hero-bottom">
+                        <div class="hero-bottom-img fade-up">
+                            <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&h=400&fit=crop" alt="Social Media Strategy">
+                        </div>
+                        <div class="hero-desc">
+                            <p class="fade-up">Social media is no longer about posting for the sake of staying active. It is where people discover your brand, understand your personality, judge your taste, and decide whether you are worth following, trusting, visiting, or buying from.</p>
+                            <br>
+                            <p class="fade-up">A strong social presence makes your brand feel alive. It gives your audience a reason to stop, engage, save, share, and come back for more.</p>
+                            <br>
+                            <p class="fade-up"><strong>This is where content becomes more than content. It becomes a recall.</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-</div>
-</div>
-</div>
-<div class="gcv-card" data-idx="5">
-<img alt="Vedana Fashion" class="gcv-card-img" onerror="this.style.opacity=0" src="./images/vedana.png"/>
-<div class="gcv-card-overlay">
-<div class="gcv-card-top">
-<span class="gcv-card-name">Vedana Fashion</span>
-<span class="gcv-card-tag">Brand · Catalog</span>
-</div>
-<div class="gcv-card-bottom">
-<p class="gcv-card-desc">A soft, fashion-forward digital presence crafted to bring product categories, brand identity, and customer intent into one clear flow.</p>
+            <!-- Section 2: What This Does For Your Brand -->
+            <section class="what-it-does section" data-color="light">
+                <div class="container">
+                    <div class="split-layout">
+                        <div class="left-col">
+                            <h2 class="section-heading split-text">Turns everyday posting into a proper brand presence.</h2>
+                        </div>
+                        <div class="right-col">
+                            <p class="large-desc fade-up">A random post may get uploaded. A strong content system gets remembered.</p>
+                            <p class="small-desc fade-up">Your brand needs hooks that catch attention, visuals that match your positioning, stories that build connection, captions that sound like you, and campaigns that make people feel something.</p>
+                            <p class="small-desc fade-up">From reels and stories to carousels, community-building, launch calendars, festive campaigns, trend adaptation, and content strategy — every piece of content should have a reason behind it.</p>
+                            
+                            <div class="highlight-box fade-up">
+                                <h3>The goal is not just to look active.</h3>
+                                <h2>The goal is to look intentional.</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-</div>
-</div>
-</div>
-<div class="gcv-card" data-idx="6">
-<img alt="Out Bari" class="gcv-card-img" onerror="this.style.opacity=0" src="./images/out.png"/>
-<div class="gcv-card-overlay">
-<div class="gcv-card-top">
-<span class="gcv-card-name">Out Bari</span>
-<span class="gcv-card-tag">Brand · Experience</span>
-</div>
-<div class="gcv-card-bottom">
-<p class="gcv-card-desc">A lifestyle-led digital experience built to translate the brand’s atmosphere into a warmer, more immersive online presence.</p>
+            <!-- Projects Section (Horizontal Scroll) -->
+            <section class="featured-projects section" data-color="dark">
+                <div class="container">
+                    <h2 class="section-title fade-up">Selected Projects</h2>
+                </div>
+                <div class="horizontal-scroll-wrapper">
+                    <div class="horizontal-scroll-container">
+                        
+                        <div class="project-panel" data-cursor="-play">
+                            <div class="project-panel-inner">
+                                <img src="../assets/servicepages/aab.jpeg" alt="Riyadh Project Cover">
+                                <!-- <video autoplay loop muted playsinline>
+                                    <source src="https://cdn.cuberto.com/cb/projects/riyadh/cover.mp4" type="video/mp4">
+                                </video> -->
+                              
+                            </div>
+                        </div>
 
-</div>
-</div>
-</div>
-<div class="gcv-card" data-idx="7">
-<img alt="Hummingbird" class="gcv-card-img" onerror="this.style.opacity=0" src="./images/hummingbird.png"/>
-<div class="gcv-card-overlay">
-<div class="gcv-card-top">
-<span class="gcv-card-name">Hummingbird</span>
-<span class="gcv-card-tag">Brand · Catalog</span>
-</div>
-<div class="gcv-card-bottom">
-<p class="gcv-card-desc">A minimal and elegant web experience shaped to reflect the brand’s light, graceful personality while keeping navigation simple.</p>
+                        <div class="project-panel" data-cursor="-play">
+                            <div class="project-panel-inner">
+                                <!-- <video autoplay loop muted playsinline>
+                                    <source src="https://cdn.cuberto.com/cb/projects/magma/cover.mp4" type="video/mp4">
+                                </video> -->
+                                <img src="../assets/servicepages/mahttab.jpeg" alt="Riyadh Project Cover">
+                                <!-- <div class="project-info-overlay">
+                                    <h3>Magma</h3>
+                                    <span>The ultimate Web3 platform for real estate</span>
+                                </div> -->
+                            </div>
+                        </div>
 
-</div>
-</div>
-</div>
-<div class="gcv-card" data-idx="8">
-<img alt="Ideal Coffee Machines" class="gcv-card-img" onerror="this.style.opacity=0" src="./images/idealcoffee.png"/>
-<div class="gcv-card-overlay">
-<div class="gcv-card-top">
-<span class="gcv-card-name">Ideal Coffee Machines</span>
-<span class="gcv-card-tag">Product · B2B</span>
-</div>
-<div class="gcv-card-bottom">
-<p class="gcv-card-desc">A B2B-focused product experience created to help buyers understand offerings quickly and move toward inquiry with confidence.</p>
+                        <div class="project-panel" data-cursor="-play">
+                            <div class="project-panel-inner">
+                                <!-- <video autoplay loop muted playsinline>
+                                    <source src="https://cdn.cuberto.com/cb/projects/flip/cover.mp4" type="video/mp4">
+                                </video> -->
+                                <img src="../assets/servicepages/out.jpeg" alt="Riyadh Project Cover">
+                               
+                            </div>
+                        </div>
 
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- LOGO BAR — text only, no img rectangles -->
-<div class="gcv-logo-bar">
-<div class="gcv-logo-row" id="gcvLogoRow">
-<div class="gcv-logo-cell active" data-target="0"><span class="logo-label">Mahttab</span></div>
-<div class="gcv-logo-cell" data-target="1"><span class="logo-label">Nirankar</span></div>
-<div class="gcv-logo-cell" data-target="2"><span class="logo-label">AB Jewels</span></div>
-<div class="gcv-logo-cell" data-target="3"><span class="logo-label">Trendy Aura</span></div>
-<div class="gcv-logo-cell" data-target="4"><span class="logo-label">Taluka</span></div>
-<div class="gcv-logo-cell" data-target="5"><span class="logo-label">Vedana</span></div>
-<div class="gcv-logo-cell" data-target="6"><span class="logo-label">Out Bari</span></div>
-<div class="gcv-logo-cell" data-target="7"><span class="logo-label">Hummingbird</span></div>
-<div class="gcv-logo-cell" data-target="8"><span class="logo-label">Ideal Coffee</span></div>
-</div>
-</div>
-</section>
-<!-- FOOTER — untouched -->
-<footer id="footerSection">
-<div class="bg-video-wrap">
-<video autoplay="" class="bg-video" loop="" muted="" playsinline="">
-<source src="https://stream.mux.com/wk00FbgM3luTCLeHP99aoB6bM56gQhJmy/high.mp4" type="video/mp4"/>
-</video>
-</div>
-<div class="footer-overlay"></div>
-<div class="footer-content">
-<h1 class="services-footer">Let's <br/> Connect</h1>
-<button class="Contact" id="ContactBtn">Contact →</button>
-</div>
-</footer>
-<script>
+                        <div class="project-panel" data-cursor="-play">
+                            <div class="project-panel-inner">
+                                <!-- <video autoplay loop muted playsinline>
+                                    <source src="https://cdn.cuberto.com/cb/projects/punto-pago/cover.mp4" type="video/mp4">
+                                </video> -->
+                                <img src="../assets/servicepages/vedana.jpeg" alt="Riyadh Project Cover">
+                              
+                            </div>
+                        </div>
 
-// FADE IN HERO
-window.addEventListener('load', () => {
-  const content = document.querySelector('.fade-in');
-  setTimeout(() => content.classList.add('show'), 300);
-});
+                    </div>
+                </div>
+            </section>
 
-// BLUR VIDEO ON SCROLL
-const video = document.getElementById('bgVideo');
-const contentSection = document.querySelector('.webDevContent');
+            <!-- Section 3: What Gets Covered -->
+            <section class="services section" data-color="dark">
+                <div class="container">
+                    <h2 class="section-title split-text">Built for brands that want more than "just posting".</h2>
+                    
+                    <div class="services-list">
+                        <div class="service-item fade-up" data-cursor="-view">
+                            <div class="service-name">Content strategy</div>
+                            <div class="service-desc">Gives your brand a clear direction</div>
+                        </div>
+                        <div class="service-item fade-up" data-cursor="-view">
+                            <div class="service-name">Monthly calendars</div>
+                            <div class="service-desc">Balances trends, sales, value, relatability, and brand building</div>
+                        </div>
+                        <div class="service-item fade-up" data-cursor="-view">
+                            <div class="service-name">Reel ideas & hooks</div>
+                            <div class="service-desc">Captions and story concepts that feel fresh and platform-friendly</div>
+                        </div>
+                        <div class="service-item fade-up" data-cursor="-view">
+                            <div class="service-name">Campaign planning</div>
+                            <div class="service-desc">For launches, offers, festive moments, collections, and brand announcements</div>
+                        </div>
+                        <div class="service-item fade-up" data-cursor="-view">
+                            <div class="service-name">Community-led content</div>
+                            <div class="service-desc">Makes your audience feel involved</div>
+                        </div>
+                        <div class="service-item fade-up" data-cursor="-view">
+                            <div class="service-name">Visual direction</div>
+                            <div class="service-desc">Keeps the feed consistent and scroll-worthy</div>
+                        </div>
+                        <div class="service-item fade-up" data-cursor="-view">
+                            <div class="service-name">Performance review</div>
+                            <div class="service-desc">Understand what is working and what needs to change</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-window.addEventListener('scroll', () => {
-  const scrollY    = window.scrollY;
-  const windowH    = window.innerHeight;
-  const contentTop = contentSection.offsetTop;
-  const blurStart  = contentTop - windowH * 0.6;
-  const blurEnd    = contentTop;
+            <!-- Section 4: Best For -->
+            <section class="best-for section" data-color="light">
+                <div class="container">
+                    <div class="center-content text-center">
+                        <h2 class="massive-text split-text">Perfect for brands that feel active online but not impactful enough.</h2>
+                        <div class="best-for-desc">
+                            <p class="fade-up">This is for fashion labels, jewellery brands, food businesses, decor brands, lifestyle stores, personal brands, manufacturers, and growing businesses that want their Instagram or digital presence to feel sharper, smarter, and more connected to their audience.</p>
+                            <br>
+                            <p class="fade-up"><strong>If your brand has good products but the content is not doing justice to them, this is the move.</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-  if (scrollY <= blurStart) {
-    video.style.filter = 'blur(0px)';
-  } else if (scrollY > blurStart && scrollY < blurEnd) {
-    const progress = (scrollY - blurStart) / (blurEnd - blurStart);
-    video.style.filter = 'blur(' + (progress * 20) + 'px)';
-  } else {
-    video.style.filter = 'blur(20px)';
-  }
-});
+            <!-- Section 5: FAQ Section -->
+            <section class="faq section" data-color="dark">
+                <div class="container">
+                    <h2 class="section-title split-text">Frequently Asked Questions</h2>
+                    <div class="faq-list">
+                        <div class="faq-item fade-up">
+                            <div class="faq-header">
+                                <h3>What is included in the monthly calendar?</h3>
+                                <div class="faq-icon">+</div>
+                            </div>
+                            <div class="faq-body">
+                                <p>We include a mix of trends, educational content, promotional posts, and community-building formats tailored to your brand's unique goals.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item fade-up">
+                            <div class="faq-header">
+                                <h3>How long does it take to see results?</h3>
+                                <div class="faq-icon">+</div>
+                            </div>
+                            <div class="faq-body">
+                                <p>While initial engagement can increase within the first month, building a strong, intentional brand presence usually takes 3 to 6 months of consistent strategy.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item fade-up">
+                            <div class="faq-header">
+                                <h3>Do you shoot the content as well?</h3>
+                                <div class="faq-icon">+</div>
+                            </div>
+                            <div class="faq-body">
+                                <p>Yes, we offer full-scale visual direction, including photography and reel production to ensure everything aligns with the brand's aesthetic.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <footer class="footer">
+                <div class="container">
+                    <p>© 2026 Qrious Curators. All rights reserved. Designed with intent.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
 
-// SCROLL PROGRESS BAR
-const progressBar = document.querySelector('.scroll-progress-bar');
-window.addEventListener('scroll', () => {
-  const scrollTop = window.scrollY;
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  progressBar.style.height = ((scrollTop / docHeight) * 100) + '%';
-});
-
-// GCV SLIDER — INFINITE
-const TOTAL = 9;
-let active = 0;
-const gcvRow     = document.getElementById('gcvRow');
-const gcvWrapper = document.getElementById('gcvWrapper');
-const gcvLogoRow = document.getElementById('gcvLogoRow');
-const gcvCards   = Array.from(gcvRow.querySelectorAll('.gcv-card'));
-const gcvLogos   = Array.from(gcvLogoRow.querySelectorAll('.gcv-logo-cell'));
-
-function gcvUpdate() {
-  const W         = gcvWrapper.offsetWidth;
-  const activeW   = W * 0.50;
-  const inactiveW = (W - activeW - 12 * 2) / 2;
-
-  gcvCards.forEach((c, i) => {
-    const isActive = i === active;
-    c.classList.toggle('active', isActive);
-    c.style.flex = isActive ? '0 0 ' + activeW + 'px' : '0 0 ' + inactiveW + 'px';
-
-  });
-
-  gcvLogos.forEach((l, i) => {
-    l.classList.toggle('active', i === active);
-    l.style.flex = i === active ? '0 0 ' + activeW + 'px' : '0 0 ' + inactiveW + 'px';
-  });
-
-  let offset = 0;
-  for (let i = 0; i < active; i++) offset += inactiveW + 12;
-  gcvRow.style.transform     = 'translateX(-' + offset + 'px)';
-  gcvLogoRow.style.transform = 'translateX(-' + offset + 'px)';
-}
-
-// INFINITE: wraps around
-document.getElementById('gcvNext').addEventListener('click', () => {
-  active = (active + 1) % TOTAL;
-  gcvUpdate();
-});
-document.getElementById('gcvPrev').addEventListener('click', () => {
-  active = (active - 1 + TOTAL) % TOTAL;
-  gcvUpdate();
-});
-
-gcvCards.forEach((c, i) => c.addEventListener('click', () => { active = i; gcvUpdate(); }));
-gcvLogos.forEach(l => l.addEventListener('click', () => { active = parseInt(l.dataset.target); gcvUpdate(); }));
-window.addEventListener('resize', gcvUpdate);
-gcvUpdate();
-
-</script>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
+    <script src="../scripts/smm.js"></script>
 </body>
 </html>

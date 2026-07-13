@@ -929,6 +929,233 @@
         height: 360px;
       }
     }
+  
+
+    /* ===================== DARK WEBSITE THEME + SUBTLE ORANGE ACCENT ===================== */
+    :root {
+      --bg: #000000;
+      --black: #ffffff;
+      --dark: #ffffff;
+      --pill: rgba(255,255,255,0.10);
+      --white: #ffffff;
+      --muted: rgba(255, 255, 255, 0.72);
+      --qc-orange: #ff7a00;
+      --qc-orange-soft: rgba(255, 122, 0, 0.22);
+    }
+
+    html,
+    body {
+      background: #000000 !important;
+      color: #ffffff !important;
+    }
+
+    .cursor {
+      background: #ffffff !important;
+      mix-blend-mode: difference;
+    }
+
+    .page,
+    .scroll-world,
+    .panel,
+    .hero-panel,
+    .approach-panel,
+    .work-panel,
+    .contact-panel {
+      background: #000000 !important;
+      color: #ffffff !important;
+    }
+
+    .page {
+      background: #000000 !important;
+    }
+
+    .page::before {
+      display: none !important;
+    }
+
+    .scroll-world {
+      background: #000000 !important;
+    }
+
+    .logo,
+    .headline,
+    .mega-title,
+    .section-title,
+    .contact-inner h2,
+    .top-label,
+    .hero-intro strong,
+    .hero-copy p,
+    .section-text,
+    .eyebrow,
+    .scroll-text,
+    .plus {
+      color: #ffffff !important;
+    }
+
+    .hero-intro,
+    .hero-copy p,
+    .section-text,
+    .contact-inner p,
+    .stack-card p {
+      color: rgba(255, 255, 255, 0.74) !important;
+    }
+
+    /* Orange sirf titles/labels me subtle use kiya hai, zyada loud nahi. */
+    .orange-accent {
+      color: var(--qc-orange) !important;
+    }
+
+    .top-label {
+      background: rgba(255, 255, 255, 0.075) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      box-shadow: none !important;
+      backdrop-filter: blur(14px);
+      color: #ffffff !important;
+    }
+
+    .top-label::before,
+    .eyebrow::before,
+    .pill-btn::before {
+      background: var(--qc-orange) !important;
+      box-shadow: 0 0 18px rgba(255, 122, 0, 0.38) !important;
+    }
+
+    .eyebrow {
+      color: #ffffff !important;
+    }
+
+    .hero-card {
+      background: #101115 !important;
+      box-shadow: 0 34px 82px rgba(255, 122, 0, 0.055) !important;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .bottom-line {
+      color: #ffffff !important;
+    }
+
+    /* Ribbon white rakha hai so dark page me clean website feel aaye. */
+    .blue-ribbon-wrap {
+      z-index: 1;
+    }
+
+    .ribbon-main {
+      stroke: #ffffff !important;
+      stroke-width: 30 !important;
+    }
+
+    .ribbon-shadow {
+      stroke: rgba(255, 255, 255, 0.14) !important;
+      filter: blur(18px);
+    }
+
+    .ribbon-glow {
+      stroke: rgba(255, 255, 255, 0.56) !important;
+      filter: blur(10px);
+      opacity: 0.48 !important;
+      mix-blend-mode: screen;
+    }
+
+    .media-card {
+      background: #101010 !important;
+      box-shadow: 0 30px 70px rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .media-card::before {
+      background:
+        radial-gradient(circle at 52% 48%, rgba(255,255,255,0.88) 0 8%, rgba(255,255,255,0.18) 10%, transparent 26%),
+        conic-gradient(from 70deg, rgba(255,255,255,0.9), rgba(255,122,0,0.42), rgba(255,255,255,0.55), rgba(70,70,70,0.65), rgba(255,255,255,0.9)) !important;
+      filter: saturate(0.85) contrast(1.08) !important;
+    }
+
+    .media-card::after {
+      background:
+        radial-gradient(circle at 20% 32%, rgba(0,0,0,0.2), transparent 8%),
+        radial-gradient(circle at 78% 40%, rgba(0,0,0,0.22), transparent 7%),
+        radial-gradient(circle at 38% 78%, rgba(0,0,0,0.18), transparent 6%),
+        linear-gradient(90deg, rgba(255,122,0,0.08), rgba(255,255,255,0.04)) !important;
+    }
+
+    .stack-card {
+      background: rgba(255, 255, 255, 0.055) !important;
+      border: 1px solid rgba(255, 255, 255, 0.14) !important;
+      box-shadow: none !important;
+      backdrop-filter: blur(14px);
+    }
+
+    .stack-card h3 {
+      color: #ffffff !important;
+    }
+
+    .stack-card:hover {
+      border-color: rgba(255, 122, 0, 0.34) !important;
+      box-shadow: 0 22px 60px rgba(255, 122, 0, 0.06) !important;
+    }
+
+    .work-card {
+      background: #0d0d0d !important;
+      color: #ffffff !important;
+      box-shadow: 0 28px 70px rgba(255,255,255,0.06) !important;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .work-card::before {
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.50), transparent 14%),
+        radial-gradient(circle at 72% 62%, rgba(255,122,0,0.20), transparent 24%),
+        radial-gradient(circle at 68% 40%, rgba(255,255,255,0.20), transparent 28%),
+        conic-gradient(from 180deg, #111111, #ffffff, #ff7a00, #ffffff, #111111) !important;
+      filter: blur(2px) !important;
+      opacity: 0.76 !important;
+    }
+
+    .work-card span,
+    .work-card h3,
+    .work-card.has-image span,
+    .work-card.has-image h3 {
+      color: #ffffff !important;
+    }
+
+    .work-card span,
+    .work-card.has-image span {
+      color: rgba(255,255,255,0.86) !important;
+    }
+
+    .pill-btn,
+    .talk-btn,
+    .menu-btn,
+    .sound-btn {
+      background: #ffffff !important;
+      color: #000000 !important;
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      box-shadow: 0 16px 35px rgba(255, 122, 0, 0.08) !important;
+    }
+
+    .pill-btn:hover {
+      background: #ff7a00 !important;
+      color: #000000 !important;
+    }
+
+    .menu-dots i {
+      background: #000000 !important;
+    }
+
+    .ghost-word {
+      color: rgba(255, 255, 255, 0.10) !important;
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.18) !important;
+    }
+
+    img {
+      filter: none;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        cursor: auto;
+      }
+    }
+
   </style>
 </head>
 
@@ -940,7 +1167,7 @@
       <div class="top-label">Graphic Design</div>
 
       <h1 class="headline">
-        Visuals that make the first impression do its job.
+       Visuals that make the first impression do its job.
       </h1>
 
       <div class="hero-intro">
@@ -1056,7 +1283,7 @@
 
     <section class="panel contact-panel">
       <div class="contact-inner reveal-card">
-        <h2>Your brand deserves visuals that look as strong as the business behind it.</h2>
+        <h2><span class="orange-accent">Your brand</span> deserves visuals that look as strong as the business behind it.</h2>
         <button class="pill-btn">Create Better Visuals</button>
       </div>
     </section>

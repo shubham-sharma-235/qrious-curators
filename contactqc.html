@@ -356,7 +356,7 @@
       padding-top: 58px;
     }
 
-    .contact-page::before {
+    /* .contact-page::before {
       content: "";
       position: absolute;
       top: 0;
@@ -365,7 +365,7 @@
       width: 1px;
       background: #e9ecef;
       z-index: 0;
-    }
+    } */
 
     .contact-page::after {
       content: "";
@@ -674,7 +674,7 @@
       width: 100%;
       height: 100%;
       border: 0;
-      filter: grayscale(1) invert(92%) contrast(83%);
+      filter: grayscale(1) invert(92%) contrast(92%) brightness(78%);
     }
 
     .map-pin-card {
@@ -1014,9 +1014,10 @@
     <i class="fa-solid fa-volume-high"></i>
 </div>
 
-<audio id="bgMusic" loop>
-    <source src="assets/audio/call-hold.mp3" type="audio/mpeg">
+<audio id="bgMusic" loop preload="auto" playsinline>
+    <source src="./assets/careers/call-hold.mp3" type="audio/mpeg">
 </audio>
+    </div>
   </section>
 
   <!-- CONTACT SECTION -->
@@ -1044,8 +1045,8 @@
 
           <div class="info-block">
             <h3>Contact Us</h3>
-            <p>+91 98765 43210</p>
-            <p>+91 90000 00000</p>
+            <p>+91 9653412566</p>
+            <p>+91 80004 91663</p>
           </div>
 
           <div class="info-block">
@@ -1130,11 +1131,12 @@
 
     <div class="map-shell">
       <iframe
+        id="gmap_canvas"
         class="map-frame"
-        src="https://www.google.com/maps?q=Vaishali%20Nagar,%20Jaipur,%20Rajasthan%20302021&output=embed"
+        src="https://maps.google.com/maps?width=1357&amp;height=400&amp;hl=en&amp;q=Chitrakoot%20Marg,%20Vaishali%20Nagar%20Jaipur+(Qrious%20Curators)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
-        title="Studio location map">
+        title="Qrious Curators location map">
       </iframe>
 
       <div class="map-pin-card">
@@ -1147,7 +1149,7 @@
         </div>
       </div>
 
-      <a class="map-directions-btn" href="https://www.google.com/maps?q=Vaishali%20Nagar,%20Jaipur,%20Rajasthan%20302021" target="_blank" rel="noopener">
+      <a class="map-directions-btn" href="https://www.google.com/maps/search/?api=1&query=Chitrakoot%20Marg%2C%20Vaishali%20Nagar%20Jaipur%20Qrious%20Curators" target="_blank" rel="noopener">
         Get Directions
         <span>→</span>
       </a>
@@ -1287,22 +1289,62 @@
 
     const music = document.getElementById("bgMusic");
     const toggle = document.getElementById("audioToggle");
-    const icon = toggle.querySelector("i");
+    const icon = toggle ? toggle.querySelector("i") : null;
 
-    music.volume = 0.15;
+    if (music && toggle && icon) {
+      music.volume = 0.15;
 
-    toggle.addEventListener("click", async () => {
+      const setAudioIcon = () => {
+        icon.className = music.paused
+          ? "fa-solid fa-volume-xmark"
+          : "fa-solid fa-volume-high";
+      };
+
+      const playMusic = async () => {
+        try {
+          await music.play();
+          setAudioIcon();
+          return true;
+        } catch (error) {
+          // Browser blocked autoplay. It will start after first user action.
+          setAudioIcon();
+          return false;
+        }
+      };
+
+      // Try to start music as soon as the page loads.
+      window.addEventListener("load", playMusic);
+
+      // Fallback: Chrome/Safari allow audio after first user interaction.
+      const unlockAudio = async () => {
+        const played = await playMusic();
+        if (played) {
+          document.removeEventListener("pointerdown", unlockAudio);
+          document.removeEventListener("touchstart", unlockAudio);
+          document.removeEventListener("keydown", unlockAudio);
+          document.removeEventListener("scroll", unlockAudio);
+        }
+      };
+
+      document.addEventListener("pointerdown", unlockAudio, { passive: true });
+      document.addEventListener("touchstart", unlockAudio, { passive: true });
+      document.addEventListener("keydown", unlockAudio);
+      document.addEventListener("scroll", unlockAudio, { passive: true });
+
+      // Manual mute/unmute button.
+      toggle.addEventListener("click", async (event) => {
+        event.stopPropagation();
 
         if (music.paused) {
-            await music.play();
-            icon.className = "fa-solid fa-volume-high";
+          await playMusic();
         } else {
-            music.pause();
-            icon.className = "fa-solid fa-volume-xmark";
+          music.pause();
+          setAudioIcon();
         }
+      });
 
-        console.log("Paused:", music.paused);
-    });
+      setAudioIcon();
+    }
   </script>
 
 </body>
