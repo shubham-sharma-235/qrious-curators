@@ -1,3 +1,66 @@
+// ----------------------------- Testimonial Section ---------------------------------
+
+const testimonialSectionWrap = document.querySelector(".testimonial-section");
+const testimonialCardItems = document.querySelectorAll(".testimonial-card");
+
+function handleStackedTestimonialsScroll() {
+  const testimonialSectionBounds = testimonialSectionWrap.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
+
+  const testimonialScrollRange =
+    testimonialSectionWrap.offsetHeight - viewportHeight;
+
+  const testimonialScrollProgress = Math.min(
+    Math.max(-testimonialSectionBounds.top / testimonialScrollRange, 0),
+    1
+  );
+
+  const testimonialCardCount = testimonialCardItems.length;
+
+  testimonialCardItems.forEach((testimonialCard, testimonialIndex) => {
+    const cardRevealStart = testimonialIndex / testimonialCardCount;
+    const cardRevealEnd = (testimonialIndex + 1) / testimonialCardCount;
+
+    let cardRevealProgress =
+      (testimonialScrollProgress - cardRevealStart) /
+      (cardRevealEnd - cardRevealStart);
+
+    cardRevealProgress = Math.min(Math.max(cardRevealProgress, 0), 1);
+
+    const cardEntryPositionY = 120 - cardRevealProgress * 120;
+    const cardStackSpacing = testimonialIndex * 10;
+    const cardTiltAngle = testimonialIndex % 2 === 0 ? -3 : 3;
+
+    if (testimonialScrollProgress >= cardRevealStart) {
+      testimonialCard.style.opacity = 1;
+      testimonialCard.style.zIndex = testimonialIndex + 2;
+
+      if (testimonialScrollProgress > cardRevealEnd) {
+        testimonialCard.style.transform = `
+          translateY(${cardStackSpacing}px)
+          rotate(${cardTiltAngle}deg)
+          scale(${1 - testimonialIndex * 0.015})
+        `;
+      } else {
+        testimonialCard.style.transform = `
+          translateY(${cardEntryPositionY}vh)
+          rotate(${cardTiltAngle * cardRevealProgress}deg)
+          scale(1)
+        `;
+      }
+    } else {
+      testimonialCard.style.opacity = 0;
+      testimonialCard.style.transform =
+        "translateY(120vh) rotate(0deg) scale(1)";
+    }
+  });
+}
+
+window.addEventListener("scroll", handleStackedTestimonialsScroll);
+window.addEventListener("load", handleStackedTestimonialsScroll);
+
+// ----------------------------------------------------------------------------------
+
 const qnToggle = document.getElementById('qnToggle');
 const qnOverlay = document.getElementById('qnOverlay');
 function qnToggleMenu(force){
@@ -535,4 +598,704 @@ document.getElementById('r2').innerHTML = h2 + h2;
 
 
 
+
+/* =========================================================
+   CINEMATIC SERVICES SECTION JS — REVISIT FIXED VERSION
+   Requires:
+   gsap.min.js
+   ScrollTrigger.min.js
+
+   Use this instead of the previous qc-cine JS.
+========================================================= */
+
+(function () {
+  window.addEventListener("load", function () {
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+      console.error("GSAP or ScrollTrigger is not loaded.");
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    /*
+      Prevent duplicate timelines if this file is loaded twice
+      or if you are testing with hot reload.
+    */
+    qcKillOldCinematicTriggers();
+
+    qcInitCinematicServices();
+    qcInitExperienceCards();
+    qcRefreshAfterImages();
+  });
+
+
+  function qcKillOldCinematicTriggers() {
+    const oldServicesTrigger = ScrollTrigger.getById("qc-cinematic-services");
+    const oldExperienceTrigger = ScrollTrigger.getById("qc-experience-cards");
+
+    if (oldServicesTrigger) oldServicesTrigger.kill(true);
+    if (oldExperienceTrigger) oldExperienceTrigger.kill(true);
+
+    gsap.killTweensOf([
+      "#qcCineTrack",
+      "#qcCineClone",
+      "#qcCineClone img",
+      "#qcCineSource",
+      ".qc-cine-panel",
+      ".qc-cine-panel-last .qc-cine-content",
+      ".qc-cine-panel-last .qc-cine-num",
+      ".qc-floating-card",
+      ".qc-exp-kicker",
+      ".qc-exp-sub",
+      ".qc-exp-line",
+      ".qc-exp-copy"
+    ]);
+  }
+
+
+  /* =========================================================
+     PART 1 + PART 2
+     Horizontal service scroll + last card image fullscreen takeover
+  ========================================================= */
+
+  function qcInitCinematicServices() {
+    const section = document.querySelector("#qc-cine-services");
+    const track = document.querySelector("#qcCineTrack");
+    const sourceBox = document.querySelector("#qcCineSource");
+    const sourceImg = document.querySelector("#qcCineImage");
+    const clone = document.querySelector("#qcCineClone");
+    const cloneImg = clone ? clone.querySelector("img") : null;
+
+    if (!section || !track || !sourceBox || !sourceImg || !clone || !cloneImg) {
+      console.error("Cinematic services elements missing.");
+      return;
+    }
+
+    cloneImg.src = sourceImg.currentSrc || sourceImg.src;
+
+    const panels = gsap.utils.toArray(".qc-cine-panel");
+    const previousPanels = panels.slice(0, -1);
+    const lastPanelContent = document.querySelectorAll(
+      ".qc-cine-panel-last .qc-cine-content, .qc-cine-panel-last .qc-cine-num"
+    );
+
+    function getMaxShift() {
+      return Math.max(0, track.scrollWidth - window.innerWidth);
+    }
+
+    function getSourceRect() {
+      return sourceBox.getBoundingClientRect();
+    }
+
+    function getSourceRadius() {
+      return window.getComputedStyle(sourceBox).borderRadius || "38px";
+    }
+
+    function getScrollDistance() {
+      return Math.max(5200, getMaxShift() + window.innerHeight * 3.4);
+    }
+
+    function resetServicesToStart() {
+      gsap.set(track, {
+        x: 0,
+        clearProps: "transform"
+      });
+
+      gsap.set(sourceBox, {
+        autoAlpha: 1,
+        clearProps: "visibility,opacity"
+      });
+
+      gsap.set(previousPanels, {
+        autoAlpha: 1,
+        clearProps: "visibility,opacity"
+      });
+
+      gsap.set(lastPanelContent, {
+        autoAlpha: 1,
+        y: 0,
+        clearProps: "visibility,opacity,transform"
+      });
+
+      gsap.set(clone, {
+        autoAlpha: 0,
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0,
+        borderRadius: getSourceRadius(),
+        clearProps: "visibility,opacity,transform,width,height"
+      });
+
+      gsap.set(cloneImg, {
+        scale: 1.04,
+        clearProps: "transform"
+      });
+    }
+
+    function resetServicesToEnd() {
+      gsap.set(track, {
+        x: -getMaxShift()
+      });
+
+      gsap.set(sourceBox, {
+        autoAlpha: 0
+      });
+
+      gsap.set(previousPanels, {
+        autoAlpha: 0
+      });
+
+      gsap.set(lastPanelContent, {
+        autoAlpha: 0,
+        y: -58
+      });
+
+      gsap.set(clone, {
+        autoAlpha: 0,
+        x: 0,
+        y: 0,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        borderRadius: 0
+      });
+
+      gsap.set(cloneImg, {
+        scale: 1.14
+      });
+    }
+
+    /*
+      Initial clean state.
+    */
+    gsap.set(track, {
+      x: 0,
+      force3D: true
+    });
+
+    gsap.set(clone, {
+      autoAlpha: 0,
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
+      borderRadius: getSourceRadius(),
+      transformOrigin: "top left",
+      force3D: true
+    });
+
+    gsap.set(cloneImg, {
+      scale: 1.04,
+      transformOrigin: "center center",
+      force3D: true
+    });
+
+    gsap.set(sourceBox, {
+      autoAlpha: 1
+    });
+
+    gsap.set(previousPanels, {
+      autoAlpha: 1
+    });
+
+    gsap.set(lastPanelContent, {
+      autoAlpha: 1,
+      y: 0
+    });
+
+
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "none"
+      },
+      scrollTrigger: {
+        id: "qc-cinematic-services",
+        trigger: section,
+        start: "top top",
+        end: function () {
+          return "+=" + getScrollDistance();
+        },
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        markers: false,
+
+        /*
+          These callbacks fix the revisit issue.
+        */
+        onEnter: function () {
+          if (this.progress === 0) {
+            resetServicesToStart();
+          }
+        },
+
+        onLeave: function () {
+          resetServicesToEnd();
+        },
+
+        onEnterBack: function () {
+          resetServicesToEnd();
+        },
+
+        onLeaveBack: function () {
+          resetServicesToStart();
+        },
+
+        onRefresh: function (self) {
+          if (self.progress === 0) {
+            resetServicesToStart();
+          }
+        }
+      }
+    });
+
+
+    /*
+      PHASE 1:
+      Horizontal scroll through all service cards.
+    */
+    tl.to(track, {
+      x: function () {
+        return -getMaxShift();
+      },
+      duration: 2.6,
+      ease: "none"
+    });
+
+
+    /*
+      PHASE 2:
+      Last card image detaches and expands.
+    */
+    tl.addLabel("takeover");
+
+    tl.fromTo(
+      clone,
+      {
+        autoAlpha: 1,
+        x: function () {
+          return getSourceRect().left;
+        },
+        y: function () {
+          return getSourceRect().top;
+        },
+        width: function () {
+          return getSourceRect().width;
+        },
+        height: function () {
+          return getSourceRect().height;
+        },
+        borderRadius: function () {
+          return getSourceRadius();
+        }
+      },
+      {
+        x: 0,
+        y: 0,
+        width: function () {
+          return window.innerWidth;
+        },
+        height: function () {
+          return window.innerHeight;
+        },
+        borderRadius: 0,
+        duration: 1.3,
+        ease: "power2.inOut",
+        immediateRender: false
+      },
+      "takeover"
+    );
+
+    tl.to(
+      sourceBox,
+      {
+        autoAlpha: 0,
+        duration: 0.08,
+        ease: "none"
+      },
+      "takeover+=0.04"
+    );
+
+    tl.to(
+      previousPanels,
+      {
+        autoAlpha: 0,
+        duration: 0.55,
+        ease: "power1.out"
+      },
+      "takeover+=0.08"
+    );
+
+    tl.to(
+      lastPanelContent,
+      {
+        autoAlpha: 0,
+        y: -58,
+        duration: 0.75,
+        ease: "power2.out"
+      },
+      "takeover+=0.12"
+    );
+
+    tl.to(
+      cloneImg,
+      {
+        scale: 1.14,
+        duration: 1.3,
+        ease: "power2.inOut"
+      },
+      "takeover"
+    );
+
+
+    /*
+      PHASE 3:
+      Fullscreen image fades away.
+    */
+    tl.to(
+      clone,
+      {
+        autoAlpha: 0,
+        duration: 0.95,
+        ease: "power1.inOut"
+      },
+      "takeover+=1.32"
+    );
+
+    tl.to({}, { duration: 0.35 });
+  }
+
+
+  /* =========================================================
+     PART 3 + PART 4
+     Sticky text + floating cards
+  ========================================================= */
+
+  function qcInitExperienceCards() {
+    const section = document.querySelector("#qc-cine-experience");
+    const sticky = document.querySelector(".qc-cine-experience-sticky");
+    const cards = gsap.utils.toArray(".qc-floating-card");
+
+    if (!section || !sticky || !cards.length) {
+      console.error("Experience cards elements missing.");
+      return;
+    }
+
+    function resetExperienceToStart() {
+      gsap.set(cards, {
+        autoAlpha: 0,
+        x: 0,
+        y: 0,
+        rotation: 0,
+        scale: 1,
+        clearProps: "visibility,opacity,transform"
+      });
+
+      gsap.set(".qc-exp-kicker", {
+        autoAlpha: 0,
+        y: 20
+      });
+
+      gsap.set(".qc-exp-sub", {
+        autoAlpha: 0,
+        y: 26
+      });
+
+      gsap.set(".qc-exp-line", {
+        yPercent: 115,
+        rotateX: 12,
+        transformOrigin: "center bottom"
+      });
+
+      gsap.set(".qc-exp-copy", {
+        scale: 1,
+        autoAlpha: 1
+      });
+    }
+
+    function resetExperienceToEnd() {
+      gsap.set(cards, {
+        autoAlpha: 0
+      });
+
+      gsap.set(".qc-exp-kicker", {
+        autoAlpha: 1,
+        y: 0
+      });
+
+      gsap.set(".qc-exp-sub", {
+        autoAlpha: 1,
+        y: 0
+      });
+
+      gsap.set(".qc-exp-line", {
+        yPercent: 0,
+        rotateX: 0
+      });
+
+      gsap.set(".qc-exp-copy", {
+        scale: 0.965,
+        autoAlpha: 1
+      });
+    }
+
+    gsap.set(cards, {
+      autoAlpha: 0,
+      force3D: true,
+      transformOrigin: "center center"
+    });
+
+    gsap.set(".qc-exp-kicker", {
+      autoAlpha: 0,
+      y: 20
+    });
+
+    gsap.set(".qc-exp-sub", {
+      autoAlpha: 0,
+      y: 26
+    });
+
+    gsap.set(".qc-exp-line", {
+      yPercent: 115,
+      rotateX: 12,
+      transformOrigin: "center bottom"
+    });
+
+    gsap.set(".qc-exp-copy", {
+      scale: 1,
+      autoAlpha: 1
+    });
+
+
+    const enterStates = [
+      { x: -360, y: 80, rotation: -8, scale: 0.86 },
+      { x: 0, y: 320, rotation: 5, scale: 0.74 },
+      { x: 360, y: 70, rotation: 7, scale: 0.86 },
+
+      { x: -330, y: -90, rotation: 8, scale: 0.84 },
+      { x: 330, y: 120, rotation: -6, scale: 0.86 },
+      { x: 40, y: 330, rotation: 5, scale: 0.78 },
+
+      { x: 360, y: -70, rotation: 9, scale: 0.84 },
+      { x: -380, y: 160, rotation: -9, scale: 0.84 },
+      { x: 300, y: 260, rotation: 6, scale: 0.78 }
+    ];
+
+    const activeStates = [
+      { x: 0, y: 0, rotation: -3, scale: 1 },
+      { x: 0, y: 0, rotation: 2, scale: 1 },
+      { x: 0, y: 0, rotation: 4, scale: 1 },
+
+      { x: 0, y: 0, rotation: 3, scale: 1 },
+      { x: 0, y: 0, rotation: -3, scale: 1 },
+      { x: 0, y: 0, rotation: 2, scale: 1 },
+
+      { x: 0, y: 0, rotation: 4, scale: 1 },
+      { x: 0, y: 0, rotation: -4, scale: 1 },
+      { x: 0, y: 0, rotation: 3, scale: 1 }
+    ];
+
+    const exitStates = [
+      { x: -260, y: -180, rotation: -14, scale: 0.82 },
+      { x: 40, y: -320, rotation: 8, scale: 0.82 },
+      { x: 300, y: -140, rotation: 12, scale: 0.82 },
+
+      { x: -300, y: 180, rotation: -8, scale: 0.82 },
+      { x: 320, y: -210, rotation: 9, scale: 0.82 },
+      { x: 80, y: -330, rotation: -7, scale: 0.82 },
+
+      { x: 300, y: -180, rotation: 13, scale: 0.82 },
+      { x: -320, y: -170, rotation: -12, scale: 0.82 },
+      { x: 260, y: -260, rotation: 9, scale: 0.82 }
+    ];
+
+
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "none"
+      },
+      scrollTrigger: {
+        id: "qc-experience-cards",
+        trigger: section,
+        start: "top top",
+        end: function () {
+          return "+=" + Math.max(4200, window.innerHeight * 4.4);
+        },
+        scrub: 1,
+        pin: sticky,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        markers: false,
+
+        onEnter: function () {
+          if (this.progress === 0) {
+            resetExperienceToStart();
+          }
+        },
+
+        onLeave: function () {
+          resetExperienceToEnd();
+        },
+
+        onEnterBack: function () {
+          resetExperienceToEnd();
+        },
+
+        onLeaveBack: function () {
+          resetExperienceToStart();
+        },
+
+        onRefresh: function (self) {
+          if (self.progress === 0) {
+            resetExperienceToStart();
+          }
+        }
+      }
+    });
+
+
+    /*
+      Sticky text reveal.
+    */
+    tl.to(
+      ".qc-exp-kicker",
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.28,
+        ease: "power2.out"
+      },
+      0
+    );
+
+    tl.to(
+      ".qc-exp-line",
+      {
+        yPercent: 0,
+        rotateX: 0,
+        duration: 0.62,
+        stagger: 0.08,
+        ease: "power3.out"
+      },
+      0.05
+    );
+
+    tl.to(
+      ".qc-exp-sub",
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.4,
+        ease: "power2.out"
+      },
+      0.35
+    );
+
+    tl.to(
+      ".qc-exp-copy",
+      {
+        scale: 0.965,
+        duration: 3.4,
+        ease: "none"
+      },
+      0.48
+    );
+
+
+    function animateGroup(indexes, startTime, exitTime, isLastGroup) {
+      indexes.forEach(function (cardIndex, slotIndex) {
+        const card = cards[cardIndex];
+        const delay = slotIndex * 0.075;
+
+        tl.fromTo(
+          card,
+          {
+            autoAlpha: 0,
+            ...enterStates[cardIndex]
+          },
+          {
+            autoAlpha: 1,
+            ...activeStates[cardIndex],
+            duration: 0.48,
+            ease: "power3.out"
+          },
+          startTime + delay
+        );
+
+        tl.to(
+          card,
+          {
+            autoAlpha: 0,
+            ...exitStates[cardIndex],
+            duration: isLastGroup ? 0.52 : 0.4,
+            ease: "power2.in"
+          },
+          exitTime + delay
+        );
+      });
+    }
+
+
+    /*
+      0% - 30%: cards 1, 2, 3
+      30% - 60%: cards 4, 5, 6
+      60% - 100%: cards 7, 8, 9
+    */
+    animateGroup([0, 1, 2], 0.68, 1.35, false);
+    animateGroup([3, 4, 5], 1.52, 2.24, false);
+    animateGroup([6, 7, 8], 2.48, 3.34, true);
+
+    tl.to({}, { duration: 0.35 });
+  }
+
+
+  /* =========================================================
+     REFRESH HANDLING
+  ========================================================= */
+
+  function qcRefreshAfterImages() {
+    const images = document.querySelectorAll(
+      "#qc-cine-services img, #qc-cine-experience img"
+    );
+
+    images.forEach(function (img) {
+      if (!img.complete) {
+        img.addEventListener(
+          "load",
+          function () {
+            ScrollTrigger.refresh();
+          },
+          { once: true }
+        );
+
+        img.addEventListener(
+          "error",
+          function () {
+            ScrollTrigger.refresh();
+          },
+          { once: true }
+        );
+      }
+    });
+
+    let resizeTimer;
+
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+
+      resizeTimer = setTimeout(function () {
+        ScrollTrigger.refresh();
+      }, 250);
+    });
+
+    setTimeout(function () {
+      ScrollTrigger.refresh();
+    }, 300);
+
+    setTimeout(function () {
+      ScrollTrigger.refresh();
+    }, 1000);
+  }
+})();
 
