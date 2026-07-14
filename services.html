@@ -9,6 +9,8 @@
       href="./assets/logo/fav-icon-one.png"
       type="image/x-icon"
     />
+     <link rel="stylesheet" href="./styles/style.css" />
+    <link
     <link
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet"
@@ -19,8 +21,42 @@
 
   <body>
     <!-- CURSOR -->
-    <div id="qc-cur"></div>
-    <div id="qc-cur-ring"></div>
+    <div class="qn-wrap">
+      <div class="qn-bar">
+        <a href="./index.html" class="nav-logo">
+          <img src="./assets/logo/logo-one.png" alt="Logo" />
+        </a>
+
+        <button class="qn-toggle" id="qnToggle">
+          <div class="qn-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- OVERLAY MENU -->
+    <div class="qn-overlay" id="qnOverlay">
+      <div class="qn-inner">  
+        <div class="qn-center">
+          <div class="qn-main">
+            <a href="aboutsection-qc.html">About</a>
+            <a href="work.html">Work</a>
+            <a href="services.html">Services</a>
+          </div>
+
+          <div class="qn-sub">
+            <a href="contactqc.html">Contact</a>
+            <a href="./index.html#blogs">Blogs</a>
+            <a href="newteam.html">Our Team</a>
+            <a href="careers.html">Career</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <!-- GRAIN -->
     <div id="grain" aria-hidden="true"></div>
@@ -214,7 +250,7 @@
         },
         "service-4": {
           subtitle: "Grow your brand with data-driven strategies",
-          link: "./services/graphic.html",
+          link: "./services/graphicdesign.html",
           video: "./images/graphicDesign.mp4",
         },
         "service-5": {

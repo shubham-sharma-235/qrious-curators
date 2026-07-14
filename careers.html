@@ -6,7 +6,7 @@
   <title>Careers | Qrious Curators</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
+  <link rel="stylesheet" href="styles/style.css" />
   <style>
     * {
       margin: 0;
@@ -69,7 +69,7 @@
     }
 
     /* NAVBAR */
-    .qn-wrap {
+    /* .qn-wrap {
       position: fixed;
       top: 0;
       left: 0;
@@ -210,7 +210,7 @@
 
     .qn-sub a:hover {
       color: #fff;
-    }
+    } */
 
     /* TOP CAREER IMAGE MARQUEE */
     .qc-career-marquee-section {
@@ -1053,8 +1053,43 @@
 </head>
 
 <body>
-  <div id="qc-cur"></div>
-  <div id="qc-cur-ring"></div>
+<div class="qn-wrap">
+    <div class="qn-bar">
+      <a href="./index.html" class="nav-logo">
+        <img src="./assets/logo/logo-one.png" alt="Logo">
+      </a>
+
+      <button class="qn-toggle" id="qnToggle" aria-label="Menu">
+        <div class="qn-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- OVERLAY MENU -->
+  <div class="qn-overlay" id="qnOverlay">
+    <div class="qn-inner">
+      <div class="qn-center">
+
+        <div class="qn-main">
+          <a href="aboutsection-qc.html">About</a>
+          <a href="work.html">Work</a>
+          <a href="services.html">Services</a>
+        </div>
+
+        <div class="qn-sub">
+          <a href="contactqc.html">Contact</a>
+          <a href="blogqc.html">Blogs</a>
+          <a href="teamSection.html">Our Team</a>
+          <a href="careers.html">Career</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- <div class="qn-wrap">
     <div class="qn-bar">
@@ -1135,7 +1170,7 @@
 
           <div class="qc-career-stack">
             <div class="qc-career-img qc-small">
-              <img src="./assets/careers/career8.jpeg" alt="Creative team" />
+              <img src="./assets/careers/career8.png" alt="Creative team" />
             </div>
 
             <div class="qc-career-img qc-wide">
@@ -1491,5 +1526,6 @@
       }
     });
   </script>
+ <script src="./scripts/script.js"></script>
 </body>
 </html> 

@@ -9,6 +9,496 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles/mahttab.css">
+
+
+  <!-- JB Marble page-specific override: keep the common case-study CSS file for all projects, only this HTML controls JB look. -->
+  <style id="jb-marble-case-overrides">
+    :root {
+      --jb-ink: #17110c;
+      --jb-brown: #5a3421;
+      --jb-brown-dark: #21140d;
+      --jb-stone: #f4efe6;
+      --jb-stone-2: #fffaf2;
+      --jb-muted: rgba(23, 17, 12, .68);
+      --jb-line: rgba(90, 52, 33, .18);
+    }
+
+    html,
+    body {
+      background: var(--jb-stone) !important;
+      color: var(--jb-ink) !important;
+      overflow-x: hidden !important;
+    }
+
+    body::before {
+      content: '' !important;
+      position: fixed !important;
+      inset: 0 !important;
+      pointer-events: none !important;
+      z-index: 0 !important;
+      opacity: .35 !important;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(90,52,33,.10), transparent 28%),
+        radial-gradient(circle at 82% 8%, rgba(255,255,255,.65), transparent 26%),
+        linear-gradient(135deg, rgba(90,52,33,.05), transparent 42%) !important;
+    }
+
+    .section {
+      position: relative !important;
+      z-index: 1 !important;
+      background: var(--jb-stone) !important;
+      color: var(--jb-ink) !important;
+    }
+
+    .scroll-progress {
+      background: var(--jb-brown) !important;
+      height: 4px !important;
+      z-index: 9999 !important;
+    }
+
+    .custom-cursor,
+    .cursor-dot {
+      border-color: var(--jb-brown) !important;
+      background: var(--jb-brown) !important;
+    }
+
+    .hero-section {
+      min-height: 100vh !important;
+      padding: clamp(90px, 8vw, 140px) clamp(18px, 5vw, 80px) clamp(70px, 7vw, 110px) !important;
+      background:
+        linear-gradient(90deg, rgba(244,239,230,.96) 0%, rgba(244,239,230,.86) 48%, rgba(255,250,242,.68) 100%),
+        url('../assets/workimages/jbmarbleHero.jpg') center/cover no-repeat !important;
+      overflow: hidden !important;
+    }
+
+    .hero-section::after {
+      content: 'OUR WORK' !important;
+      position: absolute !important;
+      right: -5vw !important;
+      bottom: -2vw !important;
+      font-size: clamp(90px, 16vw, 260px) !important;
+      line-height: 1 !important;
+      letter-spacing: -.08em !important;
+      color: rgba(90,52,33,.055) !important;
+      font-weight: 800 !important;
+      pointer-events: none !important;
+    }
+
+    .hero-content {
+      max-width: 1500px !important;
+      margin: 0 auto !important;
+      display: grid !important;
+      grid-template-columns: minmax(0, .86fr) minmax(430px, 1.14fr) !important;
+      gap: clamp(36px, 6vw, 100px) !important;
+      align-items: center !important;
+    }
+
+    .hero-tag,
+    .section-label,
+    .service-group-title,
+    .gallery-subtitle,
+    .jb-impact-kicker,
+    .approach-attribution {
+      color: var(--jb-brown) !important;
+      letter-spacing: .18em !important;
+      text-transform: uppercase !important;
+      font-weight: 700 !important;
+      font-size: 12px !important;
+    }
+
+    .hero-title {
+      max-width: 880px !important;
+      margin: 18px 0 28px !important;
+      color: var(--jb-ink) !important;
+      font-family: 'Raleway', Arial, sans-serif !important;
+      /* font-size: clamp(58px, 6.8vw, 150px) !important; */
+      font-size: 80px !important;
+      font-weight: 300 !important;
+      line-height: .88 !important;
+      letter-spacing: -.075em !important;
+      whitespace: wrap !important;
+    }
+
+    .hero-description,
+    .services-text,
+    .gallery-subtitle,
+    .jb-impact-copy,
+    .approach-text {
+      color: var(--jb-muted) !important;
+      font-family: 'Lato', Arial, sans-serif !important;
+      font-size: clamp(16px, 1.12vw, 19px) !important;
+      line-height: 1.85 !important;
+    }
+
+    .hero-description {
+      max-width: 660px !important;
+    }
+
+    .hero-cta,
+    .service-links a {
+      margin-top: 30px !important;
+      background: var(--jb-brown-dark) !important;
+      color: var(--jb-stone-2) !important;
+      border: 1px solid rgba(90,52,33,.35) !important;
+      border-radius: 999px !important;
+      padding: 15px 24px !important;
+      box-shadow: 0 22px 60px rgba(33,20,13,.20) !important;
+    }
+
+    .cta-dot {
+      background: #d2a77c !important;
+    }
+
+    .hero-image-container {
+      height: min(74vh, 760px) !important;
+      min-height: 520px !important;
+      border-radius: 42px !important;
+      overflow: hidden !important;
+      border: 1px solid rgba(90,52,33,.24) !important;
+      box-shadow: 0 34px 100px rgba(33,20,13,.22) !important;
+      background: #d9c8b6 !important;
+    }
+
+    .hero-image-container img,
+    .gallery-item img,
+    .service-panel img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+    }
+
+    .services-section {
+      background: var(--jb-brown-dark) !important;
+      color: var(--jb-stone-2) !important;
+      padding: clamp(80px, 8vw, 140px) clamp(18px, 5vw, 80px) !important;
+    }
+
+    .services-inner {
+      max-width: 1440px !important;
+      margin: 0 auto !important;
+      display: grid !important;
+      grid-template-columns: minmax(0, .88fr) minmax(430px, 1fr) !important;
+      gap: clamp(34px, 6vw, 96px) !important;
+      align-items: start !important;
+    }
+
+    .services-title,
+    .gallery-title,
+    .stats-heading h2 {
+      color: inherit !important;
+      font-size: clamp(42px, 5.8vw, 104px) !important;
+      font-weight: 300 !important;
+      line-height: .94 !important;
+      letter-spacing: -.065em !important;
+    }
+
+    .services-title strong,
+    .gallery-title strong,
+    .stats-heading strong {
+      color: #d2a77c !important;
+      font-weight: 400 !important;
+    }
+
+    .services-section .services-text {
+      color: rgba(255,250,242,.70) !important;
+      max-width: 650px !important;
+    }
+
+    .service-group {
+      background: rgba(255,250,242,.055) !important;
+      border: 1px solid rgba(255,250,242,.12) !important;
+      border-radius: 30px !important;
+      padding: clamp(18px, 2vw, 28px) !important;
+      backdrop-filter: blur(10px) !important;
+    }
+
+    .service-item {
+      border-bottom: 1px solid rgba(255,250,242,.12) !important;
+      color: var(--jb-stone-2) !important;
+    }
+
+    .service-toggle {
+      color: var(--jb-stone-2) !important;
+      padding: 22px 0 !important;
+      font-size: clamp(18px, 1.55vw, 26px) !important;
+      font-weight: 400 !important;
+    }
+
+    .service-panel p {
+      color: rgba(255,250,242,.70) !important;
+      line-height: 1.75 !important;
+    }
+
+    .service-panel img {
+      border-radius: 24px !important;
+      margin-top: 18px !important;
+      max-height: 270px !important;
+    }
+
+    .divider {
+      border-color: rgba(90,52,33,.16) !important;
+    }
+
+    .gallery-section {
+      background: var(--jb-stone) !important;
+      padding: clamp(80px, 8vw, 140px) 0 !important;
+    }
+
+    .gallery-header {
+      max-width: 1440px !important;
+      margin: 0 auto clamp(34px, 5vw, 70px) !important;
+      padding: 0 clamp(18px, 5vw, 80px) !important;
+    }
+
+    .gallery-title {
+      color: var(--jb-ink) !important;
+    }
+
+    .gallery-scroll-indicator {
+      color: var(--jb-brown) !important;
+      border-color: var(--jb-line) !important;
+    }
+
+    .gallery-scroll-wrapper {
+      padding-left: clamp(18px, 5vw, 80px) !important;
+      overflow: hidden !important;
+    }
+
+    .gallery-track {
+      gap: 24px !important;
+      display: flex !important;
+      will-change: transform !important;
+    }
+
+    .gallery-item {
+      min-width: min(72vw, 640px) !important;
+      height: min(70vh, 620px) !important;
+      border-radius: 34px !important;
+      overflow: hidden !important;
+      box-shadow: 0 28px 90px rgba(33,20,13,.18) !important;
+      border: 1px solid rgba(90,52,33,.18) !important;
+      background: #dccbbb !important;
+    }
+
+    .gallery-item-overlay {
+      background: linear-gradient(180deg, transparent, rgba(23,17,12,.78)) !important;
+      color: var(--jb-stone-2) !important;
+    }
+
+    /* Reworked stats UI — premium editorial strip instead of old cards/icons */
+    .stats-section.jb-impact-section {
+      background: var(--jb-brown-dark) !important;
+      color: var(--jb-stone-2) !important;
+      padding: clamp(80px, 8vw, 145px) clamp(18px, 5vw, 80px) !important;
+    }
+
+    .jb-impact-inner {
+      max-width: 1440px !important;
+      margin: 0 auto !important;
+    }
+
+    .jb-impact-head {
+      display: grid !important;
+      grid-template-columns: minmax(0, .85fr) minmax(280px, .55fr) !important;
+      gap: clamp(28px, 5vw, 80px) !important;
+      align-items: end !important;
+      margin-bottom: clamp(42px, 6vw, 90px) !important;
+    }
+
+    .jb-impact-title {
+      color: var(--jb-stone-2) !important;
+      font-size: clamp(44px, 6.6vw, 118px) !important;
+      line-height: .92 !important;
+      letter-spacing: -.07em !important;
+      font-weight: 300 !important;
+      margin: 14px 0 0 !important;
+    }
+
+    .jb-impact-copy {
+      color: rgba(255,250,242,.68) !important;
+      margin: 0 !important;
+    }
+
+    .stats-grid.jb-impact-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 0 !important;
+      border-top: 1px solid rgba(255,250,242,.18) !important;
+      border-bottom: 1px solid rgba(255,250,242,.18) !important;
+    }
+
+    .stat-card.jb-impact-card {
+      background: transparent !important;
+      border: 0 !important;
+      border-right: 1px solid rgba(255,250,242,.18) !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      padding: clamp(28px, 4vw, 62px) clamp(18px, 2.4vw, 36px) !important;
+      min-height: 250px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+    }
+
+    .stat-card.jb-impact-card:last-child {
+      border-right: 0 !important;
+    }
+
+    .stat-icon {
+      display: none !important;
+    }
+
+    .stat-value.jb-impact-value {
+      color: #d2a77c !important;
+      font-size: clamp(56px, 7vw, 118px) !important;
+      line-height: .8 !important;
+      letter-spacing: -.075em !important;
+      font-weight: 300 !important;
+      margin: 0 0 28px !important;
+    }
+
+    .stat-label.jb-impact-label {
+      color: rgba(255,250,242,.86) !important;
+      font-size: clamp(16px, 1.35vw, 22px) !important;
+      line-height: 1.35 !important;
+      max-width: 240px !important;
+    }
+
+    .jb-impact-note {
+      margin-top: 22px !important;
+      color: rgba(255,250,242,.48) !important;
+      font-size: 13px !important;
+      letter-spacing: .04em !important;
+      font-family: 'Lato', Arial, sans-serif !important;
+    }
+
+    .approach-section {
+      background: var(--jb-stone) !important;
+      padding: clamp(80px, 8vw, 145px) clamp(18px, 5vw, 80px) !important;
+    }
+
+    .approach-inner {
+      max-width: 1180px !important;
+      margin: 0 auto !important;
+      background: var(--jb-stone-2) !important;
+      color: var(--jb-ink) !important;
+      border: 1px solid var(--jb-line) !important;
+      border-radius: 38px !important;
+      padding: clamp(32px, 6vw, 88px) !important;
+      box-shadow: 0 30px 100px rgba(33,20,13,.12) !important;
+    }
+
+    .approach-quote-mark {
+      color: rgba(90,52,33,.25) !important;
+      font-size: clamp(92px, 12vw, 190px) !important;
+      line-height: .7 !important;
+      margin-bottom: 6px !important;
+    }
+
+    .approach-text {
+      color: var(--jb-ink) !important;
+      font-size: clamp(26px, 3.5vw, 58px) !important;
+      line-height: 1.14 !important;
+      letter-spacing: -.045em !important;
+      font-family: 'Raleway', Arial, sans-serif !important;
+      font-weight: 300 !important;
+    }
+
+    .approach-attribution {
+      margin-top: 28px !important;
+      display: block !important;
+      color: var(--jb-brown) !important;
+    }
+
+    .bottom-spacer {
+      background: var(--jb-stone) !important;
+      height: 80px !important;
+    }
+
+    @media (max-width: 1050px) {
+      .hero-content,
+      .services-inner,
+      .jb-impact-head {
+        grid-template-columns: 1fr !important;
+      }
+
+      .hero-image-container {
+        min-height: 420px !important;
+        height: 58vh !important;
+      }
+
+      .stats-grid.jb-impact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      .stat-card.jb-impact-card:nth-child(2) {
+        border-right: 0 !important;
+      }
+
+      .stat-card.jb-impact-card:nth-child(-n+2) {
+        border-bottom: 1px solid rgba(255,250,242,.18) !important;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hero-section,
+      .services-section,
+      .stats-section.jb-impact-section,
+      .approach-section {
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+      }
+
+      .hero-title {
+        font-size: clamp(46px, 16vw, 76px) !important;
+        letter-spacing: -.055em !important;
+      }
+
+      .hero-image-container {
+        min-height: 320px !important;
+        height: 46vh !important;
+        border-radius: 28px !important;
+      }
+
+      .services-title,
+      .gallery-title,
+      .jb-impact-title {
+        font-size: clamp(38px, 12vw, 62px) !important;
+        letter-spacing: -.055em !important;
+      }
+
+      .gallery-item {
+        min-width: 86vw !important;
+        height: 52vh !important;
+        border-radius: 26px !important;
+      }
+
+      .stats-grid.jb-impact-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .stat-card.jb-impact-card,
+      .stat-card.jb-impact-card:nth-child(2) {
+        border-right: 0 !important;
+        border-bottom: 1px solid rgba(255,250,242,.18) !important;
+        min-height: 190px !important;
+      }
+
+      .stat-card.jb-impact-card:last-child {
+        border-bottom: 0 !important;
+      }
+
+      .approach-inner {
+        border-radius: 28px !important;
+      }
+
+      .approach-text {
+        font-size: clamp(26px, 9vw, 40px) !important;
+      }
+    }
+  </style>
+
 </head>
 <body>
 
@@ -25,12 +515,12 @@
   <section class="section hero-section" id="hero">
     <div class="hero-content">
       <div class="hero-left">
-        <p class="hero-tag">Case Study · 2026</p>
+        <p class="hero-tag">Qrious Curators · Our Work</p>
         <h1 class="hero-title">
-          JB Marble Decor
+          Where Elegance Begins With Marble
         </h1>
         <p class="hero-description">
-          For JB Marble Decor, our focus was to present a generational marble craftsmanship brand through a premium digital experience. The page was planned to communicate their legacy, bespoke services, architectural collaborations, and project scale without making the website feel like a basic product catalogue.
+          For JB Marble Decor, we shaped a work page that carries the same feeling as the brand itself: premium stonework, generational craft, bespoke luxury, and architectural confidence. The page still stays clearly inside our Our Work system, but visually borrows from the client's marble-led world.
         </p>
         <a href="https://www.jbmarbledecor.in/" target="_blank" class="hero-cta" data-hover>
           <span class="cta-dot"></span>
@@ -44,7 +534,7 @@
       </div>
       <div class="hero-right">
         <div class="hero-image-container" data-hover>
-          <img src="../assets/workimages/work3.webp" alt="JB Marble Decor — Digital case study hero" loading="eager">
+          <img src="../assets/workimages/jbmarbleHero.jpg" alt="JB Marble Decor — marble decor case study hero" loading="eager">
         </div>
       </div>
     </div>
@@ -57,12 +547,12 @@
     <div class="services-inner">
       <div class="services-left reveal">
         <p class="section-label">About the Work</p>
-        <h2 class="services-title">A premium marble brand, <strong>digitally</strong> structured</h2>
+        <h2 class="services-title">A case study shaped around <strong>legacy</strong>, craft and premium enquiry</h2>
         <p class="services-text">
-          JB Marble Decor already had a strong craft story: heritage stonework, bespoke marble pieces, architectural collaborations, and luxury project execution. Our role was to shape that into a clear digital journey where architects, interior designers, and homeowners could understand the brand, explore its capabilities, and move toward enquiry.
+          JB Marble Decor already communicates elegance through marble. Our role was to translate that feeling into a digital case-study experience: warm, premium, image-led, and easy for architects, interior designers, homeowners, and luxury-space clients to understand.
         </p>
         <p class="services-text" style="margin-top: 16px;">
-          The work focused on refined visual hierarchy, service-led storytelling, project presentation, product category flow, and conversion-friendly calls-to-action — keeping the brand premium while making the information easy to browse.
+          The structure highlights heritage, service clarity, project scale, product categories, and enquiry intent — without making the page feel like a normal product catalogue.
         </p>
       </div>
 
@@ -177,7 +667,7 @@
     <div class="gallery-header reveal">
       <div class="gallery-header-left">
         <h2 class="gallery-title">Work <strong>Showcase</strong></h2>
-        <p class="gallery-subtitle">Scroll down to explore the direction</p>
+        <p class="gallery-subtitle">Marble-inspired visuals, project storytelling and premium digital flow</p>
       </div>
       <div class="gallery-scroll-indicator">
         <span>Explore</span>
@@ -241,71 +731,56 @@
   </section>
 
   <!-- ============================================
-       RESULTS / STATS SECTION
+       RESULTS / STATS SECTION — JB Marble styled, page-specific HTML override
        ============================================ -->
-  <section class="section stats-section" id="stats">
-    <div class="stats-inner">
-      <div class="stats-heading reveal">
-        <p class="section-label">Scope</p>
-        <h2>Built around <strong>clarity</strong>, shaped for <strong>premium enquiries</strong></h2>
+  <section class="section stats-section jb-impact-section" id="stats">
+    <div class="jb-impact-inner">
+      <div class="jb-impact-head reveal">
+        <div>
+          <p class="jb-impact-kicker">Client Brand Facts</p>
+          <h2 class="jb-impact-title">A digital system built around scale, trust and craft.</h2>
+        </div>
+        <p class="jb-impact-copy">
+          Instead of using generic stats cards, this section now follows a cleaner marble-brand style: large numbers, thin lines, and editorial spacing.
+        </p>
       </div>
-      <div class="stats-grid">
-        <div class="stat-card reveal reveal-delay-1">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-            </svg>
-          </div>
-          <div class="stat-value" data-count="7" data-suffix="+">0</div>
-          <div class="stat-label">Service Categories Structured</div>
+
+      <div class="stats-grid jb-impact-grid">
+        <div class="stat-card jb-impact-card reveal reveal-delay-1">
+          <div class="stat-value jb-impact-value" data-count="40" data-suffix="+">0</div>
+          <div class="stat-label jb-impact-label">Years of family-led stone craftsmanship</div>
         </div>
 
-        <div class="stat-card reveal reveal-delay-2">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-              <circle cx="12" cy="12" r="3"/>
-            </svg>
-          </div>
-          <div class="stat-value" data-count="6" data-suffix="+">0</div>
-          <div class="stat-label">Project Showcase Modules</div>
+        <div class="stat-card jb-impact-card reveal reveal-delay-2">
+          <div class="stat-value jb-impact-value" data-count="100" data-suffix="+">0</div>
+          <div class="stat-label jb-impact-label">Projects completed with detail and care</div>
         </div>
 
-        <div class="stat-card reveal reveal-delay-3">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-              <path d="M2 12h20"/>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            </svg>
-          </div>
-          <div class="stat-value" data-count="1">0</div>
-          <div class="stat-label">Premium Digital System</div>
+        <div class="stat-card jb-impact-card reveal reveal-delay-3">
+          <div class="stat-value jb-impact-value" data-count="45" data-suffix="+">0</div>
+          <div class="stat-label jb-impact-label">Skilled artisans and craftsmen behind the work</div>
         </div>
 
-        <div class="stat-card reveal reveal-delay-4">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </div>
-          <div class="stat-value" data-count="100" data-suffix="%">0</div>
-          <div class="stat-label">Inquiry-Focused Flow</div>
+        <div class="stat-card jb-impact-card reveal reveal-delay-4">
+          <div class="stat-value jb-impact-value" data-count="100" data-suffix="%">0</div>
+          <div class="stat-label jb-impact-label">Client satisfaction-led brand experience</div>
         </div>
       </div>
+
+      <!-- <p class="jb-impact-note">Note: This section is styled in this HTML only, so the same main CSS file can still be reused for all 12 project pages.</p> -->
     </div>
   </section>
 
   <!-- ============================================
-       TESTIMONIAL / QUOTE SECTION
+       CLIENT REVIEW SECTION
        ============================================ -->
   <section class="section approach-section" id="approach">
     <div class="approach-inner reveal">
-      <div class="approach-quote-mark">"</div>
+      <div class="approach-quote-mark">&ldquo;</div>
       <p class="approach-text">
-        Our goal was to make JB Marble Decor's digital presence feel as crafted as their stonework — <em>premium, structured, and easy to trust</em>. The experience was designed to move from legacy to services, from services to projects, and from projects to meaningful enquiries.
+        Qrious Curators helped us present JB Marble Decor in a way that feels refined, premium, and true to our craft. The website experience now communicates our legacy, services, and project scale with clarity.
       </p>
-      <p class="approach-attribution">— Qrious Curators</p>
+      <p class="approach-attribution">— Mr. Aftab, Founder, JB Marble Decor</p>
     </div>
   </section>
 
@@ -444,3 +919,4 @@
 
 </body>
 </html>
+

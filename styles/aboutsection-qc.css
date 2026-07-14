@@ -1256,6 +1256,7 @@
 .ark-stat-line {
   width: 100%;
   height: 1px;
+  font-family:'Times New Roman', Times, serif;
   background: rgba(255, 255, 255, 0.18);
   margin-bottom: 80px;
 }
@@ -1264,6 +1265,7 @@
   font-size: clamp(95px, 9vw, 158px);
   line-height: 0.8;
   font-weight: 500;
+  font-family:'Times New Roman', Times, serif;
   letter-spacing: -5px;
   background: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
   -webkit-background-clip: text;
