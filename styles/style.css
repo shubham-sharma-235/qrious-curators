@@ -2360,6 +2360,24 @@ body.hov #cr {
   color: #fb923c!important;
 }
 
+.premium-about-span {
+    font-style: normal;
+
+    background: linear-gradient(
+        90deg,
+        #FFC21A 0%,
+        #FFB217 20%,
+        #FFA212 40%,
+        #FF9110 60%,
+        #FF8112 80%,
+        #FF7316 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 /* TEXT */
 
 .content-slide p {
@@ -4722,6 +4740,23 @@ body.hov #cr {
   text-transform: uppercase;
 }
 
+.qc-blog-head span {
+  font-style: normal;
+
+  background: linear-gradient(
+      90deg,
+      #FFC21A 0%,
+      #FFB217 20%,
+      #FFA212 40%,
+      #FF9110 60%,
+      #FF8112 80%,
+      #FF7316 100%
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 .qc-blog-head h2 {
   margin: 0;
   font-family: var(--heading-font);
@@ -6240,6 +6275,24 @@ footer::before {
   font-style: normal;
 }
 
+.qc-cine-title em {
+    font-style: normal;
+
+    background: linear-gradient(
+        90deg,
+        #FFC21A 0%,
+        #FFB217 20%,
+        #FFA212 40%,
+        #FF9110 60%,
+        #FF8112 80%,
+        #FF7316 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .qc-cine-content p {
   width: min(560px, 90%);
   margin: 30px 0 0;
@@ -6460,7 +6513,7 @@ footer::before {
   color: var(--white, #f2f2f5);
   font-family: var(--heading-font, "Raleway", sans-serif);
   font-size: clamp(32px, 7vw, 108px);
-  line-height: .92;
+  line-height: .94;
   font-weight: 600;
   letter-spacing: -0.075em;
 }
@@ -6474,6 +6527,24 @@ footer::before {
 .qc-exp-copy h2 em {
   color: var(--accent, #fb923c);
   font-style: normal;
+}
+
+.qc-exp-copy h2 em {
+    font-style: normal;
+
+    background: linear-gradient(
+        90deg,
+        #FFC21A 0%,
+        #FFB217 20%,
+        #FFA212 40%,
+        #FF9110 60%,
+        #FF8112 80%,
+        #FF7316 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .qc-exp-sub {
@@ -6805,6 +6876,23 @@ footer::before {
   color: var(--accent, #fb923c);
 }
 
+.qc-orbit-intro h2 span {
+    font-style: normal;
+
+    background: linear-gradient(
+        90deg,
+        #FFC21A 0%,
+        #FFB217 20%,
+        #FFA212 40%,
+        #FF9110 60%,
+        #FF8112 80%,
+        #FF7316 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 
 /* Stage */
 
