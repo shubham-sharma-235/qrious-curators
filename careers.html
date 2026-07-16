@@ -7,7 +7,32 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles/style.css" />
+  <link
+    rel="shortcut icon"
+    href="./assets/logo/fav-icon-one.png"
+    type="image/x-icon"
+  />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap');
+    
+    :root {
+      --bg: #000000;
+      --bg-2: #050505;
+      --green: #0a0a0a;
+      --green-soft: #151515;
+      --gold: #ffffff;
+      --gold-2: #ffffff;
+      --cream: #ffffff;
+      --muted: rgba(255, 255, 255, 0.72);
+      --muted-2: rgba(255, 255, 255, 0.46);
+      --line: rgba(255, 255, 255, 0.14);
+      --shadow: 0 30px 90px rgba(0,0,0,0.45);
+      --radius-xl: 38px;
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --max: 1395px;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -66,6 +91,319 @@
       width: 58px;
       height: 58px;
       border-color: #fff;
+    }
+
+    .page-shell {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+    
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      padding: 54px 0 90px;
+      position: relative;
+      display: grid;
+      align-items: center;
+      background: #000;
+    }
+    
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
+      gap: 70px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .kicker {
+      color: #fff;
+      font-size: 15px;
+      letter-spacing: .2px;
+      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 400;
+      font-family: 'Lato', Arial, sans-serif;
+    }
+    
+    .kicker::before {
+      content: '';
+      width: 44px;
+      height: 1px;
+      background: #fff;
+      opacity: .8;
+    }
+    
+    .hero-title {
+      font-family: 'Raleway', Arial, sans-serif;
+      font-size: clamp(44px, 8.8vw, 148px);
+      line-height: .86;
+      letter-spacing: -5px;
+      max-width: 770px;
+      font-weight: 500;
+      word-break: break-word;
+      color: #fff;
+    }
+    
+    .hero-title span {
+      display: block;
+      color: #fff;
+    }
+    
+    .hero-copy {
+      margin-top: 28px;
+      max-width: 520px;
+      color: rgba(255,255,255,.72);
+      font-size: clamp(16px, 1.3vw, 20px);
+      line-height: 1.65;
+      font-weight: 300;
+      font-family: 'Lato', Arial, sans-serif;
+    }
+    
+    .hero-collage {
+      position: relative;
+      min-height: 660px;
+      isolation: isolate;
+    }
+    
+    .collage-main {
+      position: absolute;
+      right: 0;
+      top: 62px;
+      width: min(590px, 100%);
+      height: 595px;
+      border-radius: 46px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.12);
+      background: #000;
+    }
+    
+    .collage-main img,
+    .floating-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .collage-main::after,
+    .floating-shot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.32));
+      pointer-events: none;
+    }
+    
+    .floating-shot {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 8px solid #000;
+      box-shadow: 0 24px 64px rgba(0,0,0,.42);
+      background: #102017;
+      z-index: 3;
+    }
+    
+    .shot-a {
+      width: 250px;
+      height: 310px;
+      left: 0;
+      top: 0;
+    }
+    
+    .shot-b {
+      width: 290px;
+      height: 220px;
+      left: 36px;
+      bottom: 18px;
+    }
+    
+    .shot-c {
+      width: 240px;
+      height: 165px;
+      right: 32px;
+      bottom: -10px;
+    }
+    
+    .orbit-line {
+      position: absolute;
+      inset: 42px 52px 80px 80px;
+      border: 1px solid rgba(255,255,255,.19);
+      border-radius: 50%;
+      transform: rotate(-12deg);
+      z-index: -1;
+    }
+    
+    .scroll-note {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,.46);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-family: 'Lato', Arial, sans-serif;
+    }
+    
+    .mouse-dot {
+      width: 9px;
+      height: 9px;
+      background: #fff;
+      border-radius: 50%;
+      animation: bounceDot 1.4s infinite ease-in-out;
+    }
+    
+    @keyframes bounceDot {
+      0%,100% {
+        transform: translateY(0);
+        opacity: .5;
+      }
+    
+      50% {
+        transform: translateY(7px);
+        opacity: 1;
+      }
+    }
+    
+    /* ============================================
+       RESPONSIVE — hero only
+       ============================================ */
+    @media (max-width: 1120px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    
+      .hero-collage {
+        min-height: 560px;
+      }
+    
+      .collage-main {
+        height: 490px;
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .hero {
+        min-height: auto;
+        padding-bottom: 64px;
+      }
+    }
+    
+    @media (max-width: 720px) {
+      .page-shell {
+        width: min(100% - 28px, var(--max));
+      }
+    
+      .hero {
+        padding: 124px 0 64px;
+      }
+    
+      .hero-title {
+        letter-spacing: -2px;
+      }
+    
+      .hero-grid {
+        gap: 42px;
+      }
+    
+      .hero-collage {
+        min-height: 460px;
+      }
+    
+      .collage-main {
+        width: 100%;
+        height: 360px;
+        top: 66px;
+        border-radius: 30px;
+      }
+    
+      .shot-a {
+        width: 140px;
+        height: 185px;
+        top: 0;
+        border-width: 4px;
+        border-radius: 20px;
+      }
+    
+      .shot-b {
+        width: 190px;
+        height: 135px;
+        left: 10px;
+        bottom: 14px;
+        border-width: 4px;
+      }
+    
+      .shot-c {
+        width: 155px;
+        height: 108px;
+        right: 0;
+        bottom: -8px;
+        border-width: 4px;
+      }
+    
+      .scroll-note {
+        position: relative;
+        bottom: auto;
+        margin-top: 24px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero {
+        padding: 108px 0 48px;
+      }
+    
+      .hero-title {
+        font-size: clamp(38px, 13vw, 60px);
+        letter-spacing: -1.2px;
+        line-height: .92;
+      }
+    
+      .hero-copy {
+        font-size: 15px;
+      }
+    
+      .hero-collage {
+        min-height: 340px;
+      }
+    
+      .collage-main {
+        height: 250px;
+        top: 50px;
+        border-radius: 22px;
+      }
+    
+      .shot-a {
+        width: 100px;
+        height: 130px;
+        border-width: 3px;
+        border-radius: 14px;
+      }
+    
+      .shot-b {
+        width: 135px;
+        height: 96px;
+        left: 4px;
+        bottom: 8px;
+        border-width: 3px;
+      }
+    
+      .shot-c {
+        width: 108px;
+        height: 78px;
+        right: -4px;
+        bottom: -6px;
+        border-width: 3px;
+      }
     }
 
     /* NAVBAR */
@@ -386,29 +724,29 @@
       width: 100%;
       min-height: 300px;
       border-radius:30px;
-    
+
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-    
+
       padding: 60px 20px;
       position: relative;
       z-index: 1;
       overflow: hidden;
-    
+
       background: rgba(255, 255, 255, 0.10);
       backdrop-filter: blur(22px) saturate(180%);
       -webkit-backdrop-filter: blur(22px) saturate(180%);
       border: 1px solid rgba(255, 255, 255, 0.22);
-    
+
       box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.35),
         inset 0 1px 0 rgba(255, 255, 255, 0.4),
         inset 0 -1px 0 rgba(255, 255, 255, 0.08);
     }
-    
+
     .qc-career-title-box::before {
       content: "";
       position: absolute;
@@ -416,7 +754,7 @@
       left: 0;
       right: 0;
       height: 1px;
-    
+
       background: linear-gradient(
         90deg,
         transparent,
@@ -424,7 +762,7 @@
         transparent
       );
     }
-    
+
     .qc-career-title-box::after {
       content: "";
       position: absolute;
@@ -432,7 +770,7 @@
       left: 0;
       width: 1px;
       height: 100%;
-    
+
       background: linear-gradient(
         180deg,
         rgba(255, 255, 255, 0.174),
@@ -440,13 +778,13 @@
         rgba(255, 255, 255, 0.127)
       );
     }
-    
+
     /* Text ko glass overlay ke upar rakhne ke liye */
     .qc-career-title-box > * {
       position: relative;
       z-index: 2;
     }
-    
+
     .qc-career-title-box h1 {
       font-size: clamp(54px, 7.2vw, 104px);
       line-height: .92;
@@ -747,7 +1085,7 @@
       font-size: 17px;
       line-height: 1.7;
     }
-    
+
     /* RESPONSIVE */
     @media(max-width: 1000px) {
       #qc-cur,
@@ -978,7 +1316,7 @@
           <a href="./work.html">Work</a>
           <a href="./services.html">Services</a>
         </div>
-  
+
         <div class="qn-sub">
           <a href="./contact.html">Contact</a>
           <a href="./blog.html">Blogs</a>
@@ -999,45 +1337,50 @@
     <a href="./contact.html">Contact</a>
   </div>
 
-  <!-- <div class="qn-wrap">
-    <div class="qn-bar">
-      <a href="./index.html" class="nav-logo">
-        <img src="./assets/logo/logo-one.png" alt="Qrious Curators Logo" />
-      </a>
+  <!-- <section class="qc-career-title-section">
+    <div class="qc-career-title-box">
+      <h1></h1>
+      <p></p>
+    </div>
+  </section> -->
 
-      <button class="qn-toggle" id="qnToggle" aria-label="Open menu">
-        <div class="qn-icon">
-          <span></span>
-          <span></span>
-          <span></span>
+  <section class="hero page-shell" aria-labelledby="heroTitle">
+    <div class="hero-grid">
+      <div>
+        <!-- <div class="kicker">Our latest</div> -->
+        <h1 class="hero-title" id="heroTitle">Career at<span> Qrious</span></h1>
+        <p class="hero-copy">
+          Join a team where ideas move fast, creativity has space, and every project helps you grow.
+        </p>
+      </div>
+
+      <div class="hero-collage" aria-hidden="true">
+        <div class="orbit-line"></div>
+
+        <div class="collage-main">
+          <img src="./assets/workimages/Banner.png" alt="Case studies collage" loading="eager">
         </div>
-      </button>
-    </div> -->
 
-  <!-- <div class="qn-overlay" id="qnOverlay">
-    <div class="qn-inner">
-      <div class="qn-center">
-        <div class="qn-main">
-          <a href="aboutsection-qc.html">About</a>
-          <a href="work.html">Work</a>
-          <a href="services.html">Services</a>
+        <div class="floating-shot shot-a">
+          <img src="./assets/careers/career7.png" alt="Fashion project preview" loading="eager">
         </div>
 
-        <div class="qn-sub">
-          <a href="./contact.html">Contact</a>
-          <a href="./index.html#blogs">Blogs</a>
-          <a href="teamSection.html">Our Team</a>
-          <a href="careers.html">Career</a>
+        <div class="floating-shot shot-b">
+          <img src="./assets/careers/career5.png" alt="Travel project preview" loading="eager">
+        </div>
+
+        <div class="floating-shot shot-c">
+          <img src="./assets/careers/career4.png" alt="Pet project preview" loading="eager">
         </div>
       </div>
     </div>
-  </div> -->
-<section class="qc-career-title-section">
-    <div class="qc-career-title-box">
-      <h1>Career at Qrious</h1>
-      <p>Join a team where ideas move fast, creativity has space, and every project helps you grow.</p>
-    </div>
+
+    <a class="scroll-note" href="#case-studies">
+      <span class="mouse-dot"></span>
+      Explore projects
+    </a>
   </section>
+
   <section class="qc-career-marquee-section">
     <div class="qc-career-marquee">
       <div class="qc-career-track">
@@ -1109,12 +1452,12 @@
     </div>
   </section>
 
-  
+
 
   <section class="sb-positions-section" id="open-positions">
     <div class="sb-container">
       <div class="sb-positions-hero">
-       
+
       </div>
 
       <div class="sb-job-card">
@@ -1321,37 +1664,37 @@
 
   <!-- ===== FOOTER ===== -->
   <footer id="qcFooter">
-  
+
     <!-- Large Background Logo -->
     <div class="footer-bg-logo"></div>
-  
+
     <div class="footer-inner">
-  
+
       <div class="footer-top">
-  
+
         <!-- Left -->
         <div>
           <div class="footer-brand-name">
             <div class="nav-logo-dot"></div>
             Qrious Curators
           </div>
-  
+
           <p class="footer-text">
             We build brands, websites, and digital experiences that feel refined,
             relevant, and made to grow.
           </p>
-  
+
           <div class="footer-socials">
             <!-- <a href="#" class="f-soc">𝕏</a> -->
             <a href="https://www.linkedin.com/company/qrious-curators" class="f-soc">in</a>
             <a href="https://www.instagram.com/qrious.curators" class="f-soc">ig</a>
           </div>
         </div>
-  
+
         <!-- Services -->
         <div>
           <!-- <div class="footer-col-ttl">Services</div> -->
-  
+
           <ul class="footer-links">
             <li><a href="./index.html">Home</a></li>
             <li><a href="./about.html">About</a></li>
@@ -1359,11 +1702,11 @@
             <li><a href="./services.html">Services</a></li>
           </ul>
         </div>
-  
+
         <!-- Company -->
         <div>
           <!-- <div class="footer-col-ttl">Company</div> -->
-  
+
           <ul class="footer-links">
             <li><a href="./blog.html">Blog</a></li>
             <li><a href="./contact.html">Contact</a></li>
@@ -1371,29 +1714,29 @@
             <li><a href="./team.html">Team</a></li>
           </ul>
         </div>
-  
+
       </div>
-  
+
       <div class="footer-bottom">
-  
+
         <p class="footer-copy">
           © 2026 Qrious Curators. All rights reserved.
         </p>
-  
+
         <img
           src="./assets/logo/logo-one.png"
           alt="Qrious Curators"
           class="footer-center-logo"
         >
-  
+
         <p class="footer-made">
           Designed & Built with <span>♥</span>
         </p>
-  
+
       </div>
-  
+
     </div>
-  
+
   </footer>
 
   <script>
@@ -1478,4 +1821,4 @@
   </script>
  <script src="./scripts/script.js"></script>
 </body>
-</html> 
+</html>
