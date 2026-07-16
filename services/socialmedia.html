@@ -10,8 +10,117 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" href="../styles/smm.css">
+    <!-- <link rel="stylesheet" href="../styles/style.css"> -->
+
     <!-- Lenis CSS -->
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.2/dist/lenis.css">
+
+    <style>
+      /* FIXED TOP NAVBAR + BACK BUTTON */
+      .qn-wrap {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 99999;
+        padding: 22px 5vw 0;
+        pointer-events: none;
+      }
+
+      .qn-bar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        pointer-events: auto;
+      }
+
+      .nav-logo {
+        width: 58px;
+        height: 58px;
+        /* border-radius: 50%; */
+        /* background: rgba(255, 255, 255, 0.92); */
+        /* backdrop-filter: blur(12px); */
+        /* -webkit-backdrop-filter: blur(12px); */
+        /* display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        text-decoration: none;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18); */
+      }
+
+      .nav-logo img {
+        width: 50px;
+        height: auto;
+        display: block;
+      }
+
+      .qc-back-btn {
+        min-width: 82px;
+        height: 32px;
+        padding: 0 4px;
+        border-radius: 999px;
+       
+        color: #ffffff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-family: "Raleway", Arial, sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1;
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+        transition: 0.3s ease;
+      }
+
+      .qc-back-btn span {
+        font-size: 20px;
+        line-height: 1;
+        transform: translateY(-1px);
+      }
+
+      .qc-back-btn:hover {
+       
+        color: #ffffff;
+        transform: translateY(-2px);
+      }
+
+      /* Nav ke overlap se hero text bachane ke liye */
+      .hero {
+        padding-top: 120px;
+      }
+
+      @media (max-width: 768px) {
+        .qn-wrap {
+          padding: 16px 18px 0;
+        }
+
+        .nav-logo {
+          width: 50px;
+          height: 50px;
+        }
+
+        .nav-logo img {
+          width: 35px;
+        }
+
+        .qc-back-btn {
+          height: 48px;
+          min-width: 96px;
+          padding: 0 18px;
+          font-size: 14px;
+        }
+
+        .hero {
+          padding-top: 100px;
+        }
+      }
+    </style>
+
 </head>
 <body class="dark-theme">
 
@@ -20,6 +129,18 @@
     <div class="cursor-follower"></div>
 
     <!-- Navigation / Header -->
+     <div class="qn-wrap">
+  <div class="qn-bar">
+    <a href="./index.html" class="nav-logo">
+      <img src="../assets/logo/logo-one.png" alt="Logo" />
+    </a>
+
+    <a href="services.html" class="qc-back-btn">
+     
+      Back
+    </a>
+  </div>
+</div>
 
 
     <div class="main-wrapper" id="smooth-wrapper">
