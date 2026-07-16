@@ -25,7 +25,7 @@
       color: #000;
     }
 
-.hero-page {
+    .hero-page {
       width: 100%;
       min-height: 100vh;
       padding: 12px;
@@ -272,6 +272,11 @@
       border-bottom: 80px solid #fff;
     }
 
+    
+    footer{
+      background-color: #070707;
+    }
+    
     @media (max-width: 1100px) {
       .hero-wrap {
         padding: 34px 28px;
@@ -690,24 +695,34 @@
       </div>
     </div>
 
-    <!-- OVERLAY MENU -->
+    <!-- ===== OVERLAY ===== -->
     <div class="qn-overlay" id="qnOverlay">
-      <div class="qn-inner">  
+      <div class="qn-inner">
         <div class="qn-center">
           <div class="qn-main">
-            <a href="aboutsection-qc.html">About</a>
-            <a href="work.html">Work</a>
-            <a href="services.html">Services</a>
+            <a href="./about.html">About</a>
+            <a href="./work.html">Work</a>
+            <a href="./services.html">Services</a>
           </div>
-
+    
           <div class="qn-sub">
-            <a href="contactqc.html">Contact</a>
-            <a href="./index.html#blogs">Blogs</a>
-            <a href="teamSection.html">Our Team</a>
-            <a href="careers.html">Career</a>
+            <a href="./contact.html">Contact</a>
+            <a href="./blog.html">Blogs</a>
+            <a href="./team.html">Our Team</a>
+            <a href="./careers.html">Career</a>
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu" style="display: none;">
+      <span class="mm-close" id="mmClose">✕</span>
+      <a href="./about.html">About</a>
+      <a href="./services.html">Services</a>
+      <a href="./work.html">Work</a>
+      <a href="./team.html">Team</a>
+      <a href="./contact.html">Contact</a>
     </div>
 
 
@@ -730,7 +745,7 @@
         </button>
       </div>
 
-      <div class="floating-card">
+      <!-- <div class="floating-card">
         <img src="./images/blog-card.png" alt="Blog feature">
 
         <div class="case-pill">Blog 01</div>
@@ -740,7 +755,7 @@
           <h3>Marketing insights</h3>
           <p>Ideas that shape better brands</p>
         </div>
-      </div>
+      </div> -->
 
       <div class="card-shadow"></div>
 
@@ -770,6 +785,83 @@
     <!-- <div class="pagination" id="pagination"></div> -->
   </section>
 
+  <!-- ===== FOOTER ===== -->
+  <footer id="qcFooter">
+  
+    <!-- Large Background Logo -->
+    <div class="footer-bg-logo"></div>
+  
+    <div class="footer-inner">
+  
+      <div class="footer-top">
+  
+        <!-- Left -->
+        <div>
+          <div class="footer-brand-name">
+            <div class="nav-logo-dot"></div>
+            Qrious Curators
+          </div>
+  
+          <p class="footer-text">
+            We build brands, websites, and digital experiences that feel refined,
+            relevant, and made to grow.
+          </p>
+  
+          <div class="footer-socials">
+            <!-- <a href="#" class="f-soc">𝕏</a> -->
+            <a href="https://www.linkedin.com/company/qrious-curators" class="f-soc">in</a>
+            <a href="https://www.instagram.com/qrious.curators" class="f-soc">ig</a>
+          </div>
+        </div>
+  
+        <!-- Services -->
+        <div>
+          <!-- <div class="footer-col-ttl">Services</div> -->
+  
+          <ul class="footer-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./work.html">Work</a></li>
+            <li><a href="./services.html">Services</a></li>
+          </ul>
+        </div>
+  
+        <!-- Company -->
+        <div>
+          <!-- <div class="footer-col-ttl">Company</div> -->
+  
+          <ul class="footer-links">
+            <li><a href="./blog.html">Blog</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="./careers.html">Careers</a></li>
+            <li><a href="./team.html">Team</a></li>
+          </ul>
+        </div>
+  
+      </div>
+  
+      <div class="footer-bottom">
+  
+        <p class="footer-copy">
+          © 2026 Qrious Curators. All rights reserved.
+        </p>
+  
+        <img
+          src="./assets/logo/logo-one.png"
+          alt="Qrious Curators"
+          class="footer-center-logo"
+        >
+  
+        <p class="footer-made">
+          Designed & Built with <span>♥</span>
+        </p>
+  
+      </div>
+  
+    </div>
+  
+  </footer>
+
   <script>
     const blogs = [
       {
@@ -795,80 +887,31 @@
         title: "A dedicated team behind success",
         desc: "What it takes to guide a brand from launch to scale.",
         img: "images/blog-33.webp"
-      },
-      {
-        tag: "Branding",
-        title: "Building brands people remember",
-        desc: "From visuals to voice, every detail creates recognition.",
-        img: "images/blog4.jpg"
-      },
-      {
-        tag: "Social",
-        title: "Making social media feel intentional",
-        desc: "Why every post needs a purpose beyond just looking good.",
-        img: "images/blog5.jpg"
-      },
-      {
-        tag: "Content",
-        title: "Content that speaks before it sells",
-        desc: "How storytelling creates stronger audience connection.",
-        img: "images/blog6.jpg"
-      },
-      {
-        tag: "Ideas",
-        title: "Small ideas with strong direction",
-        desc: "Creative clarity can make even simple content powerful.",
-        light: true
-      },
-
-      {
-        tag: "Marketing",
-        title: "Campaigns made for attention",
-        desc: "How to create campaigns that feel relevant and memorable.",
-        img: "images/blog7.jpg"
-      },
-      {
-        tag: "Design",
-        title: "Design that carries the message",
-        desc: "Visuals should not just decorate, they should communicate.",
-        img: "images/blog6.jpg"
-      },
-      {
-        tag: "Reach",
-        title: "Turning reach into real recall",
-        desc: "Visibility matters more when people remember you.",
-        img: "images/blog9.jpg"
-      },
-      {
-        tag: "Team",
-        title: "The minds behind every move",
-        desc: "Strong execution begins with the right creative thinking.",
-        light: true
       }
     ];
 
    function renderBlogs() {
-  const grid = document.getElementById("blogGrid");
-  grid.innerHTML = "";
+     const grid = document.getElementById("blogGrid");
+     grid.innerHTML = "";
+   
+     blogs.forEach(blog => {
+       const card = document.createElement("div");
+       card.className = blog.light ? "blog-card light" : "blog-card";
+   
+       card.innerHTML = `
+         ${blog.img ? `<img src="${blog.img}" alt="${blog.title}">` : ""}
+   
+         <div class="blog-card-content">
+           <h3>${blog.title}</h3>
+           <p>${blog.desc}</p>
+         </div>
+       `;
+   
+       grid.appendChild(card);
+     });
+   }
 
-  blogs.forEach(blog => {
-    const card = document.createElement("div");
-    card.className = blog.light ? "blog-card light" : "blog-card";
-
-    card.innerHTML = `
-      ${blog.img ? `<img src="${blog.img}" alt="${blog.title}">` : ""}
-
-      <div class="blog-card-content">
-        <h3>${blog.title}</h3>
-        <p>${blog.desc}</p>
-      </div>
-    `;
-
-    grid.appendChild(card);
-  });
-}
-
-renderBlogs();
+   renderBlogs();
   </script>
   <script src="./scripts/script.js"></script>
 

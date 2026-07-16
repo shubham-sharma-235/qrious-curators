@@ -40,24 +40,34 @@
       </div>
     </div>
 
-    <!-- OVERLAY MENU -->
+    <!-- ===== OVERLAY ===== -->
     <div class="qn-overlay" id="qnOverlay">
-      <div class="qn-inner">  
+      <div class="qn-inner">
         <div class="qn-center">
           <div class="qn-main">
-            <a href="aboutsection-qc.html">About</a>
-            <a href="work.html">Work</a>
-            <a href="services.html">Services</a>
+            <a href="./about.html">About</a>
+            <a href="./work.html">Work</a>
+            <a href="./services.html">Services</a>
           </div>
-
+    
           <div class="qn-sub">
-            <a href="contactqc.html">Contact</a>
-            <a href="blogqc.html">Blogs</a>
-            <a href="newteam.html">Our Team</a>
-            <a href="careers.html">Career</a>
+            <a href="./contact.html">Contact</a>
+            <a href="./blog.html">Blogs</a>
+            <a href="./team.html">Our Team</a>
+            <a href="./careers.html">Career</a>
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu" style="display: none;">
+      <span class="mm-close" id="mmClose">✕</span>
+      <a href="./about.html">About</a>
+      <a href="./services.html">Services</a>
+      <a href="./work.html">Work</a>
+      <a href="./team.html">Team</a>
+      <a href="./contact.html">Contact</a>
     </div>
 
     <!-- <section class="journey-spacer">
@@ -301,7 +311,7 @@
       </div>
     </section>
 
-    <section class="ark-animate-section ark-reveal-item">
+    <!-- <section class="ark-animate-section ark-reveal-item">
       <div class="ark-animate-content">
         <h2>Animate your designs<br />in minutes</h2>
         <p>
@@ -344,7 +354,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section class="ark-stats-section ark-reveal-item">
       <h2 class="ark-stats-title">
@@ -418,42 +428,81 @@
         </div>
       </div>
     </section> -->
+    <!-- ===== FOOTER ===== -->
     <footer id="qcFooter">
+    
+      <!-- Large Background Logo -->
+      <div class="footer-bg-logo"></div>
+    
       <div class="footer-inner">
+    
         <div class="footer-top">
+    
+          <!-- Left -->
           <div>
-            <div class="footer-brand-name">Qrious Curators</div>
-
+            <div class="footer-brand-name">
+              <div class="nav-logo-dot"></div>
+              Qrious Curators
+            </div>
+    
             <p class="footer-text">
-              We build brands, websites, and digital experiences that feel
-              refined, relevant, and made to grow.
+              We build brands, websites, and digital experiences that feel refined,
+              relevant, and made to grow.
             </p>
+    
+            <div class="footer-socials">
+              <!-- <a href="#" class="f-soc">𝕏</a> -->
+              <a href="https://www.linkedin.com/company/qrious-curators" class="f-soc">in</a>
+              <a href="https://www.instagram.com/qrious.curators" class="f-soc">ig</a>
+            </div>
           </div>
-
+    
+          <!-- Services -->
           <div>
-            <div class="footer-col-ttl">Services</div>
+            <!-- <div class="footer-col-ttl">Services</div> -->
+    
             <ul class="footer-links">
-              <li><a href="#">Web Design</a></li>
-              <li><a href="#">Development</a></li>
-              <li><a href="#">Brand Identity</a></li>
-              <li><a href="#">Social Media</a></li>
+              <li><a href="./index.html">Home</a></li>
+              <li><a href="./about.html">About</a></li>
+              <li><a href="./work.html">Work</a></li>
+              <li><a href="./services.html">Services</a></li>
             </ul>
           </div>
-
+    
+          <!-- Company -->
           <div>
-            <div class="footer-col-ttl">Company</div>
+            <!-- <div class="footer-col-ttl">Company</div> -->
+    
             <ul class="footer-links">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Our Work</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="./blog.html">Blog</a></li>
+              <li><a href="./contact.html">Contact</a></li>
+              <li><a href="./careers.html">Careers</a></li>
+              <li><a href="./team.html">Team</a></li>
             </ul>
           </div>
+    
         </div>
-
+    
         <div class="footer-bottom">
-          <p>© 2026 Qrious Curators. All rights reserved.</p>
+    
+          <p class="footer-copy">
+            © 2026 Qrious Curators. All rights reserved.
+          </p>
+    
+          <img
+            src="./assets/logo/logo-one.png"
+            alt="Qrious Curators"
+            class="footer-center-logo"
+          >
+    
+          <p class="footer-made">
+            Designed & Built with <span>♥</span>
+          </p>
+    
         </div>
+    
       </div>
+    
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

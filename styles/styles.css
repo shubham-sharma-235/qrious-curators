@@ -17,6 +17,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: "Raleway", sans-serif;
+  scroll-behavior: smooth;
   background: var(--bg);
   color: var(--ink);
   overflow-x: hidden;

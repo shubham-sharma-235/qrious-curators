@@ -103,7 +103,7 @@
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: #ff4f32;
+      color: #FF8112;
       margin-bottom: 22px;
     }
 
@@ -114,20 +114,21 @@
       background: currentColor;
       display: inline-block;
     }
-.about-horizontal h2 {
-      font-size: 60px;
-      line-height: 0.92;
-      letter-spacing: -0.075em;
-      font-weight: 850;
-      max-width: 760px;
+
+    .about-horizontal h2 {
+          font-size: 48px;
+          line-height: 0.92;
+          letter-spacing: -0.075em;
+          font-weight: 850;
+          max-width: 760px;
     }
-.about-horizontal p {
-      font-size: clamp(15px, 1.5vw, 19px);
-      line-height: 1.42;
-      color: #484848;
-      max-width: 560px;
-      margin-top: 28px;
-      font-weight: 450;
+    .about-horizontal p {
+          font-size: clamp(15px, 1.5vw, 19px);
+          line-height: 1.42;
+          color: #898989;
+          max-width: 560px;
+          margin-top: 8px;
+          font-weight: 450;
     }
 
     .year-copy {
@@ -593,7 +594,7 @@
       position: relative;
       padding: 0;
       font-family: 'Raleway', Arial, sans-serif;
-      --accent-color: #ff5e00;
+      --accent-color: #FF8112;
       --accent-hover: #e6c594;
       --card-bg: rgba(12, 12, 16, 0.5);
       --card-border: rgba(255, 255, 255, 0.08);
