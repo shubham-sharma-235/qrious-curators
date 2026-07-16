@@ -724,7 +724,24 @@
               </div>
             </div>
     
-            <div class="qc-cine-num">05</div>
+            <div class="qc-cine-num">01</div>
+          </article>
+
+          <article class="qc-cine-panel">
+            <div class="qc-cine-content">
+              <h2 class="qc-cine-title">Content<br><em>Creation</em></h2>
+              <p>
+                Content is king. Our team produces visually compelling content — videos, blogs, graphics and more — all tailored perfectly to your brand's voice and audience.
+              </p>
+            </div>
+    
+            <div class="qc-cine-visual">
+              <div class="qc-cine-img-box">
+                <img src="./assets/homeimages/content-creation.png" alt="Content Creation">
+              </div>
+            </div>
+    
+            <div class="qc-cine-num">02</div>
           </article>
     
           <article class="qc-cine-panel">
@@ -741,7 +758,7 @@
               </div>
             </div>
     
-            <div class="qc-cine-num">01</div>
+            <div class="qc-cine-num">03</div>
           </article>
     
           <article class="qc-cine-panel">
@@ -758,10 +775,10 @@
               </div>
             </div>
     
-            <div class="qc-cine-num">02</div>
+            <div class="qc-cine-num">04</div>
           </article>
     
-          <article class="qc-cine-panel">
+          <!-- <article class="qc-cine-panel">
             <div class="qc-cine-content">
               <h2 class="qc-cine-title">Digital<br><em>Execution</em></h2>
               <p>
@@ -776,7 +793,7 @@
             </div>
     
             <div class="qc-cine-num">03</div>
-          </article>
+          </article> -->
     
           <article class="qc-cine-panel">
             <div class="qc-cine-content">
@@ -792,37 +809,20 @@
               </div>
             </div>
     
-            <div class="qc-cine-num">04</div>
-          </article>
-    
-          <article class="qc-cine-panel">
-            <div class="qc-cine-content">
-              <h2 class="qc-cine-title">Social<br><em>Marketing</em></h2>
-              <p>
-                Maximize your brand's reach with data-driven social media strategies. From content creation to paid ads — we connect you with your audience where they live.
-              </p>
-            </div>
-    
-            <div class="qc-cine-visual">
-              <div class="qc-cine-img-box">
-                <img src="./assets/homeimages/social-marketing.png" alt="Social Marketing">
-              </div>
-            </div>
-    
             <div class="qc-cine-num">05</div>
           </article>
     
           <article class="qc-cine-panel">
             <div class="qc-cine-content">
-              <h2 class="qc-cine-title">Content<br><em>Creation</em></h2>
+              <h2 class="qc-cine-title">search <br><em>engine</em> optimization</h2>
               <p>
-                Content is king. Our team produces visually compelling content — videos, blogs, graphics and more — all tailored perfectly to your brand's voice and audience.
+                From keyword research to technical optimization, we help your website rank higher and reach the right audience organically.
               </p>
             </div>
     
             <div class="qc-cine-visual">
               <div class="qc-cine-img-box">
-                <img src="./assets/homeimages/content-creation.png" alt="Content Creation">
+                <img src="./images/Seo.png" alt="Social Marketing">
               </div>
             </div>
     
@@ -831,7 +831,7 @@
     
           <article class="qc-cine-panel">
             <div class="qc-cine-content">
-              <h2 class="qc-cine-title">Performance<br><em>Marketing</em></h2>
+              <h2 class="qc-cine-title">Video<br><em>Production</em></h2>
               <p>
                 From creative testing to paid campaigns, we build performance systems that turn brand attention into business growth.
               </p>
@@ -839,13 +839,13 @@
     
             <div class="qc-cine-visual">
               <div class="qc-cine-img-box">
-                <img src="./images/Perfor. Markt.png" alt="Performance Marketing">
+                <img src="./assets/homeimages/video-production.jpg" alt="Performance Marketing">
               </div>
             </div>
     
             <div class="qc-cine-num">07</div>
           </article>
-              
+    
           <article class="qc-cine-panel">
             <div class="qc-cine-content">
               <h2 class="qc-cine-title">Performance<br><em>Marketing</em></h2>
@@ -860,8 +860,25 @@
               </div>
             </div>
     
-            <div class="qc-cine-num">07</div>
+            <div class="qc-cine-num">08</div>
           </article>
+              
+          <!-- <article class="qc-cine-panel">
+            <div class="qc-cine-content">
+              <h2 class="qc-cine-title">Performance<br><em>Marketing</em></h2>
+              <p>
+                From creative testing to paid campaigns, we build performance systems that turn brand attention into business growth.
+              </p>
+            </div>
+    
+            <div class="qc-cine-visual">
+              <div class="qc-cine-img-box">
+                <img src="./images/Perfor. Markt.png" alt="Performance Marketing">
+              </div>
+            </div>
+    
+            <div class="qc-cine-num">07</div>
+          </article> -->
     
           <!-- LAST CARD: fullscreen animation starts from this image -->
           <article class="qc-cine-panel qc-cine-panel-last">
@@ -2600,7 +2617,7 @@
             */
             const logoY = qcOrbitLerp(window.innerHeight * 0.82, 0, logoIn);
             const logoScale = qcOrbitLerp(0.46, 1.12, logoIn) + logoGrow * 1.08;
-            const logoRotation = qcOrbitLerp(-180, 720, logoSpin) + orbitMove * 180;
+            const logoRotation = qcOrbitLerp(-180, 720, logoSpin) + orbitMove * 360;
       
             gsap.set(logo, {
               xPercent: -50,
