@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="../styles/style.css" />
   <style>
     * {
       margin: 0;
@@ -1155,13 +1155,53 @@
         cursor: auto;
       }
     }
+  .qc-back-btn {
+  height: 34px;
+  padding: 0 24px;
+  border-radius: 999px;
+
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Raleway", Arial, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.qc-back-btn span {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.qc-back-btn:hover {
+  border-color: rgba(255, 122, 0, 0.42);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
 
   </style>
 </head>
 
 <body>
   <div class="cursor"></div>
+<div class="qn-wrap">
+  <div class="qn-bar">
+    <a href="./index.html" class="nav-logo">
+      <img src="../assets/logo/logo-one.png" alt="Logo" />
+    </a>
 
+    <a href="services.html" class="qc-back-btn">
+      
+      Back
+    </a>
+  </div>
+</div>
   <main class="page">
     <div class="top-content">
       <div class="top-label">Graphic Design</div>
@@ -1263,20 +1303,20 @@
       <div class="work-track">
         <article class="work-card has-image reveal-card">
           <img src="../assets/servicepages/02_brand_guidelines.webp" alt="Brand guidelines graphic design mockup">
-          <span>01 / CONSISTENCY</span>
-          <h3>One brand language everywhere.</h3>
+          <!-- <span>01 / CONSISTENCY</span>
+          <h3>One brand language everywhere.</h3> -->
         </article>
 
         <article class="work-card has-image reveal-card">
           <img src="../assets/servicepages/03_new_collection_post.webp" alt="Social media creative design mockup">
-          <span>02 / RECALL</span>
-          <h3>Visuals people remember faster.</h3>
+          <!-- <span>02 / RECALL</span>
+          <h3>Visuals people remember faster.</h3> -->
         </article>
 
         <article class="work-card has-image reveal-card">
           <img src="../assets/servicepages/04_packaging_mockup.webp" alt="Packaging and label graphic design mockup">
-          <span>03 / PRESENCE</span>
-          <h3>A sharper premium first look.</h3>
+          <!-- <span>03 / PRESENCE</span>
+          <h3>A sharper premium first look.</h3> -->
         </article>
       </div>
     </section>
@@ -1359,13 +1399,13 @@
     keyLight.castShadow = true;
     scene.add(keyLight);
 
-    const blueLight = new THREE.PointLight("#2637ff", 4.2, 10);
-    blueLight.position.set(-3, 1, 4);
-    scene.add(blueLight);
+    const warmLight = new THREE.PointLight("#ff7a00", 4.2, 10);
+    warmLight.position.set(-3, 1, 4);
+    scene.add(warmLight);
 
-    const violetLight = new THREE.PointLight("#6f35ff", 2.5, 9);
-    violetLight.position.set(3, -1, 3.5);
-    scene.add(violetLight);
+    const orangeLight = new THREE.PointLight("#ff7a00", 2.8, 9);
+    orangeLight.position.set(3, -1, 3.5);
+    scene.add(orangeLight);
 
     const whiteMat = new THREE.MeshStandardMaterial({
       color: "#d8d8d8",
@@ -1379,14 +1419,14 @@
       metalness: 0.08
     });
 
-    const blueMat = new THREE.MeshStandardMaterial({
-      color: "#2637ff",
+    const orangeMatSoft = new THREE.MeshStandardMaterial({
+      color: "#ff9a2f",
       roughness: 0.28,
       metalness: 0.18
     });
 
-    const violetMat = new THREE.MeshStandardMaterial({
-      color: "#6f35ff",
+    const orangeMat = new THREE.MeshStandardMaterial({
+      color: "#ff7a00",
       roughness: 0.3,
       metalness: 0.16
     });
@@ -1449,7 +1489,7 @@
       return group;
     }
 
-    const mats = [blueMat, blackMat, whiteMat, violetMat, blueMat, blackMat];
+    const mats = [orangeMat, blackMat, whiteMat, orangeMatSoft, whiteMat, blackMat];
 
     for (let i = 0; i < 30; i++) {
       const item = createConnector(mats[i % mats.length]);
