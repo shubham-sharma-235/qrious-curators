@@ -485,7 +485,7 @@ body.cur-hover #qc-cur-ring {
 .qn-overlay {
   position: fixed;
   inset: 0;
-  z-index: 99999!important;
+  z-index: 9998;
 
   background:
     radial-gradient(
@@ -6419,19 +6419,19 @@ footer::after {
 }
 
 .qc-cine-glow-1 {
-  width: 340px;
-  height: 340px;
+  width: 400px;
+  height: 400px;
   left: -120px;
   top: 22%;
-  background: rgba(251, 146, 60, 0.34);
+  background: rgba(251, 146, 60, 0.40);
 }
 
 .qc-cine-glow-2 {
-  width: 380px;
-  height: 380px;
+  width: 580px;
+  height: 580px;
   right: -140px;
   bottom: 10%;
-  background: rgba(56, 189, 248, 0.18);
+  background: rgba(255, 194, 26, 0.30);
 }
 
 .qc-cine-track {
@@ -6702,7 +6702,7 @@ footer::after {
   height: 380px;
   right: -120px;
   top: 8%;
-  background: rgba(56,189,248,.17);
+  background: rgba(255, 194, 26,.17);
 }
 
 .qc-exp-copy {
@@ -7064,7 +7064,7 @@ footer::after {
   height: 420px;
   right: -160px;
   top: 8%;
-  background: rgba(56, 189, 248, 0.12);
+  background: rgba(255, 194, 26, 0.12);
 }
 
 

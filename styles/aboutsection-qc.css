@@ -1265,8 +1265,8 @@
 .ark-stat-card h3 {
   font-size: clamp(95px, 9vw, 158px);
   line-height: 0.8;
-  font-weight: 500;
-  font-family:'Times New Roman', Times, serif;
+  font-weight: 200;
+  font-family: var(--font-body);
   letter-spacing: -5px;
   background: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
   -webkit-background-clip: text;
