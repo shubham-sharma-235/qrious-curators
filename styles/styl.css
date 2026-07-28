@@ -3694,150 +3694,7 @@ body.hov #cr {
   }
 }
 
-/* ===================== testimonial ===================== */
-
-.testimonial-section {
-  position: relative;
-  height: 420vh;
-  background: #000;
-}
-
-/* Sticky viewport */
-.testimonial-sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Fixed / sticky heading below cards */
-.testimonial-heading {
-  position: absolute;
-  bottom: 32%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: clamp(50px, 15vw, 200px);
-  font-weight: 700;
-  letter-spacing: -8px;
-  line-height: 0.8;
-  white-space: nowrap;
-  color: #fff;
-  z-index: 1;
-  pointer-events: none;
-  font-family: var(--heading-font);
-}
-
-/* Cards wrapper */
-.testimonial-cards {
-  position: relative;
-  width: min(520px, 90vw);
-  height: 360px;
-  z-index: 5;
-}
-
-/* Testimonial card */
-.testimonial-card {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  min-height: 300px;
-  padding: 42px 38px;
-
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 14px;
-
-  box-shadow:
-    0 18px 45px rgba(0, 0, 0, 0.10),
-    0 6px 18px rgba(0, 0, 0, 0.06);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-
-  transform: translateY(120vh) rotate(0deg) scale(1);
-  opacity: 0;
-  transition: transform 0.08s linear, opacity 0.08s linear;
-}
-
-.testimonial-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #ffffff;
-  border-radius: inherit;
-  z-index: -1;
-
-  transform: translate(12px, 12px);
-  opacity: 0.35;
-
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.07);
-}
-
-.testimonial-card .brand {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 28px;
-  color: #6d6d6d;
-}
-
-.testimonial-card p {
-  font-size: clamp(20px, 2vw, 28px);
-  line-height: 1.45;
-  font-weight: 500;
-  color: #000;
-}
-
-.testimonial-card span {
-  font-size: 15px;
-  opacity: 0.65;
-}
-
-/* Button below card */
-.review-btn {
-  position: absolute;
-  bottom: 9%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 8;
-  padding: 18px 36px;
-  border: 2px solid #000;
-  border-radius: 50px;
-  background: #fff;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .testimonial-heading {
-    bottom: 42%;
-    letter-spacing: -4px;
-  }
-
-  .testimonial-cards {
-    height: 220px;
-  }
-
-  .testimonial-card {
-    padding: 12px 14px;
-    min-height: 270px;
-  }
-
-  .testimonial-card .brand {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 20px;
-  }
-
-  .testimonial-card p {
-    font-size: 16px;
-  }
-}
+/* Old stacked testimonial styles removed — replaced by QG global proof section. */
 
 /* ===================== MARQUEE (dark) ===================== */
 /* .qc-marquee-dark {
@@ -6221,168 +6078,7 @@ footer::after {
     display: none;
   }
 }
-.t-section {
-  background: var(--off-black);
-  padding: 80px 0;
-  overflow: hidden;
-  font-family: var(--heading-font);
-}
-.t-header {
-  text-align: center;
-  margin-bottom: 56px;
-  padding: 0 24px;
-}
-.t-pill {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  border: 1px solid rgba(251, 146, 60, 0.3);
-  padding: 6px 18px;
-  border-radius: 100px;
-  margin-bottom: 20px;
-  font-family: var(--sub-heading-font);
-}
-.t-heading {
-  font-size: 40px;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1.15;
-  margin: 0;
-  letter-spacing: -0.02em;
-}
-.t-heading em {
-  font-style: italic;
-  color: var(--accent);
-}
-.t-sub {
-  margin-top: 12px;
-  font-size: 15px;
-  color: var(--muted2);
-  font-family: var(--sub-heading-font);
-}
-.t-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.t-row {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-}
-.t-row.r1 {
-  animation: go-left 40s linear infinite;
-}
-.t-row.r2 {
-  animation: go-right 46s linear infinite;
-}
-@keyframes go-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-@keyframes go-right {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-.t-wrap:hover .t-row {
-  animation-play-state: paused;
-}
-.t-card {
-  width: 310px;
-  flex-shrink: 0;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 26px 26px 22px;
-  position: relative;
-}
-.t-card::after {
-  content: "\201C";
-  position: absolute;
-  top: 14px;
-  right: 20px;
-  font-size: 56px;
-  line-height: 1;
-  color: rgba(251, 146, 60, 0.1);
-  font-family: Georgia, serif;
-  pointer-events: none;
-}
-.t-stars {
-  display: flex;
-  gap: 3px;
-  margin-bottom: 12px;
-}
-.t-star {
-  color: var(--accent);
-  font-size: 13px;
-}
-.t-quote {
-  font-size: 13.5px;
-  line-height: 1.7;
-  color: var(--text-secondary);
-  margin: 0 0 20px;
-  font-family: var(--sub-heading-font);
-}
-.t-author {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-}
-.t-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(251, 146, 60, 0.1);
-  border: 1px solid rgba(251, 146, 60, 0.28);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--accent);
-  flex-shrink: 0;
-}
-.t-name {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin: 0;
-}
-.t-role {
-  font-size: 11.5px;
-  color: var(--muted2);
-  margin: 2px 0 0;
-  font-family: var(--sub-heading-font);
-}
-.t-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  margin-top: 3px;
-  font-family: var(--sub-heading-font);
-}
-.t-g-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #4285f4;
-  flex-shrink: 0;
-}
+/* Legacy review-marquee styles removed. */
 
 /* =========================================================
    CINEMATIC SERVICES SECTION
@@ -7390,3 +7086,601 @@ footer::after {
     bottom: 34px;
   }
 }
+
+/* ===== QG TESTIMONIAL + WORLD MAP — 10 CLIENT LOCATIONS ===== */
+
+.qg-global-proof {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  height: 440vh;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(251,146,60,.055), transparent 38%),
+    #080808;
+  color: #fff;
+  font-family: var(--heading-font, "Raleway", sans-serif);
+}
+
+.qg-global-proof + .qc-blog-section {
+  margin-top: 0 !important;
+}
+
+.qg-global-proof .qg-testimonial-card p,
+.qg-global-proof .qg-client-meta small,
+.qg-global-proof .qg-scroll-cue button,
+.qg-global-proof .qg-map-label {
+  font-family: var(--sub-heading-font, "Lato", sans-serif);
+}
+
+.qg-proof-sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  perspective: 1400px;
+  perspective-origin: 50% 48%;
+}
+
+.qg-ambient-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 72vw;
+  height: 72vw;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.035), transparent 65%);
+  pointer-events: none;
+}
+
+.qg-intro-copy {
+  display: none;
+  position: absolute;
+  z-index: 20;
+  top: 6vh;
+  left: 50%;
+  width: 90%;
+  transform: translateX(-50%);
+  text-align: center;
+  will-change: opacity, transform;
+}
+
+.qg-intro-copy span {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  opacity: .45;
+}
+
+.qg-intro-copy h2 {
+  margin: 0;
+  font-size: clamp(34px, 4vw, 65px);
+  line-height: .98;
+  font-weight: 400;
+  letter-spacing: -.045em;
+}
+
+/* Marquee */
+.qg-marquee-stage {
+  position: absolute;
+  z-index: 15;
+  left: -10vw;
+  right: -10vw;
+  top: 8vh;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+.qg-marquee-row {
+  width: 100%;
+  overflow: hidden;
+  padding: 3px 0;
+}
+
+.qg-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 18px;
+  will-change: transform;
+  animation: qgMarqueeLeft 32s linear infinite;
+}
+
+.qg-marquee-row.qg-reverse .qg-marquee-track {
+  animation-name: qgMarqueeRight;
+  animation-duration: 35s;
+}
+
+.qg-marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  gap: 18px;
+}
+
+@keyframes qgMarqueeLeft {
+  from { transform: translate3d(0,0,0); }
+  to { transform: translate3d(calc(-50% - 9px),0,0); }
+}
+
+@keyframes qgMarqueeRight {
+  from { transform: translate3d(calc(-50% - 9px),0,0); }
+  to { transform: translate3d(0,0,0); }
+}
+
+.qg-global-proof.qg-is-frozen .qg-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Once the real visible cards leave the marquee, hide only the loop copies.
+   This prevents a second/replacement testimonial from appearing underneath. */
+.qg-marquee-stage.qg-flight-cleanup-active .qg-testimonial-card {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Testimonial cards */
+.qg-testimonial-card {
+  position: relative;
+  flex: 0 0 340px;
+  width: 340px;
+  height: 316px;
+  padding: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 22px 65px rgba(0,0,0,.24);
+}
+
+.qg-testimonial-card.qg-card-white {
+  background: #fff;
+  color: #111;
+  border-color: rgba(255,255,255,.8);
+}
+
+.qg-testimonial-card.qg-card-orange {
+  background: #ff6a00;
+  color: #fff;
+  border-color: rgba(255,106,0,.9);
+}
+
+.qg-testimonial-card.qg-card-white .qg-client-avatar {
+  background: #ff6a00;
+  color: #fff;
+}
+
+.qg-testimonial-card.qg-card-orange .qg-client-avatar {
+  background: #fff;
+  color: #ff6a00;
+}
+
+.qg-testimonial-card.qg-card-white .qg-client-meta small,
+.qg-testimonial-card.qg-card-white .qg-quote-mark {
+  color: #111;
+}
+
+.qg-testimonial-card.qg-card-orange .qg-client-meta small,
+.qg-testimonial-card.qg-card-orange .qg-quote-mark {
+  color: #fff;
+}
+
+.qg-testimonial-card.qg-card-white p {
+  color: rgba(17,17,17,.68);
+}
+
+.qg-testimonial-card.qg-card-orange p {
+  color: rgba(255,255,255,.86);
+}
+
+.qg-testimonial-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 26px;
+}
+
+.qg-client {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.qg-client-avatar {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,.9);
+  color: #101010;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.qg-client-meta strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.qg-client-meta small {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  opacity: .55;
+}
+
+.qg-quote-mark {
+  font-family: Georgia, serif;
+  font-size: 36px;
+  line-height: 1;
+  opacity: .16;
+}
+
+.qg-testimonial-card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* World map */
+.qg-world-layer {
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  top: 61%;
+  width: 100vw;
+  height: 80vh;
+  max-width: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.965);
+  transform-origin: center center;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 51%, rgba(255,255,255,.045) 0%, rgba(255,255,255,.016) 34%, transparent 68%);
+  will-change: opacity, transform;
+}
+
+#qgWorldMapSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.qg-world-land-shadow {
+  fill: #000;
+  opacity: .42;
+  stroke: none;
+  filter: blur(15px);
+  transform: translateY(16px);
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.qg-world-land-glow {
+  fill: #fff;
+  opacity: .12;
+  stroke: none;
+  filter: blur(7px);
+  transform: scale(1.006);
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.qg-world-land {
+  fill: #f6f6f3;
+  stroke: rgba(255,255,255,.42);
+  stroke-width: .65px;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
+/* Ten destination anchors */
+.qg-map-points {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+.qg-map-point {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #f47721;
+  box-shadow:
+    0 0 0 5px rgba(244,119,33,.10),
+    0 0 18px rgba(244,119,33,.18);
+  opacity: .2;
+  transition: opacity .25s ease, box-shadow .25s ease;
+}
+
+.qg-map-point.qg-india-point {
+  width: 11px;
+  height: 11px;
+}
+
+.qg-map-point::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(255,170,95,.64);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.qg-map-point.qg-active {
+  opacity: 1;
+  box-shadow:
+    0 0 0 7px rgba(255,139,50,.13),
+    0 0 36px rgba(255,122,24,.62);
+}
+
+.qg-map-point.qg-active::before {
+  animation: qgPointPulse 1.7s ease-out infinite;
+}
+
+.qg-map-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  white-space: nowrap;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.88);
+  text-shadow: 0 2px 14px rgba(0,0,0,.95);
+  opacity: 0;
+  transform:
+    translate(
+      calc(-50% + var(--qg-label-x, 0px)),
+      calc(-50% + var(--qg-label-y, 30px))
+    )
+    translateY(5px);
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+.qg-map-point.qg-active .qg-map-label {
+  opacity: .88;
+  transform:
+    translate(
+      calc(-50% + var(--qg-label-x, 0px)),
+      calc(-50% + var(--qg-label-y, 30px))
+    )
+    translateY(0);
+}
+
+@keyframes qgPointPulse {
+  from { transform: scale(.4); opacity: .85; }
+  to { transform: scale(2.5); opacity: 0; }
+}
+
+/* SAME testimonial element morphs into its destination marker */
+.qg-flight-card {
+  position: fixed !important;
+  z-index: 100 !important;
+  left: 0 !important;
+  top: 0 !important;
+  margin: 0 !important;
+  pointer-events: none !important;
+  transform-origin: center center !important;
+  will-change: transform, opacity, border-radius, box-shadow;
+  backface-visibility: hidden;
+  overflow: hidden;
+  --qg-flight-content-opacity: 1;
+  --qg-flight-initials-opacity: 0;
+}
+
+.qg-flight-card .qg-testimonial-head,
+.qg-flight-card p {
+  opacity: var(--qg-flight-content-opacity) !important;
+  transition: none !important;
+}
+
+.qg-flight-card::before {
+  content: attr(data-initials);
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  font-family: var(--heading-font, "Raleway", sans-serif);
+  font-size: 92px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: .02em;
+  opacity: var(--qg-flight-initials-opacity);
+  transition: none;
+  pointer-events: none;
+}
+
+.qg-flight-card.qg-card-white::before {
+  color: #ff6a00;
+}
+
+.qg-flight-card.qg-card-orange::before {
+  color: #fff;
+}
+
+.qg-flight-placeholder {
+  flex-shrink: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Map title sequence */
+.qg-map-title-sequence {
+  position: absolute;
+  z-index: 32;
+  left: 50%;
+  top: 5.2vh;
+  width: min(980px, 92vw);
+  height: 110px;
+  transform: translateX(-50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.qg-map-title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-size: clamp(32px, 4.4vw, 70px);
+  line-height: .98;
+  font-weight: 400;
+  letter-spacing: -.05em;
+  opacity: 0;
+  transform: translateY(18px) scale(1.08);
+  transform-origin: center center;
+  will-change: opacity, transform, filter;
+}
+
+.qg-map-title strong {
+  font-weight: 500;
+  color: #ff7a18;
+}
+
+.qg-map-title.qg-locations {
+  font-size: clamp(17px, 2vw, 30px);
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+/* Scroll cue */
+.qg-scroll-cue {
+  position: absolute;
+  z-index: 50;
+  left: 50%;
+  bottom: 3vh;
+  transform: translateX(-50%);
+  will-change: opacity, transform;
+}
+
+.qg-scroll-cue button {
+  appearance: none;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.04);
+  color: #fff;
+  border-radius: 999px;
+  padding: 11px 17px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+  transition: background .3s ease;
+}
+
+.qg-scroll-cue button:hover {
+  background: rgba(255,255,255,.09);
+}
+
+.qg-scroll-arrow {
+  display: inline-block;
+  font-size: 15px;
+  animation: qgScrollArrow 1.5s ease-in-out infinite;
+}
+
+@keyframes qgScrollArrow {
+  0%, 100% { transform: translateY(-2px); }
+  50% { transform: translateY(3px); }
+}
+
+.qg-noise {
+  position: absolute;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: .025;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 900px) {
+  .qg-global-proof { height: 405vh; }
+  .qg-marquee-stage { top: 10vh; }
+  .qg-testimonial-card {
+    flex-basis: 300px;
+    width: 300px;
+    height: 260px;
+    padding: 24px;
+  }
+  .qg-world-layer {
+    width: 104vw;
+    height: 61vh;
+  }
+  .qg-map-title-sequence {
+    top: 5vh;
+    height: 90px;
+  }
+  .qg-map-title {
+    font-size: clamp(30px, 7vw, 52px);
+  }
+  .qg-map-label {
+    font-size: 7px;
+  }
+}
+
+@media (max-width: 600px) {
+  .qg-global-proof { height: 365vh; }
+  .qg-marquee-stage {
+    top: 12vh;
+    gap: 12px;
+  }
+  .qg-testimonial-card {
+    flex-basis: 245px;
+    width: 245px;
+    height: 220px;
+    padding: 20px;
+  }
+  .qg-testimonial-card p { font-size: 12px; }
+  .qg-world-layer {
+    width: 118vw;
+    height: 52vh;
+    top: 59%;
+  }
+  .qg-map-title-sequence {
+    top: 4.5vh;
+    height: 76px;
+  }
+  .qg-map-title {
+    font-size: clamp(27px, 9vw, 42px);
+  }
+  .qg-map-title.qg-locations {
+    font-size: 14px;
+    letter-spacing: .08em;
+  }
+  .qg-map-label {
+    font-size: 5.5px;
+    letter-spacing: .05em;
+  }
+}
+
