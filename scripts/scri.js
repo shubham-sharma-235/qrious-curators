@@ -656,6 +656,7 @@ document.getElementById('r2').innerHTML = h2 + h2;
   /* =========================================================
      PART 1 + PART 2
      Horizontal service scroll + last card image fullscreen takeover
+     (REWRITTEN — fast, gap-free, Apple-style takeover)
   ========================================================= */
 
   function qcInitCinematicServices() {
@@ -664,14 +665,20 @@ document.getElementById('r2').innerHTML = h2 + h2;
     const sourceBox = document.querySelector("#qcCineSource");
     const sourceImg = document.querySelector("#qcCineImage");
     const clone = document.querySelector("#qcCineClone");
-    const cloneImg = clone ? clone.querySelector("img") : null;
+    const cloneBaseImg = clone ? clone.querySelector(".qc-cine-clone-img-base") : null;
+    const cloneNextImg = clone ? clone.querySelector(".qc-cine-clone-img-next") : null;
 
-    if (!section || !track || !sourceBox || !sourceImg || !clone || !cloneImg) {
+    if (
+      !section || !track || !sourceBox || !sourceImg ||
+      !clone || !cloneBaseImg || !cloneNextImg
+    ) {
       console.error("Cinematic services elements missing.");
       return;
     }
 
-    cloneImg.src = sourceImg.currentSrc || sourceImg.src;
+    // Always mirror whatever image is actually loaded in the panel,
+    // so the clone never shows a stale / placeholder src.
+    cloneBaseImg.src = sourceImg.currentSrc || sourceImg.src;
 
     const panels = gsap.utils.toArray(".qc-cine-panel");
     const previousPanels = panels.slice(0, -1);
@@ -679,43 +686,45 @@ document.getElementById('r2').innerHTML = h2 + h2;
       ".qc-cine-panel-last .qc-cine-content, .qc-cine-panel-last .qc-cine-num"
     );
 
+    /* ---------- math helpers ---------- */
+    const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
+    const norm = (v, a, b) => clamp01((v - a) / (b - a));
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const smooth = (t) => { t = clamp01(t); return t * t * (3 - 2 * t); };
+
     function getMaxShift() {
       return Math.max(0, track.scrollWidth - window.innerWidth);
     }
 
-    function getSourceRect() {
-      return sourceBox.getBoundingClientRect();
+    function getSourceRadius() {
+      return parseFloat(window.getComputedStyle(sourceBox).borderRadius) || 38;
     }
 
-    function getSourceRadius() {
-      return window.getComputedStyle(sourceBox).borderRadius || "38px";
-    }
+    /* ---------------------------------------------------------
+       TIMELINE MAP (progress 0 -> 1 across the pinned scroll)
+       0.00 – 0.62   horizontal card scroll
+       0.62 – 0.84   image expands from its own rect to fullscreen
+       0.78 – 0.90   optional crossfade to a second "reveal" image
+       0.90 – 1.00   short settle, then unpin straight into next section
+    --------------------------------------------------------- */
+    const HORIZONTAL_END = 0.62;
+    const EXPAND_START = 0.62;
+    const EXPAND_END = 0.84;
+    const SWAP_START = 0.78;
+    const SWAP_END = 0.90;
 
     function getScrollDistance() {
-      return Math.max(5200, getMaxShift() + window.innerHeight * 3.4);
+      // Shorter total pin distance: enough for the horizontal scroll,
+      // plus roughly one viewport for the takeover + settle.
+      return Math.max(3400, getMaxShift() + window.innerHeight * 1.15);
     }
 
-    function resetServicesToStart() {
-      gsap.set(track, {
-        x: 0,
-        clearProps: "transform"
-      });
+    function forceStartState() {
+      gsap.set(track, { x: 0, force3D: true });
 
-      gsap.set(sourceBox, {
-        autoAlpha: 1,
-        clearProps: "visibility,opacity"
-      });
-
-      gsap.set(previousPanels, {
-        autoAlpha: 1,
-        clearProps: "visibility,opacity"
-      });
-
-      gsap.set(lastPanelContent, {
-        autoAlpha: 1,
-        y: 0,
-        clearProps: "visibility,opacity,transform"
-      });
+      gsap.set(sourceBox, { autoAlpha: 1 });
+      gsap.set(previousPanels, { autoAlpha: 1 });
+      gsap.set(lastPanelContent, { autoAlpha: 1, y: 0 });
 
       gsap.set(clone, {
         autoAlpha: 0,
@@ -724,238 +733,150 @@ document.getElementById('r2').innerHTML = h2 + h2;
         width: 0,
         height: 0,
         borderRadius: getSourceRadius(),
-        clearProps: "visibility,opacity,transform,width,height"
+        transformOrigin: "top left",
+        force3D: true
       });
 
-      gsap.set(cloneImg, {
+      gsap.set(cloneBaseImg, {
+        opacity: 1,
         scale: 1.04,
-        clearProps: "transform"
+        transformOrigin: "center center",
+        force3D: true
+      });
+
+      gsap.set(cloneNextImg, {
+        opacity: 0,
+        scale: 1.08,
+        transformOrigin: "center center",
+        force3D: true
       });
     }
 
-    function resetServicesToEnd() {
-      gsap.set(track, {
-        x: -getMaxShift()
-      });
+    forceStartState();
 
-      gsap.set(sourceBox, {
-        autoAlpha: 0
-      });
+    /* ---------------------------------------------------------
+       Single render function driven purely by scroll progress.
+       No independent tweens with their own durations — everything
+       is a direct function of `progress`, so the clone's position
+       and the source's visibility can never drift out of sync.
+    --------------------------------------------------------- */
+    function renderServices(progress) {
+      progress = clamp01(progress);
+      const maxShift = getMaxShift();
 
-      gsap.set(previousPanels, {
-        autoAlpha: 0
-      });
+      // PHASE 1 — horizontal scroll through the cards
+      const hProgress = smooth(norm(progress, 0, HORIZONTAL_END));
+      gsap.set(track, { x: -maxShift * hProgress, force3D: true });
 
-      gsap.set(lastPanelContent, {
-        autoAlpha: 0,
-        y: -58
-      });
+      if (progress < EXPAND_START) {
+        // Nothing has taken over yet. Clone stays fully hidden so it
+        // can't accidentally paint anything over the cards.
+        gsap.set(sourceBox, { autoAlpha: 1 });
+        gsap.set(previousPanels, { autoAlpha: 1 });
+        gsap.set(lastPanelContent, { autoAlpha: 1, y: 0 });
+        gsap.set(clone, {
+          autoAlpha: 0, x: 0, y: 0, width: 0, height: 0,
+          borderRadius: getSourceRadius()
+        });
+        gsap.set(cloneBaseImg, { opacity: 1, scale: 1.04 });
+        gsap.set(cloneNextImg, { opacity: 0, scale: 1.08 });
+        return;
+      }
+
+      // Track is fully scrolled and stays locked for the rest of the pin.
+      gsap.set(track, { x: -maxShift, force3D: true });
+
+      // KEY FIX #1 — measure the source's real on-screen rect fresh,
+      // every frame, right before using it. At progress === EXPAND_START
+      // the lerp below evaluates to exactly this rect, so the clone
+      // materializes pixel-perfectly on top of the source in the same
+      // frame it becomes visible. There is no frame where the clone is
+      // mis-sized relative to the source.
+      const sourceRect = sourceBox.getBoundingClientRect();
+      const expandProgress = smooth(norm(progress, EXPAND_START, EXPAND_END));
+
+      const currentX = lerp(sourceRect.left, 0, expandProgress);
+      const currentY = lerp(sourceRect.top, 0, expandProgress);
+      const currentW = lerp(sourceRect.width, window.innerWidth, expandProgress);
+      const currentH = lerp(sourceRect.height, window.innerHeight, expandProgress);
+      const currentRadius = lerp(getSourceRadius(), 0, expandProgress);
 
       gsap.set(clone, {
-        autoAlpha: 0,
-        x: 0,
-        y: 0,
-        width: window.innerWidth,
-        height: window.innerHeight,
-        borderRadius: 0
+        autoAlpha: 1,
+        x: currentX,
+        y: currentY,
+        width: currentW,
+        height: currentH,
+        borderRadius: currentRadius,
+        force3D: true
       });
 
-      gsap.set(cloneImg, {
-        scale: 1.14
+      // KEY FIX #2 — the source panel only fades out AFTER the clone is
+      // already glued on top of it (same rect, higher z-index in CSS).
+      // Visually you're always looking at *something* covering that
+      // spot — either the real panel or the clone — never neither.
+      const chromeFade = norm(progress, EXPAND_START, EXPAND_START + 0.05);
+      gsap.set(sourceBox, { autoAlpha: 1 - chromeFade });
+      gsap.set(previousPanels, { autoAlpha: 1 - chromeFade });
+      gsap.set(lastPanelContent, { autoAlpha: 1 - chromeFade, y: -40 * chromeFade });
+
+      // PHASE 2b — optional crossfade to a second "reveal" image once
+      // the clone is basically fullscreen. Delete this block (and the
+      // cloneNextImg element) if you only want a single-image takeover.
+      const swapProgress = smooth(norm(progress, SWAP_START, SWAP_END));
+      gsap.set(cloneBaseImg, {
+        opacity: 1 - swapProgress,
+        scale: lerp(1.04, 1.12, expandProgress)
       });
+      gsap.set(cloneNextImg, {
+        opacity: swapProgress,
+        scale: lerp(1.08, 1.03, swapProgress)
+      });
+
+      // Snap to exact fullscreen values once fully expanded so there's
+      // no sub-pixel drift on resize/refresh.
+      if (progress >= EXPAND_END) {
+        gsap.set(clone, {
+          autoAlpha: 1, x: 0, y: 0,
+          width: window.innerWidth, height: window.innerHeight,
+          borderRadius: 0
+        });
+      }
     }
 
-    /*
-      Initial clean state.
-    */
-    gsap.set(track, {
-      x: 0,
-      force3D: true
-    });
+    ScrollTrigger.create({
+      id: "qc-cinematic-services",
+      trigger: section,
+      start: "top top",
+      end: () => "+=" + getScrollDistance(),
+      pin: true,
+      scrub: true,          // direct 1:1 scrub — no smoothing lag to desync from
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      markers: false,
 
-    gsap.set(clone, {
-      autoAlpha: 0,
-      x: 0,
-      y: 0,
-      width: 0,
-      height: 0,
-      borderRadius: getSourceRadius(),
-      transformOrigin: "top left",
-      force3D: true
-    });
+      onUpdate: (self) => renderServices(self.progress),
+      onEnter: (self) => renderServices(self.progress),
+      onEnterBack: (self) => renderServices(self.progress),
 
-    gsap.set(cloneImg, {
-      scale: 1.04,
-      transformOrigin: "center center",
-      force3D: true
-    });
-
-    gsap.set(sourceBox, {
-      autoAlpha: 1
-    });
-
-    gsap.set(previousPanels, {
-      autoAlpha: 1
-    });
-
-    gsap.set(lastPanelContent, {
-      autoAlpha: 1,
-      y: 0
-    });
-
-
-    const tl = gsap.timeline({
-      defaults: {
-        ease: "none"
+      onLeave: () => {
+        // Land on the exact fullscreen frame, then release immediately —
+        // no lingering hold before the next section appears.
+        renderServices(1);
+        gsap.set(clone, { autoAlpha: 0 });
       },
-      scrollTrigger: {
-        id: "qc-cinematic-services",
-        trigger: section,
-        start: "top top",
-        end: function () {
-          return "+=" + getScrollDistance();
-        },
-        scrub: 1,
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        markers: false,
 
-        /*
-          These callbacks fix the revisit issue.
-        */
-        onEnter: function () {
-          if (this.progress === 0) {
-            resetServicesToStart();
-          }
-        },
+      onLeaveBack: () => {
+        renderServices(0);
+      },
 
-        onLeave: function () {
-          resetServicesToEnd();
-        },
-
-        onEnterBack: function () {
-          resetServicesToEnd();
-        },
-
-        onLeaveBack: function () {
-          resetServicesToStart();
-        },
-
-        onRefresh: function (self) {
-          if (self.progress === 0) {
-            resetServicesToStart();
-          }
+      onRefresh: (self) => {
+        renderServices(self.progress);
+        if (!self.isActive && self.progress >= 1) {
+          gsap.set(clone, { autoAlpha: 0 });
         }
       }
     });
-
-
-    /*
-      PHASE 1:
-      Horizontal scroll through all service cards.
-    */
-    tl.to(track, {
-      x: function () {
-        return -getMaxShift();
-      },
-      duration: 2.6,
-      ease: "none"
-    });
-
-
-    /*
-      PHASE 2:
-      Last card image detaches and expands.
-    */
-    tl.addLabel("takeover");
-
-    tl.fromTo(
-      clone,
-      {
-        autoAlpha: 1,
-        x: function () {
-          return getSourceRect().left;
-        },
-        y: function () {
-          return getSourceRect().top;
-        },
-        width: function () {
-          return getSourceRect().width;
-        },
-        height: function () {
-          return getSourceRect().height;
-        },
-        borderRadius: function () {
-          return getSourceRadius();
-        }
-      },
-      {
-        x: 0,
-        y: 0,
-        width: function () {
-          return window.innerWidth;
-        },
-        height: function () {
-          return window.innerHeight;
-        },
-        borderRadius: 0,
-        duration: 1.3,
-        ease: "power2.inOut",
-        immediateRender: false
-      },
-      "takeover"
-    );
-
-    tl.to(
-      sourceBox,
-      {
-        autoAlpha: 0,
-        duration: 0.08,
-        ease: "none"
-      },
-      "takeover+=0.04"
-    );
-
-    tl.to(
-      previousPanels,
-      {
-        autoAlpha: 0,
-        duration: 0.55,
-        ease: "power1.out"
-      },
-      "takeover+=0.08"
-    );
-
-    tl.to(
-      lastPanelContent,
-      {
-        autoAlpha: 0,
-        y: -58,
-        duration: 0.75,
-        ease: "power2.out"
-      },
-      "takeover+=0.12"
-    );
-
-    tl.to(
-      cloneImg,
-      {
-        scale: 1.14,
-        duration: 1.3,
-        ease: "power2.inOut"
-      },
-      "takeover"
-    );
-
-
-    /*
-      PHASE 3:
-      Keep the fullscreen logo visible for the rest of the pinned
-      services section. resetServicesToEnd() releases it exactly
-      when the next section starts, so there is no empty black beat.
-    */
-    tl.to({}, { duration: 1.30 });
   }
 
 
@@ -1290,4 +1211,3 @@ document.getElementById('r2').innerHTML = h2 + h2;
     }, 1000);
   }
 })();
-

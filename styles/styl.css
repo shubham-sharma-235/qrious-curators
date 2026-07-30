@@ -2261,7 +2261,7 @@ body.hov #cr {
 
 .premium-about {
   position: relative;
-  height: 300vh;
+  height: 430vh;
   background: #070707;
 }
 
@@ -3037,7 +3037,7 @@ body.hov #cr {
 @media (max-width: 1100px) {
 
   .premium-about {
-    height: 300vh;
+    height: 430vh;
   }
 
   .premium-sticky {
@@ -3507,7 +3507,7 @@ body.hov #cr {
 
 #process {
   position: relative;
-  height: 340vh;
+  height: 130vh;
 }
 
 .process-sticky {
@@ -3600,6 +3600,9 @@ body.hov #cr {
   flex-shrink: 0;
   opacity: 0;
   transform: translateY(100px) scale(0.92);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -3626,6 +3629,11 @@ body.hov #cr {
 .p-card:hover {
   border-color: rgba(201, 245, 59, 0.2);
   box-shadow: 0 20px 60px #fb923c21;
+}
+
+.p-card.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .p-card-n {
@@ -6420,7 +6428,7 @@ footer::after {
 .qc-exp-kicker {
   align-self: start;
   justify-self: center;
-  margin-top: clamp(80px, 11vh, 130px);
+  /* margin-top: clamp(80px, 11vh, 130px); */
   padding: 9px 15px;
   border: 1px solid var(--border, #fb923c23);
   border-radius: 999px;
@@ -7087,26 +7095,18 @@ footer::after {
   }
 }
 
-/* ===== QG TESTIMONIAL + WORLD MAP — 10 CLIENT LOCATIONS ===== */
-
+/* ===== QG TESTIMONIAL + WORLD MAP — EXISTING SITE INTEGRATION ===== */
 .qg-global-proof {
-  position: relative;
-  width: 100%;
-  max-width: none;
-  height: 440vh;
   margin: 0 !important;
   padding: 0 !important;
-  overflow: visible;
-  isolation: isolate;
+  width: 100%;
+  max-width: none;
   background:
-    radial-gradient(circle at 50% 45%, rgba(251,146,60,.055), transparent 38%),
-    #080808;
+    radial-gradient(circle at 50% 46%, rgba(251,146,60,.055), transparent 36%),
+    #000;
   color: #fff;
   font-family: var(--heading-font, "Raleway", sans-serif);
-}
-
-.qg-global-proof + .qc-blog-section {
-  margin-top: 0 !important;
+  isolation: isolate;
 }
 
 .qg-global-proof .qg-testimonial-card p,
@@ -7116,571 +7116,1120 @@ footer::after {
   font-family: var(--sub-heading-font, "Lato", sans-serif);
 }
 
-.qg-proof-sticky {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  perspective: 1400px;
-  perspective-origin: 50% 48%;
-}
-
-.qg-ambient-glow {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 72vw;
-  height: 72vw;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,.035), transparent 65%);
-  pointer-events: none;
-}
-
-.qg-intro-copy {
-  display: none;
-  position: absolute;
-  z-index: 20;
-  top: 6vh;
-  left: 50%;
-  width: 90%;
-  transform: translateX(-50%);
-  text-align: center;
-  will-change: opacity, transform;
-}
-
-.qg-intro-copy span {
-  display: block;
-  margin-bottom: 12px;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .26em;
-  text-transform: uppercase;
-  opacity: .45;
-}
-
-.qg-intro-copy h2 {
-  margin: 0;
-  font-size: clamp(34px, 4vw, 65px);
-  line-height: .98;
-  font-weight: 400;
-  letter-spacing: -.045em;
-}
-
-/* Marquee */
-.qg-marquee-stage {
-  position: absolute;
-  z-index: 15;
-  left: -10vw;
-  right: -10vw;
-  top: 8vh;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  transform-style: preserve-3d;
-  transform-origin: center center;
-  will-change: transform, opacity;
-}
-
-.qg-marquee-row {
-  width: 100%;
-  overflow: hidden;
-  padding: 3px 0;
-}
-
-.qg-marquee-track {
-  display: flex;
-  width: max-content;
-  gap: 18px;
-  will-change: transform;
-  animation: qgMarqueeLeft 32s linear infinite;
-}
-
-.qg-marquee-row.qg-reverse .qg-marquee-track {
-  animation-name: qgMarqueeRight;
-  animation-duration: 35s;
-}
-
-.qg-marquee-group {
-  display: flex;
-  flex-shrink: 0;
-  gap: 18px;
-}
-
-@keyframes qgMarqueeLeft {
-  from { transform: translate3d(0,0,0); }
-  to { transform: translate3d(calc(-50% - 9px),0,0); }
-}
-
-@keyframes qgMarqueeRight {
-  from { transform: translate3d(calc(-50% - 9px),0,0); }
-  to { transform: translate3d(0,0,0); }
-}
-
-.qg-global-proof.qg-is-frozen .qg-marquee-track {
-  animation-play-state: paused;
-}
-
-/* Once the real visible cards leave the marquee, hide only the loop copies.
-   This prevents a second/replacement testimonial from appearing underneath. */
-.qg-marquee-stage.qg-flight-cleanup-active .qg-testimonial-card {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
-/* Testimonial cards */
-.qg-testimonial-card {
-  position: relative;
-  flex: 0 0 340px;
-  width: 340px;
-  height: 316px;
-  padding: 28px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.16);
-  border-radius: 18px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 22px 65px rgba(0,0,0,.24);
-}
-
-.qg-testimonial-card.qg-card-white {
-  background: #fff;
-  color: #111;
-  border-color: rgba(255,255,255,.8);
-}
-
-.qg-testimonial-card.qg-card-orange {
-  background: #ff6a00;
-  color: #fff;
-  border-color: rgba(255,106,0,.9);
-}
-
-.qg-testimonial-card.qg-card-white .qg-client-avatar {
-  background: #ff6a00;
-  color: #fff;
-}
-
-.qg-testimonial-card.qg-card-orange .qg-client-avatar {
-  background: #fff;
-  color: #ff6a00;
-}
-
-.qg-testimonial-card.qg-card-white .qg-client-meta small,
-.qg-testimonial-card.qg-card-white .qg-quote-mark {
-  color: #111;
-}
-
-.qg-testimonial-card.qg-card-orange .qg-client-meta small,
-.qg-testimonial-card.qg-card-orange .qg-quote-mark {
-  color: #fff;
-}
-
-.qg-testimonial-card.qg-card-white p {
-  color: rgba(17,17,17,.68);
-}
-
-.qg-testimonial-card.qg-card-orange p {
-  color: rgba(255,255,255,.86);
-}
-
-.qg-testimonial-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 26px;
-}
-
-.qg-client {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-}
-
-.qg-client-avatar {
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: rgba(255,255,255,.9);
-  color: #101010;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .04em;
-}
-
-.qg-client-meta strong {
-  display: block;
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.qg-client-meta small {
-  display: block;
-  margin-top: 4px;
-  font-size: 11px;
-  opacity: .55;
-}
-
-.qg-quote-mark {
-  font-family: Georgia, serif;
-  font-size: 36px;
-  line-height: 1;
-  opacity: .16;
-}
-
-.qg-testimonial-card p {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.65;
-}
-
-/* World map */
-.qg-world-layer {
-  position: absolute;
-  z-index: 8;
-  left: 50%;
-  top: 61%;
-  width: 100vw;
-  height: 80vh;
-  max-width: none;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(.965);
-  transform-origin: center center;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at 50% 51%, rgba(255,255,255,.045) 0%, rgba(255,255,255,.016) 34%, transparent 68%);
-  will-change: opacity, transform;
-}
-
-#qgWorldMapSvg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.qg-world-land-shadow {
-  fill: #000;
-  opacity: .42;
-  stroke: none;
-  filter: blur(15px);
-  transform: translateY(16px);
-  transform-origin: center;
-  pointer-events: none;
-}
-
-.qg-world-land-glow {
-  fill: #fff;
-  opacity: .12;
-  stroke: none;
-  filter: blur(7px);
-  transform: scale(1.006);
-  transform-origin: center;
-  pointer-events: none;
-}
-
-.qg-world-land {
-  fill: #f6f6f3;
-  stroke: rgba(255,255,255,.42);
-  stroke-width: .65px;
-  vector-effect: non-scaling-stroke;
-  pointer-events: none;
-}
-
-/* Ten destination anchors */
-.qg-map-points {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-}
-
-.qg-map-point {
-  position: absolute;
-  width: 9px;
-  height: 9px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: #f47721;
-  box-shadow:
-    0 0 0 5px rgba(244,119,33,.10),
-    0 0 18px rgba(244,119,33,.18);
-  opacity: .2;
-  transition: opacity .25s ease, box-shadow .25s ease;
-}
-
-.qg-map-point.qg-india-point {
-  width: 11px;
-  height: 11px;
-}
-
-.qg-map-point::before {
-  content: "";
-  position: absolute;
-  inset: -8px;
-  border: 1px solid rgba(255,170,95,.64);
-  border-radius: 50%;
-  opacity: 0;
-}
-
-.qg-map-point.qg-active {
-  opacity: 1;
-  box-shadow:
-    0 0 0 7px rgba(255,139,50,.13),
-    0 0 36px rgba(255,122,24,.62);
-}
-
-.qg-map-point.qg-active::before {
-  animation: qgPointPulse 1.7s ease-out infinite;
-}
-
-.qg-map-label {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  white-space: nowrap;
-  font-size: 8px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: .11em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.88);
-  text-shadow: 0 2px 14px rgba(0,0,0,.95);
-  opacity: 0;
-  transform:
-    translate(
-      calc(-50% + var(--qg-label-x, 0px)),
-      calc(-50% + var(--qg-label-y, 30px))
-    )
-    translateY(5px);
-  transition: opacity .35s ease, transform .35s ease;
-}
-
-.qg-map-point.qg-active .qg-map-label {
-  opacity: .88;
-  transform:
-    translate(
-      calc(-50% + var(--qg-label-x, 0px)),
-      calc(-50% + var(--qg-label-y, 30px))
-    )
-    translateY(0);
-}
-
-@keyframes qgPointPulse {
-  from { transform: scale(.4); opacity: .85; }
-  to { transform: scale(2.5); opacity: 0; }
-}
-
-/* SAME testimonial element morphs into its destination marker */
-.qg-flight-card {
-  position: fixed !important;
-  z-index: 100 !important;
-  left: 0 !important;
-  top: 0 !important;
-  margin: 0 !important;
-  pointer-events: none !important;
-  transform-origin: center center !important;
-  will-change: transform, opacity, border-radius, box-shadow;
-  backface-visibility: hidden;
-  overflow: hidden;
-  --qg-flight-content-opacity: 1;
-  --qg-flight-initials-opacity: 0;
-}
-
-.qg-flight-card .qg-testimonial-head,
-.qg-flight-card p {
-  opacity: var(--qg-flight-content-opacity) !important;
-  transition: none !important;
-}
-
-.qg-flight-card::before {
-  content: attr(data-initials);
-  position: absolute;
-  inset: 0;
-  z-index: 20;
-  display: grid;
-  place-items: center;
-  font-family: var(--heading-font, "Raleway", sans-serif);
-  font-size: 92px;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: .02em;
-  opacity: var(--qg-flight-initials-opacity);
-  transition: none;
-  pointer-events: none;
-}
-
-.qg-flight-card.qg-card-white::before {
-  color: #ff6a00;
-}
-
-.qg-flight-card.qg-card-orange::before {
-  color: #fff;
-}
-
-.qg-flight-placeholder {
-  flex-shrink: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* Map title sequence */
-.qg-map-title-sequence {
-  position: absolute;
-  z-index: 32;
-  left: 50%;
-  top: 5.2vh;
-  width: min(980px, 92vw);
-  height: 110px;
-  transform: translateX(-50%);
-  text-align: center;
-  pointer-events: none;
-}
-
-.qg-map-title {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  font-size: clamp(32px, 4.4vw, 70px);
-  line-height: .98;
-  font-weight: 400;
-  letter-spacing: -.05em;
-  opacity: 0;
-  transform: translateY(18px) scale(1.08);
-  transform-origin: center center;
-  will-change: opacity, transform, filter;
-}
-
-.qg-map-title strong {
-  font-weight: 500;
-  color: #ff7a18;
-}
-
-.qg-map-title.qg-locations {
-  font-size: clamp(17px, 2vw, 30px);
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-}
-
-/* Scroll cue */
-.qg-scroll-cue {
-  position: absolute;
-  z-index: 50;
-  left: 50%;
-  bottom: 3vh;
-  transform: translateX(-50%);
-  will-change: opacity, transform;
-}
-
-.qg-scroll-cue button {
-  appearance: none;
-  border: 1px solid rgba(255,255,255,.15);
-  background: rgba(255,255,255,.04);
-  color: #fff;
-  border-radius: 999px;
-  padding: 11px 17px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 9px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  backdrop-filter: blur(12px);
-  transition: background .3s ease;
-}
-
-.qg-scroll-cue button:hover {
-  background: rgba(255,255,255,.09);
-}
-
-.qg-scroll-arrow {
-  display: inline-block;
-  font-size: 15px;
-  animation: qgScrollArrow 1.5s ease-in-out infinite;
-}
-
-@keyframes qgScrollArrow {
-  0%, 100% { transform: translateY(-2px); }
-  50% { transform: translateY(3px); }
-}
-
-.qg-noise {
-  position: absolute;
-  inset: 0;
-  z-index: 200;
-  pointer-events: none;
-  opacity: .025;
-  background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-}
-
-@media (max-width: 900px) {
-  .qg-global-proof { height: 405vh; }
-  .qg-marquee-stage { top: 10vh; }
-  .qg-testimonial-card {
-    flex-basis: 300px;
-    width: 300px;
-    height: 260px;
-    padding: 24px;
-  }
-  .qg-world-layer {
-    width: 104vw;
-    height: 61vh;
-  }
-  .qg-map-title-sequence {
-    top: 5vh;
-    height: 90px;
-  }
-  .qg-map-title {
-    font-size: clamp(30px, 7vw, 52px);
-  }
-  .qg-map-label {
-    font-size: 7px;
-  }
+.qg-global-proof + .qc-blog-section {
+  margin-top: 0 !important;
 }
 
 @media (max-width: 600px) {
-  .qg-global-proof { height: 365vh; }
-  .qg-marquee-stage {
-    top: 12vh;
-    gap: 12px;
-  }
-  .qg-testimonial-card {
-    flex-basis: 245px;
-    width: 245px;
-    height: 220px;
-    padding: 20px;
-  }
-  .qg-testimonial-card p { font-size: 12px; }
-  .qg-world-layer {
-    width: 118vw;
-    height: 52vh;
-    top: 59%;
-  }
-  .qg-map-title-sequence {
-    top: 4.5vh;
-    height: 76px;
-  }
-  .qg-map-title {
-    font-size: clamp(27px, 9vw, 42px);
-  }
-  .qg-map-title.qg-locations {
-    font-size: 14px;
-    letter-spacing: .08em;
-  }
-  .qg-map-label {
-    font-size: 5.5px;
-    letter-spacing: .05em;
+  .qg-global-proof {
+    height: 480vh;
   }
 }
 
+.qg-global-proof {
+      position: relative;
+
+      height: 380vh;
+
+      background:
+        radial-gradient(
+          circle at 50% 45%,
+          rgba(255, 255, 255, 0.055),
+          transparent 38%
+        ),
+        #080808;
+    }
+
+
+    .qg-proof-sticky {
+      position: sticky;
+
+      top: 0;
+
+      width: 100%;
+      height: 100vh;
+
+      overflow: hidden;
+
+      perspective: 1400px;
+      perspective-origin: 50% 48%;
+    }
+
+
+    /* subtle background glow */
+
+    .qg-ambient-glow {
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      width: 70vw;
+      height: 70vw;
+
+      transform: translate(-50%, -50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,255,255,0.035),
+          transparent 65%
+        );
+
+      pointer-events: none;
+    }
+
+
+    /* =====================================================
+       INTRO TEXT
+    ===================================================== */
+
+    .qg-intro-copy {
+      display: none;
+
+      position: absolute;
+
+      z-index: 20;
+
+      top: 6vh;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      text-align: center;
+
+      width: 90%;
+
+      will-change:
+        opacity,
+        transform;
+    }
+
+
+    .qg-intro-copy span {
+      display: block;
+
+      margin-bottom: 12px;
+
+      font-size: 10px;
+
+      font-weight: 500;
+
+      letter-spacing: 0.26em;
+
+      text-transform: uppercase;
+
+      opacity: 0.45;
+    }
+
+
+    .qg-intro-copy h2 {
+      margin: 0;
+
+      font-size: clamp(
+        34px,
+        4vw,
+        65px
+      );
+
+      line-height: 0.98;
+
+      font-weight: 400;
+
+      letter-spacing: -0.045em;
+    }
+
+
+    /* =====================================================
+       TESTIMONIAL MARQUEE AREA
+    ===================================================== */
+
+    .qg-marquee-stage {
+      position: absolute;
+
+      z-index: 15;
+
+      left: -10vw;
+      right: -10vw;
+
+      top: 8vh;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 18px;
+
+      transform-style: preserve-3d;
+
+      transform-origin: center center;
+
+      will-change:
+        transform,
+        opacity;
+    }
+
+
+    /* individual row */
+
+    .qg-marquee-row {
+      width: 100%;
+
+      overflow: hidden;
+
+      padding: 3px 0;
+    }
+
+
+    /* infinitely moving track */
+
+    .qg-marquee-track {
+      display: flex;
+
+      width: max-content;
+
+      gap: 18px;
+
+      will-change: transform;
+
+      animation:
+        qgMarqueeLeft
+        32s
+        linear
+        infinite;
+    }
+
+
+    /* middle row opposite direction */
+
+    .qg-marquee-row.qg-reverse .qg-marquee-track {
+      animation-name: qgMarqueeRight;
+
+      animation-duration: 35s;
+    }
+
+
+
+    .qg-marquee-group {
+      display: flex;
+
+      flex-shrink: 0;
+
+      gap: 18px;
+    }
+
+
+    /*
+      IMPORTANT:
+      JS adds an identical second marquee-group.
+      Therefore translating approximately half the
+      track creates infinite looping.
+    */
+
+    @keyframes qgMarqueeLeft {
+
+      from {
+        transform:
+          translate3d(
+            0,
+            0,
+            0
+          );
+      }
+
+      to {
+        transform:
+          translate3d(
+            calc(-50% - 9px),
+            0,
+            0
+          );
+      }
+
+    }
+
+
+    @keyframes qgMarqueeRight {
+
+      from {
+        transform:
+          translate3d(
+            calc(-50% - 9px),
+            0,
+            0
+          );
+      }
+
+      to {
+        transform:
+          translate3d(
+            0,
+            0,
+            0
+          );
+      }
+
+    }
+
+
+    /*
+      THIS is what fixes your reset problem.
+
+      animation-play-state pauses the marquee exactly
+      where it currently is.
+
+      It DOES NOT return transform to 0.
+    */
+
+    .qg-global-proof.qg-is-frozen
+    .qg-marquee-track {
+      animation-play-state: paused;
+    }
+
+
+    /* =====================================================
+       TESTIMONIAL CARD
+    ===================================================== */
+
+    .qg-testimonial-card {
+      position: relative;
+
+      flex: 0 0 340px;
+
+      width: 340px;
+      height: 316px;
+
+      padding: 28px;
+
+      overflow: hidden;
+
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 18px;
+
+      display: flex;
+      flex-direction: column;
+
+      box-shadow:
+        0 22px 65px
+        rgba(0,0,0,0.24);
+
+      transition:
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+    }
+
+
+    /* alternating testimonial colours */
+
+    .qg-testimonial-card.qg-card-white {
+      background: #ffffff;
+      color: #111111;
+      border-color: rgba(255,255,255,0.8);
+    }
+
+    .qg-testimonial-card.qg-card-orange {
+      background: #ff6a00;
+      color: #ffffff;
+      border-color: rgba(255,106,0,0.9);
+    }
+
+    .qg-testimonial-card.qg-card-white .qg-client-avatar {
+      background: #ff6a00;
+      color: #ffffff;
+    }
+
+    .qg-testimonial-card.qg-card-orange .qg-client-avatar {
+      background: #ffffff;
+      color: #ff6a00;
+    }
+
+    .qg-testimonial-card.qg-card-white .qg-client-meta small,
+    .qg-testimonial-card.qg-card-white .qg-quote-mark {
+      color: #111111;
+    }
+
+    .qg-testimonial-card.qg-card-orange .qg-client-meta small,
+    .qg-testimonial-card.qg-card-orange .qg-quote-mark {
+      color: #ffffff;
+    }
+
+    .qg-testimonial-card.qg-card-white p {
+      color: rgba(17,17,17,0.68);
+    }
+
+    .qg-testimonial-card.qg-card-orange p {
+      color: rgba(255,255,255,0.86);
+    }
+
+
+    .qg-testimonial-head {
+      display: flex;
+
+      justify-content:
+        space-between;
+
+      align-items:
+        center;
+
+      gap: 15px;
+
+      margin-bottom: 26px;
+    }
+
+
+    .qg-client {
+      display: flex;
+
+      align-items:
+        center;
+
+      gap: 11px;
+    }
+
+
+    .qg-client-avatar {
+      width: 44px;
+      height: 44px;
+
+      flex-shrink: 0;
+
+      display: grid;
+
+      place-items: center;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255,255,255,0.9);
+
+      color: #101010;
+
+      font-size: 10px;
+
+      font-weight: 700;
+
+      letter-spacing: 0.04em;
+    }
+
+
+    .qg-client-meta strong {
+      display: block;
+
+      font-size: 15px;
+
+      font-weight: 500;
+    }
+
+
+    .qg-client-meta small {
+      display: block;
+
+      margin-top: 4px;
+
+      font-size: 11px;
+
+      opacity: 0.55;
+    }
+
+
+    .qg-quote-mark {
+      font-family:
+        Georgia,
+        serif;
+
+      font-size: 36px;
+
+      line-height: 1;
+
+      opacity: 0.16;
+    }
+
+
+    .qg-testimonial-card p {
+      margin: 0;
+
+      color:
+        rgba(255,255,255,0.63);
+
+      font-size: 15px;
+
+      line-height: 1.65;
+    }
+
+
+    /* =====================================================
+       WORLD MAP — PREMIUM WHITE SILHOUETTE
+
+       Pure SVG/code treatment inspired by the supplied reference:
+       - no image background
+       - no globe / grid / atlas styling
+       - one clean white world silhouette
+       - soft lifted shadow
+       - edge-to-edge desktop composition
+    ===================================================== */
+
+    .qg-world-layer {
+      position: absolute;
+      z-index: 8;
+
+      left: 50%;
+      top: 62%;
+
+      width: 100vw;
+      height: 78vh;
+      max-width: none;
+
+      opacity: 0;
+
+      transform:
+        translate(-50%, -50%)
+        scale(0.965);
+
+      transform-origin: center center;
+      pointer-events: none;
+
+      /* No map-image background. Only a very soft light pool so the
+         white silhouette feels designed instead of pasted on. */
+      background:
+        radial-gradient(
+          ellipse at 50% 51%,
+          rgba(255,255,255,0.045) 0%,
+          rgba(255,255,255,0.016) 34%,
+          transparent 68%
+        );
+
+      will-change:
+        opacity,
+        transform;
+    }
+
+
+    #qcWorldMapSvg {
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      overflow: visible;
+    }
+
+
+    /* One merged landmass path = no classroom/geography-diagram feel. */
+    .qg-world-land-shadow {
+      fill: #000000;
+      opacity: 0.42;
+      stroke: none;
+      filter: blur(15px);
+      transform: translateY(16px);
+      transform-origin: center;
+      pointer-events: none;
+    }
+
+
+    .qg-world-land-glow {
+      fill: #ffffff;
+      opacity: 0.12;
+      stroke: none;
+      filter: blur(7px);
+      transform: scale(1.006);
+      transform-origin: center;
+      pointer-events: none;
+    }
+
+
+    .qg-world-land {
+      fill: #f6f6f3;
+      stroke: rgba(255,255,255,0.42);
+      stroke-width: 0.65px;
+      vector-effect: non-scaling-stroke;
+      pointer-events: none;
+    }
+
+
+    /* We deliberately do not draw internal country borders.
+       Client locations are communicated by the orange markers below. */
+    .qg-countries-layer,
+    .qg-country,
+    .qg-land-outline,
+    .qg-land-shadow,
+    .qg-ocean-sphere,
+    .qg-graticule {
+      display: none;
+    }
+
+
+    /* =====================================================
+       MAP POINTS
+    ===================================================== */
+
+    .qg-map-points {
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 10;
+    }
+
+
+    .qg-map-point {
+      position: absolute;
+
+      width: 8px;
+      height: 8px;
+
+      transform:
+        translate(
+          -50%,
+          -50%
+        );
+
+      border-radius: 50%;
+
+      background: #f47721;
+
+      box-shadow:
+        0 0 0 5px
+        rgba(244,119,33,0.12),
+        0 0 20px
+        rgba(244,119,33,0.20);
+
+      opacity: 0.2;
+
+      transition:
+        opacity 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+
+    .qg-map-point::before {
+      content: "";
+
+      position: absolute;
+
+      inset: -7px;
+
+      border:
+        1px solid
+        rgba(255,170,95,0.62);
+
+      border-radius: 50%;
+
+      opacity: 0;
+    }
+
+
+    .qg-map-point.qg-active {
+      opacity: 1;
+
+      box-shadow:
+        0 0 0 6px
+        rgba(255,139,50,0.12),
+        0 0 34px
+        rgba(255,122,24,0.62);
+    }
+
+
+    .qg-map-point.qg-active::before {
+      animation:
+        qgPointPulse
+        1.7s
+        ease-out
+        infinite;
+    }
+
+
+    /* India main anchor */
+
+    .qg-map-point[data-country="india"] {
+      width: 10px;
+      height: 10px;
+    }
+
+
+    .qg-map-label {
+      position: absolute;
+
+      left: 50%;
+      top: 17px;
+
+      transform:
+        translateX(-50%);
+
+      white-space: nowrap;
+
+      font-size: 8px;
+
+      font-weight: 600;
+
+      letter-spacing:
+        0.14em;
+
+      text-transform:
+        uppercase;
+
+      color: rgba(255,255,255,0.80);
+      text-shadow: 0 1px 12px rgba(0,0,0,0.85);
+
+      opacity: 0.72;
+    }
+
+
+
+    /* =====================================================
+       CITY LOCATION POPUPS
+       Jaipur / Mumbai / Delhi / Canberra / Sydney /
+       Beijing / New York / Washington / London / Berlin
+    ===================================================== */
+
+    .qg-city-popup {
+      position: absolute;
+      z-index: 16;
+      width: 10px;
+      height: 10px;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      pointer-events: none;
+      --qg-label-x: 0px;
+      --qg-label-y: -24px;
+      --qg-pop-scale: 0.55;
+      will-change: opacity;
+    }
+
+    .qg-city-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      transform:
+        translate(-50%, -50%)
+        scale(var(--qg-pop-scale));
+      transform-origin: center;
+      border-radius: 50%;
+      background: #ff7a18;
+      border: 1px solid rgba(255,255,255,0.78);
+      box-shadow:
+        0 0 0 4px rgba(255,122,24,0.14),
+        0 0 24px rgba(255,122,24,0.72);
+      transition:
+        transform 0.12s linear,
+        box-shadow 0.3s ease;
+    }
+
+    .qg-city-popup::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(255,139,50,0.64);
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    .qg-city-popup.qg-city-live::after {
+      animation: qgCityPulse 1.8s ease-out infinite;
+    }
+
+    .qg-city-label {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform:
+        translate(-50%, -50%)
+        translate(var(--qg-label-x), var(--qg-label-y))
+        scale(var(--qg-pop-scale));
+      transform-origin: center;
+      padding: 6px 9px;
+      white-space: nowrap;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      background: rgba(8,8,8,0.82);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.38);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: rgba(255,255,255,0.94);
+      font-family: var(--sub-heading-font, "Lato", sans-serif);
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: transform 0.12s linear;
+    }
+
+    @keyframes qgCityPulse {
+      from {
+        transform: translate(-50%, -50%) scale(0.45);
+        opacity: 0.82;
+      }
+
+      to {
+        transform: translate(-50%, -50%) scale(2.2);
+        opacity: 0;
+      }
+    }
+
+
+    @keyframes qgPointPulse {
+
+      from {
+        transform:
+          scale(0.4);
+
+        opacity: 0.85;
+      }
+
+      to {
+        transform:
+          scale(2.5);
+
+        opacity: 0;
+      }
+
+    }
+
+
+    /* =====================================================
+       TESTIMONIAL -> MAP MORPH
+
+       IMPORTANT: .qg-flight-card is the SAME testimonial element
+       the user was looking at. It is temporarily moved to <body>,
+       rounded into a circle, then flown to its map point.
+       No clone / replacement card is created.
+    ===================================================== */
+
+    .qg-flight-card {
+      position: fixed !important;
+      z-index: 100 !important;
+
+      left: 0 !important;
+      top: 0 !important;
+
+      margin: 0 !important;
+      pointer-events: none !important;
+
+      transform-origin: center center !important;
+
+      will-change:
+        transform,
+        opacity,
+        border-radius,
+        box-shadow;
+
+      backface-visibility: hidden;
+      overflow: hidden;
+
+      /* JS drives this value while the SAME card morphs. */
+      --flight-content-opacity: 1;
+    }
+
+
+    .qg-flight-card .qg-testimonial-head,
+    .qg-flight-card p {
+      opacity: var(--flight-content-opacity) !important;
+      transition: none !important;
+    }
+
+
+    .qg-flight-placeholder {
+      flex-shrink: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+
+    /* =====================================================
+       MAP TITLE SEQUENCE
+
+       Each message appears above the map, then zooms
+       away before the next message arrives.
+    ===================================================== */
+
+    .qg-map-title-sequence {
+      position: absolute;
+
+      z-index: 32;
+
+      left: 50%;
+      top: 5.5vh;
+
+      width: min(980px, 92vw);
+      height: 110px;
+
+      transform: translateX(-50%);
+
+      text-align: center;
+
+      pointer-events: none;
+    }
+
+
+    .qg-map-title {
+      position: absolute;
+
+      inset: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0;
+
+      font-size: clamp(32px, 4.4vw, 70px);
+      line-height: 0.98;
+      font-weight: 400;
+      letter-spacing: -0.05em;
+
+      opacity: 0;
+
+      transform:
+        translateY(18px)
+        scale(1.08);
+
+      transform-origin: center center;
+
+      will-change:
+        opacity,
+        transform,
+        filter;
+    }
+
+
+    .qg-map-title strong {
+      font-weight: 500;
+      color: #ff7a18;
+    }
+
+
+    .qg-map-title.qg-locations {
+      font-size: clamp(15px, 1.8vw, 27px);
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       SCROLL BUTTON
+    ===================================================== */
+
+    .qg-scroll-cue {
+      position: absolute;
+
+      z-index: 50;
+
+      left: 50%;
+      bottom: 3vh;
+
+      transform:
+        translateX(-50%);
+
+      will-change:
+        opacity,
+        transform;
+    }
+
+
+    .qg-scroll-cue button {
+      appearance: none;
+
+      border:
+        1px solid
+        rgba(255,255,255,0.15);
+
+      background:
+        rgba(255,255,255,0.04);
+
+      color: #ffffff;
+
+      border-radius: 999px;
+
+      padding:
+        11px 17px;
+
+      cursor: pointer;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      font-size: 9px;
+
+      letter-spacing:
+        0.16em;
+
+      text-transform:
+        uppercase;
+
+      backdrop-filter:
+        blur(12px);
+
+      transition:
+        background 0.3s ease;
+    }
+
+
+    .qg-scroll-cue button:hover {
+      background:
+        rgba(255,255,255,0.09);
+    }
+
+
+    .qg-scroll-arrow {
+      display: inline-block;
+
+      font-size: 15px;
+
+      animation:
+        qgScrollArrow
+        1.5s
+        ease-in-out
+        infinite;
+    }
+
+
+    @keyframes qgScrollArrow {
+
+      0%,
+      100% {
+        transform:
+          translateY(-2px);
+      }
+
+      50% {
+        transform:
+          translateY(3px);
+      }
+
+    }
+
+
+    /* =====================================================
+       NOISE
+    ===================================================== */
+
+    .qg-noise {
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 200;
+
+      pointer-events: none;
+
+      opacity: 0.025;
+
+      background-image:
+        url(
+          "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E"
+        );
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 900px) {
+
+      .qg-map-title-sequence {
+        top: 5vh;
+        height: 90px;
+      }
+
+      .qg-map-title {
+        font-size: clamp(30px, 7vw, 52px);
+      }
+
+      .qg-global-proof {
+        height: 400vh;
+      }
+
+      .qg-marquee-stage {
+        top: 10vh;
+      }
+
+      .qg-testimonial-card {
+        flex-basis: 300px;
+
+        width: 300px;
+
+        height: 260px;
+
+        padding: 24px;
+      }
+
+      .qg-world-layer {
+        width: 96vw;
+        height: 58vh;
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      .qg-map-title-sequence {
+        top: 4.5vh;
+        height: 76px;
+      }
+
+      .qg-map-title {
+        font-size: clamp(27px, 9vw, 42px);
+      }
+
+      .qg-testimonial-card {
+        flex-basis: 245px;
+
+        width: 245px;
+
+        height: 220px;
+
+        padding: 20px;
+      }
+
+      .qg-testimonial-card p {
+        font-size: 12px;
+      }
+
+      .qg-marquee-stage {
+        top: 12vh;
+
+        gap: 12px;
+      }
+
+      .qg-world-layer {
+        width: 108vw;
+        height: 50vh;
+      }
+
+      .qg-map-label {
+        font-size: 6px;
+      }
+
+    }
+/* QG city popups — compact mobile labels */
+@media (max-width: 600px) {
+  .qg-global-proof {
+    height: 480vh;
+  }
+
+  .qg-city-label {
+    padding: 4px 6px;
+    font-size: 7px;
+    letter-spacing: 0.035em;
+  }
+
+  .qg-city-dot {
+    width: 6px;
+    height: 6px;
+  }
+}

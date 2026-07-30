@@ -10,6 +10,7 @@
     />
 
     <link rel="stylesheet" href="./styles/sty.css" />
+    <link rel="stylesheet" href="./styles/about-mobile.css" />
     <link
       rel="shortcut icon"
       href="./assets/logo/fav-icon-one.png"
@@ -191,34 +192,6 @@
         />
       </video>
       <div class="hero-overlay"></div>
-      <!-- <div class="hero-content">
-        <div class="hero-eyebrow">
-          <div class="hero-eyebrow-dot"></div>
-          <span>Qrious Curators</span>
-        </div>
-        <h1 class="hero-h1">
-          <span class="line"><span class="line-inner l1">We craft</span></span>
-          <span class="line"
-            ><span class="line-inner l2"><em>digital</em> worlds</span></span
-          >
-          <span class="line"
-            ><span class="line-inner l3 outline">that endure.</span></span
-          >
-        </h1>
-        <div class="hero-bottom">
-          <p class="hero-desc">
-            Qrious Curators is a full-spectrum creative agency building brand
-            systems, digital experiences, and stories that stand apart in a
-            crowded world.
-          </p>
-          <div class="hero-ctas">
-            <a href="#showcase" class="btn-accent"
-              ><span>View Work</span><span>↗</span></a
-            >
-            <a href="#about" class="btn-outline">Our Story</a>
-          </div>
-        </div>
-      </div> -->
       <div class="hero-scroll">
         <div class="hero-scroll-line"></div>
         <span class="hero-scroll-label">Scroll</span>
@@ -459,8 +432,91 @@
             </div>
     
         </div>
-    
+
     </section>
+
+    <!-- =========================================================
+     MOBILE-ONLY "WE BUILD ATTENTION" SECTION
+     Sits as a SIBLING of .premium-about (not nested inside it),
+     so .premium-about's mobile display:none does not hide it too.
+     - Hidden on desktop by default (about-mobile.css handles this)
+     - Shown only at 768px and below, where .premium-about is hidden
+     ========================================================= -->
+
+    <section class="about-mobile" aria-label="About — We Build Attention">
+
+      <p class="about-mobile__label">who we are</p>
+
+      <h2 class="about-mobile__heading">
+        We Build <span class="about-mobile__heading-accent">Attention</span>
+      </h2>
+
+      <p class="about-mobile__paragraph">
+        Through storytelling, strategy, and premium campaign execution,
+        we help modern brands become impossible to ignore online.
+      </p>
+
+      <div class="about-mobile__collage">
+        <div class="about-mobile__glow" aria-hidden="true"></div>
+
+        <figure class="about-mobile__card about-mobile__card--1" data-reveal>
+          <img src="./assets/homeimages/teamh1.JPG" alt="Qrious Curators team at work" loading="lazy" />
+        </figure>
+
+        <figure class="about-mobile__card about-mobile__card--2" data-reveal>
+          <img src="./assets/homeimages/teamh2.JPG" alt="Qrious Curators creative session" loading="lazy" />
+        </figure>
+
+        <figure class="about-mobile__card about-mobile__card--3" data-reveal>
+          <img src="./assets/homeimages/teamh3.JPG" alt="Qrious Curators studio" loading="lazy" />
+        </figure>
+      </div>
+
+      <div class="about-mobile__stats" data-reveal>
+        <div class="about-mobile__stat">
+          <span class="about-mobile__stat-number">120+</span>
+          <span class="about-mobile__stat-label">Brands Worked With</span>
+        </div>
+        <div class="about-mobile__stat-divider" aria-hidden="true"></div>
+        <div class="about-mobile__stat">
+          <span class="about-mobile__stat-number">48M</span>
+          <span class="about-mobile__stat-label">Organic Reach</span>
+        </div>
+      </div>
+
+      <a href="#contact" class="about-mobile__btn" data-reveal>
+        Explore Qrious
+        <span class="about-mobile__btn-arrow" aria-hidden="true">→</span>
+      </a>
+
+    </section>
+
+    <script>
+      // Reveal animation for the mobile about section only.
+      // Scoped to .about-mobile [data-reveal] — touches nothing else on the page.
+      (function () {
+        "use strict";
+        var targets = document.querySelectorAll(".about-mobile [data-reveal]");
+        if (targets.length) {
+          var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+          if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+            targets.forEach(function (el) { el.classList.add("is-visible"); });
+          } else {
+            var aboutMobileObserver = new IntersectionObserver(function (entries, obs) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  obs.unobserve(entry.target);
+                }
+              });
+            }, { rootMargin: "0px 0px -10% 0px", threshold: 0.2 });
+
+            targets.forEach(function (el) { aboutMobileObserver.observe(el); });
+          }
+        }
+      })();
+    </script>
 
     
     <!-- <section class="about-story">
@@ -1840,249 +1896,16 @@
         <div class="ww-map-wrap">
           <div id="map-canvas" style="position: relative">
             <div class="map-loading" id="mapLoading">Loading world map</div>
-            
-            <!-- Badges (positioned by JS) -->
-            <!-- <div class="badge" data-city="london">
-              <div class="b-av" style="background: #c8f53a">MC</div>
-              <div>
-                <div class="b-co">Meridian Capital</div>
-                <div class="b-ci">London, UK</div>
-              </div>
-            </div>
-            <div class="badge" data-city="newyork">
-              <div class="b-av" style="background: #38bdf8">SL</div>
-              <div>
-                <div class="b-co">Skyline Labs</div>
-                <div class="b-ci">New York, USA</div>
-              </div>
-            </div>
-            <div class="badge" data-city="dubai">
-              <div class="b-av" style="background: #fb923c">AF</div>
-              <div>
-                <div class="b-co">Aether Finance</div>
-                <div class="b-ci">Dubai, UAE</div>
-              </div>
-            </div>
-            <div class="badge" data-city="tokyo">
-              <div class="b-av" style="background: #a78bfa">PA</div>
-              <div>
-                <div class="b-co">Prisma AI</div>
-                <div class="b-ci">Tokyo, Japan</div>
-              </div>
-            </div>
-            <div class="badge" data-city="sydney">
-              <div class="b-av" style="background: #34d399">CV</div>
-              <div>
-                <div class="b-co">Coastal Ventures</div>
-                <div class="b-ci">Sydney, AUS</div>
-              </div>
-            </div>
-            <div class="badge" data-city="mumbai">
-              <div class="b-av" style="background: #c8f53a">QC</div>
-              <div>
-                <div class="b-co">Qrious HQ</div>
-                <div class="b-ci">Mumbai, India</div>
-              </div>
-            </div>
-            <div class="badge" data-city="sao">
-              <div class="b-av" style="background: #f472b6">HC</div>
-              <div>
-                <div class="b-co">Helix Commerce</div>
-                <div class="b-ci">São Paulo, BR</div>
-              </div>
-            </div>
-            <div class="badge" data-city="toronto">
-              <div class="b-av" style="background: #38bdf8">SD</div>
-              <div>
-                <div class="b-co">Summit Digital</div>
-                <div class="b-ci">Toronto, CA</div>
-              </div>
-            </div>
-            <div class="badge" data-city="berlin">
-              <div class="b-av" style="background: #fb923c">VH</div>
-              <div>
-                <div class="b-co">Vanta Health</div>
-                <div class="b-ci">Berlin, DE</div>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
-
-      <!-- TICKER -->
-      <!-- <div class="ww-ticker rv d2">
-        <div class="ticker-inner">
-          <div class="ticker-lbl">
-            <div class="tdot"></div>
-            Active Clients
-          </div>
-          <div class="ticker-scroll">
-            <div class="ticker-track">
-              <span class="ti">Meridian Capital — UK</span>
-              <span class="ti">Skyline Labs — USA</span>
-              <span class="ti">Aether Finance — UAE</span>
-              <span class="ti">Prisma AI — Japan</span>
-              <span class="ti">Coastal Ventures — Australia</span>
-              <span class="ti">Helix Commerce — Brazil</span>
-              <span class="ti">Summit Digital — Canada</span>
-              <span class="ti">Vanta Health — Germany</span>
-              <span class="ti">NovaBrand — Singapore</span>
-              <span class="ti">Meridian Capital — UK</span>
-              <span class="ti">Skyline Labs — USA</span>
-              <span class="ti">Aether Finance — UAE</span>
-              <span class="ti">Prisma AI — Japan</span>
-              <span class="ti">Coastal Ventures — Australia</span>
-              <span class="ti">Helix Commerce — Brazil</span>
-              <span class="ti">Summit Digital — Canada</span>
-              <span class="ti">Vanta Health — Germany</span>
-              <span class="ti">NovaBrand — Singapore</span>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- LOGOS -->
-      <!-- <div class="ww-logos rv d3">
-    <p class="logos-lbl">Brands that trust us</p>
-    <div class="logos-grid">
-      <div class="lc rv d1"><div class="lt">Meridian</div></div>
-      <div class="lc rv d2"><div class="lt">Skyline Labs</div></div>
-      <div class="lc rv d3"><div class="lt">Aether</div></div>
-      <div class="lc rv d4"><div class="lt">Vanta Health</div></div>
-      <div class="lc rv d5"><div class="lt">Prisma AI</div></div>
-      <div class="lc rv d6"><div class="lt">Helix</div></div>
-      <div class="lc rv d1"><div class="lt">Summit Co.</div></div>
-    </div>
-  </div> -->
     </section>
-
-    <!-- ===== IMPACT ===== -->
-    <!-- <section id="impact">
-      <div class="impact-head rv" data-scroll data-scroll-speed="0.08">
-        <span class="kicker">Our Impact</span>
-        <h2>Results that<br /><em>speak louder</em> than words</h2>
-      </div>
-      <div class="impact-cards">
-        <div class="impact-card rv d1">
-          <div class="impact-card-num">3.2<span class="suf">×</span></div>
-          <div class="impact-card-lbl">Average Revenue Lift</div>
-          <p class="impact-card-desc">
-            Clients who rebrand and relaunch with us see an average 3.2×
-            increase in qualified leads within 6 months.
-          </p>
-        </div>
-        <div class="impact-card rv d2">
-          <div class="impact-card-num">67<span class="suf">%</span></div>
-          <div class="impact-card-lbl">Conversion Rate Uplift</div>
-          <p class="impact-card-desc">
-            Our website redesigns consistently outperform previous versions,
-            with a 67% average conversion improvement.
-          </p>
-        </div>
-        <div class="impact-card rv d3">
-          <div class="impact-card-num">18<span class="suf">+</span></div>
-          <div class="impact-card-lbl">Countries Served</div>
-          <p class="impact-card-desc">
-            From Jaipur to New York, our clients operate in 18+ countries across
-            6 continents. Design has no borders.
-          </p>
-        </div>
-      </div>
-    </section> -->
-    
-    <!-- ===== Reviews ===== -->
-
-    
-
-
-    <!-- <section id="stack">
-      <div class="stack-grid">
-        <div class="stack-sticky">
-          <span class="stack-kicker">Our Clients</span>
-          <h2 class="stack-title">
-            At Qrious Curators, we don’t just <em>“do marketing.”</em>
-            We build brands that people
-            Remember, Relate to, and Talk about
-          </h2>
-          <div class="stack-card client-card">
-            <div class="client-row">
-              <div class="client"><img src="./assets/brand-logo/AB.png" alt=""><span>AB Jewellers</span></div>
-              <div class="client"><img src="./assets/brand-logo/Ardhangini.png" alt=""><span>Ardhangini</span></div>
-              <div class="client"><img src="./assets/brand-logo/Jb-marble.png" alt=""><span>Client 3</span></div>
-              <div class="client"><img src="./assets/brand-logo/Indralok-sarees.png" alt=""><span>Client 4</span></div>
-              <div class="client"><img src="./assets/brand-logo/Jain.png" alt=""><span>Client 5</span></div>
-              <div class="client"><img src="./assets/brand-logo/Kapish.png" alt=""><span>Client 6</span></div>
-              <div class="client"><img src="./assets/brand-logo/Mahttab.png" alt=""><span>Client 7</span></div>
-          
-              <div class="client"><img src="./assets/brand-logo/nandini.png" alt=""><span>Client 8</span></div>
-              <div class="client"><img src="./assets/brand-logo/Nirankar-stones.png" alt=""><span>Client 9</span></div>
-              <div class="client"><img src="./assets/brand-logo/OUT.png" alt=""><span>Client 10</span></div>
-              <div class="client"><img src="./assets/brand-logo/Rahaurvi.png" alt=""><span>Client 11</span></div>
-              <div class="client"><img src="./assets/brand-logo/Taluka.png" alt=""><span>Client 12</span></div>
-              <div class="client"><img src="./assets/brand-logo/Trendy-Aura.png" alt=""><span>Client 13</span></div>
-              <div class="client"><img src="./assets/clients/c14.png" alt=""><span>Client 14</span></div>
-          
-              <div class="client"><img src="./assets/clients/c15.png" alt=""><span>Client 15</span></div>
-              <div class="client"><img src="./assets/clients/c16.png" alt=""><span>Client 16</span></div>
-              <div class="client"><img src="./assets/clients/c17.png" alt=""><span>Client 17</span></div>
-              <div class="client"><img src="./assets/clients/c18.png" alt=""><span>Client 18</span></div>
-              <div class="client"><img src="./assets/clients/c19.png" alt=""><span>Client 19</span></div>
-              <div class="client"><img src="./assets/clients/c20.png" alt=""><span>Client 20</span></div>
-              <div class="client"><img src="./assets/clients/c21.png" alt=""><span>Client 21</span></div>
-          
-            </div>
-          </div>
-        </div>
-        
-        <div class="stack-cards">
-          <div class="stack-card">
-            <img
-              src="./assets/newmockups/review1.png"
-              alt="Work 1"
-              loading="lazy"
-            />
-          </div>
-          <div class="stack-card">
-            <img
-              src="./assets/newmockups/review2.png"
-              alt="Work 2"
-              loading="lazy"
-            />
-          </div>
-          <div class="stack-card">
-            <img
-              src="./assets/newmockups/review3.png"
-              alt="Work 3"
-              loading="lazy"
-            />
-          </div> 
-          <div class="stack-card">
-            <img
-              src="./assets/newmockups/review4.png"
-              alt="Work 4"
-              loading="lazy"
-            />
-          </div>
-          <div class="stack-card">
-            <img
-              src="https://framerusercontent.com/images/9eD88IPKTw4s3e2ACxglJMr1zWs.webp?width=1800&height=2400"
-              alt="Work 5"
-              loading="lazy"
-            />
-          </div> 
-        </div>
-      </div>
-    </section> -->
-
 
     <!-- ===================== BLOG SECTION ===================== -->
      
     <section class="qc-blog-section">
       <div class="qc-blog-container">
-            
-        <!-- <div class="qc-cine-glow qc-cine-glow-1"></div>
-        <div class="qc-cine-glow qc-cine-glow-2"></div>    -->
-    
+
         <div class="qc-blog-head">
           <span class="qc-blog-kicker">BLOGS & INSIGHTS</span>
           <h2>Ideas that help brands <span>move with clarity.</span> </h2>
@@ -2214,8 +2037,6 @@
     
           <!-- Services -->
           <div>
-            <!-- <div class="footer-col-ttl">Services</div> -->
-    
             <ul class="footer-links">
               <li><a href="./index.html">Home</a></li>
               <li><a href="./about.html">About</a></li>
@@ -2226,8 +2047,6 @@
     
           <!-- Company -->
           <div>
-            <!-- <div class="footer-col-ttl">Company</div> -->
-    
             <ul class="footer-links">
               <li><a href="./blog.html">Blog</a></li>
               <li><a href="./contact.html">Contact</a></li>
@@ -2275,7 +2094,7 @@
           end: "bottom bottom",
           scrub: 1,
           pin: true,
-          markers: false   // 👈 IMPORTANT: helps debug
+          markers: false
         },
   
         motionPath: {
@@ -2323,10 +2142,6 @@
     
     <!-- =========================================================
          GSAP CDN
-         Order is important:
-         1. GSAP
-         2. ScrollTrigger
-         3. Your custom JS
     ========================================================== -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -3296,2018 +3111,360 @@
   };
 
   function initQriousGlobalProof() {
-    /* =====================================================
-         ELEMENTS
-      ===================================================== */
-    
-      const section =
-        document.querySelector(
-          "#qgGlobalProof"
-        );
-    
-      if (!section || section.dataset.qgInitialized === "true") {
-        return;
-      }
-    
+      const section = document.querySelector("#qgGlobalProof");
+      if (!section || section.dataset.qgInitialized === "true") return;
       section.dataset.qgInitialized = "true";
-    
-      const marqueeStage =
-        section.querySelector(
-          "#qgMarqueeStage"
-        );
-    
-      const introCopy =
-        section.querySelector(
-          "#qgIntroCopy"
-        );
-    
-      const worldLayer =
-        section.querySelector(
-          "#qgWorldLayer"
-        );
-    
-      
-      const mapPointsLayer =
-        section.querySelector(
-          "#qgMapPoints"
-        );
 
-const mapTitles =
-        [
-          ...section.querySelectorAll(
-            ".qg-map-title"
-          )
-        ];
-    
-      const scrollCue =
-        section.querySelector(
-          "#qgScrollCue"
-        );
-    
-      const scrollButton =
-        section.querySelector(
-          "#qgScrollButton"
-        );
-    
-      const svg =
-        d3.select(
-          "#qgWorldMapSvg"
-        );
-    
-    
-      /* =====================================================
-         DUPLICATE MARQUEE GROUPS
-    
-         This creates infinite rows automatically.
-    
-         You only need to edit the FIRST marquee-group
-         inside each row.
-      ===================================================== */
-    
-      document
-        .querySelectorAll(
-          ".qg-marquee-track"
-        )
-        .forEach(track => {
-    
-          const group =
-            track.querySelector(
-              ".qg-marquee-group"
-            );
-    
-          const copy =
-            group.cloneNode(true);
-    
-          copy.setAttribute(
-            "aria-hidden",
-            "true"
-          );
-    
+      const marqueeStage = section.querySelector("#qgMarqueeStage");
+      const introCopy = section.querySelector("#qgIntroCopy");
+      const worldLayer = section.querySelector("#qgWorldLayer");
+      const mapPointsLayer = section.querySelector("#qgMapPoints");
+      const mapTitles = [...section.querySelectorAll(".qg-map-title")];
+      const scrollCue = section.querySelector("#qgScrollCue");
+      const scrollButton = section.querySelector("#qgScrollButton");
+      const svg = d3.select("#qgWorldMapSvg");
+
+      document.querySelectorAll(".qg-marquee-track").forEach(track => {
+          const group = track.querySelector(".qg-marquee-group");
+          const copy = group.cloneNode(true);
+          copy.setAttribute("aria-hidden", "true");
           track.appendChild(copy);
-    
         });
-    
-    
-      /* =====================================================
-         ALTERNATING CARD COLOURS
-    
-         Row 1: white / orange / white ...
-         Row 2: orange / white / orange ...
-    
-         Classes are applied to both original and duplicated
-         marquee groups so a card keeps the SAME colour when
-         it later flies into the map.
-      ===================================================== */
-    
-      document
-        .querySelectorAll(".qg-marquee-row")
-        .forEach((row, rowIndex) => {
-    
-          row
-            .querySelectorAll(".qg-marquee-group")
-            .forEach(group => {
-    
-              group
-                .querySelectorAll(".qg-testimonial-card")
-                .forEach((card, cardIndex) => {
-    
-                  const isOrange =
-                    (cardIndex + rowIndex) % 2 === 1;
-    
-                  card.classList.toggle(
-                    "qg-card-orange",
-                    isOrange
-                  );
-    
-                  card.classList.toggle(
-                    "qg-card-white",
-                    !isOrange
-                  );
-    
+
+      document.querySelectorAll(".qg-marquee-row").forEach((row, rowIndex) => {
+          row.querySelectorAll(".qg-marquee-group").forEach(group => {
+              group.querySelectorAll(".qg-testimonial-card").forEach((card, cardIndex) => {
+                  const isOrange = (cardIndex + rowIndex) % 2 === 1;
+                  card.classList.toggle("qg-card-orange", isOrange);
+                  card.classList.toggle("qg-card-white", !isOrange);
                 });
-    
             });
-    
         });
-    
-    
-    
-      /* =====================================================
-         MATH HELPERS
-      ===================================================== */
-    
-      function clamp(
-        value,
-        min = 0,
-        max = 1
-      ) {
-    
-        return Math.min(
-          max,
-          Math.max(
-            min,
-            value
-          )
-        );
-    
-      }
-    
-    
-      function lerp(
-        start,
-        end,
-        progress
-      ) {
-    
-        return (
-          start +
-          (
-            end -
-            start
-          ) *
-          progress
-        );
-    
-      }
-    
-    
-      function inverseLerp(
-        start,
-        end,
-        value
-      ) {
-    
-        return clamp(
-          (
-            value -
-            start
-          ) /
-          (
-            end -
-            start
-          )
-        );
-    
-      }
-    
-    
-      function smoothstep(
-        start,
-        end,
-        value
-      ) {
-    
-        const x =
-          inverseLerp(
-            start,
-            end,
-            value
-          );
-    
-        return (
-          x *
-          x *
-          (
-            3 -
-            2 * x
-          )
-        );
-    
-      }
-    
-    
-      function easeInOutCubic(t) {
-    
-        return (
-          t < 0.5
-    
-            ? 4 * t * t * t
-    
-            : 1 -
-              Math.pow(
-                -2 * t + 2,
-                3
-              ) / 2
-        );
-    
-      }
-    
-    
-    
-      /* =====================================================
-         ACTUAL WORLD MAP — FLAT 2D WEBSITE MAP
-    
-         Uses the same real country geometry, but deliberately
-         avoids the globe / atlas look:
-         - Mercator projection
-         - Antarctica removed from the visual crop
-         - no sphere
-         - no graticule
-         - quiet land + orange client markets
-      ===================================================== */
-    
-      const WORLD_DATA_URL =
-        "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json";
-    
-    
-      /*
-        Numeric ISO country IDs.
-    
-        India        356
-        China        156
-        Australia     36
-        USA          840
-    
-        Europe is represented by the selected countries below.
-      */
-    
-      const clientCountryIds =
-        new Set([
-    
-          840, // USA
-          356, // India
-          156, // China
-          36,  // Australia
-    
-          826, // United Kingdom
-          250, // France
-          276, // Germany
-          724, // Spain
-          380, // Italy
-          528, // Netherlands
-          56,  // Belgium
-          756, // Switzerland
-          40,  // Austria
-          620, // Portugal
-          616, // Poland
-          372, // Ireland
-          208, // Denmark
-          752, // Sweden
-          578  // Norway
-    
-        ]);
-    
-    
-      /*
-        Actual geographic coordinates:
-        [longitude, latitude]
-      */
-    
+
+      function clamp(value, min = 0, max = 1) { return Math.min(max, Math.max(min, value)); }
+      function lerp(start, end, progress) { return start + (end - start) * progress; }
+      function inverseLerp(start, end, value) { return clamp((value - start) / (end - start)); }
+      function smoothstep(start, end, value) { const x = inverseLerp(start, end, value); return x * x * (3 - 2 * x); }
+      function easeInOutCubic(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+
+      const WORLD_DATA_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json";
+
       const clientLocations = {
-    
-        usa: [
-          -98.5795,
-          39.8283
-        ],
-    
-        europe: [
-          10.0,
-          50.5
-        ],
-    
-        india: [
-          78.9629,
-          20.5937
-        ],
-    
-        china: [
-          104.1954,
-          35.8617
-        ],
-    
-        australia: [
-          133.7751,
-          -25.2744
-        ]
-    
+        usa: [-98.5795, 39.8283],
+        europe: [10.0, 50.5],
+        india: [78.9629, 20.5937],
+        china: [104.1954, 35.8617],
+        australia: [133.7751, -25.2744]
       };
-    
-    
-      /*
-        City popups shown once testimonials have landed on the map.
-        Coordinates are [longitude, latitude].
-        labelX / labelY move only the text pill; the orange dot stays
-        on the exact geographic location.
-      */
 
       const clientCityLocations = [
         { key: "jaipur",     label: "Jaipur",     coord: [75.7873, 26.9124],   labelX: -54, labelY:  24 },
         { key: "mumbai",     label: "Mumbai",     coord: [72.8777, 19.0760],   labelX: -50, labelY:  28 },
         { key: "delhi",      label: "Delhi",      coord: [77.1025, 28.7041],   labelX:  44, labelY: -28 },
-
         { key: "canberra",   label: "Canberra",   coord: [149.1300, -35.2809], labelX: -54, labelY:  26 },
         { key: "sydney",     label: "Sydney",     coord: [151.2093, -33.8688], labelX:  48, labelY: -20 },
-
         { key: "beijing",    label: "Beijing",    coord: [116.4074, 39.9042],  labelX:  48, labelY: -22 },
-
         { key: "new-york",   label: "New York",   coord: [-74.0060, 40.7128],  labelX:  52, labelY: -24 },
         { key: "washington", label: "Washington", coord: [-77.0369, 38.9072],  labelX: -62, labelY:  27 },
-
         { key: "london",     label: "London",     coord: [-0.1276, 51.5072],   labelX: -48, labelY: -26 },
         { key: "berlin",     label: "Berlin",     coord: [13.4050, 52.5200],   labelX:  45, labelY: -20 }
       ];
 
-
       function buildCityPopups() {
-        if (!mapPointsLayer) {
-          return;
-        }
-
-        mapPointsLayer
-          .querySelectorAll(".qg-city-popup")
-          .forEach(popup => popup.remove());
-
+        if (!mapPointsLayer) return;
+        mapPointsLayer.querySelectorAll(".qg-city-popup").forEach(popup => popup.remove());
         clientCityLocations.forEach((location, index) => {
           const popup = document.createElement("div");
-
           popup.className = "qg-city-popup";
           popup.dataset.city = location.key;
           popup.dataset.index = String(index);
-
           popup.style.setProperty("--qg-label-x", `${location.labelX}px`);
           popup.style.setProperty("--qg-label-y", `${location.labelY}px`);
           popup.style.setProperty("--qg-pop-scale", "0.55");
-
-          popup.innerHTML = `
-            <span class="qg-city-dot" aria-hidden="true"></span>
-            <span class="qg-city-label">${location.label}</span>
-          `;
-
+          popup.innerHTML = `<span class="qg-city-dot" aria-hidden="true"></span><span class="qg-city-label">${location.label}</span>`;
           mapPointsLayer.appendChild(popup);
         });
       }
-
-
       buildCityPopups();
 
+      let worldData = null, projection = null, mapWidth = 0, mapHeight = 0;
 
-      let worldData = null;
-      let projection = null;
-      let mapWidth = 0;
-      let mapHeight = 0;
-    
-    
       async function loadWorldMap() {
-    
-        try {
-    
-          worldData =
-            await d3.json(
-              WORLD_DATA_URL
-            );
-    
-          renderWorldMap();
-    
-        } catch (error) {
-    
-          console.error(
-            "Could not load world map:",
-            error
-          );
-    
-        }
-    
+        try { worldData = await d3.json(WORLD_DATA_URL); renderWorldMap(); }
+        catch (error) { console.error("Could not load world map:", error); }
       }
-    
-    
+
       function renderWorldMap() {
-    
-        if (!worldData) {
-          return;
-        }
-    
-    
-        const rect =
-          worldLayer
-            .getBoundingClientRect();
-    
-    
-        mapWidth =
-          Math.max(
-            700,
-            Math.round(rect.width)
-          );
-    
-    
-        mapHeight =
-          Math.max(
-            420,
-            Math.round(rect.height)
-          );
-    
-    
-        svg
-          .attr(
-            "viewBox",
-            `0 0 ${mapWidth} ${mapHeight}`
-          )
-          .attr(
-            "preserveAspectRatio",
-            "xMidYMid meet"
-          );
-    
-    
-        const allCountries =
-          topojson
-            .feature(
-              worldData,
-              worldData.objects.countries
-            )
-            .features;
-    
-    
-        /* Antarctica is excluded to match a modern website world-map
-           silhouette rather than a textbook atlas plate. */
-        const countries =
-          allCountries.filter(
-            country => Number(country.id) !== 10
-          );
-    
-    
-        const mapFeatureCollection = {
-          type: "FeatureCollection",
-          features: countries
-        };
-    
-    
-        /* A flat Natural Earth projection keeps the world familiar while
-           avoiding globe distortion. The generous width fit makes the map
-           read as the hero visual across the full desktop. */
-        projection =
-          d3
-            .geoNaturalEarth1()
-            .fitExtent(
-              [
-                [-22, 34],
-                [mapWidth + 22, mapHeight - 24]
-              ],
-              mapFeatureCollection
-            );
-    
-    
-        const geoPath =
-          d3.geoPath(
-            projection
-          );
-    
-    
-        svg
-          .selectAll("*")
-          .remove();
-    
-    
-        /* Merge all countries into ONE land silhouette. This is what gives
-           the reference-style clean map with no internal border clutter. */
-        const mergedLand =
-          topojson.merge(
-            worldData,
-            worldData.objects.countries.geometries.filter(
-              geometry => Number(geometry.id) !== 10
-            )
-          );
-    
-    
-        svg
-          .append("path")
-          .datum(mergedLand)
-          .attr("class", "qg-world-land-shadow")
-          .attr("d", geoPath);
-    
-    
-        svg
-          .append("path")
-          .datum(mergedLand)
-          .attr("class", "qg-world-land-glow")
-          .attr("d", geoPath);
-    
-    
-        svg
-          .append("path")
-          .datum(mergedLand)
-          .attr("class", "qg-world-land")
-          .attr("d", geoPath);
-    
-    
+        if (!worldData) return;
+        const rect = worldLayer.getBoundingClientRect();
+        mapWidth = Math.max(700, Math.round(rect.width));
+        mapHeight = Math.max(420, Math.round(rect.height));
+        svg.attr("viewBox", `0 0 ${mapWidth} ${mapHeight}`).attr("preserveAspectRatio", "xMidYMid meet");
+
+        const allCountries = topojson.feature(worldData, worldData.objects.countries).features;
+        const countries = allCountries.filter(country => Number(country.id) !== 10);
+        const mapFeatureCollection = { type: "FeatureCollection", features: countries };
+
+        projection = d3.geoNaturalEarth1().fitExtent([[-22, 34], [mapWidth + 22, mapHeight - 24]], mapFeatureCollection);
+        const geoPath = d3.geoPath(projection);
+        svg.selectAll("*").remove();
+
+        const mergedLand = topojson.merge(worldData, worldData.objects.countries.geometries.filter(geometry => Number(geometry.id) !== 10));
+        svg.append("path").datum(mergedLand).attr("class", "qg-world-land-shadow").attr("d", geoPath);
+        svg.append("path").datum(mergedLand).attr("class", "qg-world-land-glow").attr("d", geoPath);
+        svg.append("path").datum(mergedLand).attr("class", "qg-world-land").attr("d", geoPath);
         positionMapMarkers();
-    
       }
-    
-    
-      /* =====================================================
-         PLACE MARKERS USING REAL LAT/LONG
-      ===================================================== */
-    
+
       function positionMapMarkers() {
-    
-        if (!projection) {
-          return;
-        }
-    
-    
-        document
-          .querySelectorAll(
-            ".qg-map-point"
-          )
-          .forEach(point => {
-    
-            const country =
-              point.dataset.country;
-    
-    
-            const coordinates =
-              clientLocations[
-                country
-              ];
-    
-    
-            if (!coordinates) {
-              return;
-            }
-    
-    
-            const projected =
-              projection(
-                coordinates
-              );
-    
-    
-            if (!projected) {
-              return;
-            }
-    
-    
-            const [
-              x,
-              y
-            ] =
-              projected;
-    
-    
-            point.style.left =
-              `${
-                (
-                  x /
-                  mapWidth
-                ) * 100
-              }%`;
-    
-    
-            point.style.top =
-              `${
-                (
-                  y /
-                  mapHeight
-                ) * 100
-              }%`;
-    
+        if (!projection) return;
+        document.querySelectorAll(".qg-map-point").forEach(point => {
+            const country = point.dataset.country;
+            const coordinates = clientLocations[country];
+            if (!coordinates) return;
+            const projected = projection(coordinates);
+            if (!projected) return;
+            const [x, y] = projected;
+            point.style.left = `${(x / mapWidth) * 100}%`;
+            point.style.top = `${(y / mapHeight) * 100}%`;
           });
-    
 
-        /*
-          Position city dots independently from testimonial country anchors.
-          The label offsets prevent close cities from overlapping.
-        */
         clientCityLocations.forEach(location => {
-          const popup =
-            mapPointsLayer &&
-            mapPointsLayer.querySelector(
-              `.qg-city-popup[data-city="${location.key}"]`
-            );
-
-          if (!popup) {
-            return;
-          }
-
-          const projected =
-            projection(
-              location.coord
-            );
-
-          if (!projected) {
-            return;
-          }
-
-          const [x, y] =
-            projected;
-
-          popup.style.left =
-            `${(x / mapWidth) * 100}%`;
-
-          popup.style.top =
-            `${(y / mapHeight) * 100}%`;
+          const popup = mapPointsLayer && mapPointsLayer.querySelector(`.qg-city-popup[data-city="${location.key}"]`);
+          if (!popup) return;
+          const projected = projection(location.coord);
+          if (!projected) return;
+          const [x, y] = projected;
+          popup.style.left = `${(x / mapWidth) * 100}%`;
+          popup.style.top = `${(y / mapHeight) * 100}%`;
         });
+      }
 
-      }
-    
-    
-    
-      /* =====================================================
-         FLIGHT CARDS
-      ===================================================== */
-    
-      let flights = [];
-    
-      let flightsCreated = false;
-    
-    
-    
-      /*
-        Only pick cards that are actually visible on screen.
-    
-        Since marquee contains duplicate copies,
-        data-id prevents duplicated testimonials
-        entering the map twice.
-      */
-    
+      let flights = [], flightsCreated = false;
+
       function getVisibleCards() {
-    
-        /*
-          There are only 10 unique testimonials. Every one of them exists
-          TWICE in the DOM (the marquee's cloned loop copy). We must never
-          drop a testimonial just because one of its two copies currently
-          looks off-screen — we only need to pick the BETTER of its two
-          copies (the one that is actually visible right now) so its rect
-          is accurate. This guarantees all 10 always fly, including the
-          ones sitting near the left/right edges.
-        */
-    
-        const cards =
-          [
-            ...document
-              .querySelectorAll(
-                ".qg-testimonial-card"
-              )
-          ];
-    
-    
-        const byId =
-          new Map();
-    
-    
-        for (
-          const card
-          of cards
-        ) {
-    
-          const id =
-            card.dataset.id;
-    
-    
-          if (
-            !byId.has(id)
-          ) {
-    
-            byId.set(
-              id,
-              []
-            );
-    
-          }
-    
-    
-          byId
-            .get(id)
-            .push(card);
-    
+        const cards = [...document.querySelectorAll(".qg-testimonial-card")];
+        const byId = new Map();
+        for (const card of cards) {
+          const id = card.dataset.id;
+          if (!byId.has(id)) byId.set(id, []);
+          byId.get(id).push(card);
         }
-    
-    
-        const centerX =
-          window.innerWidth / 2;
-    
-        const centerY =
-          window.innerHeight / 2;
-    
-    
-        const visible =
-          [];
-    
-    
-        byId.forEach(
-          instances => {
-    
-            let best = null;
-            let bestScore = -Infinity;
-    
-    
-            for (
-              const card
-              of instances
-            ) {
-    
-              const rect =
-                card
-                  .getBoundingClientRect();
-    
-    
-              const onScreen =
-    
-                rect.right > -40 &&
-    
-                rect.left <
-                window.innerWidth + 40 &&
-    
-                rect.bottom > -40 &&
-    
-                rect.top <
-                window.innerHeight + 40 &&
-    
-                rect.width > 4 &&
-    
-                rect.height > 4;
-    
-    
-              const rectCenterX =
-                rect.left +
-                rect.width / 2;
-    
-              const rectCenterY =
-                rect.top +
-                rect.height / 2;
-    
-    
-              const distanceFromCenter =
-    
-                Math.abs(
-                  rectCenterX -
-                  centerX
-                ) +
-    
-                Math.abs(
-                  rectCenterY -
-                  centerY
-                );
-    
-    
-              /*
-                Strongly prefer an on-screen copy. Between two on-screen
-                (or two off-screen) copies, prefer whichever sits closer
-                to the viewport centre — that's always the "real" one the
-                person is currently looking at, never the looping clone.
-              */
-    
-              const score =
-    
-                (
-                  onScreen
-                    ? 100000
-                    : 0
-                ) -
-    
-                distanceFromCenter;
-    
-    
-              if (
-                score >
-                bestScore
-              ) {
-    
-                bestScore = score;
-    
-                best = {
-                  card,
-                  rect
-                };
-    
-              }
-    
+        const centerX = window.innerWidth / 2, centerY = window.innerHeight / 2;
+        const visible = [];
+        byId.forEach(instances => {
+            let best = null, bestScore = -Infinity;
+            for (const card of instances) {
+              const rect = card.getBoundingClientRect();
+              const onScreen = rect.right > -40 && rect.left < window.innerWidth + 40 && rect.bottom > -40 && rect.top < window.innerHeight + 40 && rect.width > 4 && rect.height > 4;
+              const rectCenterX = rect.left + rect.width / 2, rectCenterY = rect.top + rect.height / 2;
+              const distanceFromCenter = Math.abs(rectCenterX - centerX) + Math.abs(rectCenterY - centerY);
+              const score = (onScreen ? 100000 : 0) - distanceFromCenter;
+              if (score > bestScore) { bestScore = score; best = { card, rect }; }
             }
-    
-    
-            if (best) {
-    
-              visible.push(
-                best
-              );
-    
-            }
-    
-          }
-        );
-    
-    
+            if (best) visible.push(best);
+          });
         return visible;
-    
       }
-    
-    
-    
+
       function createFlights() {
-    
-        if (flightsCreated) {
-          return;
-        }
-    
-    
+        if (flightsCreated) return;
         flightsCreated = true;
-    
-    
-        const visibleCards =
-          getVisibleCards();
-    
-    
-        const countryCounts = {};
-    
-    
-        flights =
-          visibleCards.map(
-            (
-              item,
-              index
-            ) => {
-    
-              const {
-                card,
-                rect
-              } = item;
-    
-    
-              const country =
-                card.dataset.country;
-    
-    
-              const target =
-                section.querySelector(
-                  `.qg-map-point[data-country="${country}"]`
-                );
-    
-    
-              if (!target) {
-                return null;
-              }
-    
-    
-              /*
-                IMPORTANT: at this point the marquee stage is already
-                tilted in 3D (rotateX + perspective), so rect.width /
-                rect.height is the FORESHORTENED, perspective-distorted
-                bounding box — not the card's real size. Using that
-                directly made the card visibly snap to a different size
-                the instant it left the tilted stage.
-    
-                Fix: use the card's real, untransformed layout size
-                (offsetWidth/offsetHeight never lies about CSS transforms)
-                for the flight size, and use the rect's CENTER POINT
-                (which correctly reflects the tilted on-screen position)
-                to place that real-sized card so it starts exactly where
-                the eye currently sees it.
-              */
-              const naturalWidth =
-                card.offsetWidth;
-    
-              const naturalHeight =
-                card.offsetHeight;
-    
-    
-              const rectCenterX =
-                rect.left +
-                rect.width / 2;
-    
-              const rectCenterY =
-                rect.top +
-                rect.height / 2;
-    
-    
-              const startLeft =
-                rectCenterX -
-                naturalWidth / 2;
-    
-              const startTop =
-                rectCenterY -
-                naturalHeight / 2;
-    
-    
-              /*
-                THIS is the important change:
-                we do NOT clone the testimonial.
-    
-                A hidden placeholder keeps the marquee layout exactly where
-                it was, while the SAME visible card is temporarily moved to
-                document.body for a clean fixed-position morph.
-              */
-              const placeholder =
-                document.createElement("div");
-    
-              placeholder.className =
-                "qg-flight-placeholder";
-    
-              placeholder.style.width =
-                `${naturalWidth}px`;
-    
-              placeholder.style.height =
-                `${naturalHeight}px`;
-    
-              placeholder.style.flex =
-                `0 0 ${naturalWidth}px`;
-    
-    
-              const originalStyle =
-                card.getAttribute("style");
-    
-    
-              card.parentNode
-                .insertBefore(
-                  placeholder,
-                  card
-                );
-    
-    
-              card.classList.add(
-                "qg-flight-card"
-              );
-    
-              card.style.width =
-                `${naturalWidth}px`;
-    
-              card.style.height =
-                `${naturalHeight}px`;
-    
-              card.style.flexBasis =
-                `${naturalWidth}px`;
-    
+        const visibleCards = getVisibleCards();
+
+        flights = visibleCards.map((item, index) => {
+              const { card, rect } = item;
+              const country = card.dataset.country;
+              const target = section.querySelector(`.qg-map-point[data-country="${country}"]`);
+              if (!target) return null;
+
+              const naturalWidth = card.offsetWidth, naturalHeight = card.offsetHeight;
+              const rectCenterX = rect.left + rect.width / 2, rectCenterY = rect.top + rect.height / 2;
+              const startLeft = rectCenterX - naturalWidth / 2, startTop = rectCenterY - naturalHeight / 2;
+
+              const placeholder = document.createElement("div");
+              placeholder.className = "qg-flight-placeholder";
+              placeholder.style.width = `${naturalWidth}px`;
+              placeholder.style.height = `${naturalHeight}px`;
+              placeholder.style.flex = `0 0 ${naturalWidth}px`;
+
+              const originalStyle = card.getAttribute("style");
+              card.parentNode.insertBefore(placeholder, card);
+              card.classList.add("qg-flight-card");
+              card.style.width = `${naturalWidth}px`;
+              card.style.height = `${naturalHeight}px`;
+              card.style.flexBasis = `${naturalWidth}px`;
               card.style.opacity = "1";
               card.style.borderRadius = "14px";
-              card.style.setProperty(
-                "--flight-content-opacity",
-                "1"
-              );
-    
-              card.style.transform =
-                `translate3d(${startLeft}px, ${startTop}px, 0)`;
-    
-    
-              document.body
-                .appendChild(card);
-    
-    
-              /*
-                All testimonials now land on the EXACT same target point
-                (no golden-angle spread), per request — every card for a
-                given country converges on the identical spot instead of
-                fanning out to slightly different positions.
-              */
-    
-              return {
-                card,
-                placeholder,
-                originalStyle,
-                country,
-                target,
-    
-                startX: startLeft,
-                startY: startTop,
-                width: naturalWidth,
-                height: naturalHeight,
-    
-                offsetX: 0,
-                offsetY: 0,
-    
-                index
-              };
-    
-            }
-          )
-          .filter(Boolean);
-    
-    
-        /*
-          IMPORTANT CLEANUP:
-          createFlights() moves the chosen visible instance of each testimonial
-          out of #qgMarqueeStage and into <body>. The infinite-loop duplicate
-          instances are still inside the marquee. Hide those remaining copies
-          immediately so no cards can linger at the left/right screen edges.
-        */
-        marqueeStage.classList.add(
-          "qg-flight-cleanup-active"
-        );
-    
+              card.style.setProperty("--flight-content-opacity", "1");
+              card.style.transform = `translate3d(${startLeft}px, ${startTop}px, 0)`;
+              document.body.appendChild(card);
+
+              return { card, placeholder, originalStyle, country, target, startX: startLeft, startY: startTop, width: naturalWidth, height: naturalHeight, offsetX: 0, offsetY: 0, index };
+            }).filter(Boolean);
+
+        marqueeStage.classList.add("qg-flight-cleanup-active");
       }
-    
-    
-      /* =====================================================
-         UPDATE FLIGHT POSITIONS FROM SCROLL
-    
-         IMPORTANT:
-         No setTimeout.
-         No autoplay timeline.
-         No "animate then reset".
-    
-         Every frame is calculated directly
-         from page scroll position.
-      ===================================================== */
-    
-      function updateFlights(
-        progress
-      ) {
-    
-        if (!flightsCreated) {
-          return;
-        }
-    
-    
-        flights.forEach(
-          (
-            flight,
-            index
-          ) => {
-    
-            /*
-              No per-card stagger — every testimonial travels on the
-              EXACT same timeline, so they all leave the marquee and
-              land on the map together. A stagger here caused a few
-              cards to visibly lag behind as oversized, leftover-looking
-              circles while the rest had already landed as small dots.
-            */
+
+      function updateFlights(progress) {
+        if (!flightsCreated) return;
+        flights.forEach((flight, index) => {
             const stagger = 0;
-    
-    
-            const localProgress =
-              clamp(
-                (
-                  progress -
-                  stagger
-                ) /
-                (
-                  1 -
-                  stagger
-                )
-              );
-    
-    
-            /*
-              The card rounds into a circle QUICKLY (fast morph, first
-              ~22% of the local timeline) so it never lingers as a big
-              half-card mid-flight. Position still travels across the
-              full timeline.
-            */
-            const travelProgress =
-              smoothstep(
-                0.00,
-                1.00,
-                localProgress
-              );
-    
-    
-            const travelEased =
-              easeInOutCubic(
-                travelProgress
-              );
-    
-    
-            const morphProgress =
-              smoothstep(
-                0.00,
-                0.22,
-                localProgress
-              );
-    
-    
-            const targetRect =
-              flight.target
-                .getBoundingClientRect();
-    
-    
-            const targetX =
-              targetRect.left +
-              targetRect.width / 2 -
-              flight.width / 2 +
-              flight.offsetX;
-    
-    
-            const targetY =
-              targetRect.top +
-              targetRect.height / 2 -
-              flight.height / 2 +
-              flight.offsetY;
-    
-    
-            /* Keep the card in place while it rounds, then give the
-               travelling circle a gentle clean arc into its location. */
-            const arcHeight =
-              38 +
-              (index % 3) * 12;
-    
-    
-            const arc =
-              Math.sin(
-                Math.PI *
-                travelEased
-              ) *
-              arcHeight;
-    
-    
-            const currentX =
-              lerp(
-                flight.startX,
-                targetX,
-                travelEased
-              );
-    
-    
-            const currentY =
-              lerp(
-                flight.startY,
-                targetY,
-                travelEased
-              ) -
-              arc;
-    
-    
-            /*
-              Stay SMALL for the whole transit, then grow BIGGER only in
-              the final stretch as it actually lands on the map point —
-              this is what "chota while flying, bada on arrival" means.
-            */
-            const landingGrow =
-              smoothstep(
-                0.78,
-                1.00,
-                localProgress
-              );
-    
-    
-            const circleSize =
-              lerp(
-                16,
-                40,
-                landingGrow
-              );
-    
-    
-            const visualWidth =
-              lerp(
-                flight.width,
-                circleSize,
-                morphProgress
-              );
-    
-    
-            const visualHeight =
-              lerp(
-                flight.height,
-                circleSize,
-                morphProgress
-              );
-    
-    
-            const scaleX =
-              visualWidth /
-              flight.width;
-    
-    
-            const scaleY =
-              visualHeight /
-              flight.height;
-    
-    
-            const roundness =
-              lerp(
-                14,
-                999,
-                morphProgress
-              );
-    
-    
-            const contentOpacity =
-              1 -
-              smoothstep(
-                0.04,
-                0.16,
-                localProgress
-              );
-    
-    
+            const localProgress = clamp((progress - stagger) / (1 - stagger));
+            const travelProgress = smoothstep(0.00, 1.00, localProgress);
+            const travelEased = easeInOutCubic(travelProgress);
+            const morphProgress = smoothstep(0.00, 0.22, localProgress);
+            const targetRect = flight.target.getBoundingClientRect();
+            const targetX = targetRect.left + targetRect.width / 2 - flight.width / 2 + flight.offsetX;
+            const targetY = targetRect.top + targetRect.height / 2 - flight.height / 2 + flight.offsetY;
+            const arcHeight = 38 + (index % 3) * 12;
+            const arc = Math.sin(Math.PI * travelEased) * arcHeight;
+            const currentX = lerp(flight.startX, targetX, travelEased);
+            const currentY = lerp(flight.startY, targetY, travelEased) - arc;
+            const landingGrow = smoothstep(0.78, 1.00, localProgress);
+            const circleSize = lerp(16, 40, landingGrow);
+            const visualWidth = lerp(flight.width, circleSize, morphProgress);
+            const visualHeight = lerp(flight.height, circleSize, morphProgress);
+            const scaleX = visualWidth / flight.width, scaleY = visualHeight / flight.height;
+            const roundness = lerp(14, 999, morphProgress);
+            const contentOpacity = 1 - smoothstep(0.04, 0.16, localProgress);
             let opacity = 1;
-    
-            if (localProgress > 0.94) {
-              opacity =
-                1 -
-                smoothstep(
-                  0.94,
-                  1,
-                  localProgress
-                );
-            }
-    
-    
-            flight.card.style.transform =
-              `
-              translate3d(
-                ${currentX}px,
-                ${currentY}px,
-                0
-              )
-              scale(${scaleX}, ${scaleY})
-              `;
-    
-    
-            flight.card.style.borderRadius =
-              `${roundness}px`;
-    
-    
-            flight.card.style.opacity =
-              opacity;
-    
-    
-            flight.card.style.setProperty(
-              "--flight-content-opacity",
-              contentOpacity.toFixed(3)
-            );
-    
-    
-            if (localProgress > 0.88) {
-              flight.target
-                .classList.add(
-                  "qg-active"
-                );
-            } else {
-              flight.target
-                .classList.remove(
-                  "qg-active"
-                );
-            }
-    
-          }
-        );
-    
+            if (localProgress > 0.94) opacity = 1 - smoothstep(0.94, 1, localProgress);
+
+            flight.card.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) scale(${scaleX}, ${scaleY})`;
+            flight.card.style.borderRadius = `${roundness}px`;
+            flight.card.style.opacity = opacity;
+            flight.card.style.setProperty("--flight-content-opacity", contentOpacity.toFixed(3));
+
+            if (localProgress > 0.88) flight.target.classList.add("qg-active");
+            else flight.target.classList.remove("qg-active");
+          });
       }
-    
-    
+
       function removeFlights() {
-    
-        flights.forEach(
-          flight => {
-    
-            const card =
-              flight.card;
-    
-    
-            if (
-              flight.placeholder &&
-              flight.placeholder.isConnected
-            ) {
-              flight.placeholder
-                .replaceWith(card);
-            }
-    
-    
-            card.classList.remove(
-              "qg-flight-card"
-            );
-    
-    
-            if (flight.originalStyle === null) {
-              card.removeAttribute("style");
-            } else {
-              card.setAttribute(
-                "style",
-                flight.originalStyle
-              );
-            }
-    
-          }
-        );
-    
-    
+        flights.forEach(flight => {
+            const card = flight.card;
+            if (flight.placeholder && flight.placeholder.isConnected) flight.placeholder.replaceWith(card);
+            card.classList.remove("qg-flight-card");
+            if (flight.originalStyle === null) card.removeAttribute("style");
+            else card.setAttribute("style", flight.originalStyle);
+          });
         flights = [];
         flightsCreated = false;
-    
-    
-        /* Restore the marquee only after all real cards are back in place. */
-        marqueeStage.classList.remove(
-          "qg-flight-cleanup-active"
-        );
-    
-    
-        document
-          .querySelectorAll(
-            ".qg-map-point"
-          )
-          .forEach(point => {
-            point.classList.remove(
-              "qg-active"
-            );
-          });
-    
+        marqueeStage.classList.remove("qg-flight-cleanup-active");
+        document.querySelectorAll(".qg-map-point").forEach(point => point.classList.remove("qg-active"));
       }
-    
-    
-      /* =====================================================
-         SCROLL PHASE SETTINGS
-    
-         Change these only if you want the stages
-         earlier / later.
-      ===================================================== */
-    
-      const SCROLL_PHASE = {
-    
-        /*
-          First ~30%:
-          rows ONLY.
-        */
-    
-        freezeStart:
-          0.30,
-    
-    
-        /*
-          30% - 49%:
-          tilt + world map reveal.
-        */
-    
-        tiltEnd:
-          0.49,
-    
-    
-        /*
-          Flight begins only after rows
-          have properly tilted.
-        */
-    
-        flightStart:
-          0.50,
-    
-    
-        flightEnd:
-          0.74,
-    
-    
-        /*
-          Upper map text sequence after the cards arrive.
-        */
-    
-        textStart:
-          0.74,
-    
-    
-        textEnd:
-          0.995
-    
-      };
-    
-    
-    
-      /* =====================================================
-         GET SECTION SCROLL PROGRESS
-      ===================================================== */
-    
+
+      const SCROLL_PHASE = { freezeStart: 0.30, tiltEnd: 0.49, flightStart: 0.50, flightEnd: 0.74, textStart: 0.74, textEnd: 0.995 };
+
       function getSectionProgress() {
-    
-        const rect =
-          section
-            .getBoundingClientRect();
-    
-    
-        const scrollDistance =
-          section.offsetHeight -
-          window.innerHeight;
-    
-    
-        if (
-          scrollDistance <= 0
-        ) {
-    
-          return 0;
-    
-        }
-    
-    
-        return clamp(
-          -rect.top /
-          scrollDistance
-        );
-    
+        const rect = section.getBoundingClientRect();
+        const scrollDistance = section.offsetHeight - window.innerHeight;
+        if (scrollDistance <= 0) return 0;
+        return clamp(-rect.top / scrollDistance);
       }
-    
-    
-    
-      /* =====================================================
-         MAIN SCROLL ANIMATION
-      ===================================================== */
-    
+
       let ticking = false;
-    
-    
+
       function updateAnimation() {
-    
         ticking = false;
-    
-    
-        const progress =
-          getSectionProgress();
-    
-    
-        const {
-          freezeStart,
-          tiltEnd,
-          flightStart,
-          flightEnd,
-          textStart,
-          textEnd
-        } =
-          SCROLL_PHASE;
-    
-    
-        /* -----------------------------------------
-           PHASE 1
-           JUST MOVING ROWS
-        ------------------------------------------ */
-    
-        if (
-          progress <
-          freezeStart
-        ) {
-    
-          section
-            .classList
-            .remove(
-              "qg-is-frozen"
-            );
-    
-    
-          /*
-            If user scrolls backwards,
-            rebuild later from the new
-            marquee position.
-          */
-    
-          if (
-            flightsCreated
-          ) {
-    
-            removeFlights();
-    
-          }
-    
+        const progress = getSectionProgress();
+        const { freezeStart, tiltEnd, flightStart, flightEnd, textStart, textEnd } = SCROLL_PHASE;
+
+        if (progress < freezeStart) {
+          section.classList.remove("qg-is-frozen");
+          if (flightsCreated) removeFlights();
         } else {
-    
-          /*
-            FREEZE EXACTLY WHERE ROWS CURRENTLY ARE.
-    
-            No transform reset.
-            No rearranging.
-          */
-    
-          section
-            .classList
-            .add(
-              "qg-is-frozen"
-            );
-    
+          section.classList.add("qg-is-frozen");
         }
-    
-    
-        /* -----------------------------------------
-           PHASE 2
-           GRID TILT
-        ------------------------------------------ */
-    
-        const tiltProgress =
-          smoothstep(
-            freezeStart,
-            tiltEnd,
-            progress
-          );
-    
-    
-        const rotateX =
-          lerp(
-            0,
-            56,
-            tiltProgress
-          );
-    
-    
-        const stageScale =
-          lerp(
-            1,
-            0.78,
-            tiltProgress
-          );
-    
-    
-        const stageY =
-          lerp(
-            0,
-            -7,
-            tiltProgress
-          );
-    
-    
-        marqueeStage.style.transform =
-    
-          `
-          translate3d(
-            0,
-            ${stageY}vh,
-            0
-          )
-          rotateX(${rotateX}deg)
-          scale(${stageScale})
-          `;
-    
-    
-        /*
-          heading fades while grid
-          starts becoming map
-        */
-    
-        const introFade =
-          smoothstep(
-            freezeStart,
-            freezeStart + 0.09,
-            progress
-          );
-    
-    
-        introCopy.style.opacity =
-          1 -
-          introFade;
-    
-    
-        introCopy.style.transform =
-    
-          `
-          translateX(-50%)
-          translateY(
-            ${-25 * introFade}px
-          )
-          `;
-    
-    
-        /* -----------------------------------------
-           MAP REVEAL
-        ------------------------------------------ */
-    
-        const mapProgress =
-          smoothstep(
-            freezeStart + 0.02,
-            flightStart + 0.16,
-            progress
-          );
-    
-    
-        worldLayer.style.opacity =
-          mapProgress;
-    
-    
-        const mapScale =
-          lerp(
-            0.90,
-            1,
-            mapProgress
-          );
-    
-    
-        worldLayer.style.transform =
-    
-          `
-          translate(
-            -50%,
-            -50%
-          )
-          scale(${mapScale})
-          `;
-    
-    
-        
 
-        /* -----------------------------------------
-           CITY POPUPS
+        const tiltProgress = smoothstep(freezeStart, tiltEnd, progress);
+        const rotateX = lerp(0, 56, tiltProgress);
+        const stageScale = lerp(1, 0.78, tiltProgress);
+        const stageY = lerp(0, -7, tiltProgress);
+        marqueeStage.style.transform = `translate3d(0, ${stageY}vh, 0) rotateX(${rotateX}deg) scale(${stageScale})`;
 
-           Pop in as testimonial dots finish landing,
-           then stay visible for the map/title sequence.
-        ------------------------------------------ */
+        const introFade = smoothstep(freezeStart, freezeStart + 0.09, progress);
+        introCopy.style.opacity = 1 - introFade;
+        introCopy.style.transform = `translateX(-50%) translateY(${-25 * introFade}px)`;
 
-        const cityPopups =
-          [
-            ...section.querySelectorAll(
-              ".qg-city-popup"
-            )
-          ];
+        const mapProgress = smoothstep(freezeStart + 0.02, flightStart + 0.16, progress);
+        worldLayer.style.opacity = mapProgress;
+        const mapScale = lerp(0.90, 1, mapProgress);
+        worldLayer.style.transform = `translate(-50%, -50%) scale(${mapScale})`;
 
-        cityPopups.forEach(
-          (popup, index) => {
-
-            const popupStart =
-              0.735 +
-              index * 0.006;
-
-            const popupEnd =
-              popupStart +
-              0.050;
-
-            const popupProgress =
-              smoothstep(
-                popupStart,
-                popupEnd,
-                progress
-              );
-
-            popup.style.opacity =
-              popupProgress;
-
-            popup.style.setProperty(
-              "--qg-pop-scale",
-              lerp(
-                0.55,
-                1,
-                popupProgress
-              ).toFixed(3)
-            );
-
-            popup.classList.toggle(
-              "qg-city-live",
-              popupProgress > 0.82
-            );
-          }
-        );
-/* -----------------------------------------
-           PHASE 3
-           CARD FLIGHT
-        ------------------------------------------ */
-    
-        if (
-          progress >=
-          flightStart
-        ) {
-    
-          if (
-            !flightsCreated
-          ) {
-    
-            /*
-              At this exact moment rows
-              are already frozen + tilted.
-    
-              We capture THAT position.
-            */
-    
-            createFlights();
-    
-          }
-    
-    
-          const flightProgress =
-            inverseLerp(
-              flightStart,
-              flightEnd,
-              progress
-            );
-    
-    
-          updateFlights(
-            flightProgress
-          );
-    
-    
-          /*
-            original cards fade as flying
-            copies leave them.
-          */
-    
-          const deckFade =
-            smoothstep(
-              flightStart,
-              flightStart + 0.18,
-              progress
-            );
-    
-    
-          marqueeStage.style.opacity =
-            1 -
-            deckFade;
-    
-    
-        } else {
-    
-          marqueeStage.style.opacity =
-            1;
-    
-    
-          /*
-            Scrolling backwards before
-            flight = remove snapshots.
-          */
-    
-          if (
-            flightsCreated
-          ) {
-    
-            removeFlights();
-    
-          }
-    
-        }
-    
-    
-        /* -----------------------------------------
-           MAP TITLE SEQUENCE
-    
-           Text 1 appears -> zooms away ->
-           Text 2 appears -> zooms away ->
-           Text 3 appears -> zooms away.
-        ------------------------------------------ */
-    
-        const titleProgress =
-          inverseLerp(
-            textStart,
-            textEnd,
-            progress
-          );
-    
-    
-        const titleCount =
-          mapTitles.length;
-    
-    
-        mapTitles.forEach(
-          (title, index) => {
-    
-            const segmentStart =
-              index / titleCount;
-    
-            const segmentEnd =
-              (index + 1) / titleCount;
-    
-            const local =
-              inverseLerp(
-                segmentStart,
-                segmentEnd,
-                titleProgress
-              );
-    
-            const enter =
-              smoothstep(
-                0.00,
-                0.14,
-                local
-              );
-    
-            const exit =
-              smoothstep(
-                0.82,
-                1.00,
-                local
-              );
-    
-            const opacity =
-              enter *
-              (1 - exit);
-    
-            const scale =
-              local < 0.82
-                ? lerp(
-                    1.08,
-                    1.00,
-                    enter
-                  )
-                : lerp(
-                    1.00,
-                    0.72,
-                    exit
-                  );
-    
-            const y =
-              local < 0.82
-                ? lerp(
-                    18,
-                    0,
-                    enter
-                  )
-                : lerp(
-                    0,
-                    -10,
-                    exit
-                  );
-    
-            const blur =
-              lerp(
-                0,
-                7,
-                exit
-              );
-    
-    
-            title.style.opacity =
-              opacity;
-    
-            title.style.transform =
-              `
-              translateY(${y}px)
-              scale(${scale})
-              `;
-    
-            title.style.filter =
-              `blur(${blur}px)`;
-    
-          }
-        );
-    
-    
-        /* -----------------------------------------
-           SCROLL BUTTON
-        ------------------------------------------ */
-    
-        const cueFade =
-          smoothstep(
-            0.16,
-            0.30,
-            progress
-          );
-    
-    
-        scrollCue.style.opacity =
-          1 -
-          cueFade;
-    
-    
-        scrollCue.style.pointerEvents =
-    
-          cueFade > 0.9
-    
-            ? "none"
-    
-            : "auto";
-    
-      }
-    
-    
-    
-      function requestUpdate() {
-    
-        if (ticking) {
-          return;
-        }
-    
-    
-        ticking = true;
-    
-    
-        requestAnimationFrame(
-          updateAnimation
-        );
-    
-      }
-    
-    
-    
-      window.addEventListener(
-        "scroll",
-        requestUpdate,
-        {
-          passive: true
-        }
-      );
-    
-    
-    
-      /* =====================================================
-         SCROLL DOWN BUTTON
-    
-         Goes to the point where the marquee begins
-         transforming into the world map.
-      ===================================================== */
-    
-      scrollButton.addEventListener(
-        "click",
-        () => {
-    
-          const scrollDistance =
-    
-            section.offsetHeight -
-    
-            window.innerHeight;
-    
-    
-          const destination =
-    
-            section.offsetTop +
-    
-            scrollDistance *
-            0.33;
-    
-    
-          window.scrollTo({
-    
-            top:
-              destination,
-    
-            behavior:
-              "smooth"
-    
+        const cityPopups = [...section.querySelectorAll(".qg-city-popup")];
+        cityPopups.forEach((popup, index) => {
+            const popupStart = 0.735 + index * 0.006;
+            const popupEnd = popupStart + 0.050;
+            const popupProgress = smoothstep(popupStart, popupEnd, progress);
+            popup.style.opacity = popupProgress;
+            popup.style.setProperty("--qg-pop-scale", lerp(0.55, 1, popupProgress).toFixed(3));
+            popup.classList.toggle("qg-city-live", popupProgress > 0.82);
           });
-    
+
+        if (progress >= flightStart) {
+          if (!flightsCreated) createFlights();
+          const flightProgress = inverseLerp(flightStart, flightEnd, progress);
+          updateFlights(flightProgress);
+          const deckFade = smoothstep(flightStart, flightStart + 0.18, progress);
+          marqueeStage.style.opacity = 1 - deckFade;
+        } else {
+          marqueeStage.style.opacity = 1;
+          if (flightsCreated) removeFlights();
         }
-      );
-    
-    
-    
-      /* =====================================================
-         RESIZE
-      ===================================================== */
-    
+
+        const titleProgress = inverseLerp(textStart, textEnd, progress);
+        const titleCount = mapTitles.length;
+        mapTitles.forEach((title, index) => {
+            const segmentStart = index / titleCount, segmentEnd = (index + 1) / titleCount;
+            const local = inverseLerp(segmentStart, segmentEnd, titleProgress);
+            const enter = smoothstep(0.00, 0.14, local);
+            const exit = smoothstep(0.82, 1.00, local);
+            const opacity = enter * (1 - exit);
+            const scale = local < 0.82 ? lerp(1.08, 1.00, enter) : lerp(1.00, 0.72, exit);
+            const y = local < 0.82 ? lerp(18, 0, enter) : lerp(0, -10, exit);
+            const blur = lerp(0, 7, exit);
+            title.style.opacity = opacity;
+            title.style.transform = `translateY(${y}px) scale(${scale})`;
+            title.style.filter = `blur(${blur}px)`;
+          });
+
+        const cueFade = smoothstep(0.16, 0.30, progress);
+        scrollCue.style.opacity = 1 - cueFade;
+        scrollCue.style.pointerEvents = cueFade > 0.9 ? "none" : "auto";
+      }
+
+      function requestUpdate() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(updateAnimation);
+      }
+
+      window.addEventListener("scroll", requestUpdate, { passive: true });
+
+      scrollButton.addEventListener("click", () => {
+          const scrollDistance = section.offsetHeight - window.innerHeight;
+          const destination = section.offsetTop + scrollDistance * 0.33;
+          window.scrollTo({ top: destination, behavior: "smooth" });
+        });
+
       let resizeTimer = null;
-    
-    
-      window.addEventListener(
-        "resize",
-        () => {
-    
-          clearTimeout(
-            resizeTimer
-          );
-    
-    
-          resizeTimer =
-            setTimeout(
-              () => {
-    
-                /*
-                  map recalculated so coordinates
-                  stay correct.
-                */
-    
-                renderWorldMap();
-    
-    
-                /*
-                  Remove old flight snapshots
-                  because screen positions changed.
-                */
-    
-                if (
-                  flightsCreated
-                ) {
-    
-                  removeFlights();
-    
-                }
-    
-    
-                requestUpdate();
-    
-              },
-              120
-            );
-    
-        }
-      );
-    
-    
-    
-      /* =====================================================
-         START
-      ===================================================== */
-    
+      window.addEventListener("resize", () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(() => {
+              renderWorldMap();
+              if (flightsCreated) removeFlights();
+              requestUpdate();
+            }, 120);
+        });
+
       loadWorldMap();
-    
       updateAnimation();
   }
 
   start();
-})();  
-
+})();
     </script>
     
   </body>
