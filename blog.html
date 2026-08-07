@@ -866,7 +866,7 @@
   
   </footer>
 
-  <script>
+  <!-- <script>
     const blogs = [
       {
         // tag: "Strategy",
@@ -916,7 +916,62 @@
    }
 
    renderBlogs();
-  </script>
+  </script> -->
+
+  <script>
+  const API_URL = "http://localhost:5000/api/public/posts";
+
+  async function renderBlogs() {
+    const grid = document.getElementById("blogGrid");
+    grid.innerHTML = "<p>Loading blogs...</p>";
+
+    try {
+      const res = await fetch(API_URL);
+      const data = await res.json();
+
+      if (!data.posts || data.posts.length === 0) {
+        grid.innerHTML = "<p>No blog posts yet.</p>";
+        return;
+      }
+
+      grid.innerHTML = "";
+
+      data.posts.forEach(post => {
+        const card = document.createElement("div");
+        card.className = "blog-card";
+
+        const imgSrc = post.featuredImage
+          ? "http://localhost:5000" + post.featuredImage
+          : "images/artboard-13.jpeg"; // fallback image
+
+        const tagHtml = post.category
+          ? `<div class="tag">${post.category.name}</div>`
+          : "";
+
+        card.innerHTML = `
+          <img src="${imgSrc}" alt="${post.featuredImageAlt || post.title}">
+          ${tagHtml}
+          <div class="blog-card-content">
+            <h3>${post.title}</h3>
+            <p>${post.excerpt || ""}</p>
+          </div>
+        `;
+
+        card.style.cursor = "pointer";
+        card.addEventListener("click", () => {
+          window.location.href = `blog-post.html?slug=${post.slug}`;
+        });
+
+        grid.appendChild(card);
+      });
+    } catch (err) {
+      grid.innerHTML = "<p>Could not load blogs. Please try again later.</p>";
+      console.error(err);
+    }
+  }
+
+  renderBlogs();
+</script>
   <script src="./scripts/script.js"></script>
 
 </body>

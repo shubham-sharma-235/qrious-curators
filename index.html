@@ -10,7 +10,7 @@
     />
 
     <link rel="stylesheet" href="./styles/sty.css" />
-    <link rel="stylesheet" href="./styles/about-mobile.css" />
+
     <link
       rel="shortcut icon"
       href="./assets/logo/fav-icon-one.png"
@@ -383,7 +383,7 @@
                     <div class="visual-card card1 active">
     
                         <img id="img1"
-                        src="./assets/homeimages/teamh1.JPG">
+                        src="./assets/homeimages/teamh1.webp">
     
                     </div>
     
@@ -392,7 +392,7 @@
                     <div class="visual-card card2 active">
     
                         <img id="img2"
-                        src="./assets/homeimages/teamh2.JPG">
+                        src="./assets/homeimages/teamh2.webp">
     
                     </div>
     
@@ -401,7 +401,7 @@
                     <div class="visual-card card3 active">
     
                         <img id="img3"
-                        src="./assets/homeimages/teamh3.JPG">
+                        src="./assets/homeimages/teamh3.webp">
     
                     </div>
     
@@ -436,6 +436,65 @@
     </section>
 
     <!-- =========================================================
+         PREMIUM ABOUT — MOBILE ONLY
+         Desktop .premium-about remains unchanged.
+    ========================================================== -->
+    <section class="premium-about-mobile" aria-label="Who we are">
+      <div class="pam-inner">
+
+        <div class="pam-head">
+          <div class="pam-kicker">
+            <span class="pam-kicker-mark"></span>
+            <span>WHO WE ARE</span>
+          </div>
+
+          <h2 class="pam-title">
+            We Build <span>Attention</span>
+          </h2>
+
+          <p class="pam-copy">
+            Through storytelling, strategy, and premium campaign execution,
+            we help modern brands become impossible to ignore online.
+          </p>
+        </div>
+
+        <div class="pam-collage" aria-label="Qrious Curators team">
+          <figure class="pam-photo pam-photo-left">
+            <img src="./assets/homeimages/teamh1.webp" alt="Qrious Curators team" loading="lazy">
+          </figure>
+
+          <figure class="pam-photo pam-photo-right">
+            <img src="./assets/homeimages/teamh2.webp" alt="Qrious Curators creative team" loading="lazy">
+          </figure>
+
+          <figure class="pam-photo pam-photo-main">
+            <img src="./assets/homeimages/teamh3.webp" alt="Qrious Curators studio team" loading="lazy">
+          </figure>
+        </div>
+
+        <div class="pam-stats">
+          <div class="pam-stat">
+            <strong>120+</strong>
+            <span>Brands Worked<br>With</span>
+          </div>
+
+          <span class="pam-divider" aria-hidden="true"></span>
+
+          <div class="pam-stat">
+            <strong>48M</strong>
+            <span>Organic Reach</span>
+          </div>
+        </div>
+
+        <a href="./about.html" class="pam-cta">
+          <span>Explore Qrious</span>
+          <span class="pam-arrow">→</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
      MOBILE-ONLY "WE BUILD ATTENTION" SECTION
      Sits as a SIBLING of .premium-about (not nested inside it),
      so .premium-about's mobile display:none does not hide it too.
@@ -443,7 +502,7 @@
      - Shown only at 768px and below, where .premium-about is hidden
      ========================================================= -->
 
-    <section class="about-mobile" aria-label="About — We Build Attention">
+    <!-- <section class="about-mobile" aria-label="About — We Build Attention">
 
       <p class="about-mobile__label">who we are</p>
 
@@ -516,7 +575,7 @@
           }
         }
       })();
-    </script>
+    </script> -->
 
     
     <!-- <section class="about-story">
@@ -2163,7 +2222,14 @@
           gsap.registerPlugin(ScrollTrigger);
       
           qcDestroyOldCineTriggers();
-          qcInitStableCinematicServices();
+
+          // Mobile: keep services section static; disable image takeover/expand only.
+          if (window.matchMedia("(min-width: 769px)").matches) {
+            qcInitStableCinematicServices();
+          } else {
+            document.documentElement.classList.add("qc-mobile-no-cine-expand");
+          }
+
           qcInitStableExperienceCards();
           qcRefreshCineAfterAssets();
         });

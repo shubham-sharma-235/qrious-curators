@@ -9,7 +9,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="./styles/styl.css" />
+    <link rel="stylesheet" href="./styles/st.css?v=2" />
     <link
       rel="shortcut icon"
       href="./assets/logo/fav-icon-one.png"
@@ -191,34 +191,6 @@
         />
       </video>
       <div class="hero-overlay"></div>
-      <!-- <div class="hero-content">
-        <div class="hero-eyebrow">
-          <div class="hero-eyebrow-dot"></div>
-          <span>Qrious Curators</span>
-        </div>
-        <h1 class="hero-h1">
-          <span class="line"><span class="line-inner l1">We craft</span></span>
-          <span class="line"
-            ><span class="line-inner l2"><em>digital</em> worlds</span></span
-          >
-          <span class="line"
-            ><span class="line-inner l3 outline">that endure.</span></span
-          >
-        </h1>
-        <div class="hero-bottom">
-          <p class="hero-desc">
-            Qrious Curators is a full-spectrum creative agency building brand
-            systems, digital experiences, and stories that stand apart in a
-            crowded world.
-          </p>
-          <div class="hero-ctas">
-            <a href="#showcase" class="btn-accent"
-              ><span>View Work</span><span>↗</span></a
-            >
-            <a href="#about" class="btn-outline">Our Story</a>
-          </div>
-        </div>
-      </div> -->
       <div class="hero-scroll">
         <div class="hero-scroll-line"></div>
         <span class="hero-scroll-label">Scroll</span>
@@ -459,8 +431,91 @@
             </div>
     
         </div>
-    
+
     </section>
+
+    <!-- =========================================================
+     MOBILE-ONLY "WE BUILD ATTENTION" SECTION
+     Sits as a SIBLING of .premium-about (not nested inside it),
+     so .premium-about's mobile display:none does not hide it too.
+     - Hidden on desktop by default (about-mobile.css handles this)
+     - Shown only at 768px and below, where .premium-about is hidden
+     ========================================================= -->
+
+    <section class="about-mobile" aria-label="About — We Build Attention">
+
+      <p class="about-mobile__label">who we are</p>
+
+      <h2 class="about-mobile__heading">
+        We Build <span class="about-mobile__heading-accent">Attention</span>
+      </h2>
+
+      <p class="about-mobile__paragraph">
+        Through storytelling, strategy, and premium campaign execution,
+        we help modern brands become impossible to ignore online.
+      </p>
+
+      <div class="about-mobile__collage">
+        <div class="about-mobile__glow" aria-hidden="true"></div>
+
+        <figure class="about-mobile__card about-mobile__card--1" data-reveal>
+          <img src="./assets/homeimages/teamh1.JPG" alt="Qrious Curators team at work" loading="lazy" />
+        </figure>
+
+        <figure class="about-mobile__card about-mobile__card--2" data-reveal>
+          <img src="./assets/homeimages/teamh2.JPG" alt="Qrious Curators creative session" loading="lazy" />
+        </figure>
+
+        <figure class="about-mobile__card about-mobile__card--3" data-reveal>
+          <img src="./assets/homeimages/teamh3.JPG" alt="Qrious Curators studio" loading="lazy" />
+        </figure>
+      </div>
+
+      <div class="about-mobile__stats" data-reveal>
+        <div class="about-mobile__stat">
+          <span class="about-mobile__stat-number">120+</span>
+          <span class="about-mobile__stat-label">Brands Worked With</span>
+        </div>
+        <div class="about-mobile__stat-divider" aria-hidden="true"></div>
+        <div class="about-mobile__stat">
+          <span class="about-mobile__stat-number">48M</span>
+          <span class="about-mobile__stat-label">Organic Reach</span>
+        </div>
+      </div>
+
+      <a href="#contact" class="about-mobile__btn" data-reveal>
+        Explore Qrious
+        <span class="about-mobile__btn-arrow" aria-hidden="true">→</span>
+      </a>
+
+    </section>
+
+    <script>
+      // Reveal animation for the mobile about section only.
+      // Scoped to .about-mobile [data-reveal] — touches nothing else on the page.
+      (function () {
+        "use strict";
+        var targets = document.querySelectorAll(".about-mobile [data-reveal]");
+        if (targets.length) {
+          var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+          if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+            targets.forEach(function (el) { el.classList.add("is-visible"); });
+          } else {
+            var aboutMobileObserver = new IntersectionObserver(function (entries, obs) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  obs.unobserve(entry.target);
+                }
+              });
+            }, { rootMargin: "0px 0px -10% 0px", threshold: 0.2 });
+
+            targets.forEach(function (el) { aboutMobileObserver.observe(el); });
+          }
+        }
+      })();
+    </script>
 
     
     <!-- <section class="about-story">
@@ -915,7 +970,174 @@
         alt=""
       >
     </div>
-    
+
+    <!-- =========================================================
+         MOBILE SERVICES SECTION (final)
+         Hidden on desktop (>900px). Native scroll-snap carousel.
+         ========================================================= -->
+
+    <section class="qc-mobile-services" aria-label="Our Services">
+
+      <div class="qc-ms-head">
+        <span class="qc-ms-kicker">What We Do</span>
+        <h2>Services built <em>to perform</em></h2>
+        <p>Swipe to explore how we help brands grow — from strategy to execution.</p>
+      </div>
+
+      <div class="qc-ms-track" id="qcMsTrack">
+
+        <article class="qc-ms-card">
+          <img src="./assets/homeimages/social-marketing.png" alt="Social Media">
+          <span class="qc-ms-card-num">01</span>
+          <div class="qc-ms-card-body">
+            <h3>Social <em>Media</em></h3>
+            <p>Data-driven strategies that connect you with your audience where they live.</p>
+          </div>
+        </article>
+
+        <article class="qc-ms-card">
+          <img src="./assets/homeimages/content-creation.png" alt="Content Creation">
+          <span class="qc-ms-card-num">02</span>
+          <div class="qc-ms-card-body">
+            <h3>Content <em>Creation</em></h3>
+            <p>Visually compelling content — videos, blogs, graphics — tailored to your voice.</p>
+          </div>
+        </article>
+
+        <article class="qc-ms-card">
+          <img src="./assets/homeimages/creative-direction.png" alt="Creative Direction">
+          <span class="qc-ms-card-num">03</span>
+          <div class="qc-ms-card-body">
+            <h3>Creative <em>Direction</em></h3>
+            <p>Fresh perspectives and precision that bring your vision to life.</p>
+          </div>
+        </article>
+
+        <article class="qc-ms-card">
+          <img src="./assets/homeimages/brand-strategy.png" alt="Brand Strategy">
+          <span class="qc-ms-card-num">04</span>
+          <div class="qc-ms-card-body">
+            <h3>Brand <em>Strategy</em></h3>
+            <p>Timeless brands built on research that resonates deeply with your audience.</p>
+          </div>
+        </article>
+
+        <article class="qc-ms-card">
+          <img src="./assets/homeimages/website-development.png" alt="Website Development">
+          <span class="qc-ms-card-num">05</span>
+          <div class="qc-ms-card-body">
+            <h3>Website <em>Development</em></h3>
+            <p>Dynamic, responsive websites built for performance every time.</p>
+          </div>
+        </article>
+
+        <article class="qc-ms-card">
+          <img src="./images/Seo.png" alt="Search Engine Optimization">
+          <span class="qc-ms-card-num">06</span>
+          <div class="qc-ms-card-body">
+            <h3>Search <em>Engine</em> Optimization</h3>
+            <p>Technical optimization that helps your site rank and reach the right audience.</p>
+          </div>
+        </article>
+
+        <article class="qc-ms-card">
+          <img src="./assets/homeimages/video-production.jpg" alt="Video Production">
+          <span class="qc-ms-card-num">07</span>
+          <div class="qc-ms-card-body">
+            <h3>Video <em>Production</em></h3>
+            <p>Creative systems that turn brand attention into real business growth.</p>
+          </div>
+        </article>
+
+        <article class="qc-ms-card">
+          <img src="./images/Perfor. Markt.png" alt="Performance Marketing">
+          <span class="qc-ms-card-num">08</span>
+          <div class="qc-ms-card-body">
+            <h3>Performance <em>Marketing</em></h3>
+            <p>Creative testing and paid campaigns that convert attention into growth.</p>
+          </div>
+        </article>
+
+        <article class="qc-ms-card qc-ms-card--cta">
+          <h3>Beyond <em>Services</em></h3>
+          <p>Need something unique? We design creative solutions that go beyond the conventional.</p>
+          <a href="#contact">Let's Talk →</a>
+        </article>
+
+      </div>
+
+      <div class="qc-ms-dots" id="qcMsDots"></div>
+
+    </section>
+
+    <script>
+      (function () {
+        "use strict";
+        var section = document.querySelector(".qc-mobile-services");
+        var track = document.getElementById("qcMsTrack");
+        var dotsWrap = document.getElementById("qcMsDots");
+        if (!section || !track) return;
+
+        if ("IntersectionObserver" in window) {
+          var revealObserver = new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) { section.classList.add("qc-ms-in"); obs.disconnect(); }
+            });
+          }, { threshold: 0.15 });
+          revealObserver.observe(section);
+        } else {
+          section.classList.add("qc-ms-in");
+        }
+
+        var cards = track.querySelectorAll(".qc-ms-card");
+        if (dotsWrap && cards.length) {
+          cards.forEach(function (_, i) {
+            var dot = document.createElement("span");
+            dot.className = "qc-ms-dot" + (i === 0 ? " qc-ms-dot-active" : "");
+            dotsWrap.appendChild(dot);
+          });
+
+          var dots = dotsWrap.querySelectorAll(".qc-ms-dot");
+          var ticking = false;
+
+          function updateActiveDot() {
+            ticking = false;
+            var scrollCenter = track.scrollLeft + track.clientWidth / 2;
+            var closestIndex = 0;
+            var closestDist = Infinity;
+            cards.forEach(function (card, i) {
+              var cardCenter = card.offsetLeft + card.offsetWidth / 2;
+              var dist = Math.abs(cardCenter - scrollCenter);
+              if (dist < closestDist) { closestDist = dist; closestIndex = i; }
+            });
+            dots.forEach(function (d, i) { d.classList.toggle("qc-ms-dot-active", i === closestIndex); });
+          }
+
+          track.addEventListener("scroll", function () {
+            if (!ticking) { ticking = true; requestAnimationFrame(updateActiveDot); }
+          }, { passive: true });
+        }
+
+        var isDown = false, startX = 0, startScroll = 0;
+        track.addEventListener("pointerdown", function (e) {
+          if (e.pointerType === "touch") return;
+          isDown = true;
+          track.classList.add("qc-ms-dragging");
+          startX = e.clientX;
+          startScroll = track.scrollLeft;
+          track.setPointerCapture(e.pointerId);
+        });
+        track.addEventListener("pointermove", function (e) {
+          if (!isDown) return;
+          track.scrollLeft = startScroll - (e.clientX - startX);
+        });
+        function endDrag() { isDown = false; track.classList.remove("qc-ms-dragging"); }
+        track.addEventListener("pointerup", endDrag);
+        track.addEventListener("pointercancel", endDrag);
+        track.addEventListener("pointerleave", endDrag);
+      })();
+    </script>
+
     <!-- Sticky text + floating cards section -->
     <section id="qc-cine-experience" class="qc-cine-experience">
       <div class="qc-cine-experience-sticky">
@@ -995,6 +1217,253 @@
       </div>
     </section>
 
+    <!-- =========================================================
+         MOBILE-ONLY "SELECTED WORK" SWIPEABLE CARD DECK
+         Replaces #qc-cine-experience on screens <= 900px only.
+         ========================================================= -->
+
+    <section class="qce-mobile" aria-label="Selected work">
+
+      <div class="qce-mobile-intro" data-reveal>
+        <p class="qce-mobile-kicker">Selected Work</p>
+        <h2 class="qce-mobile-heading">
+          Designing ideas with purpose, and turning them into
+          <span class="premium-about-span">meaningful experiences</span>
+        </h2>
+        <p class="qce-mobile-sub">
+          Every scroll, every motion, every detail is designed to make
+          your brand feel premium, memorable, and conversion-ready.
+        </p>
+      </div>
+
+      <div class="qce-deck-wrap" data-reveal>
+
+        <span class="qce-deck-badge" aria-hidden="true">↗</span>
+
+        <div class="qce-deck" id="qceDeck">
+          <div class="qce-deck-card" data-index="0">
+            <img src="https://qriouscurators.com/assets/workimages/work1.webp" alt="Hummingbird" draggable="false" loading="lazy" />
+          </div>
+          <div class="qce-deck-card" data-index="1">
+            <img src="https://qriouscurators.com/assets/workimages/work2.webp" alt="Mahttab" draggable="false" loading="lazy" />
+          </div>
+          <div class="qce-deck-card" data-index="2">
+            <img src="https://qriouscurators.com/assets/workimages/work3.webp" alt="JB Marble Decor" draggable="false" loading="lazy" />
+          </div>
+          <div class="qce-deck-card" data-index="3">
+            <img src="https://qriouscurators.com/assets/workimages/work4.webp" alt="Kapish" draggable="false" loading="lazy" />
+          </div>
+          <div class="qce-deck-card" data-index="4">
+            <img src="https://qriouscurators.com/assets/workimages/work5.webp" alt="J'Adore" draggable="false" loading="lazy" />
+          </div>
+          <div class="qce-deck-card" data-index="5">
+            <img src="https://qriouscurators.com/assets/workimages/work6.webp" alt="Out Bari" draggable="false" loading="lazy" />
+          </div>
+          <div class="qce-deck-card" data-index="6">
+            <img src="https://qriouscurators.com/assets/workimages/work7.webp" alt="Nirankar Stones" draggable="false" loading="lazy" />
+          </div>
+          <div class="qce-deck-card" data-index="7">
+            <img src="https://qriouscurators.com/assets/workimages/work8.webp" alt="Vedana" draggable="false" loading="lazy" />
+          </div>
+          <div class="qce-deck-card" data-index="8">
+            <img src="https://qriouscurators.com/assets/workimages/work9.webp" alt="Ideal Coffee Machine" draggable="false" loading="lazy" />
+          </div>
+        </div>
+
+        <button type="button" class="qce-deck-nav qce-deck-nav--prev" id="qcePrevBtn" aria-label="Previous work">‹</button>
+        <button type="button" class="qce-deck-nav qce-deck-nav--next" id="qceNextBtn" aria-label="Next work">›</button>
+
+      </div>
+
+      <div class="qce-deck-meta" id="qceDeckMeta" data-reveal>
+        <span class="qce-brand-pill" id="qceBrandPill">Hummingbird</span>
+        <p class="qce-slide-desc" id="qceSlideDesc">A lifestyle brand shaped with clean visuals, clear storytelling, and memorable positioning.</p>
+        <a href="#" class="qce-view-link" id="qceViewLink"><span>View project</span> →</a>
+      </div>
+
+      <div class="qce-progress" id="qceProgress">
+        <span class="qce-dot is-active"></span>
+        <span class="qce-dot"></span>
+        <span class="qce-dot"></span>
+        <span class="qce-dot"></span>
+        <span class="qce-dot"></span>
+        <span class="qce-dot"></span>
+        <span class="qce-dot"></span>
+        <span class="qce-dot"></span>
+        <span class="qce-dot"></span>
+      </div>
+
+      <p class="qce-swipe-hint">← swipe to explore →</p>
+
+    </section>
+
+    <script>
+      (function () {
+        "use strict";
+        var section = document.querySelector(".qce-mobile");
+        if (!section) return;
+
+        var deck = document.getElementById("qceDeck");
+        var cardEls = Array.prototype.slice.call(deck.querySelectorAll(".qce-deck-card"));
+        var prevBtn = document.getElementById("qcePrevBtn");
+        var nextBtn = document.getElementById("qceNextBtn");
+        var metaEl = document.getElementById("qceDeckMeta");
+        var pillEl = document.getElementById("qceBrandPill");
+        var descEl = document.getElementById("qceSlideDesc");
+        var linkEl = document.getElementById("qceViewLink");
+        var dots = Array.prototype.slice.call(document.querySelectorAll("#qceProgress .qce-dot"));
+
+        var DATA = [
+          { brand: "Hummingbird", desc: "A lifestyle brand shaped with clean visuals, clear storytelling, and memorable positioning.", href: "#" },
+          { brand: "Mahttab", desc: "Demi-fine jewellery content focused on affordable luxury, festive styling, trust, and appeal.", href: "#" },
+          { brand: "JB Marble Decor", desc: "Premium marble decor branding highlighting fireplaces, tables, craftsmanship, and luxury interior projects.", href: "#" },
+          { brand: "Kapish", desc: "Jewellery creatives built around hallmarked quality, daily trust, and elegant collection storytelling.", href: "#" },
+          { brand: "J'Adore", desc: "Premium brand visuals crafted with soft storytelling, polished design, and conversion-focused content.", href: "#" },
+          { brand: "Out Bari", desc: "Food and hamper content built around celebrations, gifting, cravings, and shareable moments.", href: "#" },
+          { brand: "Nirankar Stones", desc: "Stone craftsmanship storytelling focused on heritage, architecture, detailing, and premium project execution.", href: "#" },
+          { brand: "Vedana", desc: "Fashion content shaped around everyday outfits, festive edits, styling, and sales communication.", href: "#" },
+          { brand: "Ideal Coffee Machine", desc: "Coffee machine marketing focused on product clarity, B2B leads, conversions, and growth.", href: "#" }
+        ];
+
+        var order = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
+        var POSITIONS = [
+          { x: "0%", y: "0%", rot: -1.5, scale: 1, z: 30 },
+          { x: "34%", y: "6%", rot: 9, scale: 0.94, z: 20 },
+          { x: "-32%", y: "5%", rot: -9, scale: 0.9, z: 10 }
+        ];
+
+        function cardFor(dataIndex) { return cardEls[dataIndex]; }
+
+        function render() {
+          cardEls.forEach(function (el) {
+            el.style.zIndex = 0;
+            el.style.opacity = "0";
+            el.style.pointerEvents = "none";
+          });
+
+          order.slice(0, 3).forEach(function (dataIndex, pos) {
+            var el = cardFor(dataIndex);
+            var p = POSITIONS[pos];
+            el.style.transform = "translate(" + p.x + ", " + p.y + ") rotate(" + p.rot + "deg) scale(" + p.scale + ")";
+            el.style.zIndex = p.z;
+            el.style.opacity = "1";
+            el.style.pointerEvents = pos === 0 ? "auto" : "none";
+          });
+
+          updateMeta(order[0]);
+          updateDots(order[0]);
+        }
+
+        function updateMeta(dataIndex) {
+          var item = DATA[dataIndex];
+          if (!item) return;
+          metaEl.classList.add("is-swapping");
+          setTimeout(function () {
+            pillEl.textContent = item.brand;
+            descEl.textContent = item.desc;
+            linkEl.setAttribute("href", item.href);
+            metaEl.classList.remove("is-swapping");
+          }, 160);
+        }
+
+        function updateDots(dataIndex) {
+          dots.forEach(function (dot, i) { dot.classList.toggle("is-active", i === dataIndex); });
+        }
+
+        function advance(direction) {
+          var frontEl = cardFor(order[0]);
+          var flyX = direction === "left" ? "-160%" : "160%";
+          var flyRot = direction === "left" ? -22 : 22;
+
+          frontEl.style.transition = "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease";
+          frontEl.style.transform = "translateX(" + flyX + ") rotate(" + flyRot + "deg)";
+          frontEl.style.opacity = "0";
+
+          setTimeout(function () {
+            if (direction === "left") { order.push(order.shift()); } else { order.unshift(order.pop()); }
+            frontEl.style.transition = "none";
+            render();
+            requestAnimationFrame(function () { frontEl.style.transition = ""; });
+          }, 400);
+        }
+
+        if (prevBtn) prevBtn.addEventListener("click", function () { advance("right"); });
+        if (nextBtn) nextBtn.addEventListener("click", function () { advance("left"); });
+
+        var dragging = false, startX = 0, currentX = 0, draggedEl = null, THRESHOLD = 70;
+
+        deck.addEventListener("pointerdown", function (e) {
+          var cardEl = e.target.closest(".qce-deck-card");
+          if (!cardEl) return;
+          var dataIndex = parseInt(cardEl.getAttribute("data-index"), 10);
+          if (dataIndex !== order[0]) return;
+          dragging = true;
+          draggedEl = cardEl;
+          startX = e.clientX;
+          currentX = 0;
+          draggedEl.style.transition = "none";
+          try { draggedEl.setPointerCapture(e.pointerId); } catch (err) {}
+        });
+
+        deck.addEventListener("pointermove", function (e) {
+          if (!dragging || !draggedEl) return;
+          currentX = e.clientX - startX;
+          var rotate = currentX / 18;
+          draggedEl.style.transform = "translateX(" + currentX + "px) rotate(" + rotate + "deg)";
+        });
+
+        function endDrag() {
+          if (!dragging || !draggedEl) return;
+          dragging = false;
+          var el = draggedEl;
+          draggedEl = null;
+
+          if (Math.abs(currentX) > THRESHOLD) {
+            var direction = currentX < 0 ? "left" : "right";
+            var flyX = direction === "left" ? "-160%" : "160%";
+            var flyRot = direction === "left" ? -22 : 22;
+
+            el.style.transition = "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease";
+            el.style.transform = "translateX(" + flyX + ") rotate(" + flyRot + "deg)";
+            el.style.opacity = "0";
+
+            setTimeout(function () {
+              if (direction === "left") { order.push(order.shift()); } else { order.unshift(order.pop()); }
+              el.style.transition = "none";
+              render();
+              requestAnimationFrame(function () { el.style.transition = ""; });
+            }, 350);
+          } else {
+            var p = POSITIONS[0];
+            el.style.transition = "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)";
+            el.style.transform = "translate(" + p.x + ", " + p.y + ") rotate(" + p.rot + "deg) scale(" + p.scale + ")";
+          }
+          currentX = 0;
+        }
+
+        deck.addEventListener("pointerup", endDrag);
+        deck.addEventListener("pointercancel", endDrag);
+        deck.addEventListener("pointerleave", function (e) { if (dragging && e.pressure === 0) endDrag(); });
+
+        var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var revealTargets = section.querySelectorAll("[data-reveal]");
+
+        if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+          revealTargets.forEach(function (el) { el.classList.add("is-visible"); });
+        } else {
+          var revealObserver = new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) { entry.target.classList.add("is-visible"); obs.unobserve(entry.target); }
+            });
+          }, { root: null, rootMargin: "0px 0px -8% 0px", threshold: 0.2 });
+          revealTargets.forEach(function (el) { revealObserver.observe(el); });
+        }
+
+        render();
+      })();
+    </script>
+
    <!-- =========================================================
       QC LOGO USP ORBIT SECTION
       Add this after your qc-cine-experience section.
@@ -1064,6 +1533,62 @@
     
       </div>
     </section>
+
+    <!-- =========================================================
+         MOBILE ORBIT SECTION (final)
+         ========================================================= -->
+
+    <section class="qom-mobile" id="qomMobile" aria-label="Our creative system">
+      <div class="qom-logo-bg" aria-hidden="true"></div>
+
+      <div class="qom-head">
+        <span class="qom-kicker">Our creative system</span>
+        <h2>Everything moves <span>around one vision</span></h2>
+      </div>
+
+      <div class="qom-logo-wrap">
+        <img src="./assets/mockups/circular-logo.png" alt="Qrious Curators Logo" />
+      </div>
+
+      <div class="qom-grid">
+        <article class="qom-card qom-card--wide">
+          <span class="qom-card-num">01 — STRATEGY</span>
+          <h3>Every move begins with clarity</h3>
+          <p>Research and direction before anything is built.</p>
+        </article>
+        <article class="qom-card">
+          <span class="qom-card-num">02</span>
+          <h3>Creativity</h3>
+          <p>Premium ideas made unforgettable.</p>
+        </article>
+        <article class="qom-card">
+          <span class="qom-card-num">03</span>
+          <h3>Execution</h3>
+          <p>Clean systems built with precision.</p>
+        </article>
+        <article class="qom-card qom-card--wide">
+          <span class="qom-card-num">04 — GROWTH</span>
+          <h3>Optimized for visibility, leads, results</h3>
+          <p>Everything is built to move the needle.</p>
+        </article>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        var section = document.getElementById("qomMobile");
+        if (!section) return;
+        if ("IntersectionObserver" in window) {
+          new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) { section.classList.add("qom-in"); obs.disconnect(); }
+            });
+          }, { threshold: .2 }).observe(section);
+        } else {
+          section.classList.add("qom-in");
+        }
+      })();
+    </script>
       
   
     <!-- =========================================================
@@ -1203,75 +1728,693 @@
       </div>
     </section> -->
     
-    <section class="testimonial-section" id="testimonials">
-      <div class="testimonial-sticky">
+    <section
+  class="qg-global-proof"
+  id="qgGlobalProof"
+>
 
-            
-        <div class="qc-cine-glow qc-cine-glow-1"></div>
-        <div class="qc-cine-glow qc-cine-glow-2"></div>
-    
-        
-        <h2 class="testimonial-heading">TESTIMONIALS</h2>
-    
-        <div class="testimonial-cards">
-        
-          <div class="testimonial-card active">
-            <p>
-              “The team understood our brand vision clearly and turned it into a clean,
-              premium and conversion-focused website. The process was smooth from start to finish.”
-            </p>
-            <span>— Founder</span>
-            <div class="brand">Luxury Home Decor Brand</div>
+  <div class="qg-proof-sticky">
+
+    <div class="qg-ambient-glow"></div>
+
+
+    <!-- =============================================
+         INTRO
+    ============================================== -->
+
+    <div
+      class="qg-intro-copy"
+      id="qgIntroCopy"
+    >
+
+      <span>
+        What our clients say
+      </span>
+
+      <h2>
+        Stories from clients<br>
+        around the world.
+      </h2>
+
+    </div>
+
+
+    <!-- =============================================
+         TESTIMONIAL ROWS
+    ============================================== -->
+
+    <div
+      class="qg-marquee-stage"
+      id="qgMarqueeStage"
+    >
+
+
+      <!-- =============================
+           ROW 1 — LEFT
+      ============================== -->
+
+      <div class="qg-marquee-row">
+
+        <div class="qg-marquee-track">
+
+          <div class="qg-marquee-group">
+
+
+            <article
+              class="qg-testimonial-card"
+              data-id="client-01"
+              data-country="usa"
+            >
+
+              <div class="qg-testimonial-head">
+
+                <div class="client">
+
+                  <div class="qg-client-avatar">
+                    NC
+                  </div>
+
+                  <div class="qg-client-meta">
+                    <strong>North & Co.</strong>
+                    <small>United States</small>
+                  </div>
+
+                </div>
+
+                <div class="qg-quote-mark">"</div>
+
+              </div>
+
+              <p>
+                They understood the brief instantly and
+                transformed it into something much stronger.
+              </p>
+
+            </article>
+
+
+            <article
+              class="qg-testimonial-card"
+              data-id="client-02"
+              data-country="australia"
+            >
+
+              <div class="qg-testimonial-head">
+
+                <div class="client">
+
+                  <div class="qg-client-avatar">
+                    AV
+                  </div>
+
+                  <div class="qg-client-meta">
+                    <strong>AV Studio</strong>
+                    <small>Australia</small>
+                  </div>
+
+                </div>
+
+                <div class="qg-quote-mark">"</div>
+
+              </div>
+
+              <p>
+                Working across different time zones never
+                felt like working across borders.
+              </p>
+
+            </article>
+
+
+            <article
+              class="qg-testimonial-card"
+              data-id="client-03"
+              data-country="india"
+            >
+
+              <div class="qg-testimonial-head">
+
+                <div class="client">
+
+                  <div class="qg-client-avatar">
+                    AK
+                  </div>
+
+                  <div class="qg-client-meta">
+                    <strong>AK Group</strong>
+                    <small>India</small>
+                  </div>
+
+                </div>
+
+                <div class="qg-quote-mark">"</div>
+
+              </div>
+
+              <p>
+                The team brought strategy and execution
+                together beautifully.
+              </p>
+
+            </article>
+
+
+            <article
+              class="qg-testimonial-card"
+              data-id="client-04"
+              data-country="china"
+            >
+
+              <div class="qg-testimonial-head">
+
+                <div class="client">
+
+                  <div class="qg-client-avatar">
+                    HX
+                  </div>
+
+                  <div class="qg-client-meta">
+                    <strong>HX Creative</strong>
+                    <small>China</small>
+                  </div>
+
+                </div>
+
+                <div class="qg-quote-mark">"</div>
+
+              </div>
+
+              <p>
+                Clear thinking, great communication and
+                consistently strong creative direction.
+              </p>
+
+            </article>
+
+
+            <article
+              class="qg-testimonial-card"
+              data-id="client-05"
+              data-country="europe"
+            >
+
+              <div class="qg-testimonial-head">
+
+                <div class="client">
+
+                  <div class="qg-client-avatar">
+                    ST
+                  </div>
+
+                  <div class="qg-client-meta">
+                    <strong>Studio T</strong>
+                    <small>Europe</small>
+                  </div>
+
+                </div>
+
+                <div class="qg-quote-mark">"</div>
+
+              </div>
+
+              <p>
+                They quickly became an extension of
+                our internal creative team.
+              </p>
+
+            </article>
+
+
           </div>
-        
-          <div class="testimonial-card">
-            <p>
-              “Their content ideas and social media planning helped us present our products
-              in a much more refined and engaging way. Every creative felt aligned with our brand.”
-            </p>
-            <span>— Marketing Manager</span>
-            <div class="brand">Fashion & Lifestyle Brand</div>
-          </div>
-        
-          <div class="testimonial-card">
-            <p>
-              “From website design to execution, everything was handled professionally.
-              The final output looked modern, fast and exactly as per our business needs.”
-            </p>
-            <span>— Business Owner</span>
-            <div class="brand">Jewellery Brand</div>
-          </div>
-        
-          <div class="testimonial-card">
-            <p>
-              “They brought structure to our digital presence with better creatives,
-              stronger captions and consistent planning. The communication was always clear.”
-            </p>
-            <span>— Brand Head</span>
-            <div class="brand">Retail Store</div>
-          </div>
-        
-          <div class="testimonial-card">
-            <p>
-              “The website section designs, animations and overall visual language gave
-              our brand a much more premium online feel. The attention to detail was impressive.”
-            </p>
-            <span>— Creative Lead</span>
-            <div class="brand">Interior & Architecture Studio</div>
-          </div>
-        
-          <div class="testimonial-card">
-            <p>
-              “They don’t just design, they understand what the brand wants to communicate.
-              The final creatives looked professional, clean and very easy for our audience to connect with.”
-            </p>
-            <span>— Social Media Manager</span>
-            <div class="brand">D2C Brand</div>
-          </div>
-        
+
         </div>
+
       </div>
-    </section>
+
+
+
+      <!-- =============================
+           ROW 2 — RIGHT
+      ============================== -->
+
+      <div class="qg-marquee-row qg-reverse">
+
+        <div class="qg-marquee-track">
+
+          <div class="qg-marquee-group">
+
+
+            <article
+              class="qg-testimonial-card"
+              data-id="client-06"
+              data-country="india"
+            >
+
+              <div class="qg-testimonial-head">
+
+                <div class="client">
+
+                  <div class="qg-client-avatar">
+                    RA
+                  </div>
+
+                  <div class="qg-client-meta">
+                    <strong>RA Collective</strong>
+                    <small>India</small>
+                  </div>
+
+                </div>
+
+                <div class="qg-quote-mark">"</div>
+
+              </div>
+
+              <p>
+                Every detail felt considered from the
+                very first conversation.
+              </p>
+
+            </article>
+
+
+            <article
+              class="qg-testimonial-card"
+              data-id="client-07"
+              data-country="usa"
+            >
+
+              <div class="qg-testimonial-head">
+
+                <div class="client">
+
+                  <div class="qg-client-avatar">
+                    BL
+                  </div>
+
+                  <div class="qg-client-meta">
+                    <strong>BL Labs</strong>
+                    <small>United States</small>
+                  </div>
+
+                </div>
+
+                <div class="qg-quote-mark">"</div>
+
+              </div>
+
+              <p>
+                A genuinely collaborative experience
+                from strategy to final delivery.
+              </p>
+
+            </article>
+
+
+            <article
+              class="qg-testimonial-card"
+              data-id="client-08"
+              data-country="europe"
+            >
+
+              <div class="qg-testimonial-head">
+
+                <div class="client">
+
+                  <div class="qg-client-avatar">
+                    MO
+                  </div>
+
+                  <div class="qg-client-meta">
+                    <strong>Modo</strong>
+                    <small>Europe</small>
+                  </div>
+
+                </div>
+
+                <div class="qg-quote-mark">"</div>
+
+              </div>
+
+              <p>
+                The quality of thinking was evident
+                across every stage of the project.
+              </p>
+
+            </article>
+
+
+            <article
+              class="qg-testimonial-card"
+              data-id="client-09"
+              data-country="australia"
+            >
+
+              <div class="qg-testimonial-head">
+
+                <div class="client">
+
+                  <div class="qg-client-avatar">
+                    MS
+                  </div>
+
+                  <div class="qg-client-meta">
+                    <strong>Made Studio</strong>
+                    <small>Australia</small>
+                  </div>
+
+                </div>
+
+                <div class="qg-quote-mark">"</div>
+
+              </div>
+
+              <p>
+                Sharp creative ideas with a very smooth
+                and dependable process.
+              </p>
+
+            </article>
+
+
+            <article
+              class="qg-testimonial-card"
+              data-id="client-10"
+              data-country="china"
+            >
+
+              <div class="qg-testimonial-head">
+
+                <div class="client">
+
+                  <div class="qg-client-avatar">
+                    LY
+                  </div>
+
+                  <div class="qg-client-meta">
+                    <strong>LY Studio</strong>
+                    <small>China</small>
+                  </div>
+
+                </div>
+
+                <div class="qg-quote-mark">"</div>
+
+              </div>
+
+              <p>
+                Great understanding of both brand
+                strategy and visual communication.
+              </p>
+
+            </article>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+
+
+    <!-- =============================================
+         ACTUAL WORLD MAP
+    ============================================== -->
+
+    <div
+      class="qg-world-layer"
+      id="qgWorldLayer"
+    >
+
+      <svg
+        id="qgWorldMapSvg"
+        aria-hidden="true"
+      ></svg>
+
+
+      <div
+        class="qg-map-points"
+        id="qgMapPoints"
+      >
+
+
+        <div
+          class="qg-map-point"
+          data-country="usa"
+        >
+          <span class="qg-map-label">
+            USA
+          </span>
+        </div>
+
+
+        <div
+          class="qg-map-point"
+          data-country="europe"
+        >
+          <span class="qg-map-label">
+            Europe
+          </span>
+        </div>
+
+
+        <div
+          class="qg-map-point"
+          data-country="india"
+        >
+          <span class="qg-map-label">
+            India
+          </span>
+        </div>
+
+
+        <div
+          class="qg-map-point"
+          data-country="china"
+        >
+          <span class="qg-map-label">
+            China
+          </span>
+        </div>
+
+
+        <div
+          class="qg-map-point"
+          data-country="australia"
+        >
+          <span class="qg-map-label">
+            Australia
+          </span>
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =============================================
+         MAP TEXT — TOP / SEQUENTIAL
+    ============================================== -->
+
+    <div
+      class="qg-map-title-sequence"
+      id="qgMapTitleSequence"
+      aria-hidden="true"
+    >
+
+      <h3 class="qg-map-title">
+        Across <strong>&nbsp;borders.</strong>
+      </h3>
+
+      <h3 class="qg-map-title">
+        Trusted around <strong>&nbsp;the world.</strong>
+      </h3>
+
+      <h3 class="qg-map-title qg-locations">
+        USA · EUROPE · INDIA · CHINA · AUSTRALIA
+      </h3>
+
+    </div>
+
+
+
+    <!-- =============================================
+         SCROLL DOWN BUTTON
+    ============================================== -->
+
+    <div
+      class="qg-scroll-cue"
+      id="qgScrollCue"
+    >
+
+      <button
+        type="button"
+        id="qgScrollButton"
+      >
+
+        Scroll to explore
+
+        <span class="qg-scroll-arrow">
+          ↓
+        </span>
+
+      </button>
+
+    </div>
+
+
+    <div class="qg-noise"></div>
+
+  </div>
+
+</section>
+
+    <!-- =========================================================
+         MOBILE TESTIMONIALS — SCROLL STACK
+         ========================================================= -->
+
+    <div class="qts-mobile-wrap">
+
+      <div class="qts-head">
+        <span class="qts-kicker">What our clients say</span>
+        <h2>Trusted around the world</h2>
+      </div>
+
+      <section class="qts-section" id="qtsSection">
+        <div class="qts-sticky">
+
+          <article class="qts-card qts-white" data-i="0">
+            <div class="qts-card-quote">"</div>
+            <p>They understood the brief instantly and transformed it into something much stronger.</p>
+            <div class="qts-card-meta"><div class="qts-card-avatar">NC</div><div><strong>North & Co.</strong><small>United States</small></div></div>
+          </article>
+
+          <article class="qts-card qts-orange" data-i="1">
+            <div class="qts-card-quote">"</div>
+            <p>Working across different time zones never felt like working across borders.</p>
+            <div class="qts-card-meta"><div class="qts-card-avatar">AV</div><div><strong>AV Studio</strong><small>Australia</small></div></div>
+          </article>
+
+          <article class="qts-card qts-white" data-i="2">
+            <div class="qts-card-quote">"</div>
+            <p>The team brought strategy and execution together beautifully.</p>
+            <div class="qts-card-meta"><div class="qts-card-avatar">AK</div><div><strong>AK Group</strong><small>India</small></div></div>
+          </article>
+
+          <article class="qts-card qts-orange" data-i="3">
+            <div class="qts-card-quote">"</div>
+            <p>Clear thinking, great communication and consistently strong creative direction.</p>
+            <div class="qts-card-meta"><div class="qts-card-avatar">HX</div><div><strong>HX Creative</strong><small>China</small></div></div>
+          </article>
+
+          <article class="qts-card qts-white" data-i="4">
+            <div class="qts-card-quote">"</div>
+            <p>They quickly became an extension of our internal creative team.</p>
+            <div class="qts-card-meta"><div class="qts-card-avatar">ST</div><div><strong>Studio T</strong><small>Europe</small></div></div>
+          </article>
+
+          <article class="qts-card qts-orange" data-i="5">
+            <div class="qts-card-quote">"</div>
+            <p>Every detail felt considered from the very first conversation.</p>
+            <div class="qts-card-meta"><div class="qts-card-avatar">RA</div><div><strong>RA Collective</strong><small>India</small></div></div>
+          </article>
+
+          <article class="qts-card qts-white" data-i="6">
+            <div class="qts-card-quote">"</div>
+            <p>A genuinely collaborative experience from strategy to final delivery.</p>
+            <div class="qts-card-meta"><div class="qts-card-avatar">BL</div><div><strong>BL Labs</strong><small>United States</small></div></div>
+          </article>
+
+          <article class="qts-card qts-orange" data-i="7">
+            <div class="qts-card-quote">"</div>
+            <p>The quality of thinking was evident across every stage of the project.</p>
+            <div class="qts-card-meta"><div class="qts-card-avatar">MO</div><div><strong>Modo</strong><small>Europe</small></div></div>
+          </article>
+
+          <article class="qts-card qts-white" data-i="8">
+            <div class="qts-card-quote">"</div>
+            <p>Sharp creative ideas with a very smooth and dependable process.</p>
+            <div class="qts-card-meta"><div class="qts-card-avatar">MS</div><div><strong>Made Studio</strong><small>Australia</small></div></div>
+          </article>
+
+          <article class="qts-card qts-orange" data-i="9">
+            <div class="qts-card-quote">"</div>
+            <p>Great understanding of both brand strategy and visual communication.</p>
+            <div class="qts-card-meta"><div class="qts-card-avatar">LY</div><div><strong>LY Studio</strong><small>China</small></div></div>
+          </article>
+
+          <div class="qts-progress" id="qtsProgress"></div>
+        </div>
+      </section>
+
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+        if (!window.matchMedia("(max-width: 900px)").matches) return;
+
+        var section = document.getElementById("qtsSection");
+        var cards = document.querySelectorAll(".qts-card");
+        var dotsWrap = document.getElementById("qtsProgress");
+        if (!section || !cards.length) return;
+
+        var count = cards.length;
+        cards.forEach(function () { dotsWrap.appendChild(document.createElement("span")); });
+        var dots = dotsWrap.querySelectorAll("span");
+
+        function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+        function update() {
+          var rect = section.getBoundingClientRect();
+          var viewportH = window.innerHeight;
+          var scrollRange = section.offsetHeight - viewportH;
+          var progress = clamp(-rect.top / scrollRange, 0, 1);
+          var activeIndex = 0;
+
+          cards.forEach(function (card, i) {
+            var start = i / count;
+            var end = (i + 1) / count;
+            var local = clamp((progress - start) / (end - start), 0, 1);
+            var tilt = i % 2 === 0 ? -4 : 4;
+            var stackOffset = i * 8;
+
+            if (progress >= start) {
+              activeIndex = i;
+              card.style.opacity = 1;
+              card.style.zIndex = i + 1;
+              if (progress > end) {
+                card.style.transform = "translateY(" + (-stackOffset) + "px) rotate(" + tilt + "deg) scale(" + (1 - i * 0.02) + ")";
+              } else {
+                var y = 60 - local * 60;
+                card.style.transform = "translateY(" + y + "vh) rotate(" + (tilt * local) + "deg) scale(1)";
+              }
+            } else {
+              card.style.opacity = 0;
+              card.style.transform = "translateY(60vh) rotate(0deg) scale(1)";
+            }
+          });
+
+          dots.forEach(function (d, i) { d.classList.toggle("qts-progress-active", i === activeIndex); });
+        }
+
+        var ticking = false;
+        window.addEventListener("scroll", function () {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(function () { update(); ticking = false; });
+          }
+        }, { passive: true });
+
+        update();
+      })();
+    </script>
 
     <!-- ===== PHILOSOPHY (accordion list) ===== -->
     <!-- <section id="philosophy">
@@ -1363,249 +2506,105 @@
         <div class="ww-map-wrap">
           <div id="map-canvas" style="position: relative">
             <div class="map-loading" id="mapLoading">Loading world map</div>
-            
-            <!-- Badges (positioned by JS) -->
-            <!-- <div class="badge" data-city="london">
-              <div class="b-av" style="background: #c8f53a">MC</div>
-              <div>
-                <div class="b-co">Meridian Capital</div>
-                <div class="b-ci">London, UK</div>
-              </div>
-            </div>
-            <div class="badge" data-city="newyork">
-              <div class="b-av" style="background: #38bdf8">SL</div>
-              <div>
-                <div class="b-co">Skyline Labs</div>
-                <div class="b-ci">New York, USA</div>
-              </div>
-            </div>
-            <div class="badge" data-city="dubai">
-              <div class="b-av" style="background: #fb923c">AF</div>
-              <div>
-                <div class="b-co">Aether Finance</div>
-                <div class="b-ci">Dubai, UAE</div>
-              </div>
-            </div>
-            <div class="badge" data-city="tokyo">
-              <div class="b-av" style="background: #a78bfa">PA</div>
-              <div>
-                <div class="b-co">Prisma AI</div>
-                <div class="b-ci">Tokyo, Japan</div>
-              </div>
-            </div>
-            <div class="badge" data-city="sydney">
-              <div class="b-av" style="background: #34d399">CV</div>
-              <div>
-                <div class="b-co">Coastal Ventures</div>
-                <div class="b-ci">Sydney, AUS</div>
-              </div>
-            </div>
-            <div class="badge" data-city="mumbai">
-              <div class="b-av" style="background: #c8f53a">QC</div>
-              <div>
-                <div class="b-co">Qrious HQ</div>
-                <div class="b-ci">Mumbai, India</div>
-              </div>
-            </div>
-            <div class="badge" data-city="sao">
-              <div class="b-av" style="background: #f472b6">HC</div>
-              <div>
-                <div class="b-co">Helix Commerce</div>
-                <div class="b-ci">São Paulo, BR</div>
-              </div>
-            </div>
-            <div class="badge" data-city="toronto">
-              <div class="b-av" style="background: #38bdf8">SD</div>
-              <div>
-                <div class="b-co">Summit Digital</div>
-                <div class="b-ci">Toronto, CA</div>
-              </div>
-            </div>
-            <div class="badge" data-city="berlin">
-              <div class="b-av" style="background: #fb923c">VH</div>
-              <div>
-                <div class="b-co">Vanta Health</div>
-                <div class="b-ci">Berlin, DE</div>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
-
-      <!-- TICKER -->
-      <!-- <div class="ww-ticker rv d2">
-        <div class="ticker-inner">
-          <div class="ticker-lbl">
-            <div class="tdot"></div>
-            Active Clients
-          </div>
-          <div class="ticker-scroll">
-            <div class="ticker-track">
-              <span class="ti">Meridian Capital — UK</span>
-              <span class="ti">Skyline Labs — USA</span>
-              <span class="ti">Aether Finance — UAE</span>
-              <span class="ti">Prisma AI — Japan</span>
-              <span class="ti">Coastal Ventures — Australia</span>
-              <span class="ti">Helix Commerce — Brazil</span>
-              <span class="ti">Summit Digital — Canada</span>
-              <span class="ti">Vanta Health — Germany</span>
-              <span class="ti">NovaBrand — Singapore</span>
-              <span class="ti">Meridian Capital — UK</span>
-              <span class="ti">Skyline Labs — USA</span>
-              <span class="ti">Aether Finance — UAE</span>
-              <span class="ti">Prisma AI — Japan</span>
-              <span class="ti">Coastal Ventures — Australia</span>
-              <span class="ti">Helix Commerce — Brazil</span>
-              <span class="ti">Summit Digital — Canada</span>
-              <span class="ti">Vanta Health — Germany</span>
-              <span class="ti">NovaBrand — Singapore</span>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- LOGOS -->
-      <!-- <div class="ww-logos rv d3">
-    <p class="logos-lbl">Brands that trust us</p>
-    <div class="logos-grid">
-      <div class="lc rv d1"><div class="lt">Meridian</div></div>
-      <div class="lc rv d2"><div class="lt">Skyline Labs</div></div>
-      <div class="lc rv d3"><div class="lt">Aether</div></div>
-      <div class="lc rv d4"><div class="lt">Vanta Health</div></div>
-      <div class="lc rv d5"><div class="lt">Prisma AI</div></div>
-      <div class="lc rv d6"><div class="lt">Helix</div></div>
-      <div class="lc rv d1"><div class="lt">Summit Co.</div></div>
-    </div>
-  </div> -->
     </section>
 
-    <!-- ===== IMPACT ===== -->
-    <!-- <section id="impact">
-      <div class="impact-head rv" data-scroll data-scroll-speed="0.08">
-        <span class="kicker">Our Impact</span>
-        <h2>Results that<br /><em>speak louder</em> than words</h2>
+    <!-- =========================================================
+         MOBILE-ONLY "CLIENTS" DUAL MARQUEE
+         ========================================================= -->
+
+    <section class="qcl-mobile" aria-label="Clients we've worked with">
+
+      <div class="qcl-intro" data-reveal>
+        <p class="qcl-kicker">Our Clients</p>
+        <h2 class="qcl-heading">Brands we've partnered <em>with:</em></h2>
       </div>
-      <div class="impact-cards">
-        <div class="impact-card rv d1">
-          <div class="impact-card-num">3.2<span class="suf">×</span></div>
-          <div class="impact-card-lbl">Average Revenue Lift</div>
-          <p class="impact-card-desc">
-            Clients who rebrand and relaunch with us see an average 3.2×
-            increase in qualified leads within 6 months.
-          </p>
-        </div>
-        <div class="impact-card rv d2">
-          <div class="impact-card-num">67<span class="suf">%</span></div>
-          <div class="impact-card-lbl">Conversion Rate Uplift</div>
-          <p class="impact-card-desc">
-            Our website redesigns consistently outperform previous versions,
-            with a 67% average conversion improvement.
-          </p>
-        </div>
-        <div class="impact-card rv d3">
-          <div class="impact-card-num">18<span class="suf">+</span></div>
-          <div class="impact-card-lbl">Countries Served</div>
-          <p class="impact-card-desc">
-            From Jaipur to New York, our clients operate in 18+ countries across
-            6 continents. Design has no borders.
-          </p>
-        </div>
-      </div>
-    </section> -->
-    
-    <!-- ===== Reviews ===== -->
 
-    
+      <div class="qcl-marquee-stage" data-reveal>
 
-
-    <!-- <section id="stack">
-      <div class="stack-grid">
-        <div class="stack-sticky">
-          <span class="stack-kicker">Our Clients</span>
-          <h2 class="stack-title">
-            At Qrious Curators, we don’t just <em>“do marketing.”</em>
-            We build brands that people
-            Remember, Relate to, and Talk about
-          </h2>
-          <div class="stack-card client-card">
-            <div class="client-row">
-              <div class="client"><img src="./assets/brand-logo/AB.png" alt=""><span>AB Jewellers</span></div>
-              <div class="client"><img src="./assets/brand-logo/Ardhangini.png" alt=""><span>Ardhangini</span></div>
-              <div class="client"><img src="./assets/brand-logo/Jb-marble.png" alt=""><span>Client 3</span></div>
-              <div class="client"><img src="./assets/brand-logo/Indralok-sarees.png" alt=""><span>Client 4</span></div>
-              <div class="client"><img src="./assets/brand-logo/Jain.png" alt=""><span>Client 5</span></div>
-              <div class="client"><img src="./assets/brand-logo/Kapish.png" alt=""><span>Client 6</span></div>
-              <div class="client"><img src="./assets/brand-logo/Mahttab.png" alt=""><span>Client 7</span></div>
-          
-              <div class="client"><img src="./assets/brand-logo/nandini.png" alt=""><span>Client 8</span></div>
-              <div class="client"><img src="./assets/brand-logo/Nirankar-stones.png" alt=""><span>Client 9</span></div>
-              <div class="client"><img src="./assets/brand-logo/OUT.png" alt=""><span>Client 10</span></div>
-              <div class="client"><img src="./assets/brand-logo/Rahaurvi.png" alt=""><span>Client 11</span></div>
-              <div class="client"><img src="./assets/brand-logo/Taluka.png" alt=""><span>Client 12</span></div>
-              <div class="client"><img src="./assets/brand-logo/Trendy-Aura.png" alt=""><span>Client 13</span></div>
-              <div class="client"><img src="./assets/clients/c14.png" alt=""><span>Client 14</span></div>
-          
-              <div class="client"><img src="./assets/clients/c15.png" alt=""><span>Client 15</span></div>
-              <div class="client"><img src="./assets/clients/c16.png" alt=""><span>Client 16</span></div>
-              <div class="client"><img src="./assets/clients/c17.png" alt=""><span>Client 17</span></div>
-              <div class="client"><img src="./assets/clients/c18.png" alt=""><span>Client 18</span></div>
-              <div class="client"><img src="./assets/clients/c19.png" alt=""><span>Client 19</span></div>
-              <div class="client"><img src="./assets/clients/c20.png" alt=""><span>Client 20</span></div>
-              <div class="client"><img src="./assets/clients/c21.png" alt=""><span>Client 21</span></div>
-          
+        <div class="qcl-row">
+          <div class="qcl-track" id="qclTrackA">
+            <div class="qcl-group">
+              <div class="qcl-tile"><img src="./assets/brand-logo/AB.png" alt="AB Jewellers" loading="lazy" /></div>
+              <div class="qcl-tile"><img src="./assets/brand-logo/Ardhangini.png" alt="Ardhangini" loading="lazy" /></div>
+              <div class="qcl-tile"><img src="./assets/brand-logo/Jb-marble.png" alt="JB Marble Decor" loading="lazy" /></div>
+              <div class="qcl-tile"><img src="./assets/brand-logo/Indralok-sarees.png" alt="Indralok Sarees" loading="lazy" /></div>
+              <div class="qcl-tile"><img src="./assets/brand-logo/Jain.png" alt="Jain Textile" loading="lazy" /></div>
+              <div class="qcl-tile"><img src="./assets/brand-logo/Kapish.png" alt="Kapish" loading="lazy" /></div>
+              <div class="qcl-tile"><img src="./assets/brand-logo/Mahttab.png" alt="Mahttab" loading="lazy" /></div>
             </div>
           </div>
         </div>
-        
-        <div class="stack-cards">
-          <div class="stack-card">
-            <img
-              src="./assets/newmockups/review1.png"
-              alt="Work 1"
-              loading="lazy"
-            />
-          </div>
-          <div class="stack-card">
-            <img
-              src="./assets/newmockups/review2.png"
-              alt="Work 2"
-              loading="lazy"
-            />
-          </div>
-          <div class="stack-card">
-            <img
-              src="./assets/newmockups/review3.png"
-              alt="Work 3"
-              loading="lazy"
-            />
-          </div> 
-          <div class="stack-card">
-            <img
-              src="./assets/newmockups/review4.png"
-              alt="Work 4"
-              loading="lazy"
-            />
-          </div>
-          <div class="stack-card">
-            <img
-              src="https://framerusercontent.com/images/9eD88IPKTw4s3e2ACxglJMr1zWs.webp?width=1800&height=2400"
-              alt="Work 5"
-              loading="lazy"
-            />
-          </div> 
-        </div>
-      </div>
-    </section> -->
 
+        <div class="qcl-row qcl-row--reverse">
+          <div class="qcl-track" id="qclTrackB">
+            <div class="qcl-group">
+              <div class="qcl-tile"><img src="./assets/brand-logo/nandini.png" alt="Nandini" loading="lazy" /></div>
+              <div class="qcl-tile"><img src="./assets/brand-logo/Nirankar-stones.png" alt="Nirankar Stones" loading="lazy" /></div>
+              <div class="qcl-tile"><img src="./assets/brand-logo/OUT.png" alt="Out Bari" loading="lazy" /></div>
+              <div class="qcl-tile"><img src="./assets/brand-logo/Rahaurvi.png" alt="Rahaurvi" loading="lazy" /></div>
+              <div class="qcl-tile"><img src="./assets/brand-logo/Taluka.png" alt="Taluka" loading="lazy" /></div>
+              <div class="qcl-tile"><img src="./assets/brand-logo/Trendy-Aura.png" alt="Trendy Aura" loading="lazy" /></div>
+              <div class="qcl-tile"><img src="./assets/clients/c14.png" alt="Client" loading="lazy" /></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <script>
+      (function () {
+        "use strict";
+        if (!window.matchMedia("(max-width: 900px)").matches) return;
+
+        var section = document.querySelector(".qcl-mobile");
+        if (!section) return;
+
+        section.querySelectorAll(".qcl-track").forEach(function (track) {
+          var group = track.querySelector(".qcl-group");
+          if (!group) return;
+          var clone = group.cloneNode(true);
+          clone.setAttribute("aria-hidden", "true");
+          track.appendChild(clone);
+        });
+
+        var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var revealTargets = section.querySelectorAll("[data-reveal]");
+
+        if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+          revealTargets.forEach(function (el) { el.classList.add("is-visible"); });
+          return;
+        }
+
+        var revealObserver = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) { entry.target.classList.add("is-visible"); obs.unobserve(entry.target); }
+          });
+        }, { root: null, rootMargin: "0px 0px -8% 0px", threshold: 0.15 });
+
+        revealTargets.forEach(function (el) { revealObserver.observe(el); });
+
+        var stage = section.querySelector(".qcl-marquee-stage");
+        if (stage) {
+          var pauseObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              stage.classList.toggle("qcl-paused", !entry.isIntersecting);
+            });
+          }, { root: null, threshold: 0 });
+          pauseObserver.observe(stage);
+        }
+      })();
+    </script>
 
     <!-- ===================== BLOG SECTION ===================== -->
      
     <section class="qc-blog-section">
       <div class="qc-blog-container">
-            
-        <!-- <div class="qc-cine-glow qc-cine-glow-1"></div>
-        <div class="qc-cine-glow qc-cine-glow-2"></div>    -->
-    
+
         <div class="qc-blog-head">
           <span class="qc-blog-kicker">BLOGS & INSIGHTS</span>
           <h2>Ideas that help brands <span>move with clarity.</span> </h2>
@@ -1737,8 +2736,6 @@
     
           <!-- Services -->
           <div>
-            <!-- <div class="footer-col-ttl">Services</div> -->
-    
             <ul class="footer-links">
               <li><a href="./index.html">Home</a></li>
               <li><a href="./about.html">About</a></li>
@@ -1749,8 +2746,6 @@
     
           <!-- Company -->
           <div>
-            <!-- <div class="footer-col-ttl">Company</div> -->
-    
             <ul class="footer-links">
               <li><a href="./blog.html">Blog</a></li>
               <li><a href="./contact.html">Contact</a></li>
@@ -1783,7 +2778,7 @@
     
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-    <script src="./scripts/scr.js"></script>
+    <script src="./scripts/scri.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll/bundled/locomotive-scroll.min.js"></script>
     <script>
@@ -1798,7 +2793,7 @@
           end: "bottom bottom",
           scrub: 1,
           pin: true,
-          markers: false   // 👈 IMPORTANT: helps debug
+          markers: false
         },
   
         motionPath: {
@@ -1846,10 +2841,6 @@
     
     <!-- =========================================================
          GSAP CDN
-         Order is important:
-         1. GSAP
-         2. ScrollTrigger
-         3. Your custom JS
     ========================================================== -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -1934,6 +2925,7 @@
         ========================================================= */
       
         function qcInitStableCinematicServices() {
+          if (window.innerWidth <= 900) { return; }
           const section = document.querySelector("#qc-cine-services");
           const track = document.querySelector("#qcCineTrack");
           const sourceBox = document.querySelector("#qcCineSource");
@@ -2038,15 +3030,14 @@
               0.00 - 0.46 : horizontal services scroll
               0.46 - 0.68 : last image expands fullscreen
               0.65 - 0.80 : second image fades in
-              0.82 - 0.94 : fullscreen fades out
+              0.80 - 1.00 : black logo stays fullscreen
+                              until the section unpins
             */
             const horizontalEnd = 0.46;
             const expandStart = 0.46;
             const expandEnd = 0.68;
             const swapStart = 0.65;
             const swapEnd = 0.80;
-            const fadeStart = 0.82;
-            const fadeEnd = 0.94;
       
             const hProgress = qcSmooth(qcNorm(progress, 0, horizontalEnd));
             const trackX = -maxShift * hProgress;
@@ -2122,9 +3113,6 @@
             const contentFade = qcNorm(progress, expandStart + 0.04, expandStart + 0.20);
       
             const swapProgress = qcSmooth(qcNorm(progress, swapStart, swapEnd));
-            const fadeProgress = qcSmooth(qcNorm(progress, fadeStart, fadeEnd));
-      
-            const cloneAlpha = 1 - fadeProgress;
       
             gsap.set(sourceBox, {
               autoAlpha: 1 - sourceFade
@@ -2140,7 +3128,7 @@
             });
       
             gsap.set(clone, {
-              autoAlpha: cloneAlpha,
+              autoAlpha: 1,
               x: currentX,
               y: currentY,
               width: currentW,
@@ -2160,23 +3148,25 @@
             });
       
             /*
-              After fade is complete, keep clone invisible but stable.
+              Once the black logo has taken over, keep it fullscreen
+              for the rest of the pinned section. This removes the
+              empty beat before the next section starts.
             */
-            if (progress >= fadeEnd) {
+            if (progress >= swapEnd) {
               gsap.set(clone, {
-                autoAlpha: 0,
+                autoAlpha: 1,
                 x: 0,
                 y: 0,
                 width: window.innerWidth,
                 height: window.innerHeight,
                 borderRadius: 0
               });
-      
+
               gsap.set(cloneBaseImg, {
                 opacity: 0,
                 scale: 1.14
               });
-      
+
               gsap.set(cloneNextImg, {
                 opacity: 1,
                 scale: 1.04
@@ -2206,7 +3196,12 @@
             },
       
             onLeave: function () {
+              /*
+                Logo stays visible through the final pinned frame.
+                Release the fixed clone exactly as the next section enters.
+              */
               renderServices(1);
+              gsap.set(clone, { autoAlpha: 0 });
             },
       
             onEnterBack: function (self) {
@@ -2219,6 +3214,10 @@
       
             onRefresh: function (self) {
               renderServices(self.progress);
+
+              if (!self.isActive && self.progress >= 1) {
+                gsap.set(clone, { autoAlpha: 0 });
+              }
             }
           });
         }
@@ -2230,6 +3229,7 @@
         ========================================================= */
       
         function qcInitStableExperienceCards() {
+          if (window.innerWidth <= 900) { return; }
           const section = document.querySelector("#qc-cine-experience");
           const sticky = document.querySelector(".qc-cine-experience-sticky");
           const cards = gsap.utils.toArray(".qc-floating-card");
@@ -2525,6 +3525,7 @@
       
       
         function qcInitLogoUSPOrbitSection() {
+          if (window.innerWidth <= 900) { return; }
           const section = document.querySelector("#qc-logo-orbit-section");
           const sticky = document.querySelector(".qc-logo-orbit-sticky");
           const system = document.querySelector("#qcOrbitSystem");
@@ -2763,6 +3764,409 @@
         qcBlogObserver.observe(card);
       });
 
+
+    (() => {
+  "use strict";
+
+  const loadScriptOnce = (src, isReady) => {
+    if (isReady()) return Promise.resolve();
+
+    return new Promise((resolve, reject) => {
+      const existing = [...document.scripts].find(script => script.src === src);
+
+      if (existing) {
+        if (isReady()) {
+          resolve();
+          return;
+        }
+
+        existing.addEventListener("load", resolve, { once: true });
+        existing.addEventListener("error", reject, { once: true });
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  };
+
+  const start = async () => {
+    try {
+      await loadScriptOnce(
+        "https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js",
+        () => !!window.d3 && typeof window.d3.geoNaturalEarth1 === "function"
+      );
+
+      await loadScriptOnce(
+        "https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js",
+        () => !!window.topojson && typeof window.topojson.merge === "function"
+      );
+
+      initQriousGlobalProof();
+    } catch (error) {
+      console.error("Global testimonials section could not start:", error);
+    }
+  };
+
+  function initQriousGlobalProof() {
+      const section = document.querySelector("#qgGlobalProof");
+      if (!section || section.dataset.qgInitialized === "true") return;
+      section.dataset.qgInitialized = "true";
+
+      const marqueeStage = section.querySelector("#qgMarqueeStage");
+      const introCopy = section.querySelector("#qgIntroCopy");
+      const worldLayer = section.querySelector("#qgWorldLayer");
+      const mapPointsLayer = section.querySelector("#qgMapPoints");
+      const mapTitles = [...section.querySelectorAll(".qg-map-title")];
+      const scrollCue = section.querySelector("#qgScrollCue");
+      const scrollButton = section.querySelector("#qgScrollButton");
+      const svg = d3.select("#qgWorldMapSvg");
+
+      document.querySelectorAll(".qg-marquee-track").forEach(track => {
+          const group = track.querySelector(".qg-marquee-group");
+          const copy = group.cloneNode(true);
+          copy.setAttribute("aria-hidden", "true");
+          track.appendChild(copy);
+        });
+
+      document.querySelectorAll(".qg-marquee-row").forEach((row, rowIndex) => {
+          row.querySelectorAll(".qg-marquee-group").forEach(group => {
+              group.querySelectorAll(".qg-testimonial-card").forEach((card, cardIndex) => {
+                  const isOrange = (cardIndex + rowIndex) % 2 === 1;
+                  card.classList.toggle("qg-card-orange", isOrange);
+                  card.classList.toggle("qg-card-white", !isOrange);
+                });
+            });
+        });
+
+      function clamp(value, min = 0, max = 1) { return Math.min(max, Math.max(min, value)); }
+      function lerp(start, end, progress) { return start + (end - start) * progress; }
+      function inverseLerp(start, end, value) { return clamp((value - start) / (end - start)); }
+      function smoothstep(start, end, value) { const x = inverseLerp(start, end, value); return x * x * (3 - 2 * x); }
+      function easeInOutCubic(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+
+      const WORLD_DATA_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json";
+
+      const clientLocations = {
+        usa: [-98.5795, 39.8283],
+        europe: [10.0, 50.5],
+        india: [78.9629, 20.5937],
+        china: [104.1954, 35.8617],
+        australia: [133.7751, -25.2744]
+      };
+
+      const clientCityLocations = [
+        { key: "jaipur",     label: "Jaipur",     coord: [75.7873, 26.9124],   labelX: -54, labelY:  24 },
+        { key: "mumbai",     label: "Mumbai",     coord: [72.8777, 19.0760],   labelX: -50, labelY:  28 },
+        { key: "delhi",      label: "Delhi",      coord: [77.1025, 28.7041],   labelX:  44, labelY: -28 },
+        { key: "canberra",   label: "Canberra",   coord: [149.1300, -35.2809], labelX: -54, labelY:  26 },
+        { key: "sydney",     label: "Sydney",     coord: [151.2093, -33.8688], labelX:  48, labelY: -20 },
+        { key: "beijing",    label: "Beijing",    coord: [116.4074, 39.9042],  labelX:  48, labelY: -22 },
+        { key: "new-york",   label: "New York",   coord: [-74.0060, 40.7128],  labelX:  52, labelY: -24 },
+        { key: "washington", label: "Washington", coord: [-77.0369, 38.9072],  labelX: -62, labelY:  27 },
+        { key: "london",     label: "London",     coord: [-0.1276, 51.5072],   labelX: -48, labelY: -26 },
+        { key: "berlin",     label: "Berlin",     coord: [13.4050, 52.5200],   labelX:  45, labelY: -20 }
+      ];
+
+      function buildCityPopups() {
+        if (!mapPointsLayer) return;
+        mapPointsLayer.querySelectorAll(".qg-city-popup").forEach(popup => popup.remove());
+        clientCityLocations.forEach((location, index) => {
+          const popup = document.createElement("div");
+          popup.className = "qg-city-popup";
+          popup.dataset.city = location.key;
+          popup.dataset.index = String(index);
+          popup.style.setProperty("--qg-label-x", `${location.labelX}px`);
+          popup.style.setProperty("--qg-label-y", `${location.labelY}px`);
+          popup.style.setProperty("--qg-pop-scale", "0.55");
+          popup.innerHTML = `<span class="qg-city-dot" aria-hidden="true"></span><span class="qg-city-label">${location.label}</span>`;
+          mapPointsLayer.appendChild(popup);
+        });
+      }
+      buildCityPopups();
+
+      let worldData = null, projection = null, mapWidth = 0, mapHeight = 0;
+
+      async function loadWorldMap() {
+        try { worldData = await d3.json(WORLD_DATA_URL); renderWorldMap(); }
+        catch (error) { console.error("Could not load world map:", error); }
+      }
+
+      function renderWorldMap() {
+        if (!worldData) return;
+        const rect = worldLayer.getBoundingClientRect();
+        mapWidth = Math.max(700, Math.round(rect.width));
+        mapHeight = Math.max(420, Math.round(rect.height));
+        svg.attr("viewBox", `0 0 ${mapWidth} ${mapHeight}`).attr("preserveAspectRatio", "xMidYMid meet");
+
+        const allCountries = topojson.feature(worldData, worldData.objects.countries).features;
+        const countries = allCountries.filter(country => Number(country.id) !== 10);
+        const mapFeatureCollection = { type: "FeatureCollection", features: countries };
+
+        projection = d3.geoNaturalEarth1().fitExtent([[-22, 34], [mapWidth + 22, mapHeight - 24]], mapFeatureCollection);
+        const geoPath = d3.geoPath(projection);
+        svg.selectAll("*").remove();
+
+        const mergedLand = topojson.merge(worldData, worldData.objects.countries.geometries.filter(geometry => Number(geometry.id) !== 10));
+        svg.append("path").datum(mergedLand).attr("class", "qg-world-land-shadow").attr("d", geoPath);
+        svg.append("path").datum(mergedLand).attr("class", "qg-world-land-glow").attr("d", geoPath);
+        svg.append("path").datum(mergedLand).attr("class", "qg-world-land").attr("d", geoPath);
+        positionMapMarkers();
+      }
+
+      function positionMapMarkers() {
+        if (!projection) return;
+        document.querySelectorAll(".qg-map-point").forEach(point => {
+            const country = point.dataset.country;
+            const coordinates = clientLocations[country];
+            if (!coordinates) return;
+            const projected = projection(coordinates);
+            if (!projected) return;
+            const [x, y] = projected;
+            point.style.left = `${(x / mapWidth) * 100}%`;
+            point.style.top = `${(y / mapHeight) * 100}%`;
+          });
+
+        clientCityLocations.forEach(location => {
+          const popup = mapPointsLayer && mapPointsLayer.querySelector(`.qg-city-popup[data-city="${location.key}"]`);
+          if (!popup) return;
+          const projected = projection(location.coord);
+          if (!projected) return;
+          const [x, y] = projected;
+          popup.style.left = `${(x / mapWidth) * 100}%`;
+          popup.style.top = `${(y / mapHeight) * 100}%`;
+        });
+      }
+
+      let flights = [], flightsCreated = false;
+
+      function getVisibleCards() {
+        const cards = [...document.querySelectorAll(".qg-testimonial-card")];
+        const byId = new Map();
+        for (const card of cards) {
+          const id = card.dataset.id;
+          if (!byId.has(id)) byId.set(id, []);
+          byId.get(id).push(card);
+        }
+        const centerX = window.innerWidth / 2, centerY = window.innerHeight / 2;
+        const visible = [];
+        byId.forEach(instances => {
+            let best = null, bestScore = -Infinity;
+            for (const card of instances) {
+              const rect = card.getBoundingClientRect();
+              const onScreen = rect.right > -40 && rect.left < window.innerWidth + 40 && rect.bottom > -40 && rect.top < window.innerHeight + 40 && rect.width > 4 && rect.height > 4;
+              const rectCenterX = rect.left + rect.width / 2, rectCenterY = rect.top + rect.height / 2;
+              const distanceFromCenter = Math.abs(rectCenterX - centerX) + Math.abs(rectCenterY - centerY);
+              const score = (onScreen ? 100000 : 0) - distanceFromCenter;
+              if (score > bestScore) { bestScore = score; best = { card, rect }; }
+            }
+            if (best) visible.push(best);
+          });
+        return visible;
+      }
+
+      function createFlights() {
+        if (flightsCreated) return;
+        flightsCreated = true;
+        const visibleCards = getVisibleCards();
+
+        flights = visibleCards.map((item, index) => {
+              const { card, rect } = item;
+              const country = card.dataset.country;
+              const target = section.querySelector(`.qg-map-point[data-country="${country}"]`);
+              if (!target) return null;
+
+              const naturalWidth = card.offsetWidth, naturalHeight = card.offsetHeight;
+              const rectCenterX = rect.left + rect.width / 2, rectCenterY = rect.top + rect.height / 2;
+              const startLeft = rectCenterX - naturalWidth / 2, startTop = rectCenterY - naturalHeight / 2;
+
+              const placeholder = document.createElement("div");
+              placeholder.className = "qg-flight-placeholder";
+              placeholder.style.width = `${naturalWidth}px`;
+              placeholder.style.height = `${naturalHeight}px`;
+              placeholder.style.flex = `0 0 ${naturalWidth}px`;
+
+              const originalStyle = card.getAttribute("style");
+              card.parentNode.insertBefore(placeholder, card);
+              card.classList.add("qg-flight-card");
+              card.style.width = `${naturalWidth}px`;
+              card.style.height = `${naturalHeight}px`;
+              card.style.flexBasis = `${naturalWidth}px`;
+              card.style.opacity = "1";
+              card.style.borderRadius = "14px";
+              card.style.setProperty("--flight-content-opacity", "1");
+              card.style.transform = `translate3d(${startLeft}px, ${startTop}px, 0)`;
+              document.body.appendChild(card);
+
+              return { card, placeholder, originalStyle, country, target, startX: startLeft, startY: startTop, width: naturalWidth, height: naturalHeight, offsetX: 0, offsetY: 0, index };
+            }).filter(Boolean);
+
+        marqueeStage.classList.add("qg-flight-cleanup-active");
+      }
+
+      function updateFlights(progress) {
+        if (!flightsCreated) return;
+        flights.forEach((flight, index) => {
+            const stagger = 0;
+            const localProgress = clamp((progress - stagger) / (1 - stagger));
+            const travelProgress = smoothstep(0.00, 1.00, localProgress);
+            const travelEased = easeInOutCubic(travelProgress);
+            const morphProgress = smoothstep(0.00, 0.22, localProgress);
+            const targetRect = flight.target.getBoundingClientRect();
+            const targetX = targetRect.left + targetRect.width / 2 - flight.width / 2 + flight.offsetX;
+            const targetY = targetRect.top + targetRect.height / 2 - flight.height / 2 + flight.offsetY;
+            const arcHeight = 38 + (index % 3) * 12;
+            const arc = Math.sin(Math.PI * travelEased) * arcHeight;
+            const currentX = lerp(flight.startX, targetX, travelEased);
+            const currentY = lerp(flight.startY, targetY, travelEased) - arc;
+            const landingGrow = smoothstep(0.78, 1.00, localProgress);
+            const circleSize = lerp(16, 40, landingGrow);
+            const visualWidth = lerp(flight.width, circleSize, morphProgress);
+            const visualHeight = lerp(flight.height, circleSize, morphProgress);
+            const scaleX = visualWidth / flight.width, scaleY = visualHeight / flight.height;
+            const roundness = lerp(14, 999, morphProgress);
+            const contentOpacity = 1 - smoothstep(0.04, 0.16, localProgress);
+            let opacity = 1;
+            if (localProgress > 0.94) opacity = 1 - smoothstep(0.94, 1, localProgress);
+
+            flight.card.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) scale(${scaleX}, ${scaleY})`;
+            flight.card.style.borderRadius = `${roundness}px`;
+            flight.card.style.opacity = opacity;
+            flight.card.style.setProperty("--flight-content-opacity", contentOpacity.toFixed(3));
+
+            if (localProgress > 0.88) flight.target.classList.add("qg-active");
+            else flight.target.classList.remove("qg-active");
+          });
+      }
+
+      function removeFlights() {
+        flights.forEach(flight => {
+            const card = flight.card;
+            if (flight.placeholder && flight.placeholder.isConnected) flight.placeholder.replaceWith(card);
+            card.classList.remove("qg-flight-card");
+            if (flight.originalStyle === null) card.removeAttribute("style");
+            else card.setAttribute("style", flight.originalStyle);
+          });
+        flights = [];
+        flightsCreated = false;
+        marqueeStage.classList.remove("qg-flight-cleanup-active");
+        document.querySelectorAll(".qg-map-point").forEach(point => point.classList.remove("qg-active"));
+      }
+
+      const SCROLL_PHASE = { freezeStart: 0.30, tiltEnd: 0.49, flightStart: 0.50, flightEnd: 0.74, textStart: 0.74, textEnd: 0.995 };
+
+      function getSectionProgress() {
+        const rect = section.getBoundingClientRect();
+        const scrollDistance = section.offsetHeight - window.innerHeight;
+        if (scrollDistance <= 0) return 0;
+        return clamp(-rect.top / scrollDistance);
+      }
+
+      let ticking = false;
+
+      function updateAnimation() {
+        ticking = false;
+        const progress = getSectionProgress();
+        const { freezeStart, tiltEnd, flightStart, flightEnd, textStart, textEnd } = SCROLL_PHASE;
+
+        if (progress < freezeStart) {
+          section.classList.remove("qg-is-frozen");
+          if (flightsCreated) removeFlights();
+        } else {
+          section.classList.add("qg-is-frozen");
+        }
+
+        const tiltProgress = smoothstep(freezeStart, tiltEnd, progress);
+        const rotateX = lerp(0, 56, tiltProgress);
+        const stageScale = lerp(1, 0.78, tiltProgress);
+        const stageY = lerp(0, -7, tiltProgress);
+        marqueeStage.style.transform = `translate3d(0, ${stageY}vh, 0) rotateX(${rotateX}deg) scale(${stageScale})`;
+
+        const introFade = smoothstep(freezeStart, freezeStart + 0.09, progress);
+        introCopy.style.opacity = 1 - introFade;
+        introCopy.style.transform = `translateX(-50%) translateY(${-25 * introFade}px)`;
+
+        const mapProgress = smoothstep(freezeStart + 0.02, flightStart + 0.16, progress);
+        worldLayer.style.opacity = mapProgress;
+        const mapScale = lerp(0.90, 1, mapProgress);
+        worldLayer.style.transform = `translate(-50%, -50%) scale(${mapScale})`;
+
+        const cityPopups = [...section.querySelectorAll(".qg-city-popup")];
+        cityPopups.forEach((popup, index) => {
+            const popupStart = 0.735 + index * 0.006;
+            const popupEnd = popupStart + 0.050;
+            const popupProgress = smoothstep(popupStart, popupEnd, progress);
+            popup.style.opacity = popupProgress;
+            popup.style.setProperty("--qg-pop-scale", lerp(0.55, 1, popupProgress).toFixed(3));
+            popup.classList.toggle("qg-city-live", popupProgress > 0.82);
+          });
+
+        if (progress >= flightStart) {
+          if (!flightsCreated) createFlights();
+          const flightProgress = inverseLerp(flightStart, flightEnd, progress);
+          updateFlights(flightProgress);
+          const deckFade = smoothstep(flightStart, flightStart + 0.18, progress);
+          marqueeStage.style.opacity = 1 - deckFade;
+        } else {
+          marqueeStage.style.opacity = 1;
+          if (flightsCreated) removeFlights();
+        }
+
+        const titleProgress = inverseLerp(textStart, textEnd, progress);
+        const titleCount = mapTitles.length;
+        mapTitles.forEach((title, index) => {
+            const segmentStart = index / titleCount, segmentEnd = (index + 1) / titleCount;
+            const local = inverseLerp(segmentStart, segmentEnd, titleProgress);
+            const enter = smoothstep(0.00, 0.14, local);
+            const exit = smoothstep(0.82, 1.00, local);
+            const opacity = enter * (1 - exit);
+            const scale = local < 0.82 ? lerp(1.08, 1.00, enter) : lerp(1.00, 0.72, exit);
+            const y = local < 0.82 ? lerp(18, 0, enter) : lerp(0, -10, exit);
+            const blur = lerp(0, 7, exit);
+            title.style.opacity = opacity;
+            title.style.transform = `translateY(${y}px) scale(${scale})`;
+            title.style.filter = `blur(${blur}px)`;
+          });
+
+        const cueFade = smoothstep(0.16, 0.30, progress);
+        scrollCue.style.opacity = 1 - cueFade;
+        scrollCue.style.pointerEvents = cueFade > 0.9 ? "none" : "auto";
+      }
+
+      function requestUpdate() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(updateAnimation);
+      }
+
+      window.addEventListener("scroll", requestUpdate, { passive: true });
+
+      scrollButton.addEventListener("click", () => {
+          const scrollDistance = section.offsetHeight - window.innerHeight;
+          const destination = section.offsetTop + scrollDistance * 0.33;
+          window.scrollTo({ top: destination, behavior: "smooth" });
+        });
+
+      let resizeTimer = null;
+      window.addEventListener("resize", () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(() => {
+              renderWorldMap();
+              if (flightsCreated) removeFlights();
+              requestUpdate();
+            }, 120);
+        });
+
+      loadWorldMap();
+      updateAnimation();
+  }
+
+  start();
+})();
     </script>
     
   </body>

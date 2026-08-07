@@ -475,21 +475,21 @@ const slides = document.querySelectorAll(".content-slide");
 const imageData = [
 
 [
-  "./assets/homeimages/teamh1.JPG",
-  "./assets/homeimages/teamh2.JPG",
-  "./assets/homeimages/teamh3.JPG"
+  "./assets/homeimages/teamh1.webp",
+  "./assets/homeimages/teamh2.webp",
+  "./assets/homeimages/teamh3.webp"
 ],
 
 [
-  "./assets/homeimages/teamh4.JPG",
-  "./assets/homeimages/teamh5.JPG",
-  "./assets/homeimages/teamh6.JPG"
+  "./assets/homeimages/teamh4.webp",
+  "./assets/homeimages/teamh5.webp",
+  "./assets/homeimages/teamh6.webp"
 ],
 
 [
-  "./assets/homeimages/teamh7.JPG",
-  "./assets/homeimages/teamh8.JPG",
-  "./assets/homeimages/teamh9.JPG"
+  "./assets/homeimages/teamh7.webp",
+  "./assets/homeimages/teamh8.webp",
+  "./assets/homeimages/teamh9.webp"
 ]
 
 ];
@@ -500,6 +500,7 @@ const progress = document.querySelector(".scroll-progress");
 
 let currentIndex = 0;
 
+if (window.matchMedia("(min-width: 769px)").matches) {
 window.addEventListener("scroll",()=>{
 
     const section = document.querySelector(".premium-about");
@@ -551,6 +552,7 @@ window.addEventListener("scroll",()=>{
     }
 
 });
+}
 
 // ------------------------------------------------------------- Testimonials ---------------------------------------------------------------------------------
 
