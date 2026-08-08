@@ -608,14 +608,24 @@
       margin-bottom: 16px;
     }
 
-    .blog-card p {
-      font-size: 12px;
-      line-height: 1.35;
-      color: rgba(255,255,255,0.62);
-      max-width: 250px;
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 2px;
+      font-size: 10px;
+      line-height: 1.4;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.68);
     }
 
-    .blog-card.light p {
+    .blog-card-meta .meta-dot {
+      opacity: 0.55;
+    }
+
+    .blog-card.light .blog-card-meta {
       color: #777;
     }
 
@@ -948,12 +958,42 @@
           ? `<div class="tag">${post.category.name}</div>`
           : "";
 
+        const publishedDate = post.publishedAt || post.createdAt || post.updatedAt;
+
+        const formattedDate = publishedDate
+          ? new Date(publishedDate).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric"
+            })
+          : "";
+
+        const rawContent = typeof post.content === "string"
+          ? post.content
+          : JSON.stringify(post.content || "");
+
+        const contentText = rawContent
+          .replace(/<[^>]*>/g, " ")
+          .replace(/&nbsp;/g, " ")
+          .replace(/&amp;/g, "&")
+          .replace(/\s+/g, " ")
+          .trim();
+
+        const wordCount = contentText
+          ? contentText.split(/\s+/).filter(Boolean).length
+          : 0;
+
+        const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
         card.innerHTML = `
           <img src="${imgSrc}" alt="${post.featuredImageAlt || post.title}">
           ${tagHtml}
           <div class="blog-card-content">
             <h3>${post.title}</h3>
-            <p>${post.excerpt || ""}</p>
+            <div class="blog-card-meta">
+              ${formattedDate ? `<span>${formattedDate}</span><span class="meta-dot">•</span>` : ""}
+              <span>${readingTime} min read</span>
+            </div>
           </div>
         `;
 
