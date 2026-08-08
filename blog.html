@@ -304,43 +304,64 @@
     }
 
     @media (max-width: 768px) {
+      .hero-page {
+        min-height: auto;
+        padding: 8px;
+      }
+
       .hero-wrap {
-        min-height: 100vh;
+        min-height: calc(100svh - 16px);
         border-radius: 22px;
-        padding: 26px 22px;
-        background-position: center;
+        padding: 28px 20px 118px;
+        background-position: 58% center;
+        display: flex;
+        align-items: flex-start;
       }
 
       .hero-wrap::before {
         background:
           linear-gradient(
             to bottom,
-            rgba(222, 223, 221, 0.92) 0%,
-            rgba(222, 223, 221, 0.72) 45%,
-            rgba(222, 223, 221, 0.40) 100%
+            rgba(222, 223, 221, 0.94) 0%,
+            rgba(222, 223, 221, 0.82) 34%,
+            rgba(222, 223, 221, 0.52) 68%,
+            rgba(116, 116, 116, 0.18) 100%
           );
       }
 
       .hero-content {
-        margin-top: 78px;
+        width: 100%;
+        max-width: 360px;
+        margin-top: 112px;
       }
 
       .hero-content h1 {
-        letter-spacing: -3px;
+        max-width: 330px;
+        font-size: clamp(48px, 14vw, 66px);
+        line-height: 0.94;
+        letter-spacing: -3.5px;
+        text-wrap: balance;
       }
 
       .hero-content p {
-        font-size: 13px;
+        max-width: 300px;
+        margin-top: 22px;
+        font-size: 14px;
+        line-height: 1.45;
       }
 
       .begin-btn {
-        width: 225px;
-        height: 70px;
+        width: 158px;
+        height: 48px;
+        margin-top: 26px;
+        justify-content: center;
+        gap: 0;
+        padding: 0 20px;
+        font-size: 14px;
       }
 
-      .btn-orb {
-        width: 62px;
-        height: 44px;
+      .begin-btn .btn-orb {
+        display: none;
       }
 
       .floating-card {
@@ -374,10 +395,56 @@
       }
 
       .big-title {
-        left: 18px;
-        bottom: -12px;
-        font-size: clamp(74px, 22vw, 130px);
-        letter-spacing: -7px;
+        left: 16px;
+        bottom: 24px;
+        width: calc(100% - 32px);
+        font-size: clamp(50px, 16vw, 72px);
+        line-height: 0.88;
+        letter-spacing: -2.5px;
+        text-align: center;
+        white-space: nowrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-wrap {
+        min-height: calc(100svh - 16px);
+        padding: 24px 18px 108px;
+        background-position: 61% center;
+      }
+
+      .hero-content {
+        margin-top: 104px;
+        max-width: 100%;
+      }
+
+      .hero-content h1 {
+        max-width: 300px;
+        font-size: clamp(44px, 13.2vw, 58px);
+        line-height: 0.96;
+        letter-spacing: -3px;
+      }
+
+      .hero-content p {
+        max-width: 275px;
+        margin-top: 20px;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .begin-btn {
+        width: 150px;
+        height: 46px;
+        margin-top: 24px;
+        font-size: 13px;
+      }
+
+      .big-title {
+        left: 12px;
+        bottom: 22px;
+        width: calc(100% - 24px);
+        font-size: clamp(46px, 15.2vw, 62px);
+        letter-spacing: -2px;
       }
     }
 
