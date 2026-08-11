@@ -530,9 +530,6 @@
   </footer>
 
   <script>
-    const API_BASE = "http://localhost:5000";
-    const POSTS_API = API_BASE + "/api/public/posts";
-
     const articleRoot = document.getElementById("articleRoot");
 
     function escapeHtml(value = "") {
@@ -544,146 +541,10 @@
         .replace(/'/g, "&#039;");
     }
 
-    function stripHtml(value = "") {
-      const temp = document.createElement("div");
-      temp.innerHTML = String(value);
-      return (temp.textContent || temp.innerText || "")
-        .replace(/\s+/g, " ")
-        .trim();
-    }
-
-    function getPlainTextFromContent(content) {
-      if (!content) return "";
-
-      if (typeof content === "string") {
-        return stripHtml(content);
-      }
-
-      try {
-        return JSON.stringify(content)
-          .replace(/[{}\[\]":,]/g, " ")
-          .replace(/\s+/g, " ")
-          .trim();
-      } catch {
-        return "";
-      }
-    }
-
-    function calculateReadingTime(content) {
-      const text = getPlainTextFromContent(content);
-      const words = text ? text.split(/\s+/).filter(Boolean).length : 0;
-      return Math.max(1, Math.ceil(words / 200));
-    }
-
-    function renderRichTextNode(node) {
-      if (node == null) return "";
-
-      if (typeof node === "string") {
-        return escapeHtml(node).replace(/\n/g, "<br>");
-      }
-
-      if (Array.isArray(node)) {
-        return node.map(renderRichTextNode).join("");
-      }
-
-      if (typeof node !== "object") {
-        return escapeHtml(String(node));
-      }
-
-      if (node.text !== undefined) {
-        let text = escapeHtml(node.text);
-
-        if (node.bold || node.marks?.includes?.("bold")) {
-          text = "<strong>" + text + "</strong>";
-        }
-        if (node.italic || node.marks?.includes?.("italic")) {
-          text = "<em>" + text + "</em>";
-        }
-        if (node.underline || node.marks?.includes?.("underline")) {
-          text = "<u>" + text + "</u>";
-        }
-
-        return text;
-      }
-
-      const children = node.children || node.content || node.nodes || [];
-      const inner = renderRichTextNode(children);
-
-      switch (node.type) {
-        case "paragraph":
-          return "<p>" + inner + "</p>";
-        case "heading":
-        case "heading-two":
-        case "h2":
-          return "<h2>" + inner + "</h2>";
-        case "heading-three":
-        case "h3":
-          return "<h3>" + inner + "</h3>";
-        case "heading-four":
-        case "h4":
-          return "<h4>" + inner + "</h4>";
-        case "bullet-list":
-        case "unordered-list":
-          return "<ul>" + inner + "</ul>";
-        case "ordered-list":
-        case "number-list":
-          return "<ol>" + inner + "</ol>";
-        case "list-item":
-          return "<li>" + inner + "</li>";
-        case "blockquote":
-        case "quote":
-          return "<blockquote>" + inner + "</blockquote>";
-        case "link": {
-          const href = node.url || node.href || "#";
-          return '<a href="' + escapeHtml(href) + '" target="_blank" rel="noopener">' + inner + "</a>";
-        }
-        default:
-          return inner;
-      }
-    }
-
-    function normaliseArticleContent(content) {
-      if (!content) {
-        return "<p>Article content is not available yet.</p>";
-      }
-
-      if (typeof content === "string") {
-        const trimmed = content.trim();
-
-        if (!trimmed) {
-          return "<p>Article content is not available yet.</p>";
-        }
-
-        // If backend already sends HTML, render that HTML.
-        if (/<[a-z][\s\S]*>/i.test(trimmed)) {
-          return trimmed;
-        }
-
-        // Try parsing JSON rich-text strings.
-        if (
-          (trimmed.startsWith("{") && trimmed.endsWith("}")) ||
-          (trimmed.startsWith("[") && trimmed.endsWith("]"))
-        ) {
-          try {
-            return renderRichTextNode(JSON.parse(trimmed));
-          } catch (_) {}
-        }
-
-        // Plain-text fallback with paragraphs.
-        return trimmed
-          .split(/\n{2,}/)
-          .map(p => "<p>" + escapeHtml(p).replace(/\n/g, "<br>") + "</p>")
-          .join("");
-      }
-
-      return renderRichTextNode(content);
-    }
-
     function formatDate(value) {
       if (!value) return "";
-
-      const date = new Date(value);
-      if (Number.isNaN(date.getTime())) return "";
+      const date = new Date(value + "T00:00:00");
+      if (Number.isNaN(date.getTime())) return value;
 
       return date.toLocaleDateString("en-US", {
         month: "long",
@@ -692,104 +553,55 @@
       });
     }
 
-    function getFeaturedImage(post) {
-      if (!post?.featuredImage) {
-        return "./images/artboard-13.jpeg";
+    async function getAllBlogs() {
+      const response = await fetch("./blog.html", { cache: "no-store" });
+
+      if (!response.ok) {
+        throw new Error("Could not read blog.html");
       }
 
-      if (
-        post.featuredImage.startsWith("http://") ||
-        post.featuredImage.startsWith("https://")
-      ) {
-        return post.featuredImage;
+      const htmlText = await response.text();
+      const page = new DOMParser().parseFromString(htmlText, "text/html");
+      const dataElement = page.getElementById("blogData");
+
+      if (!dataElement) {
+        throw new Error("blogData not found in blog.html");
       }
 
-      return API_BASE + post.featuredImage;
+      return JSON.parse(dataElement.textContent);
     }
 
     function setSeo(post) {
-      const description =
-        post.metaDescription ||
-        post.excerpt ||
-        getPlainTextFromContent(post.content).slice(0, 155);
-
       document.title = (post.metaTitle || post.title || "Blog") + " | Qrious Curators";
 
-      const descriptionMeta = document.querySelector('meta[name="description"]');
-      if (descriptionMeta) {
-        descriptionMeta.setAttribute("content", description || "");
-      }
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute("content", post.metaDescription || "");
 
       const canonical = document.querySelector('link[rel="canonical"]');
-      if (canonical) {
-        canonical.setAttribute("href", post.canonicalUrl || window.location.href);
-      }
-    }
-
-    async function fetchPostBySlug(slug) {
-      // First try a normal single-post endpoint.
-      try {
-        const singleRes = await fetch(POSTS_API + "/" + encodeURIComponent(slug));
-
-        if (singleRes.ok) {
-          const singleData = await singleRes.json();
-          const singlePost =
-            singleData.post ||
-            singleData.data ||
-            (singleData.slug ? singleData : null);
-
-          if (singlePost) return singlePost;
-        }
-      } catch (_) {}
-
-      // Fallback to the list endpoint already used by blog.html.
-      const listRes = await fetch(POSTS_API);
-
-      if (!listRes.ok) {
-        throw new Error("Could not load blog posts.");
-      }
-
-      const listData = await listRes.json();
-      const posts = Array.isArray(listData)
-        ? listData
-        : (listData.posts || listData.data || []);
-
-      return posts.find(post => post.slug === slug) || null;
+      if (canonical) canonical.setAttribute("href", window.location.href);
     }
 
     function renderArticle(post) {
-      const publishedDate =
-        post.publishedAt ||
-        post.createdAt ||
-        post.updatedAt;
-
-      const formattedDate = formatDate(publishedDate);
-      const readingTime = calculateReadingTime(post.content);
-      const categoryName = post.category?.name || post.category || "Insights";
-      const imageSrc = getFeaturedImage(post);
-      const contentHtml = normaliseArticleContent(post.content);
-
       setSeo(post);
 
       articleRoot.innerHTML = `
         <a class="article-back" href="./blog.html">← Back to blogs</a>
 
         <header class="article-header">
-          <div class="article-category">${escapeHtml(categoryName)}</div>
-
+          <div class="article-category">${escapeHtml(post.category || "Insights")}</div>
           <h1 class="article-title">${escapeHtml(post.title || "Untitled article")}</h1>
 
           <div class="article-meta">
-            ${formattedDate ? `<span>${escapeHtml(formattedDate)}</span>` : ""}
-            ${formattedDate ? `<span class="article-meta-dot">•</span>` : ""}
-            <span>${readingTime} min read</span>
+            <span>${escapeHtml(formatDate(post.date))}</span>
+            <span class="article-meta-dot">•</span>
+            <span>${escapeHtml(post.readingTime || "5 min read")}</span>
           </div>
         </header>
 
         <figure class="article-featured">
           <img
-            src="${escapeHtml(imageSrc)}"
-            alt="${escapeHtml(post.featuredImageAlt || post.title || "Blog image")}"
+            src="${escapeHtml(post.image || "./images/artboard-13.jpeg")}"
+            alt="${escapeHtml(post.imageAlt || post.title || "Blog image")}"
           >
         </figure>
 
@@ -812,7 +624,7 @@
           </aside>
 
           <article class="article-content">
-            ${contentHtml}
+            ${post.content || "<p>Article content is not available yet.</p>"}
           </article>
         </div>
 
@@ -823,15 +635,17 @@
       `;
 
       const copyButton = document.getElementById("copyArticleLink");
+
       if (copyButton) {
         copyButton.addEventListener("click", async () => {
           try {
             await navigator.clipboard.writeText(window.location.href);
             copyButton.textContent = "Copied";
+
             setTimeout(() => {
               copyButton.textContent = "Copy link";
             }, 1600);
-          } catch (_) {
+          } catch (error) {
             copyButton.textContent = "Copy failed";
           }
         });
@@ -851,8 +665,7 @@
     }
 
     async function initArticle() {
-      const params = new URLSearchParams(window.location.search);
-      const slug = params.get("slug");
+      const slug = new URLSearchParams(window.location.search).get("slug");
 
       if (!slug) {
         renderError("No blog slug was provided in the URL.");
@@ -860,7 +673,8 @@
       }
 
       try {
-        const post = await fetchPostBySlug(slug);
+        const blogs = await getAllBlogs();
+        const post = blogs.find(blog => blog.slug === slug);
 
         if (!post) {
           renderError("We could not find an article matching this URL.");
@@ -870,12 +684,13 @@
         renderArticle(post);
       } catch (error) {
         console.error(error);
-        renderError("Could not load this article. Please try again later.");
+        renderError("Could not load this article.");
       }
     }
 
     initArticle();
   </script>
+
 
   <script src="./scripts/script.js"></script>
 </body>
