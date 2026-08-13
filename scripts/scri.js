@@ -1211,3 +1211,19 @@ document.getElementById('r2').innerHTML = h2 + h2;
     }, 1000);
   }
 })();
+ const form = document.getElementById('contactForm');
+  const statusMsg = document.getElementById('statusMsg');
+  const submitBtn = document.getElementById('submitBtn');
+ 
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    submitBtn.disabled = true;
+    statusMsg.textContent = 'Sending...';
+ 
+    // Simulated submit — replace with a real endpoint call as needed
+    setTimeout(() => {
+      statusMsg.textContent = 'Thanks — we will be in touch shortly.';
+      submitBtn.disabled = false;
+      form.reset();
+    }, 900);
+  });
