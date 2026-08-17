@@ -19,7 +19,7 @@
       tag: 'THE START',
       desc: 'It started with Abhay and Bhavana and the belief that brands deserve more than random digital work.',
       metric: 'FOUNDERS · FIRST BRANDS · BIG DREAMS',
-      image: './images/artboard-7.jpeg'
+      image: './images/artboard-7.webp'
     },
     {
       id: 2,
@@ -31,7 +31,7 @@
       tag: 'THE REALITY CHECK',
       desc: "Every brief, every change, every campaign, every 'can this go live today?' helped us understand what growing brands actually need.",
       metric: 'LEARNING · TESTING · FIXING',
-      image: './images/artboard-12.jpeg'
+      image: './images/artboard-12.webp'
     },
     {
       id: 3,
@@ -43,7 +43,7 @@
       tag: 'THE PEOPLE PART',
       desc: 'Working closely with business owners made us realise that marketing works better when you understand the people behind the brand first.',
       metric: 'TRUST · RELATIONSHIPS · REAL STORIES',
-      image: './images/artboard-19.jpeg'
+      image: './images/artboard-19.webp'
     },
     {
       id: 4,
@@ -55,7 +55,7 @@
       tag: 'THE TEAM PHASE',
       desc: 'More minds joined in. More ideas, more opinions, more laughs, more deadlines, and somehow, better work every time.',
       metric: 'TEAM · CHAOS · CULTURE',
-      image: './images/artboard-18.jpeg'
+      image: './images/artboard-18.webp'
     },
     {
       id: 5,
@@ -67,7 +67,7 @@
       tag: 'THE GROWTH',
       desc: 'What started with digital marketing grew into social media, shoots, websites, branding, campaigns, ads, and everything brands need to show up better.',
       metric: 'CONTENT · DESIGN · GROWTH',
-      image: './images/artboard-6.jpeg'
+      image: './images/artboard-6.webp'
     },
     {
       id: 6,
@@ -79,7 +79,7 @@
       tag: 'RIGHT NOW',
       desc: 'The journey is still moving, with bigger ideas, better systems, a growing team, and brands we genuinely care about.',
       metric: 'NEXT CHAPTER · SAME ENERGY',
-      image: './images/artboard-13.jpeg'
+      image: './images/artboard-13.webp'
     }
   ];
 
